@@ -1,0 +1,3664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="author" content="BSI Product Development">
+<title>Design Documentation: BSI Studio 22.0</title>
+<style>
+/* normalize.css v2.1.1 | MIT License | git.io/normalize */
+/* ========================================================================== HTML5 display definitions ========================================================================== */
+/** Correct `block` display not defined in IE 8/9. */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
+
+/** Correct `inline-block` display not defined in IE 8/9. */
+audio, canvas, video { display: inline-block; }
+
+/** Prevent modern browsers from displaying `audio` without controls. Remove excess height in iOS 5 devices. */
+audio:not([controls]) { display: none; height: 0; }
+
+/** Address styling not present in IE 8/9. */
+[hidden] { display: none; }
+
+/* ========================================================================== Base ========================================================================== */
+/** 1. Prevent system color scheme's background color being used in Firefox, IE, and Opera. 2. Prevent system color scheme's text color being used in Firefox, IE, and Opera. 3. Set default font family to sans-serif. 4. Prevent iOS text size adjust after orientation change, without disabling user zoom. */
+html { background: #fff; /* 1 */ color: #000; /* 2 */ font-family: sans-serif; /* 3 */ -ms-text-size-adjust: 100%; /* 4 */ -webkit-text-size-adjust: 100%; /* 4 */ }
+
+/** Remove default margin. */
+body { margin: 0; }
+
+/* ========================================================================== Links ========================================================================== */
+/** Address `outline` inconsistency between Chrome and other browsers. */
+a:focus { outline: thin dotted; }
+
+/** Improve readability when focused and also mouse hovered in all browsers. */
+a:active, a:hover { outline: 0; }
+
+/* ========================================================================== Typography ========================================================================== */
+/** Address variable `h1` font-size and margin within `section` and `article` contexts in Firefox 4+, Safari 5, and Chrome. */
+h1 { font-size: 2em; margin: 0.67em 0; }
+
+/** Address styling not present in IE 8/9, Safari 5, and Chrome. */
+abbr[title] { border-bottom: 1px dotted; }
+
+/** Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome. */
+b, strong { font-weight: bold; }
+
+/** Address styling not present in Safari 5 and Chrome. */
+dfn { font-style: italic; }
+
+/** Address differences between Firefox and other browsers. */
+hr { -moz-box-sizing: content-box; box-sizing: content-box; height: 0; }
+
+/** Address styling not present in IE 8/9. */
+mark { background: #ff0; color: #000; }
+
+/** Correct font family set oddly in Safari 5 and Chrome. */
+code, kbd, pre, samp { font-family: monospace, serif; font-size: 1em; }
+
+/** Improve readability of pre-formatted text in all browsers. */
+pre { white-space: pre-wrap; }
+
+/** Set consistent quote types. */
+q { quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+/** Address inconsistent and variable font size in all browsers. */
+small { font-size: 80%; }
+
+/** Prevent `sub` and `sup` affecting `line-height` in all browsers. */
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+
+sup { top: -0.5em; }
+
+sub { bottom: -0.25em; }
+
+/* ========================================================================== Embedded content ========================================================================== */
+/** Remove border when inside `a` element in IE 8/9. */
+img { border: 0; }
+
+/** Correct overflow displayed oddly in IE 9. */
+svg:not(:root) { overflow: hidden; }
+
+/* ========================================================================== Figures ========================================================================== */
+/** Address margin not present in IE 8/9 and Safari 5. */
+figure { margin: 0; }
+
+/* ========================================================================== Forms ========================================================================== */
+/** Define consistent border, margin, and padding. */
+fieldset { border: 1px solid #c0c0c0; margin: 0 2px; padding: 0.35em 0.625em 0.75em; }
+
+/** 1. Correct `color` not being inherited in IE 8/9. 2. Remove padding so people aren't caught out if they zero out fieldsets. */
+legend { border: 0; /* 1 */ padding: 0; /* 2 */ }
+
+/** 1. Correct font family not being inherited in all browsers. 2. Correct font size not being inherited in all browsers. 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome. */
+button, input, select, textarea { font-family: inherit; /* 1 */ font-size: 100%; /* 2 */ margin: 0; /* 3 */ }
+
+/** Address Firefox 4+ setting `line-height` on `input` using `!important` in the UA stylesheet. */
+button, input { line-height: normal; }
+
+/** Address inconsistent `text-transform` inheritance for `button` and `select`. All other form control elements do not inherit `text-transform` values. Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+. Correct `select` style inheritance in Firefox 4+ and Opera. */
+button, select { text-transform: none; }
+
+/** 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` and `video` controls. 2. Correct inability to style clickable `input` types in iOS. 3. Improve usability and consistency of cursor style between image-type `input` and others. */
+button, html input[type="button"], input[type="reset"], input[type="submit"] { -webkit-appearance: button; /* 2 */ cursor: pointer; /* 3 */ }
+
+/** Re-set default cursor for disabled elements. */
+button[disabled], html input[disabled] { cursor: default; }
+
+/** 1. Address box sizing set to `content-box` in IE 8/9. 2. Remove excess padding in IE 8/9. */
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; /* 1 */ padding: 0; /* 2 */ }
+
+/** 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome. 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome (include `-moz` to future-proof). */
+input[type="search"] { -webkit-appearance: textfield; /* 1 */ -moz-box-sizing: content-box; -webkit-box-sizing: content-box; /* 2 */ box-sizing: content-box; }
+
+/** Remove inner padding and search cancel button in Safari 5 and Chrome on OS X. */
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+
+/** Remove inner padding and border in Firefox 4+. */
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+
+/** 1. Remove default vertical scrollbar in IE 8/9. 2. Improve readability and alignment in all browsers. */
+textarea { overflow: auto; /* 1 */ vertical-align: top; /* 2 */ }
+
+/* ========================================================================== Tables ========================================================================== */
+/** Remove most spacing between table cells. */
+table { border-collapse: collapse; border-spacing: 0; }
+
+*, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+html, body { font-size: 100%; }
+
+body { background: white; color: #222222; padding: 0; margin: 0; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; line-height: 1; position: relative; cursor: auto; }
+
+a:hover { cursor: pointer; }
+
+a:focus { outline: none; }
+
+img, object, embed { max-width: 100%; height: auto; }
+
+object, embed { height: 100%; }
+
+img { -ms-interpolation-mode: bicubic; }
+
+#map_canvas img, #map_canvas embed, #map_canvas object, .map_canvas img, .map_canvas embed, .map_canvas object { max-width: none !important; }
+
+.left { float: left !important; }
+
+.right { float: right !important; }
+
+.text-left { text-align: left !important; }
+
+.text-right { text-align: right !important; }
+
+.text-center { text-align: center !important; }
+
+.text-justify { text-align: justify !important; }
+
+.hide { display: none; }
+
+.antialiased, body { -webkit-font-smoothing: antialiased; }
+
+img { display: inline-block; vertical-align: middle; }
+
+textarea { height: auto; min-height: 50px; }
+
+select { width: 100%; }
+
+p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p { font-size: 1.21875em; line-height: 1.6; }
+
+.subheader, #content #toctitle, .admonitionblock td.content > .title, .exampleblock > .title, .imageblock > .title, .videoblock > .title, .listingblock > .title, .literalblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, .sidebarblock > .title, .tableblock > .title, .verseblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title, .tableblock > caption { line-height: 1.4; color: #777777; font-weight: 300; margin-top: 0.2em; margin-bottom: 0.5em; }
+
+/* Typography resets */
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6, pre, form, p, blockquote, th, td { margin: 0; padding: 0; direction: ltr; }
+
+/* Default Link Styles */
+a { color: #FE9915; text-decoration: none; line-height: inherit; }
+a:hover, a:focus { color: #FE9915; }
+a img { border: none; }
+
+/* Default paragraph styles */
+p { font-family: inherit; font-weight: normal; font-size: 1em; line-height: 1.6; margin-bottom: 1.25em; text-rendering: optimizeLegibility; }
+p aside { font-size: 0.875em; line-height: 1.35; font-style: italic; }
+
+/* Default header styles */
+h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; text-rendering: optimizeLegibility; margin-top: 1em; margin-bottom: 0.5em; line-height: 1.2125em; }
+h1 small, h2 small, h3 small, #toctitle small, .sidebarblock > .content > .title small, h4 small, h5 small, h6 small { font-size: 60%; color: gray; line-height: 0; }
+
+h1 { font-size: 2.125em; color: #0082A1; }
+
+h2 { font-size: 1.6875em; text-transform: uppercase; color: #FE9915; }
+h2 a, h2 a:hover, div#toc.toc2 ul a { color: #FE9915; }
+
+h3, #toctitle, .sidebarblock > .content > .title { font-size: 1.375em; text-transform: uppercase; color: #0082A1; }
+h3 a, h3 a:hover, div#toc.toc2 ul ul a{ color: #0082A1; }
+
+h4 { font-size: 1.125em; color: #7F7F7F; font-weight: bold; }
+h4 a, h4 a:hover, div#toc.toc2 ul ul ul a { color: #7F7F7F; }
+
+h5 { font-size: 1.125em; font-weight: bold; }
+h5 a, h5 a:hover, div#toc.toc2 ul ul ul ul a { color: #000; }
+
+h6 { font-size: 1em; }
+
+hr { border: dotted #cccccc; border-width: 1px 0 0; clear: both; margin: 1.25em 0 1.1875em; height: 0; }
+
+/* Helpful Typography Defaults */
+em, i { font-style: italic; line-height: inherit; }
+
+strong, b { font-weight: bold; line-height: inherit; color: #0082A1}
+
+small { font-size: 60%; line-height: inherit; }
+
+code { font-family: Consolas, "Liberation Mono", Courier, monospace; font-weight: bold; }
+
+/* Lists */
+ul, ol, dl { font-size: 1em; line-height: 1.6; margin-bottom: 1.25em; list-style-position: outside; font-family: inherit; }
+
+ul, ol { margin-left: 1.5em; }
+
+/* Unordered Lists */
+ul li ul, ul li ol { margin-left: 1.25em; margin-bottom: 0; font-size: 1em; /* Override nested font-size change */ }
+ul.square li ul, ul.circle li ul, ul.disc li ul { list-style: inherit; }
+ul.square { list-style-type: square; }
+ul.circle { list-style-type: circle; }
+ul.disc { list-style-type: disc; }
+ul.no-bullet { list-style: none; }
+
+/* Ordered Lists */
+ol li ul, ol li ol { margin-left: 1.25em; margin-bottom: 0; }
+
+/* Definition Lists */
+dl dt { margin-bottom: 0.3125em; font-weight: bold; }
+dl dd { margin-bottom: 1.25em; }
+
+/* Abbreviations */
+abbr, acronym { text-transform: uppercase; font-size: 90%; color: #555555; border-bottom: 1px dotted #dddddd; cursor: help; }
+
+abbr { text-transform: none; }
+
+/* Blockquotes */
+blockquote { margin: 0 0 1.25em; padding: 0.5625em 1.25em 0 1.1875em; border-left: 1px solid #efefef; }
+blockquote cite { display: block; font-size: 0.8125em; color: #5e5e5e; }
+blockquote cite:before { content: "\2014 \0020"; }
+blockquote cite a, blockquote cite a:visited { color: #5e5e5e; }
+
+blockquote, blockquote p { line-height: 1.6; color: #777777; }
+
+/* Microformats */
+.vcard { display: inline-block; margin: 0 0 1.25em 0; border: 1px solid #dddddd; padding: 0.625em 0.75em; }
+.vcard li { margin: 0; display: block; }
+.vcard .fn { font-weight: bold; font-size: 0.9375em; }
+
+.vevent .summary { font-weight: bold; }
+.vevent abbr { cursor: auto; text-decoration: none; font-weight: bold; border: none; padding: 0 0.0625em; }
+
+@media only screen and (min-width: 768px) { h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { line-height: 1.4; }
+  h1 { font-size: 2.75em; }
+  h2 { font-size: 2.3125em; }
+  h3, #toctitle, .sidebarblock > .content > .title { font-size: 1.5875em; }
+  h4 { font-size: 1.4375em; } }
+/* Print styles.  Inlined to avoid required HTTP connection: www.phpied.com/delay-loading-your-print-css/ Credit to Paul Irish and HTML5 Boilerplate (html5boilerplate.com)
+*/
+.print-only { display: none !important; }
+
+@media print { * { background: transparent !important; color: #000 !important; /* Black prints faster: h5bp.com/s */ box-shadow: none !important; text-shadow: none !important; }
+  a, a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group; /* h5bp.com/t */ }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.5cm; }
+  p, h2, h3, #toctitle, .sidebarblock > .content > .title { orphans: 3; widows: 3; }
+  h2, h3, #toctitle, .sidebarblock > .content > .title { page-break-after: avoid; }
+  .hide-on-print { display: none !important; }
+  .print-only { display: block !important; }
+  .hide-for-print { display: none !important; }
+  .show-for-print { display: inherit !important; } }
+/* Tables */
+table { background: white; margin-bottom: 1.25em; border: solid 1px #dddddd; }
+table thead, table tfoot { background: whitesmoke; font-weight: normal; }
+table thead tr th, table thead tr td, table tfoot tr th, table tfoot tr td { padding: 0.5em 0.625em 0.625em; font-size: inherit; color: #333333; text-align: left; }
+table tr th, table tr td { padding: 0.5625em 0.625em; font-size: inherit; color: #555555; }
+table thead tr th, table tr th {color: #0082A1; font-weight: bold}
+table tr.even, table tr.alt, table tr:nth-of-type(even) { background: #f9f9f9; }
+table thead tr th, table tfoot tr th, table tbody tr td, table tr td, table tfoot tr td { display: table-cell; line-height: 1.4; }
+
+.clearfix:before, .clearfix:after, .float-group:before, .float-group:after { content: " "; display: table; }
+.clearfix:after, .float-group:after { clear: both; }
+
+*:not(pre) > code { font-size: inherit; padding: 0; white-space: nowrap; background-color: inherit; border: 0 solid #dddddd; -webkit-border-radius: 0; border-radius: 0; text-shadow: none; }
+
+pre, pre > code { line-height: 1.4; color: black; font-family: monospace, serif; font-weight: normal; }
+
+kbd.keyseq { color: #888888; }
+
+kbd:not(.keyseq) { display: inline-block; color: #555555; font-size: 0.75em; line-height: 1.4; background-color: #F7F7F7; border: 1px solid #ccc; -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px white inset; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px white inset; margin: -0.15em 0.15em 0 0.15em; padding: 0.2em 0.6em 0.2em 0.5em; vertical-align: middle; white-space: nowrap; }
+
+kbd kbd:first-child { margin-left: 0; }
+
+kbd kbd:last-child { margin-right: 0; }
+
+.menuseq, .menu { color: #3b3b3b; }
+
+#header, #content, #footnotes, #footer { width: 100%; margin-left: auto; margin-right: auto; margin-top: 0; margin-bottom: 0; max-width: 62.5em; *zoom: 1; position: relative; padding-left: 0.9375em; padding-right: 0.9375em; }
+#header:before, #header:after, #content:before, #content:after, #footnotes:before, #footnotes:after, #footer:before, #footer:after { content: " "; display: table; }
+#header:after, #content:after, #footnotes:after, #footer:after { clear: both; }
+
+#header { margin-bottom: 2.5em; }
+#header > h1 { font-weight: bold; border-bottom: 1px dotted #cccccc; margin-bottom: -28px; padding-bottom: 32px; }
+#header span { color: #777777; }
+#header #revnumber { text-transform: capitalize; }
+#header br { display: none; }
+#header br + span { padding-left: 3px; }
+#header br + span:before { content: "\2013 \0020"; }
+#header br + span.author { padding-left: 0; }
+#header br + span.author:before { content: ", "; }
+
+#toc { border-bottom: 1px solid #cccccc; padding-bottom: 1.25em; }
+#toc > ul { margin-left: 0.25em; }
+#toc ul.sectlevel0 > li > a { font-style: italic; }
+#toc ul.sectlevel0 ul.sectlevel1 { margin-left: 0; margin-top: 0.5em; margin-bottom: 0.5em; }
+#toc ul { list-style-type: none; }
+
+#toctitle { color: #777777; }
+
+@media only screen and (min-width: 1280px) { body.toc2 { padding-left: 20em; }
+  #toc.toc2 { position: fixed; width: 20em; left: 0; top: 0; border-right: 1px solid #cccccc; border-bottom: 0; z-index: 1000; padding: 1em; height: 100%; overflow: auto; }
+  #toc.toc2 #toctitle { margin-top: 0; }
+  #toc.toc2 > ul { font-size: .95em; }
+  #toc.toc2 ul ul { margin-left: 0; padding-left: 1.25em; }
+  #toc.toc2 ul.sectlevel0 ul.sectlevel1 { padding-left: 0; margin-top: 0.5em; margin-bottom: 0.5em; }
+  body.toc2.toc-right { padding-left: 0; padding-right: 20em; }
+  body.toc2.toc-right #toc.toc2 { border-right: 0; border-left: 1px solid #cccccc; left: auto; right: 0; } }
+#content #toc { border-style: solid; border-width: 1px; border-color: #d9d9d9; margin-bottom: 1.25em; padding: 1.25em; background: #f2f2f2; border-width: 0; -webkit-border-radius: 0; border-radius: 0; }
+#content #toc > :first-child { margin-top: 0; }
+#content #toc > :last-child { margin-bottom: 0; }
+#content #toc a { text-decoration: none; }
+
+#content #toctitle { font-weight: bold; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 1em; padding-left: 0.125em; }
+
+#footer { max-width: 100%; background-color: #272727; padding: 1.25em; }
+
+#footer-text { color: #bcbcbc; line-height: 1.44; }
+
+.sect1 { padding-bottom: 1.25em; }
+
+.sect1 + .sect1 { border-top: 1px solid #cccccc; }
+
+#content h1 > a.anchor, h2 > a.anchor, h3 > a.anchor, #toctitle > a.anchor, .sidebarblock > .content > .title > a.anchor, h4 > a.anchor, h5 > a.anchor, h6 > a.anchor { position: absolute; width: 1em; margin-left: -1em; display: block; text-decoration: none; visibility: hidden; text-align: center; font-weight: normal; }
+#content h1 > a.anchor:before, h2 > a.anchor:before, h3 > a.anchor:before, #toctitle > a.anchor:before, .sidebarblock > .content > .title > a.anchor:before, h4 > a.anchor:before, h5 > a.anchor:before, h6 > a.anchor:before { content: '\00A7'; font-size: .85em; vertical-align: text-top; display: block; margin-top: 0.05em; }
+#content h1:hover > a.anchor, #content h1 > a.anchor:hover, h2:hover > a.anchor, h2 > a.anchor:hover, h3:hover > a.anchor, #toctitle:hover > a.anchor, .sidebarblock > .content > .title:hover > a.anchor, h3 > a.anchor:hover, #toctitle > a.anchor:hover, .sidebarblock > .content > .title > a.anchor:hover, h4:hover > a.anchor, h4 > a.anchor:hover, h5:hover > a.anchor, h5 > a.anchor:hover, h6:hover > a.anchor, h6 > a.anchor:hover { visibility: visible; }
+#content h1 > a.link, h2 > a.link, h3 > a.link, #toctitle > a.link, .sidebarblock > .content > .title > a.link, h4 > a.link, h5 > a.link, h6 > a.link { color: #333333; text-decoration: none; }
+#content h1 > a.link:hover, h2 > a.link:hover, h3 > a.link:hover, #toctitle > a.link:hover, .sidebarblock > .content > .title > a.link:hover, h4 > a.link:hover, h5 > a.link:hover, h6 > a.link:hover { color: #262626; }
+
+.imageblock, .literalblock, .listingblock, .verseblock, .videoblock { margin-bottom: 1.25em; }
+
+.admonitionblock td.content > .title, .exampleblock > .title, .imageblock > .title, .videoblock > .title, .listingblock > .title, .literalblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, .sidebarblock > .title, .tableblock > .title, .verseblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title { text-align: left; font-weight: bold; }
+
+.tableblock > caption { text-align: left; font-weight: bold; white-space: nowrap; overflow: visible; max-width: 0; }
+
+table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p { font-size: inherit; }
+
+.admonitionblock > table { border: 0; background: none; width: 100%; }
+.admonitionblock > table td.icon { font-size:2em; padding: 0px; text-align: left; width: 60px; }
+.admonitionblock > table td.icon img { max-width: none; }
+.admonitionblock > table td.icon .title { font-weight: bold; text-transform: uppercase; }
+.admonitionblock > table td.content { padding-left: 1.125em; padding-right: 1.25em; border-left: 1px dotted #cccccc; color: #777777; }
+.admonitionblock > table td.content > :last-child > :last-child { margin-bottom: 0; }
+
+.exampleblock > .content { border-style: solid; border-width: 1px; border-color: #e6e6e6; margin-bottom: 1.25em; padding: 1.25em; background: white; -webkit-border-radius: 0; border-radius: 0; }
+.exampleblock > .content > :first-child { margin-top: 0; }
+.exampleblock > .content > :last-child { margin-bottom: 0; }
+.exampleblock > .content h1, .exampleblock > .content h2, .exampleblock > .content h3, .exampleblock > .content #toctitle, .sidebarblock.exampleblock > .content > .title, .exampleblock > .content h4, .exampleblock > .content h5, .exampleblock > .content h6, .exampleblock > .content p { color: #555555; }
+.exampleblock > .content h1, .exampleblock > .content h2, .exampleblock > .content h3, .exampleblock > .content #toctitle, .sidebarblock.exampleblock > .content > .title, .exampleblock > .content h4, .exampleblock > .content h5, .exampleblock > .content h6 { line-height: 1; margin-bottom: 0.625em; }
+.exampleblock > .content h1.subheader, .exampleblock > .content h2.subheader, .exampleblock > .content h3.subheader, .exampleblock > .content .subheader#toctitle, .sidebarblock.exampleblock > .content > .subheader.title, .exampleblock > .content h4.subheader, .exampleblock > .content h5.subheader, .exampleblock > .content h6.subheader { line-height: 1.4; }
+
+.exampleblock.result > .content { -webkit-box-shadow: 0 1px 8px #d9d9d9; box-shadow: 0 1px 8px #d9d9d9; }
+
+.sidebarblock { border-style: solid; border-width: 1px; border-color: #d9d9d9; margin-bottom: 1.25em; padding: 1.25em; background: #f2f2f2; -webkit-border-radius: 0; border-radius: 0; }
+.sidebarblock > :first-child { margin-top: 0; }
+.sidebarblock > :last-child { margin-bottom: 0; }
+.sidebarblock h1, .sidebarblock h2, .sidebarblock h3, .sidebarblock #toctitle, .sidebarblock > .content > .title, .sidebarblock h4, .sidebarblock h5, .sidebarblock h6, .sidebarblock p { color: #555555; }
+.sidebarblock h1, .sidebarblock h2, .sidebarblock h3, .sidebarblock #toctitle, .sidebarblock > .content > .title, .sidebarblock h4, .sidebarblock h5, .sidebarblock h6 { line-height: 1; margin-bottom: 0.625em; }
+.sidebarblock h1.subheader, .sidebarblock h2.subheader, .sidebarblock h3.subheader, .sidebarblock .subheader#toctitle, .sidebarblock > .content > .subheader.title, .sidebarblock h4.subheader, .sidebarblock h5.subheader, .sidebarblock h6.subheader { line-height: 1.4; }
+.sidebarblock > .content > .title { color: #777777; margin-top: 0; line-height: 1.6; }
+
+.exampleblock > .content > :last-child > :last-child, .exampleblock > .content .olist > ol > li:last-child > :last-child, .exampleblock > .content .ulist > ul > li:last-child > :last-child, .exampleblock > .content .qlist > ol > li:last-child > :last-child, .sidebarblock > .content > :last-child > :last-child, .sidebarblock > .content .olist > ol > li:last-child > :last-child, .sidebarblock > .content .ulist > ul > li:last-child > :last-child, .sidebarblock > .content .qlist > ol > li:last-child > :last-child { margin-bottom: 0; }
+
+.literalblock > .content pre, .listingblock > .content pre { background: #efefef; border-width: 1px; border-style: solid; border-color: #cccccc; -webkit-border-radius: 0; border-radius: 0; padding: 0.75em 0.75em 0.625em 0.75em; word-wrap: break-word; }
+.literalblock > .content pre.nowrap, .listingblock > .content pre.nowrap { overflow-x: auto; white-space: pre; word-wrap: normal; }
+.literalblock > .content pre > code, .listingblock > .content pre > code { display: block; }
+@media only screen { .literalblock > .content pre, .listingblock > .content pre { font-size: 0.72em; } }
+@media only screen and (min-width: 768px) { .literalblock > .content pre, .listingblock > .content pre { font-size: 0.81em; } }
+@media only screen and (min-width: 1280px) { .literalblock > .content pre, .listingblock > .content pre { font-size: 0.9em; } }
+
+.listingblock > .content { position: relative; }
+
+.listingblock:hover code[class*=" language-"]:before { text-transform: uppercase; font-size: 0.9em; color: #999; position: absolute; top: 0.375em; right: 0.375em; }
+
+.listingblock:hover code.asciidoc:before { content: "asciidoc"; }
+.listingblock:hover code.clojure:before { content: "clojure"; }
+.listingblock:hover code.css:before { content: "css"; }
+.listingblock:hover code.groovy:before { content: "groovy"; }
+.listingblock:hover code.html:before { content: "html"; }
+.listingblock:hover code.java:before { content: "java"; }
+.listingblock:hover code.javascript:before { content: "javascript"; }
+.listingblock:hover code.python:before { content: "python"; }
+.listingblock:hover code.ruby:before { content: "ruby"; }
+.listingblock:hover code.scss:before { content: "scss"; }
+.listingblock:hover code.xml:before { content: "xml"; }
+.listingblock:hover code.yaml:before { content: "yaml"; }
+
+.listingblock.terminal pre .command:before { content: attr(data-prompt); padding-right: 0.5em; color: #999; }
+
+.listingblock.terminal pre .command:not([data-prompt]):before { content: '$'; }
+
+table.pyhltable { border: 0; margin-bottom: 0; }
+
+table.pyhltable td { vertical-align: top; padding-top: 0; padding-bottom: 0; }
+
+table.pyhltable td.code { padding-left: .75em; padding-right: 0; }
+
+.highlight.pygments .lineno, table.pyhltable td:not(.code) { color: #999; padding-left: 0; padding-right: .5em; border-right: 1px solid #cccccc; }
+
+.highlight.pygments .lineno { display: inline-block; margin-right: .25em; }
+
+table.pyhltable .linenodiv { background-color: transparent !important; padding-right: 0 !important; }
+
+.quoteblock { margin: 0 0 1.25em; padding: 0.5625em 1.25em 0 1.1875em; border-left: 1px solid #efefef; }
+.quoteblock blockquote { margin: 0 0 1.25em 0; padding: 0 0 0.5625em 0; border: 0; }
+.quoteblock blockquote > .paragraph:last-child p { margin-bottom: 0; }
+.quoteblock .attribution { margin-top: -.25em; padding-bottom: 0.5625em; font-size: 0.8125em; color: #5e5e5e; }
+.quoteblock .attribution br { display: none; }
+.quoteblock .attribution cite { display: block; margin-bottom: 0.625em; }
+
+table thead th, table tfoot th { font-weight: normal; }
+
+table.tableblock.grid-all { border-collapse: separate; border-spacing: 1px; -webkit-border-radius: 0; border-radius: 0; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; }
+
+table.tableblock.frame-topbot, table.tableblock.frame-none { border-left: 0; border-right: 0; }
+
+table.tableblock.frame-sides, table.tableblock.frame-none { border-top: 0; border-bottom: 0; }
+
+table.tableblock td .paragraph:last-child p, table.tableblock td > p:last-child { margin-bottom: 0; }
+
+th.tableblock.halign-left, td.tableblock.halign-left { text-align: left; }
+
+th.tableblock.halign-right, td.tableblock.halign-right { text-align: right; }
+
+th.tableblock.halign-center, td.tableblock.halign-center { text-align: center; }
+
+th.tableblock.valign-top, td.tableblock.valign-top { vertical-align: top; }
+
+th.tableblock.valign-bottom, td.tableblock.valign-bottom { vertical-align: bottom; }
+
+th.tableblock.valign-middle, td.tableblock.valign-middle { vertical-align: middle; }
+
+p.tableblock.header { color: #333333; font-weight: normal; }
+
+td > div.verse { white-space: pre; }
+
+ol { margin-left: 1.75em; }
+
+ul li ol { margin-left: 1.5em; }
+
+dl dd { margin-left: 1.125em; }
+
+dl dd:last-child, dl dd:last-child > :last-child { margin-bottom: 0; }
+
+ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .ulist, .ulist .olist, .olist .ulist { margin-bottom: 0.625em; }
+
+ul.unstyled, ol.unnumbered, ul.checklist, ul.none { list-style-type: none; }
+
+ul.unstyled, ol.unnumbered, ul.checklist { margin-left: 0.625em; }
+
+ul.checklist li > p:first-child > i[class^="icon-check"]:first-child, ul.checklist li > p:first-child > input[type="checkbox"]:first-child { margin-right: 0.25em; }
+
+ul.checklist li > p:first-child > input[type="checkbox"]:first-child { position: relative; top: 1px; }
+
+ul.inline { margin: 0 auto 0.625em auto; margin-left: -1.375em; margin-right: 0; padding: 0; list-style: none; overflow: hidden; }
+ul.inline > li { list-style: none; float: left; margin-left: 1.375em; display: block; }
+ul.inline > li > * { display: block; }
+
+.unstyled dl dt { font-weight: normal; font-style: normal; }
+
+ol.arabic { list-style-type: decimal; }
+
+ol.decimal { list-style-type: decimal-leading-zero; }
+
+ol.loweralpha { list-style-type: lower-alpha; }
+
+ol.upperalpha { list-style-type: upper-alpha; }
+
+ol.lowerroman { list-style-type: lower-roman; }
+
+ol.upperroman { list-style-type: upper-roman; }
+
+ol.lowergreek { list-style-type: lower-greek; }
+
+.hdlist > table, .colist > table { border: 0; background: none; }
+.hdlist > table > tbody > tr, .colist > table > tbody > tr { background: none; }
+
+td.hdlist1 { padding-right: .8em; font-weight: bold; }
+
+td.hdlist1, td.hdlist2 { vertical-align: top; }
+
+.literalblock + .colist, .listingblock + .colist { margin-top: -0.5em; }
+
+.colist > table tr > td:first-of-type { padding: 0 .8em; line-height: 1; }
+.colist > table tr > td:last-of-type { padding: 0.25em 0; }
+
+.qanda > ol > li > p > em:only-child { color: #cde62c; }
+
+.thumb, .th { line-height: 0; display: inline-block; border: solid 4px white; -webkit-box-shadow: 0 0 0 1px #dddddd; box-shadow: 0 0 0 1px #dddddd; }
+
+.imageblock.left, .imageblock[style*="float: left"] { margin: 0.25em 0.625em 1.25em 0; }
+.imageblock.right, .imageblock[style*="float: right"] { margin: 0.25em 0 1.25em 0.625em; }
+.imageblock > .title { margin-bottom: 0; }
+.imageblock.thumb, .imageblock.th { border-width: 6px; }
+.imageblock.thumb > .title, .imageblock.th > .title { padding: 0 0.125em; }
+
+.image.left, .image.right { margin-top: 0.25em; margin-bottom: 0.25em; display: inline-block; line-height: 0; }
+.image.left { margin-right: 0.625em; }
+.image.right { margin-left: 0.625em; }
+
+a.image { text-decoration: none; }
+
+span.footnote, span.footnoteref { vertical-align: super; font-size: 0.875em; }
+span.footnote a, span.footnoteref a { text-decoration: none; }
+
+#footnotes { padding-top: 0.75em; padding-bottom: 0.75em; margin-bottom: 0.625em; }
+#footnotes hr { width: 20%; min-width: 6.25em; margin: -.25em 0 .75em 0; border-width: 1px 0 0 0; }
+#footnotes .footnote { padding: 0 0.375em; line-height: 1.3; font-size: 0.875em; margin-left: 1.2em; text-indent: -1.2em; margin-bottom: .2em; }
+#footnotes .footnote a:first-of-type { font-weight: bold; text-decoration: none; }
+#footnotes .footnote:last-of-type { margin-bottom: 0; }
+
+#content #footnotes { margin-top: -0.625em; margin-bottom: 0; padding: 0.75em 0; }
+
+.gist .file-data > table { border: none; background: #fff; width: 100%; margin-bottom: 0; }
+.gist .file-data > table td.line-data { width: 99%; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+.big { font-size: larger; }
+
+.small { font-size: smaller; }
+
+.underline { text-decoration: underline; }
+
+.overline { text-decoration: overline; }
+
+.line-through { text-decoration: line-through; }
+
+.aqua { color: #00bfbf; }
+
+.aqua-background { background-color: #00fafa; }
+
+.black { color: black; }
+
+.black-background { background-color: black; }
+
+.blue { color: #0000bf; }
+
+.blue-background { background-color: #0000fa; }
+
+.fuchsia { color: #bf00bf; }
+
+.fuchsia-background { background-color: #fa00fa; }
+
+.gray { color: #606060; }
+
+.gray-background { background-color: #7d7d7d; }
+
+.green { color: #006000; }
+
+.green-background { background-color: #007d00; }
+
+.lime { color: #00bf00; }
+
+.lime-background { background-color: #00fa00; }
+
+.maroon { color: #600000; }
+
+.maroon-background { background-color: #7d0000; }
+
+.navy { color: #000060; }
+
+.navy-background { background-color: #00007d; }
+
+.olive { color: #606000; }
+
+.olive-background { background-color: #7d7d00; }
+
+.purple { color: #600060; }
+
+.purple-background { background-color: #7d007d; }
+
+.red { color: #bf0000; }
+
+.red-background { background-color: #fa0000; }
+
+.silver { color: #909090; }
+
+.silver-background { background-color: #bcbcbc; }
+
+.teal { color: #006060; }
+
+.teal-background { background-color: #007d7d; }
+
+.white { color: #bfbfbf; }
+
+.white-background { background-color: #fafafa; }
+
+.yellow { color: #bfbf00; }
+
+.yellow-background { background-color: #fafa00; }
+
+span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
+
+.admonitionblock td.icon [class^="icon-"]:before { font-size: 2.5em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); cursor: default; }
+.admonitionblock td.icon .icon-note:before { content: "\f05a"; color: #FE9915; }
+.admonitionblock td.icon .icon-tip:before { content: "\f0eb";color: #FE9915; }
+.admonitionblock td.icon .icon-warning:before { content: "\f071"; color: #FE9915; }
+.admonitionblock td.icon .icon-caution:before { content: "\f06d"; color: #FE9915; }
+.admonitionblock td.icon .icon-important:before { content: "\f06a"; color: #FE9915; }
+
+.conum { display: inline-block; color: white !important; background-color: #555555; -webkit-border-radius: 100px; border-radius: 100px; text-align: center; width: 20px; height: 20px; font-size: 12px; font-weight: bold; line-height: 20px; font-family: Arial, sans-serif; font-style: normal; position: relative; top: -2px; letter-spacing: -1px; }
+.conum * { color: white !important; }
+.conum + b { display: none; }
+.conum:after { content: attr(data-value); }
+.conum:not([data-value]):empty { display: none; }
+
+#header > h1 { border-bottom-style: solid; }
+
+#toctitle { color: #333333; }
+
+.listingblock > .content > pre, .literalblock > .content > pre { background: -moz-linear-gradient(top, white 0%, #f4f4f4 100%); background: -webkit-linear-gradient(top, white 0%, #f4f4f4 100%); background: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 100%); -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); }
+
+.sidebarblock { background: none; border: none; -webkit-box-shadow: 0 0 5px rgba(118, 137, 4, 0.5); box-shadow: 0 0 5px rgba(118, 137, 4, 0.5); }
+.sidebarblock > .content > .title { color: #181818; }
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>Design Documentation: BSI Studio 22.0</h1>
+<div class="details">
+<span id="author" class="author">BSI Product Development</span><br>
+<span id="revdate">Version Date 2021-08-05</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Covered Topics</div>
+<ul class="sectlevel1">
+<li><a href="#introduction">1. Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#file-format">1.1. File format</a></li>
+<li><a href="#content-editor">1.2. Content Editor</a></li>
+<li><a href="#structure-reference">1.3. Structure Reference</a></li>
+<li><a href="#groups">1.4. Groups</a></li>
+</ul>
+</li>
+<li><a href="#design-properties">2. design.properties</a>
+<ul class="sectlevel2">
+<li><a href="#the-basics">2.1. The Basics</a></li>
+<li><a href="#groups-2">2.2. Groups</a></li>
+<li><a href="#content-elements">2.3. Content Elements</a></li>
+<li><a href="#styles">2.4. Styles</a></li>
+<li><a href="#rich-text-editor">2.5. Configuration capabilities of the Rich Text Editor</a>
+<ul class="sectlevel3">
+<li><a href="#feature-list">2.5.1. Feature list</a></li>
+<li><a href="#value-lists">2.5.2. Value Lists</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#content-editor-2">3. Content Editor</a>
+<ul class="sectlevel2">
+<li><a href="#content-editor-specific-css">3.1. Content editor specific CSS</a></li>
+<li><a href="#predefined-story-outlets-bracket-links">3.2. Predefined Story outlets (Bracket Links)</a>
+<ul class="sectlevel3">
+<li><a href="#using-anchor-links-inside-a-design">3.2.1. Using anchor links inside a design</a></li>
+</ul>
+</li>
+<li><a href="#content-elements-and-parts">3.3. Content Elements and Parts</a>
+<ul class="sectlevel3">
+<li><a href="#grouping">3.3.1. Grouping</a></li>
+<li><a href="#parts">3.3.2. Parts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#cx-design-creator">4. CX Design Creator</a></li>
+<li><a href="#help">5. Help</a>
+<ul class="sectlevel2">
+<li><a href="#good-practices">5.1. Good practices</a>
+<ul class="sectlevel3">
+<li><a href="#deleting-or-deprecating-content-elements">5.1.1. Deleting or deprecating content elements</a></li>
+<li><a href="#refactoring-content-elements">5.1.2. Refactoring content elements</a></li>
+</ul>
+</li>
+<li><a href="#troubleshooting">5.2. Troubleshooting</a>
+<ul class="sectlevel3">
+<li><a href="#design-upload">5.2.1. Design Upload</a></li>
+<li><a href="#design-update">5.2.2. Design Update</a></li>
+<li><a href="#dropzone-issues">5.2.3. Dropzone Issues</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>1. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The agency’s design specifies the basic layout of a mail, landingpage or a website.
+The design consists of two com-ponents.
+One component describes the potential content elements, and the other component describes the actual design.</p>
+</div>
+<div class="paragraph">
+<p>Outside of the marked drop zones, the design cannot be edited in the content editor.</p>
+</div>
+<div class="paragraph">
+<p>The agency makes the design available as a ZIP file.
+An image for the preview can be supplied separately.</p>
+</div>
+<div class="sect2">
+<h3 id="file-format"><a class="anchor" href="#file-format"></a>1.1. File format</h3>
+<div class="paragraph">
+<p>A BSI CX design is stored in a ZIP format and must contain the following mandatory files:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">design.html</dt>
+<dd>
+<p>Defines the design, particularly the drop zones the user can use in the BSI CX content editor to place content elements.
+The exact design.html syntax is described below.
+This file must be in the root of the ZIP file.</p>
+</dd>
+<dt class="hdlist1">content-elements.html</dt>
+<dd>
+<p>Defines the individual content elements that can be selected in BSI CX (HTML that is inserted into the content using drag &amp; drop).
+The exact content-elements.html syntax is described below.</p>
+</dd>
+<dt class="hdlist1">design.properties</dt>
+<dd>
+<p>Contains metadata on the design, such as the name and author, and names and descriptions of the content elements and groups.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Beside these three mandatory files you are free to organize your ZIP file.
+Additional optional files and folders may be supplied in the ZIP file.
+But one ZIP file can only contain a single design.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The files and folders in the ZIP file must not contain any umlauts.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following folder structure describes the content of an example design:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">design.zip
+│   content-elements.html <i class="conum" data-value="1"></i><b>(1)</b>
+│   design.html <i class="conum" data-value="2"></i><b>(2)</b>
+│   design.properties <i class="conum" data-value="3"></i><b>(3)</b>
+│
+├───css
+│       styles.min.css
+│
+├───img
+│       bokeh.jpg
+│       brains-logo.png
+│       brains.jpg
+│       logo.png
+│       logo.svg
+│
+└───js
+        gauge.min.js
+        scripts.min.js</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>content-elements.html</code> file holds all defined content elements.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>design.html</code> defines the surrounding design.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>design.properties</code> file contains meta information about the design and its elements.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="content-editor"><a class="anchor" href="#content-editor"></a>1.2. Content Editor</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/content_editor.png" alt="Content Editor">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Design preview</p>
+</li>
+<li>
+<p>Content elements</p>
+</li>
+<li>
+<p>Content element</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="structure-reference"><a class="anchor" href="#structure-reference"></a>1.3. Structure Reference</h3>
+<div class="paragraph">
+<p>The file <code>design.html</code> contains the <code>frame</code> of the design and must include at least one outermost dropzone.
+It must contain valid, XHTML conform HTML with Doctype, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> tags.</p>
+</div>
+<div class="paragraph">
+<p>The file <code>content-elements.html</code> contains all content elements of the design, that can later be drag and dropped into the outermost dropzone of the <code>design.html</code>.
+Here no Doctype, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> or <code>&lt;body&gt;</code> tags are required.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/structure-reference.png" alt="structure reference">
+</div>
+<div class="title">Figure 1. structure reference</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="groups"><a class="anchor" href="#groups"></a>1.4. Groups</h3>
+<div class="imageblock left">
+<div class="content">
+<img src="./images/data-bsi-group.png" alt="Groups1">
+</div>
+<div class="title">Figure 2. Groups</div>
+</div>
+<div class="paragraph">
+<p>All content elements can be structured in groups.
+On the left side, three Groups are defined: <code>Header</code>, <code>Headings</code> and <code>Text &amp; Images</code>.
+To structure the content elements in such groups, the attribute <code>data-bsi-group</code> is used.
+Each content element is checked to determine if one of its parent elements has this attribute.
+A group may be defined only once.
+Below you see an HTML-example of the three groups <code>Header</code>, <code>Headings</code> and <code>Text &amp; Images</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 1. example of attribute <code>data-bsi-group</code> : HTML</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-group="header"&gt;
+&lt;img data-bsi-element="logo" data-bsi-element-part="image" /&gt;
+&lt;div data-bsi-element="main-navigation" data-bsi-element-part="html" /&gt;
+&lt;/div&gt;
+&lt;div data-bsi-group="headings"&gt;
+&lt;div data-bsi-element="heading1" data-bsi-element-part="plain-text" /&gt;
+&lt;div data-bsi-element="heading2" data-bsi-element-part="plain-text" /&gt;
+&lt;/div&gt;
+&lt;div data-bsi-group="textAndImages"&gt;
+&lt;div data-bsi-element="text" data-bsi-element-part="formatted-text" /&gt;
+&lt;img data-bsi-element="image" data-bsi-element-part="image" /&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="design-properties"><a class="anchor" href="#design-properties"></a>2. design.properties</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="the-basics"><a class="anchor" href="#the-basics"></a>2.1. The Basics</h3>
+<div class="paragraph">
+<p>Metadata for a design is defined in the <code>design.properties</code> file. It contains general information on the design, such as the name and author, as well as element specific information, such as with which description and icon the elements are to be displayed to the right of the editor.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 2. specifying design meta data</div>
+<div class="content">
+<pre class="highlight"><code>#metadata example
+design.name=My Customer Design
+design.author=John Doe, Doe Design Agency</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Group information, content element specific entries, configuration capabilities for styles (allowing you to mixin different CSS styles or adding certain features using JavaScript) as well as instructions on how to customize the rich text editor experience can be found in the subsequent chapters.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 3. example of a fully featured design.properties file</div>
+<div class="content">
+<pre class="highlight"><code>#metadata
+design.name=My Customer Design
+design.author=John Doe, Doe Design Agency
+
+#groups
+group.buttonsAndLinks.label=Buttons &amp; Links
+group.textAndImages.label=Text &amp; Images
+
+#styles
+style.background-color.label=Background color
+style.background-color.class.bg-color-green.label=Green
+style.background-color.class.bg-color-red.label=Red
+
+#rich text editor configurations
+html-editor-config.my-config.features=bold,italic,underline,strikeThrough,textColor
+html-editor-config.my-config.text-colors=#ff00cc,#aabbcc
+
+#content elements
+element.text.label=Text
+element.text.icon=text
+element.text.parts.formatted-text.label=Formatted text
+element.text.parts.formatted-texthtml-editor-config=my-config
+
+element.button.label=Button
+element.button.description=A red or green button
+element.button.styles=background-color</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="groups-2"><a class="anchor" href="#groups-2"></a>2.2. Groups</h3>
+<div class="paragraph">
+<p>Each content element is assigned to a group. To specify a display name for each <em>group</em> element that exists in the <code>content-elements.html</code> file, add an entry based on the <code>data-bsi-group</code> identifier to the <code>design.properties</code> file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 4. giving groups clearly identifiable descriptions</div>
+<div class="content">
+<pre class="highlight"><code>#Specification
+group.&lt;group-identifier&gt;.label=&lt;Name of the group&gt;
+
+#Example
+group.textAndImages.label=Text &amp; Images</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="content-elements"><a class="anchor" href="#content-elements"></a>2.3. Content Elements</h3>
+<div class="paragraph">
+<p>For each content element that is defined in the <code>content-elements.html</code> file, the following entries have to be defined in order to get a clean user experience. The <em>element identifier</em> is the value of the <code>data-bsi-element</code> attribute:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 5. important metadata for content elements</div>
+<div class="content">
+<pre class="highlight"><code>#Specification
+element.&lt;element-identifier&gt;.label=&lt;Name of the content element&gt;
+element.&lt;element-identifier&gt;.description=&lt; Description of the content element&gt;
+element.&lt;element-identifier&gt;.icon=&lt;icon identifier&gt;
+
+#Example
+element.logo.label=Cooperate Logo
+element.logo.description=Visualize your corporate logo
+element.logo.icon=image</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refer to the following illustration to pick a value for <em>icon</em>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/image-reference.png" alt="icon identifier reference">
+</div>
+<div class="title">Figure 3. icon identifier reference</div>
+</div>
+<div class="paragraph">
+<p>For element parts, labels can be defined. Those are then used as section headings while editing a content element in the content editor. <code>&lt;part-identifier&gt;</code> is the <code>data-bsi-element-part</code> value of the element part.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 6. important metadata for content element parts</div>
+<div class="content">
+<pre class="highlight"><code>#Specification
+element.&lt;element-identifier&gt;.parts.&lt;part-identifier&gt;.label=&lt;part label&gt;
+
+Usage:
+element.logo.parts.image.label=Image for Logo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If one content element has multiple element parts of the same type, an index based notation must be used, following the natural order in the DOM.
+The index starts at 0 and is only necessary if there are multiple parts of the same type.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 7. defining metadata for multiple element parts of the same element part type for a certain content element</div>
+<div class="content">
+<pre class="highlight"><code>element.logo.parts.image[0].label=Desktop image for Logo
+element.logo.parts.image[1].label=Mobile image for Logo</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="styles"><a class="anchor" href="#styles"></a>2.4. Styles</h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+We strongly discourage from using styles in email templates. Many email clients still require certain styles to be set through inline styles which does not work well with styles on element level as it is done by the <em>styles feature</em>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>By defining styles for a certain content element, its characteristics can be controlled. By using styles to make a content element configurable, it is not necessary to implement an additional content element for an almost identical content element. A requirement to implement a button in two different colors (red and green) would therefore be implemented by creating a <em>button</em> content element with two styles: red and green. Styles are only defined once, and each element can have 0 to n style capabilities. Each style capability will then be transformed to a dropdown in the editing dialog of a content element, where the specific style can be applied to a content element.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/styles-picker.png" alt="styles visualized as dropdown in the content editor">
+</div>
+<div class="title">Figure 4. example of a style dropdown</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 8. defining style capabilities</div>
+<div class="content">
+<pre class="highlight"><code>#Specification
+style.&lt;style-capability-identifier&gt;.label=&lt;Style capability dropdown label&gt;
+style.&lt;style-capability-identifier&gt;.class.&lt;CSS-class-identifier&gt;.label=&lt;Label to describe the dropdown option&gt;
+
+#Example
+style.background-color.label=Background color
+style.background-color.class.bg-color-green.label=Green
+style.background-color.class.bg-color-red.label=Red</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>1 to n styles can be defined in a comma separated format. Each will then appear as an individual dropdown in the editor, where one style can be selected from the list of styles.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 9. assigning style capabilities to content elements</div>
+<div class="content">
+<pre class="highlight"><code>#Specification
+element.&lt;element-identifier&gt;.styles=&lt;style-capability-identifier&gt;, &lt;style-capability-identifier&gt;
+
+Usage:
+element.button.styles=background-color,border-color,text-color</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To ensure that a style is effective, a CSS class must be defined for it. If a style is preselected on an element, it is sufficient to add the desired CSS class to the respective element in the HTML.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 10. CSS class for a style</div>
+<div class="content">
+<pre class="highlight"><code class="language-css" data-lang="css">.colored-button.bg-color-green { background-color: green; }
+.colored-button.bg-color-red { background-color: red; }</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 11. how styles are applied on content elements</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;button data-bsi-element="button" class="colored-button bg-color-green"&gt;&lt;/button&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rich-text-editor"><a class="anchor" href="#rich-text-editor"></a>2.5. Configuration capabilities of the Rich Text Editor</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+CX 1.2.13
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>By defining a content element part of type <code>formatted-text</code>, a fully featured rich text editor will be available to the users of the content editor. The built-in WYSIWYG rich text editor is powered by <a href="https://froala.com/">Froala</a>. BSI allows to customize a subset of Froala features directly out of a design. In order to do so, a configuration section in the <code>design.properties</code> can be used to customize the features of the rich text editor. Each element part of type <code>formatted-text</code> can have it&#8217;s own custom list of features, altough in most cases one feature definition is shared among different content elements.</p>
+</div>
+<div class="paragraph">
+<p>A typical, simple rich text editor configuration will look like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 12. Rich text editor configuration example</div>
+<div class="content">
+<pre class="highlight"><code>html-editor-config.my-config.features=bold,italic,underline,strikeThrough,textColor
+html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above configuration (named <code>my-config</code>) has to applied on a concrete element part in order to apply the customizations:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 13. Applying an HTML editor configuration on a content element 'text'</div>
+<div class="content">
+<pre class="highlight"><code>element.text.parts.formatted-text.html-editor-config=my-config</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/froala-few-features-enabled.png" alt="simple configuration from above in action">
+</div>
+</div>
+<div class="paragraph">
+<p>The entire list of supported configuration options is documented in the subsequent chapters.</p>
+</div>
+<div class="sect3">
+<h4 id="feature-list"><a class="anchor" href="#feature-list"></a>2.5.1. Feature list</h4>
+<div class="paragraph">
+<p>The most important configuration option is the list of features that will be shown in the WYSIWYG editor.</p>
+</div>
+<div class="paragraph">
+<p>The format is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 14. Feature list format</div>
+<div class="content">
+<pre class="highlight"><code>html-editor-config.&lt;config identifier&gt;.features=&lt;comma separated feature list&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If one wants to support <strong>bold</strong>, <em>italic</em>, and <span class="underline">underlined</span> text, the definition for doing so would be like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 15. Feature list example</div>
+<div class="content">
+<pre class="highlight"><code class="language-env" data-lang="env">html-editor-config.my-config.features=bold,italic,underline</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The keys in below list (indicated in <strong>bold</strong>) have to be provided as a comma-separated list as in the example above. Each key identifies a certain feature which will then be displayed as separate button in the editor. The sequence is irrelevant and does not affect the display order, as the display order is given by the server side implementation.</p>
+</div>
+<div class="paragraph">
+<p>The following features are available:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+bold
+</td>
+<td class="hdlist2">
+<p>the text can be formatted in <strong>bold</strong>.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+italic
+</td>
+<td class="hdlist2">
+<p>the text can be formatted in <em>italics</em>.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+underline
+</td>
+<td class="hdlist2">
+<p>the text can be <span class="underline">underlined</span>.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+strikeThrough
+</td>
+<td class="hdlist2">
+<p>the text can be displayed with a <span class="line-through">line through</span> the center.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+subscript
+</td>
+<td class="hdlist2">
+<p>the text can be displayed as a <sub>subscript</sub>.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+superscript
+</td>
+<td class="hdlist2">
+<p>the text can be displayed as a <sup>superscript</sup>.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+fontSize
+</td>
+<td class="hdlist2">
+<p>the font size can be changed based on the <em>font-sizes</em> value list.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+lineHeight
+</td>
+<td class="hdlist2">
+<p>the line height can be changed based on the <em>line-heights</em> value list.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+textColor
+</td>
+<td class="hdlist2">
+<p>the text color can be changed based on the <em>text-colors</em> value list.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+backgroundColor
+</td>
+<td class="hdlist2">
+<p>the background color can be changed based on the <em>background-colors</em> value list.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+alignLeft
+</td>
+<td class="hdlist2">
+<p>the text can be left aligned.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+alignCenter
+</td>
+<td class="hdlist2">
+<p>the text can be centered.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+alignRight
+</td>
+<td class="hdlist2">
+<p>the text can be right aligned.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+alignJustify
+</td>
+<td class="hdlist2">
+<p>the text can be justified (As most browsers are terrible in handling justified text properly, we recommend to not enable this feature).</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+formatOL
+</td>
+<td class="hdlist2">
+<p>the text can be displayed as an organized list.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+formatUL
+</td>
+<td class="hdlist2">
+<p>the text can be displayed as an unorganized list.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+outdent
+</td>
+<td class="hdlist2">
+<p>the text can be outdented (useful for sub-lists).</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+indent
+</td>
+<td class="hdlist2">
+<p>the text can be indented (useful for sub-lists).</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+paragraphFormat
+</td>
+<td class="hdlist2">
+<p>changes the format of the paragraph based on the <em>formats</em> value list.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+quote
+</td>
+<td class="hdlist2">
+<p>display the text as a quote.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+specialCharacters
+</td>
+<td class="hdlist2">
+<p>inserts special characters.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+emoticons
+</td>
+<td class="hdlist2">
+<p>inserts emoji.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+insertLink
+</td>
+<td class="hdlist2">
+<p>permits the immediate insertion of links without having to use a wildcard.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+html
+</td>
+<td class="hdlist2">
+<p>displays and edit the HTML of the text.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+help
+</td>
+<td class="hdlist2">
+<p>displays Help.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In addition, the following features are <strong>always displayed in the editor</strong> and must therefore not be listed separately:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+clearFormatting
+</td>
+<td class="hdlist2">
+<p>clears all formatting from the selected text.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+undo
+</td>
+<td class="hdlist2">
+<p>undoes the change.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+redo
+</td>
+<td class="hdlist2">
+<p>redoes the change.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+fullscreen
+</td>
+<td class="hdlist2">
+<p>displays the editor in fullscreen.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+selectAll
+</td>
+<td class="hdlist2">
+<p>selects the entire text in the editor.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Our experience has shown that these features are useful in the vast majority of cases and that the editing experience would be significantly affected without them.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="value-lists"><a class="anchor" href="#value-lists"></a>2.5.2. Value Lists</h4>
+<div class="paragraph">
+<p>A list of values that will be shown in the editor can be defined for certain features (e.g. the list of colors when the font color feature is active).</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 16. An example using configuration with different value lists set</div>
+<div class="content">
+<pre class="highlight"><code>html-editor-config.my-extended-config.features=bold,italic,underline,strikeThrough,textColor,backgroundColor,fontSize,paragraphFormat,lineHeight
+html-editor-config.my-extended-config.text-colors=#ff0000,#00ff00,#0000ff
+html-editor-config.my-extended-config.background-colors=#ff0000,#00ff00,#0000ff
+html-editor-config.my-extended-config.formats=h1,h2,h3,h4,pre
+html-editor-config.my-extended-config.font-sizes=8,9,10,11,12,14,16,18,24,30,36,48,72
+html-editor-config.my-extended-config.font-size-unit=px
+html-editor-config.my-extended-config.font-size-default=12
+html-editor-config.my-extended-config.line-heights=1,1.15,1.5,2
+html-editor-config.my-extended-config.enter=p</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/froala-many-features-enabled.png" alt="configuration from above in action">
+</div>
+</div>
+<div class="sect4">
+<h5 id="colors"><a class="anchor" href="#colors"></a>2.5.2.1. Colors</h5>
+<div class="paragraph">
+<p>A comma-separated list of RGB colors in hexadecimal format.
+To customize the color picker for <code>textColor</code> and <code>backgroundColor</code>, provide a list of colors through the <code>text-colors</code> and <code>background-colors</code> value list.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 17. text-colors example</div>
+<div class="content">
+<pre class="highlight"><code>html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 18. background-colors example</div>
+<div class="content">
+<pre class="highlight"><code>html-editor-config.my-config.background-colors=#dddddd,#abcdef</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="paragraph-formats"><a class="anchor" href="#paragraph-formats"></a>2.5.2.2. Paragraph formats</h5>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+CX 1.2.46
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Paragraph formatting and headings can be configured as well. This may be customized through the <code>formats</code> value list, which will only have an effect if the feature <code>paragraphFormat</code> is active.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 19. formats example</div>
+<div class="content">
+<pre class="highlight"><code>html-editor-config.my-config.formats=p,h1,h3</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following formats can be provided:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+p
+</td>
+<td class="hdlist2">
+<p>for an html paragraph (<code>&lt;p&gt;</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+h1
+</td>
+<td class="hdlist2">
+<p>for an html H1 title (<code>&lt;h1&gt;</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+h2
+</td>
+<td class="hdlist2">
+<p><code>&lt;h2&gt;</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+h3
+</td>
+<td class="hdlist2">
+<p><code>&lt;h3&gt;</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+h4
+</td>
+<td class="hdlist2">
+<p><code>&lt;h4&gt;</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+h5
+</td>
+<td class="hdlist2">
+<p><code>&lt;h5&gt;</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+h6
+</td>
+<td class="hdlist2">
+<p><code>&lt;h6&gt;</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+pre
+</td>
+<td class="hdlist2">
+<p>for preformatted text (<code>&lt;pre&gt;</code>)</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="line-heights"><a class="anchor" href="#line-heights"></a>2.5.2.3. Line heights</h5>
+<div class="paragraph">
+<p>To customize the <code>lineHeight</code> value list, provide a list of heights in percentages, comma-separated. The line height values define the factor by which factor the current line height is multiplied based on the font size used.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 20. line-height example</div>
+<div class="content">
+<pre class="highlight"><code>html-editor-config.my-config.line-heights=1,1.15,1.5,2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="font-size"><a class="anchor" href="#font-size"></a>2.5.2.4. Font size</h5>
+<div class="paragraph">
+<p>To customize the list of font sizes for <code>fontSize</code>, provide a list of sizes through the <code>font-sizes</code> value list. A custom default value can be set by using <code>font-size-default</code>.</p>
+</div>
+<div class="paragraph">
+<p>Size information is provided numerically. If several sizes are permitted, then each individual entry is listed in a comma-separated format. The data on font sizes (font size and font size default) are absolute values.</p>
+</div>
+<div class="paragraph">
+<p>The unit of measurement (<code>font-size-unit</code>) defines which unit to be used for information regarding the font sizes. The following are permitted:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+px
+</td>
+<td class="hdlist2">
+<p>Pixels</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+em
+</td>
+<td class="hdlist2">
+<p>Relative to font size of the parent</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+rem
+</td>
+<td class="hdlist2">
+<p>Relative to font size of the root element</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+pt
+</td>
+<td class="hdlist2">
+<p>Points</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+cm
+</td>
+<td class="hdlist2">
+<p>Centimeters</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+mm
+</td>
+<td class="hdlist2">
+<p>Millimeters</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 21. font-sizes, font-size-unit and font-size-default example</div>
+<div class="content">
+<pre class="highlight"><code>html-editor-config.my-config.font-sizes=8,9,10,11,12,14,16,18,24,30,36,48,72
+html-editor-config.my-config.font-size-unit=px
+html-editor-config.my-config.font-size-default=12</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="entry-mode"><a class="anchor" href="#entry-mode"></a>2.5.2.5. Entry mode</h5>
+<div class="paragraph">
+<p>By defining the entry mode (enter), you define what happens in the editor when the <kbd>Enter</kbd> key on your keyboard is pressed. The following options are available:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+p
+</td>
+<td class="hdlist2">
+<p>to enclose the text with a paragraph (<code>&lt;p&gt;</code>)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+div
+</td>
+<td class="hdlist2">
+<p>to enclose the text with a <code>&lt;div&gt;</code> tag</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+br
+</td>
+<td class="hdlist2">
+<p>to simply insert a <code>&lt;br&gt;</code> tag for a line break</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In <code>p</code> and <code>div</code> modes, there is the option to force a simple line break with <span class="keyseq"><kbd>Shift</kbd>+<kbd>Enter</kbd></span>. This will add <code>&lt;br&gt;</code> without immediately ending the block and starting a new one.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 22. enter mode example</div>
+<div class="content">
+<pre class="highlight"><code>html-editor-config.my-config.enter=div</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="content-editor-2"><a class="anchor" href="#content-editor-2"></a>3. Content Editor</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="content-editor-specific-css"><a class="anchor" href="#content-editor-specific-css"></a>3.1. Content editor specific CSS</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+CX 1.2.46
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Sometimes it is useful to apply special CSS rules to the content when the page is in edit or preview mode. There are two special CSS classes set on the document’s <code>&lt;html&gt;</code> tag to address such use cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>bsi-ce-edit-mode</strong> is set when the document is shown in the content editor.</p>
+</li>
+<li>
+<p><strong>bsi-ce-preview-mode</strong> is set when the document is shown in preview mode inside the content editor.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The preview mode inside the content editor or any content that is delivered by a story will not have any of the above listed classes.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 23. editor specific CSS example: HTML</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;html&gt;&lt;head&gt;&lt;!-- head omitted --&gt;&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 class="hide show-if-edit"&gt;this is edit mode&lt;/h1&gt;
+    &lt;h1 class="hide show-if-preview"&gt;this is preview mode&lt;/h1&gt;
+    &lt;!-- rest of body omitted --&gt;
+&lt;/body&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 24. editor specific CSS example: CSS</div>
+<div class="content">
+<pre class="highlight"><code class="language-css" data-lang="css">.hide { display: none; }
+.bsi-ce-edit-mode .show-if-edit { display: block; color:green; }
+.bsi-ce-preview-mode .show-if-preview { display: block; color:darkorange; }</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. editor specific CSS example: resulting representation in the content editor</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Edit mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Preview Mode</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="./images/editor-spedific-css_edit-mode.png" alt="edit mode">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<img src="./images/editor-spedific-css_preview-mode.png" alt="preview mode">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="predefined-story-outlets-bracket-links"><a class="anchor" href="#predefined-story-outlets-bracket-links"></a>3.2. Predefined Story outlets (Bracket Links)</h3>
+<div class="paragraph">
+<p>One way to define a link out of a design is to use a <code>data-bsi-element-part="link"</code> annotation on a link (<code>&lt;a&gt;</code>) element.
+Doing so will add a link editor to enter a URL and a link text to the content editor.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 25. Adding an editable link to a content element.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;a data-bsi-element-part="link" href="https://www.bsi-software.com/"&gt;BSI Website&lt;/a&gt;</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/data-bsi-element-part-link.png" alt="editing a link element part">
+</div>
+<div class="title">Figure 5. visualization of an editable link</div>
+</div>
+<div class="paragraph">
+<p>Another way to define a link directly out of a design is by using the CX <em>bracket link syntax</em> for links.
+This mechanism in built into the content editor itself to create a link anywhere in a text.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 26. Example on adding a link anywhere in the text.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;span data-bsi-element-part="plain-text" &gt;If you do not wish to receive further promotions, you can [unsubscribe] now.&lt;/span&gt;</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/bracket-links-demo.png" alt="usage of bracket links in BSI">
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Definition of links using the CX bracket syntax.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Each link is converted into a story outlet.
+Each outlet can then be linked to an individual action in the story.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The content that is delivered to the user.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>While rendering the above content, CX will convert the <code>[unsubscribe]</code> term to a link tag internally, create a unique hyperlink and will add a new outlet to the step to which the current content belongs.
+When using bracket links, the story designer will see the provided link as a story outlet by default.
+This allows the Story Designer to link the click action on the link with other steps (e.g. a subsequent landing page step).
+In the example above, the <em>Email Step</em> will already have an outlet named <em>unsubscribe</em>.
+The bracket technique itself is usable everywhere in the content editor and is not limited to the usage in a design.</p>
+</div>
+<div class="paragraph">
+<p>The convenience format of a bracket link for CX is <code>[link text|ID]</code>.
+The full syntax is <code>[ID|text=link text|url=https://example.com|newWindow]</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>url</code> can be used to explicitly specify an absolute URL.</p>
+</li>
+<li>
+<p><code>newWindow</code> will force to open the target in a new tab or window.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Both <code>url</code> and <code>newWindow</code> are optional.</p>
+</div>
+<div class="paragraph">
+<p>If a bracket itself should be part of a link, it can be escaped with a backslash (e.g. <code>[\[click me\]|id]</code> will then be visualized as <em>[click me]</em>).</p>
+</div>
+<div class="paragraph">
+<p>You can also place a bracket link anywhere in the design.
+An example of doing so is to add it to an <code>href</code> of a link.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 27. Adding a bracket link to a link will allow us to track the "Facebook" link in CX.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;a href="[Facebook]"&gt;&lt;img src="img/facebook.png" /&gt;&lt;/a&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Be reminded that all CX will replace everything that looks like a bracket link.
+It is your responsibility as a developer to use escaping where brackets have a different meaning.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 28. Escaping is important in cases like this one.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- CX will convert this to a bracket link --&gt;
+&lt;input pattern="[0-9]"&gt;
+
+&lt;!-- escaping is mandatory for the pattern mechanism to work as desired --&gt;
+&lt;input pattern="\[0-9]"&gt;</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="using-anchor-links-inside-a-design"><a class="anchor" href="#using-anchor-links-inside-a-design"></a>3.2.1. Using anchor links inside a design</h4>
+<div class="paragraph">
+<p>First of all, it is possible to use anchor links in the form of <code>#top</code> inside a CX design.
+Anchor links are allowed as targets of <a href="#link-part">link parts</a>.
+However, it is not possible to use anchor links as <code>url</code> of a bracket link.
+This is due to the fact, that bracket links meant to be trackable by CX and this requires a complete roundtrip to the server.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 29. How to use anchor links in a design.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;section id="news"&gt;
+    &lt;!-- some news --&gt;
+&lt;/section&gt;
+
+&lt;!-- some more html code --&gt;
+
+&lt;div data-bsi-element="cta"&gt;
+    &lt;a href="#news" data-bsi-element-part="link"&gt;Jump to news&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="content-elements-and-parts"><a class="anchor" href="#content-elements-and-parts"></a>3.3. Content Elements and Parts</h3>
+<div class="paragraph">
+<p>This chapter describes the structure of the <code>content-elements.html</code> file and the available content elements.
+The <code>content-elements.html</code> file contains HTML snippets for the content elements that can be selected in BSI CX.
+To do so, BSI CX searches for elements with the <code>data-bsi-element</code> attribute in the HTML code.
+The recommendation is to define all content elements at the same level as the DOM, for example, as <code>&lt;div&gt;</code> directly below the <code>&lt;body&gt;</code> element.
+However, for better visualization during development, the developer can also create additional elements (e.g., with CSS borders or margins) around the elements marked with <code>data-bsi-element</code>.
+BSI CX will ignore those, though.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+It is not necessary for the <code>content-elements.html</code> file to have a <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> or <code>&lt;body&gt;</code> tag.
+But the containing HTML must be valid.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following listing illustrates a very simple content element:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="logo"&gt;
+    &lt;img src="logo.png" alt="My Company"/&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As we can see in the listing, <code>data-bsi-element</code> defines the identifier of the content element.
+It must not contain any spaces.
+The identifier corresponds to the value that can be used in the attribute called <code>data-bsi-dropzone-allowed-elements</code> in the drop zone.
+The element marked with the identifier, when used, is inserted into the relevant drop zone (not only the child elements).</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The content editor specifically highlights the content elements.
+To make sure this works properly, all content elements must be block elements rather than inline elements.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A content element can define one or more internal drop zones.
+The definition is the same as for <code>design.html</code>.
+For example, use it with a content element for a 3-column layout with three internal drop zones.
+While the drop zones may be nested arbitrarily, please pay attention to usability.</p>
+</div>
+<div class="sect3">
+<h4 id="grouping"><a class="anchor" href="#grouping"></a>3.3.1. Grouping</h4>
+<div class="paragraph">
+<p>Complex designs can consist of many elements.
+For better organization, it is mandatory to group the elements.
+To do so, the <code>data-bsi-group</code> attribute can be used.
+The following listing illustrates such a grouping:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-group="texts"&gt;
+    &lt;div data-bsi-element="default-text" data-bsi-element-part="formatted-text"&gt;
+        &lt;p&gt;Lorem ipsum&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;lorem&lt;/li&gt;
+            &lt;li&gt;ipsum&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div data-bsi-element="raw-text" data-bsi-element-part="plain-text"&gt;Lorem ipsum&lt;/div&gt;
+&lt;/div&gt;
+&lt;div data-bsi-group="images"&gt;
+    &lt;div data-bsi-element="full-size-image"&gt;
+        &lt;img src="example.jpg" data-bsi-element-part="image"/&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="parts"><a class="anchor" href="#parts"></a>3.3.2. Parts</h4>
+<div class="paragraph">
+<p>A content element part references, inside a content element, an area (such as text or image) that can be edited directly with the BSI CX content editor.
+The content element "text with image" knows, for example, the two areas <code>image</code> and <code>plain-text</code>.
+The identifiers must be adopted exactly as they are.
+The following listing illustrates the example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;figure class="element text-with-image" data-bsi-element="text-with-image"&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;img class="image" data-bsi-element-part="image" src="example.jpg"/&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+    &lt;figcaption class="text" data-bsi-element-part="plain-text"&gt;Lorem ipsum&lt;/figcaption&gt; <i class="conum" data-value="3"></i><b>(3)</b>
+&lt;/figure&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This is the content element definition.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>image</code> part defines an editable image.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>plain-text</code> part defines an editable plain text.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The individual parts are likely to contain sample content already.
+This content must fit in terms of the structure (e.g., only plain text with <code>plain-text</code>, and a correct table definition with <code>table</code>, etc.)
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="plain-text"><a class="anchor" href="#plain-text"></a>3.3.2.1. Plain Text</h5>
+<div class="paragraph">
+<p>The part <code>plain-text</code> can be applied to any HTML element that can contain text.
+The text is inserted within the element.
+The element must not have children with other content element parts (content is removed).
+A single-line text field without formatting is available as the editor.
+When using the optional attribute <code>data-bsi-multiline</code>, the text field becomes multiline.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Boolean attributes like <code>data-bsi-multiline</code> require an empty value <code>=""</code> or sample value like <code>="true"</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 30. Sample usage of the plain text part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;h1 data-bsi-element="title-h1" data-bsi-element-part="plain-text" class="element title-h1"&gt;Lorem ipsum&lt;/h1&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 31. Sample usage of the plain text part with the multiline feature.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;p data-bsi-element="paragraph" data-bsi-element-part="plain-text" data-bsi-multiline=""&gt;Lorem ipsum&lt;br&gt;dolor sit amet&lt;/p&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="formatted-text"><a class="anchor" href="#formatted-text"></a>3.3.2.2. Formatted Text</h5>
+<div class="paragraph">
+<p>The part <code>formatted-text</code> can be applied to any HTML element that can contain text.
+The element must not have children with other content element parts (content is removed).
+The rich text field with a limited number of formatting options is available as an editor.
+For more information about the available configuration options see chapter <a href="#rich-text-editor">Configuration capabilities of the Rich Text Editor</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 32. Sample usage of the formatted text part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;section data-bsi-element="section" data-bsi-element-part="formatted-text"&gt;
+    &lt;h1&gt;Lorem ipsum dolor sit amet&lt;/h1&gt;
+    &lt;p&gt;Proin porta &lt;strong&gt;pharetra est non&lt;/strong&gt; molestie.&lt;/p&gt;
+    &lt;p&gt;&lt;a href="https://www.example.org/"&gt;More&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="html"><a class="anchor" href="#html"></a>3.3.2.3. HTML</h5>
+<div class="paragraph">
+<p>The <code>html</code> part can be applied to any HTML element.
+The code is inserted within the element.
+The element must not have children with other content element parts (content is removed).
+A text field is used as the editor.
+HTML can be written directly into this field.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 33. Sample usage of the HTML part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="html" data-bsi-element-part="html"&gt;
+    &lt;iframe src="https://www.openstreetmap.org/export/embed.html" style="height: 500px;"&gt;&lt;/iframe&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This part can be useful for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Prototyping</p>
+</li>
+<li>
+<p>Quick-and-Dirty Hacks</p>
+</li>
+<li>
+<p>Embedding any HTML code</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+It is not allowed to place any <code>data-bsi-element</code> or <code>data-bsi-element-part</code> attributes inside the HTML code.
+This won&#8217;t work as expected and leads to invalid content.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="video"><a class="anchor" href="#video"></a>3.3.2.4. Video</h5>
+<div class="paragraph">
+<p>The <code>video</code> part can be applied to any block level HTML element.
+This part can be used to display information and thumbnails of external videos.
+It can also be used to embed external videos.
+Within the element, various elements can be used as placeholders:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Each <code>&lt;iframe&gt;</code> element is used to embed an external video player.</p>
+</li>
+<li>
+<p>Each <code>&lt;img&gt;</code> element with a <code>data-bsi-video-thumbnail</code> attribute is used to display the video thumbnail.</p>
+</li>
+<li>
+<p>Each HTML element with the <code>data-bsi-video-title</code> attribute is used to display the video title.</p>
+</li>
+<li>
+<p>Each HTML element with the <code>data-bsi-video-description</code> is used to display the video description.</p>
+</li>
+<li>
+<p>Each <code>&lt;a&gt;</code> element with the <code>data-bsi-video-link</code> is used to place a link to the external video.
+The text of the hyperlink will not be touched, only the <code>href</code> attribute will be filled.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Fetching the video&#8217;s title and description may requires an active API key for the appropriate provider.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Boolean attributes like <code>data-bsi-video-title</code> require an empty value <code>=""</code> or sample value like <code>="true"</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following external video providers are supported:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">YouTube</dt>
+<dd>
+<p>Without a configured API key, only the thumbnails are automatically picked.
+More information on obtaining a YouTube API key: <a href="https://developers.google.com/youtube/v3/getting-started" class="bare">https://developers.google.com/youtube/v3/getting-started</a></p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Be aware that there are two kinds of URLs involved:
+One is the link to the video platform itself for the <code>href</code> attribute on the <code>&lt;a&gt;</code> tag and there is the embeded URL for the <code>&lt;iframe&gt;</code> player.
+In the case of YouTube <a href="https://www.youtube.com/watch?v=YpnFs4aBLQA" class="bare">https://www.youtube.com/watch?v=YpnFs4aBLQA</a> is the link to the video platform.
+The corresponding embeded URL would be <a href="https://www.youtube.com/embed/YpnFs4aBLQA" class="bare">https://www.youtube.com/embed/YpnFs4aBLQA</a>.
+If you want to provide sample content for your element you may have to fill both URLs in the right tag.
+The following listing illustrates the use of sample content for a simple video element:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 34. Example of a simple video element.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element video" data-bsi-element="video-simple"&gt;
+    &lt;div class="responsive-video" data-bsi-element-part="video" data-bsi-video-data-link="https://www.youtube.com/watch?v=YpnFs4aBLQA"&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+        &lt;iframe width="1120" height="630" frameborder="0" src="https://www.youtube.com/embed/YpnFs4aBLQA" allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The link to the video platform is placed inside the <code>data-bsi-video-data-link</code> attribute.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The embed video URL is placed inside the <code>src</code> attribute of the <code>&lt;iframe&gt;</code> tag.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This results in the following content element:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/simple-video-element.png" alt="Simple video element in action.">
+</div>
+<div class="title">Figure 6. Simple video element in action.</div>
+</div>
+<div class="paragraph">
+<p>A more complex video element would be the following:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 35. Example of a complex video element.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element video" data-bsi-element="video-thumbnail"&gt;
+    &lt;div class="video-thumbnail" data-bsi-element-part="video" data-bsi-video-data-link="https://www.youtube.com/watch?v=YpnFs4aBLQA"&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+        &lt;p&gt;
+            &lt;a href="https://www.youtube.com/watch?v=YpnFs4aBLQA" data-bsi-video-link="" target="_blank"&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+                &lt;img src="https://i.ytimg.com/vi/YpnFs4aBLQA/maxresdefault.jpg" alt="" data-bsi-video-thumbnail=""/&gt; <i class="conum" data-value="3"></i><b>(3)</b>
+            &lt;/a&gt;
+        &lt;/p&gt;
+        &lt;h3 data-bsi-video-title=""&gt;BSI Tech Lovers&lt;/h3&gt; <i class="conum" data-value="4"></i><b>(4)</b>
+        &lt;p data-bsi-video-description=""&gt;Für mehr WOW-Momente mit BSI. Monika Freiburghaus, Ralf Muri, Thomas Lindauer und Urs Frick zeigen Einblicke in ihre persönlichen WOW-Momente.&lt;/p&gt; <i class="conum" data-value="5"></i><b>(5)</b>
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The link to the video platform is placed inside the <code>data-bsi-video-data-link</code> attribute.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The link to the video platform is also placed inside the <code>href</code> attribute.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The placeholder image can also be part of the design, it is not mandatory to provide the URL to the real image here.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The content of the first tag marked with <code>data-bsi-video-title</code> will be used as placeholder for the title.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The content of the first tag marked with <code>data-bsi-video-description</code> will be used as placeholder for the video description.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This results in the following content element:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/complex-video-element.png" alt="Complex video element in action.">
+</div>
+<div class="title">Figure 7. Complex video element in action.</div>
+</div>
+<div class="paragraph">
+<p>The video part is quite powerful and can be used in various ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enrich your landingpage or website with embedded videos.</p>
+</li>
+<li>
+<p>Use video thumbnails in your content.</p>
+</li>
+<li>
+<p>Send emails with link, thumbnail, title and description of an external video.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="image"><a class="anchor" href="#image"></a>3.3.2.5. Image</h5>
+<div class="paragraph">
+<p>The <code>image</code> part can only be placed on a <code>&lt;img&gt;</code> or <code>&lt;a&gt;</code> tag.
+The source is inserted in the <code>src</code> attribute.
+By specifying the <code>srcset</code> attribute, the images are also scaled accordingly.
+If a <code>srcset</code> attribute is present, the <code>src</code> attribute is set to the image at its highest resolution (according to the defined <code>srcset</code>).
+If there is no <code>srcset</code> attribute, the selected image is not scaled and is placed directly as <code>src</code>.
+For images with dynamic sources, the definition of the <code>srcset</code> is ignored.
+Thus, dynamic image sources are not scaled.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Dynamic image sources can be specified with angle brackets, e.g. <code>&lt;my-dynamic-image&gt;</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It is not possible to omit the image of an <code>image</code> part.
+Therefore it is mandatory to specify an image in the content editor.
+Otherwise a validation error will occur.
+The following listing illustrates a simple image element with <code>srcset</code> attributes included:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 36. Example of a simple image element.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element image" data-bsi-element="image-simple"&gt;
+    &lt;img src="example-800w.jpg" srcset="example-480w.jpg 480w, example-800w.jpg 800w" alt="Example image" data-bsi-element-part="image" /&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="background-image"><a class="anchor" href="#background-image"></a>3.3.2.6. background-image</h5>
+<div class="paragraph">
+<p>An arbitrary element which permits the use of a CSS <code>background-image</code>.
+It places the CSS attribute <code>background-image</code>.
+The image selection is available as the editor just like with the image part.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 37. Example usage of the background-image part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element scene" data-bsi-element="scene"&gt;
+    &lt;div data-bsi-element-part="background-image" style="background-image: url('example.jpg')"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="table"><a class="anchor" href="#table"></a>3.3.2.7. table</h5>
+<div class="paragraph">
+<p>A <code>&lt;div&gt;</code> oder <code>&lt;td&gt;</code> element with a table element as a direct child element.
+The table content is filled according to the editor (including colgroup).
+<strong>Colspan is not supported.</strong> On even or odd rows or columns, the CSS class <code>even</code> or <code>odd</code> is placed.
+The <code>&lt;th&gt;</code> tag is used for header columns, if specified.
+<strong>This part does not support <code>&lt;thead&gt;</code> and <code>&lt;tbody&gt;</code> tags.</strong></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+It is possible to use an iterator to generate dynamic tables.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 38. Example usage of the table part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element table" data-bsi-element="simple-table" data-bsi-element-part="table"&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Firstname&lt;/th&gt;
+            &lt;th&gt;Lastname&lt;/th&gt;
+            &lt;th&gt;Age&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;John&lt;/td&gt;
+            &lt;td&gt;Doe&lt;/td&gt;
+            &lt;td&gt;42&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="iterator"><a class="anchor" href="#iterator"></a>3.3.2.8. iterator</h5>
+<div class="paragraph">
+<p>An arbitrary element.
+The attribute <code>data-bsi-iterator</code> can be defined on this element.
+The attribute <code>data-bsi-iterator-item</code> has to be defined on the element or on one of the included elements.
+This defines the element to be duplicated.
+If <code>data-bsi-iterator</code> is defined and the iterator does not provide any data, the entire element is removed.
+Otherwise, only the element to be duplicated is marked with <code>data-bsi-iterator-item</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Boolean attributes like <code>data-bsi-iterator-item</code> require an empty value <code>=""</code> or sample value like <code>="true"</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A text field is used as the editor.
+The name of the iterator can be placed in this text field.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 39. Example usage of the iterator part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element iterator" data-bsi-element="iterator" data-bsi-iterator="sample"&gt;
+    &lt;div class="customer" data-bsi-iterator-item=""&gt;
+        &lt;dl&gt;
+            &lt;dt&gt;Name&lt;/dt&gt;
+            &lt;dd&gt;{customer.name}&lt;/dd&gt;
+            &lt;dt&gt;Address&lt;/dt&gt;
+            &lt;dd&gt;{customer.address}&lt;/dd&gt;
+        &lt;/dl&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="news-snippets"><a class="anchor" href="#news-snippets"></a>3.3.2.9. news-snippets</h5>
+<div class="paragraph">
+<p>An arbitrary element.
+Displays a news item.
+Within the element, elements with the <code>data-bsi-property</code> attribute can be defined.
+This attribute may have the following values: <code>image</code>, <code>title</code>, <code>headline</code>, or <code>text</code>.
+The content of these elements is then replaced accordingly with the value of the selected news item.
+In that context, elements from property <code>title</code>, <code>headline</code>, and <code>text</code> are mandatory.</p>
+</div>
+<div class="paragraph">
+<p>If a link in CX is configured into a news snippet, <code>title</code> and <code>image</code> are automatically supplemented with a link.
+When generating the news list, the following CSS classes are automatically set on a news snippet to permit better styling of the individual elements:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+news-nth-X
+</td>
+<td class="hdlist2">
+<p>the position in the list. E.g., <code>news-nth-9</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+odd
+</td>
+<td class="hdlist2">
+<p>odd position in the list</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+even
+</td>
+<td class="hdlist2">
+<p>even position in the list</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+first
+</td>
+<td class="hdlist2">
+<p>first news snippet</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+last
+</td>
+<td class="hdlist2">
+<p>last news snippet</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 40. Example usage of the news-snippets part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element news" data-bsi-element="news-snippets" data-bsi-element-part="news-snippets"&gt;
+    &lt;div class="news-image element"&gt;
+        &lt;img class="ns-image" src="placeholder.jpg" data-bsi-property="image"/&gt;
+    &lt;/div&gt;
+    &lt;div class="news-text element"&gt;
+        &lt;h2 class="ns-title" data-bsi-property="title"&gt;Breaking News&lt;/h2&gt;
+        &lt;p class="ns-headline" data-bsi-property="headline"&gt;Lorem ipsum dolor sit amet&lt;/p&gt;
+        &lt;p class="ns-text" data-bsi-property="text"&gt;Ea vis odio voluptua, pri ei facer denique.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="form"><a class="anchor" href="#form"></a>3.3.2.10. form</h5>
+<div class="paragraph">
+<p>A <code>&lt;form&gt;</code> element.
+The element must contain a submit button and may also contain a reset button.
+Those buttons must be <code>&lt;input&gt;</code> elements.
+In the form configuration, the reset button can be hidden or displayed.
+Then, in the DOM, the attribute disabled is set on the input element.</p>
+</div>
+<div class="paragraph">
+<p>The form element must contain an element with the <code>data-bsi-form-validation</code> attribute, and this attribute must contain an element with the <code>data-bsi-form-validation-item</code> attribute.</p>
+</div>
+<div class="paragraph">
+<p>Within the element with <code>data-bsi-form-validation</code>, the element with <code>data-bsi-form-validation-item</code> is duplicated for each error in the server-side form validation, and the validation message is inserted as the content of the validation item element.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Boolean attributes like <code>data-bsi-form-validation</code> require an empty value <code>=""</code> or sample value like <code>="true"</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In addition to the display in the above-described element, a <code>data-bsi-form-validation-message</code> attribute is set for each defective form field.
+It contains the validation error for the respective field.
+The attribute can be used to style the field with CSS if there is an error (CSS selector checks for the presence of the attribute) or to display the error message with CSS and/or JavaScript in the respective field.</p>
+</div>
+<div class="paragraph">
+<p>The following form fields can be marked as mandatory fields in the content editor.
+If this is done, the <code>required</code> attribute is set in the relevant HTML element.
+Thus, the mandatory elements are styled using the respective CSS selectors.</p>
+</div>
+<div class="paragraph">
+<p>To exclude a certain form from CX you set the <code>data-bsi-form-ignore</code> attribute on the form tag.
+Any form with this marker will be left untouched by CX.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 41. Example usage of the form part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element form" data-bsi-element="slim-form"&gt;
+    &lt;form class="form form-wrapper" data-bsi-element-part="form" id="form"&gt;
+        &lt;ul class="form-validation" data-bsi-form-validation=""&gt;
+            &lt;li class="form-validation-item" data-bsi-form-validation-item=""&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div class="form-content" data-bsi-dropzone="form-content" data-bsi-dropzone-allowed-elements="form-field"&gt;
+        &lt;/div&gt;
+        &lt;div class="form-button-bar"&gt;
+            &lt;input type="submit" class="form-button send" value="Senden" /&gt;
+            &lt;input type="reset" class="form-button reset" value="Zurücksetzen" /&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="form-field"><a class="anchor" href="#form-field"></a>3.3.2.11. form-field</h5>
+<div class="paragraph">
+<p>A <code>&lt;div&gt;</code> element.
+Contains a <code>&lt;label&gt;</code> and an <code>&lt;input&gt;</code> element.
+In the configuration, the label, initial value, mandatory field, and input type can be defined.
+The following input types are supported:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+text
+</td>
+<td class="hdlist2">
+<p>For a simple text field.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+email
+</td>
+<td class="hdlist2">
+<p>Input field, that accepts a valid e-mail address.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+tel
+</td>
+<td class="hdlist2">
+<p>Input field, that accepts a phone number.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+password
+</td>
+<td class="hdlist2">
+<p>A password input field, that shows <code>*</code> instead of the real characters.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+number
+</td>
+<td class="hdlist2">
+<p>An input field, that accepts only numbers.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+range
+</td>
+<td class="hdlist2">
+<p>An input field, that shows a numeric range slider.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+date
+</td>
+<td class="hdlist2">
+<p>An input field, that can be used to select a certain date.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+datetime-local
+</td>
+<td class="hdlist2">
+<p>Input field, that accepts a date and a specific time.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+time
+</td>
+<td class="hdlist2">
+<p>Input field, that accepts a time.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+file
+</td>
+<td class="hdlist2">
+<p>Input field, that can be used to upload a file.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To fixate the form field type, the <code>data-bsi-form-field-fixed-type</code> attribute can be used on the element.
+Doing so allows the setup of a customized date field, for example.
+The type of the form field is then set and cannot be changed in the content editor.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Be aware, that not all browsers support all types of input fields.
+Some browsers require a polyfill to handle certain types of form fields.
+It is up to the developer to use polyfills where this is required.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 42. Example usage of the form-field part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="form-field" data-bsi-element="date-field" data-bsi-element-part="form-field" data-bsi-form-field-fixed-type=""&gt;
+    &lt;label class="label"&gt;Date&lt;/label&gt;
+    &lt;input class="input" type="date" value="2009-11-13" required="" /&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Boolean attributes like <code>data-bsi-form-field-fixed-type</code> require an empty value <code>=""</code> or sample value like <code>="true"</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="form-checkbox"><a class="anchor" href="#form-checkbox"></a>3.3.2.12. form-checkbox</h5>
+<div class="paragraph">
+<p>A <code>&lt;div&gt;</code> element.
+Contains a <code>&lt;label&gt;</code> and an <code>&lt;input&gt;</code> element with the <code>checkbox</code> type.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 43. Example usage of the form-checkbox part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-checkbox" data-bsi-element-part="form-checkbox" class="element checkbox"&gt;
+    &lt;input type="checkbox" id="checkbox1" /&gt;
+    &lt;label for="checkbox1"&gt;Checkbox 1&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="form-textarea"><a class="anchor" href="#form-textarea"></a>3.3.2.13. form-textarea</h5>
+<div class="paragraph">
+<p>A <code>&lt;div&gt;</code> element.
+Contains a <code>&lt;label&gt;</code> and a <code>&lt;textarea&gt;</code> element.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 44. Example usage of the form-textarea part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-textarea" data-bsi-element-part="form-textarea" class="form-field form-element"&gt;
+    &lt;label class="label"&gt;Description&lt;/label&gt;
+    &lt;textarea rows="5" cols="20" class="textarea" maxlength="500"&gt;Lorem ipsum&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="form-select"><a class="anchor" href="#form-select"></a>3.3.2.14. form-select</h5>
+<div class="paragraph">
+<p>A <code>&lt;div&gt;</code> element.
+Contains a <code>&lt;label&gt;</code> and a <code>&lt;select&gt;</code> element with the elements option.
+The pre-allocation of the element can be controlled with the <code>data-bsi-value</code> and <code>data-bsi-value-list</code> attributes.
+The <code>data-bsi-value</code> attribute contains the preal-location, and the values available for selection are defined in the <code>data-bsi-value-list</code> attribute.
+A line break (<code>\n</code> or <code>\r\n</code>) separates each of those.</p>
+</div>
+<div class="paragraph">
+<p>To fixate the values that are available for selection, the <code>data-bsi-form-select-fixed-value-list</code> attribute can be set on the element.
+Then, the list of values cannot be changed in the content editor.
+Only the preselection can be changed.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The <code>multiple</code> attribute is not supported.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 45. Example usage of the form-select part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-select" data-bsi-element-part="form-select" class="form-select form-element" data-bsi-value-list="Yes
+No
+Unsure" data-bsi-value="No"&gt;
+    &lt;label class="label"&gt;Decision&lt;/label&gt;
+    &lt;div class="select-wrapper"&gt;
+        &lt;select size="1"&gt;
+            &lt;option&gt;Yes&lt;/option&gt;
+            &lt;option selected=""&gt;No&lt;/option&gt;
+            &lt;option&gt;Unsure&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;div class="dropdown" role="presentation"&gt;a&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="form-radio"><a class="anchor" href="#form-radio"></a>3.3.2.15. form-radio</h5>
+<div class="paragraph">
+<p>A <code>&lt;div&gt;</code> element.
+Contains a <code>&lt;label&gt;</code> and a <code>&lt;div&gt;</code> element as a radio group.
+The radio group is marked with the <code>data-bsi-radio-group</code> attribute.
+The radio group contains radio items.
+These are identified with the <code>data-bsi-radio-item</code> attribute and contain a <code>&lt;label&gt;</code> and an <code>&lt;input&gt;</code> element with the radio type.
+The preselection of this element can be controlled with the <code>data-bsi-value</code> and <code>data-bsi-value-list</code> attributes.
+Same as the <a href="#form-select">form-select</a> part.
+The same applies to the <code>data-bsi-form-select-fixed-value-list</code> attribute.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 46. Example usage of the form-radio part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-radio" data-bsi-element-part="form-radio" class="form-radio form-element"&gt;
+    &lt;label class="label"&gt;To be or not to be?&lt;/label&gt;
+    &lt;div data-bsi-radio-group=""&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+        &lt;div class="form-radio-item" data-bsi-radio-item=""&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+            &lt;input type="radio" id="radio1" /&gt;
+            &lt;label for="radio1"&gt;Radio-Button 1&lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>data-bsi-radio-group</code> element contains the prototype element.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>data-bsi-radio-item</code> element is the prototype element.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Be aware, that <code>data-bsi-radio-item</code> must be right inside <code>data-bsi-radio-group</code>.
+Any intermediate element will be removed.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Boolean attributes like <code>data-bsi-radio-item</code> require an empty value <code>=""</code> or sample value like <code>="true"</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="link"><a class="anchor" href="#link"></a>3.3.2.16. link</h5>
+<div class="paragraph">
+<p>The part is defined on the <code>&lt;a&gt;</code> element.
+As an option, the link content can be set with the <code>data-bsi-link-fixed-inner-html</code> attribute.
+If this attribute is present, only the <code>href</code> attribute of the link can be edited in the content editor.
+If the link text is to be placed in a tag within the hyperlink (e.g., in a span next to an <code>&lt;img&gt;</code> tag), the optional <code>data-bsi-link-text-part</code> attribute can be set on the tag.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Boolean attributes like <code>data-bsi-link-fixed-inner-html</code> require an empty value <code>=""</code> or sample value like <code>="true"</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 47. Example usage of the link part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="cta" class="element cta"&gt;
+    &lt;a href="https://www.bsi-software.com/" data-bsi-element-part="link"&gt;More&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="social-follow"><a class="anchor" href="#social-follow"></a>3.3.2.17. social-follow</h5>
+<div class="paragraph">
+<p>A <code>&lt;div&gt;</code> element, contains <code>&lt;div&gt;</code> elements with a <code>data-bsi-social-follow</code> attribute.
+These attributes contain the value of the respective social media service, such as "Facebook", "Twitter", "Pinterest", etc.</p>
+</div>
+<div class="paragraph">
+<p>The elements with <code>data-bsi-social-follow</code> must have the <code>social-media-item</code> class.
+This class is used to manage the visibility of each individual social media channel in the editor.</p>
+</div>
+<div class="paragraph">
+<p>The elements with <code>data-bsi-social-follow</code> must also contain an <code>&lt;a&gt;</code> element.
+The link <code>href</code> can be preselected with a URL or with CX links in square brackets (e.g., [Facebook]).</p>
+</div>
+<div class="paragraph">
+<p>The <code>&lt;a&gt;</code> element, in turn, can contain additional elements.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 48. Example usage of the social-follow part.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="social-follow" data-bsi-element-part="social-follow"&gt;
+    &lt;div data-bsi-social-follow="Facebook" class="social-media-item"&gt;
+        &lt;a href="https://www.facebook.com/"&gt;
+            &lt;img src="facebook.png" alt="Facebook" /&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div data-bsi-social-follow="Twitter" class="social-media-item"&gt;
+        &lt;a href="https://www.twitter.com/"&gt;
+            &lt;img src="twitter.png" alt="Twitter" /&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="social-share"><a class="anchor" href="#social-share"></a>3.3.2.18. social-share</h5>
+<div class="paragraph">
+<p>A <code>&lt;div&gt;</code> element, contains <code>&lt;div&gt;</code> elements with <code>data-bsi-social-share</code>.
+These attributes contain the value of the respective social media service, such as Facebook, Twitter, Pinterest, or even e-mail.</p>
+</div>
+<div class="paragraph">
+<p>The elements with <code>data-bsi-social-share</code> must have the <code>social-media-item</code> class.
+This class is used to control the visibility of each individual social media channel in the editor.</p>
+</div>
+<div class="paragraph">
+<p>The elements with <code>data-bsi-social-share</code> must also contain an <code>&lt;a&gt;</code> element.
+The link <code>href</code> can be preselected with a URL or with Studio links in square brackets (e.g., <code>[Facebook]</code>).</p>
+</div>
+<div class="paragraph">
+<p>To share it via e-mail, the content of the <code>href</code> is then a <code>mailto:?subject=(subject.with.title)&amp;body=(description.with.url)</code></p>
+</div>
+<div class="paragraph">
+<p>The <code>&lt;a&gt;</code> element, in turn, can contain additional elements.</p>
+</div>
+<div class="paragraph">
+<p>The URL supports a list of wildcards that are specific to the social share part.
+When they are issued, all wildcards are automatically URL-encoded.
+These wildcards cannot be selected in the step configuration in Studio.
+The following wildcards exist:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+url
+</td>
+<td class="hdlist2">
+<p>The URL/internet address of the current Studio webpage or the user-defined URL.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+description
+</td>
+<td class="hdlist2">
+<p>The description text of the current Studio webpage or the user-defined description text (a maximum of 300 characters).</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+description.short
+</td>
+<td class="hdlist2">
+<p>Same as description, but a maximum of 140 characters; all additional characters are truncated.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+description.with.url
+</td>
+<td class="hdlist2">
+<p>Same as description; in addition, the url is added to the end of the description text.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+title
+</td>
+<td class="hdlist2">
+<p>The title of the current Studio webpage or the user-defined title (a maximum of 100 characters).</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+title.with.url
+</td>
+<td class="hdlist2">
+<p>Same as title, and, in addition, the url is added to the end of the description text.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+subject.with.title
+</td>
+<td class="hdlist2">
+<p>Same as title, and, in addition, a text "Share web-site:" is added to the beginning of the title; is used as the subject in an e-mail.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+preview.image.url
+</td>
+<td class="hdlist2">
+<p>The URL/internet address for the preview image of the webpage according to the configuration in the content editor.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="social-share" data-bsi-element-part="social-share"&gt;
+    &lt;div class="social-media-info"&gt;Share this page&lt;/div&gt;
+    &lt;div data-bsi-social-share="E-Mail" class="sm-email social-media-item share"&gt;
+        &lt;a href="mailto:?subject=(subject.with.title)&amp;body=(description.with.url)"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div data-bsi-social-share="Facebook" class="sm-facebook social-media-item share"&gt;
+        &lt;a href="https://www.facebook.com/sharer/sharer.php?u=(url)" target="_blank"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div data-bsi-social-share="LinkedIn" class="sm-linkedin social-media-item share"&gt;
+        &lt;a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=(url)&amp;summary=(title)&amp;source=FancyUnicorns" target="_blank"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div data-bsi-social-share="Pinterest" class="sm-pinterest social-media-item share"&gt;
+        &lt;a href="http://pinterest.com/pin/create/button/?url=(url)&amp;description=(title)&amp;media=(preview.image.url)" target="_blank"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div data-bsi-social-share="Twitter" class="sm-twitter social-media-item share"&gt;
+        &lt;a href="https://twitter.com/intent/tweet?url=(url)&amp;text=(description.short)" target="_blank"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div data-bsi-social-share="WhatsApp" class="sm-whatsapp social-media-item share"&gt;
+        &lt;a href="whatsapp://send?text=(title.with.url)" target="_blank"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div data-bsi-social-share="Xing" class="sm-xing social-media-item share"&gt;
+        &lt;a href="https://www.xing.com/spi/shares/new?url=(url)" target="_blank"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cx-design-creator"><a class="anchor" href="#cx-design-creator"></a>4. CX Design Creator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The CX Design Creator was developed to facilitate the creation of templates.
+It is an executable file for Windows, Mac, and Linux.
+No installation or additional software is required.
+The CX Design Creator has the following functionality and tasks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Parsing Twig templates for HTML</p>
+</li>
+<li>
+<p>Formatting the generated HTML "nicely" and validating it</p>
+</li>
+<li>
+<p>Parsing LESS to CSS</p>
+</li>
+<li>
+<p>Parsing SASS to CSS</p>
+</li>
+<li>
+<p>Minifying and autoprefixing CSS</p>
+</li>
+<li>
+<p>Merging and minifying JavaScript</p>
+</li>
+<li>
+<p>Creating the ZIP file for the upload to BSI CX</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here is an example how the CX Design Creator is run from command line:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/start-cx-design-creator-from-cmd.png" alt="CX Design Creator: Run">
+</div>
+<div class="title">Figure 8. Run the CX Design Creator</div>
+</div>
+<div class="paragraph">
+<p>Note the reference Webserver: <a href="http://127.0.0.1:1234" class="bare">http://127.0.0.1:1234</a>. The CX Design Creator publishes all content-elements that are mentioned in the file "preview-template.html" to a webserver. It is very useful to check all changes on a certain content-element locally in your browser, before a .zip file is uploaded to a CX-Environment.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/cx-design-creator-preview.png" alt="CX Design Creator: Preview">
+</div>
+<div class="title">Figure 9. Preview in a local browser</div>
+</div>
+<div class="paragraph">
+<p>The CX Design Creator itself is configured with a YAML file compiler.yml:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 49. Example of a compiler.yml file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">engine: { version: '0.79.4' }
+watch:
+    - resources
+    - properties.yml
+    - template/src
+task:
+    ### bundle and process component specific less and javascript files
+    - twig:
+        - source: [template/src/_setup/components.less.twig]
+          target: template/tmp/components.less
+          model: [properties.yml]
+          tidy: false
+          validate: false
+        - source: [template/src/_setup/components.js.twig]
+          target: template/tmp/components.js
+          model: [properties.yml]
+          tidy: false
+          validate: false
+    - less:
+        - source: [template/tmp/components.less]
+          target: template/www/static/styles.css
+          model:
+              stack: [properties.yml]
+              scope: [styles]
+      js:
+        - source: [template/tmp/components.js]
+          target: template/www/static/scripts.js
+      rm:
+        - template/tmp/components.js
+        - template/tmp/components.less
+    ### copy resources
+    - cp:
+        - source: resources
+          target: template/www/static
+    ### create regular design files
+    - twig:
+          ### design.html
+          - source: [template/src/base/twig/design.twig]
+            target: template/www/design.html
+            model: [properties.yml]
+          ### content-elements.html
+          - source: [template/src/base/twig/content-elements.twig]
+            target: template/www/content-elements.html
+            model: [properties.yml]
+          ### preview-template.html
+          - source: [template/src/base/twig/preview-template.twig]
+            target: template/www/preview-template.html
+            model: [properties.yml]
+          ### design.properties
+          - source: [template/src/base/twig/design.properties.twig]
+            target: template/www/design.properties
+            model: [properties.yml]
+            tidy: false
+            validate: false
+      zip:
+          - base: template/www
+            source:
+              - design.html
+              - content-elements.html
+              - preview-template.html
+              - design.properties
+              - static
+            target: ../../Scaffold-1.0.1.zip
+defaults:
+    twig:
+        validate: true
+        tidy: true
+        tabsize: 4
+        comments: true
+    less:
+        compress: true
+    js:
+        compress: true
+    global:
+        charset: utf8
+        compress: true
+        failonerror: false
+webserver:
+    packages:
+        - name: 'Company - Templates'
+          designs:
+            - name: 'Scaffold'
+              viewports:
+                  - type: desktop
+                    width: 100%
+                  - type: desktop
+                    width: 940px
+                  - type: tablet
+                    width: 768px
+                  - type: mobile
+                    width: 360px
+              templates:
+                  - file: template/www/preview-template.html
+                    language: Deutsch</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A detailed description of the application and the configuration options would be beyond the scope of this guide.
+Just one note: When creating designs with the CX Design Creator, the generated artifacts (i.e., HTML, CSS, and Ja-vaScript files) should not be directly edited.
+Instead, any modifications should be made in the source code itself.</p>
+</div>
+<div class="paragraph">
+<p>Of course, you can also use a separate tool stack to develop a design.
+We do not recommend the development of a design directly in HTML, CSS, and JavaScript.
+This may work with small templates, but it quickly becomes confusing and error-prone.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="help"><a class="anchor" href="#help"></a>5. Help</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="good-practices"><a class="anchor" href="#good-practices"></a>5.1. Good practices</h3>
+<div class="paragraph">
+<p>The following things have been established as good practice in some projects. However, this approach is by no means mandatory and may vary depending on the project and individual preferences.</p>
+</div>
+<div class="sect3">
+<h4 id="deleting-or-deprecating-content-elements"><a class="anchor" href="#deleting-or-deprecating-content-elements"></a>5.1.1. Deleting or deprecating content elements</h4>
+<div class="paragraph">
+<p>Over time, a design evolves and due to various reasons, a certain content element may become obsolete. A good practice to phase-out a content element is to deprecate an element in a first step instead of directly deleting it. Deprecating helps to inform the end user about a content element that should no longer be added to new contents while still present in existing ones. In addition, it makes manual content migrations easier (see <a href="#refactoring-content-elements">Refactoring content elements</a>). In a future release, when you are sure that the content element is no longer actively in use, you can completely delete the content element.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="refactoring-content-elements"><a class="anchor" href="#refactoring-content-elements"></a>5.1.2. Refactoring content elements</h4>
+<div class="paragraph">
+<p>While refactoring a content element, keep in mind that your changes to a content element should never break existing content. We strongly advice to test your refactored content element to content that was created under the old design version to make sure that you do not introduce breaking changes. Critical points are renamings, changing the order for element parts and big changes to the DOM structure. In spite of that, we do encourage you to refactor where necessary, remind you to test carefully.
+If a refactoring is not possible due to migration issues, adding a new content element and deprecating the preexisting one (see: <a href="#deleting-or-deprecating-content-elements">Deleting or deprecating content elements</a>) is a feasible option.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>5.2. Troubleshooting</h3>
+<div class="paragraph">
+<p>In this chapter, we are collecting some common issues design developers may face in their development process.</p>
+</div>
+<div class="sect3">
+<h4 id="design-upload"><a class="anchor" href="#design-upload"></a>5.2.1. Design Upload</h4>
+<div class="paragraph">
+<p>While uploading a design, BSI CX will parse the content of the ZIP file to ensure that the containing design is valid. If the parser detects inconsistencies, an error message is displayed. The following trouble shooting sections will help to correct the error.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+It is helpful to to view the details of the error message by clicking on <strong>Details</strong>, if available.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+In Versions prior to CX 1.2.48, the error message may be cut off in the message box. Use <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> and paste the error message to any text file to view the full details.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="validation-error-file-is-missing"><a class="anchor" href="#validation-error-file-is-missing"></a>5.2.1.1. Validation error: File is missing</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/invalid_design_error_missing_mandatory_files.png" alt="error message: file is missing">
+</div>
+<div class="title">Figure 10. error message: file is missing</div>
+</div>
+<div class="paragraph">
+<p>Your upload is missing a mandatory file. Please refer to <a href="#file-format">File format</a> where the mandatory files for your design type is described in detail.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="validation-error-invalid-content-element-in-data-bsi-dropzone-allowed-elements"><a class="anchor" href="#validation-error-invalid-content-element-in-data-bsi-dropzone-allowed-elements"></a>5.2.1.2. Validation error: Invalid content element in 'data-bsi-dropzone-allowed-elements'</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/invalid_design_error_invalid_element_in_dropzone.png" alt="error message: invalid content element in 'data-bsi-dropzone-allowed-elements'">
+</div>
+<div class="title">Figure 11. error message: invalid content element in 'data-bsi-dropzone-allowed-elements'</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Error message</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affected ZIP file</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affected file (within the ZIP file)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Name of the <em>data-bsi-dropzone</em> in which the error causing content element is placed</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The name of the content element. In this case, the content element name is missing</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In one of your <code>data-bsi-dropzone-allowed-elements=''</code> definitions, there is an element listed which does not exist in the <code>content-elements.html</code> file. Common cases where this happens:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A content element has been deleted but it is still referred by a dropzone</p>
+</li>
+<li>
+<p>A content element has been renamed and a dropzone is still referring to it under its previous name</p>
+</li>
+<li>
+<p>A new content element has just been implemented, but there is a mismatch in naming. Check again the name of your <em>data-bsi-element</em> and make sure it matches the name in the dropzone.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Listing 50. example of a badly referenced element in a dropzone</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Design_de-CH.zip/design.html --&gt;
+&lt;div data-bsi-dropzone="content"
+        data-bsi-dropzone-allowed-elements="basic-cta hello-world"&gt;
+        &lt;!-- hello-world should be hello-text, see below --&gt;
+&lt;/div&gt;
+
+&lt;!-- Design_de-CH.zip/content-elements.html --&gt;
+&lt;div data-bsi-group="basic"&gt;
+    &lt;!-- in design.html, the element is incorrectly referenced under the name hello-world --&gt;
+    &lt;div data-bsi-element="hello-text" data-bsi-element-part="formatted-text"&gt;
+        &lt;p&gt;Lorem ipsum&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;a data-bsi-element="basic-cta" href="#" data-bsi-element-part="link" class="element basic-cta"&gt;Lorem ipsum&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="validation-error-unknown-content-element-part"><a class="anchor" href="#validation-error-unknown-content-element-part"></a>5.2.1.3. Validation error: Unknown content element part</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/invalid_design_error_unknown_content_element_part.png" alt="error message: unknown content element part">
+</div>
+<div class="title">Figure 12. error message: unknown content element part</div>
+</div>
+<div class="paragraph">
+<p>The specified <code>data-bsi-element-part</code> is not supported by CX. For a list of supported element parts, visit the <a href="#parts">Parts</a> documentation chapter.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In the example above, a <em>text</em> element part is specified. According to the documentation, it has to either be <em>plain-text</em> or <em>formatted-text</em>. Thus, it is unknown to CX.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="validation-error-dropzone-contains-sample-content-element-that-doesnt-match-the-structure-of-the-reference-content-element"><a class="anchor" href="#validation-error-dropzone-contains-sample-content-element-that-doesnt-match-the-structure-of-the-reference-content-element"></a>5.2.1.4. Validation error: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/invalid_design_error_sample_content_not_matching_content_element_spec.png" alt="error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element">
+</div>
+<div class="title">Figure 13. error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</div>
+</div>
+<div class="paragraph">
+<p>A discrepancy was discovered when using a content element as sample content. The example must have the same HTML structure as the specified content element.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A comparison of the two elements can be displayed by clicking on <strong>Details</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 51. example of a sample content that does not match the specified content element</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Content Element: Specification of the element (content-elements.html) --&gt;
+&lt;div class="hello-world" data-bsi-element="basic-hello-world"&gt;
+    &lt;h1 data-bsi-element-part="plain-text"&gt;Placeholder&lt;/h1&gt;
+    &lt;img data-bsi-element-part="image" src="placeholder.png" alt="" /&gt;
+&lt;/div&gt;
+&lt;!-- Content: sample content (design.html or content-elements.html) --&gt;
+&lt;div class="hello-world" data-bsi-element="basic-hello-world"&gt;
+    &lt;h1 data-bsi-element-part="plain-text"&gt;Hello World, how are you?&lt;/h1&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;p&gt;just another text&lt;/p&gt; <i class="conum" data-value="3"></i><b>(3)</b>
+    &lt;img data-bsi-element-part="image" src="hello-my-dear-world.png" alt="" /&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>OK: deviating text within an editable area (here: plain-text element part)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>OK: deviating attribute, which can be edited from CX for this type anyway</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>NOT OK: adding, manipulating or removing DOM nodes is not allowed</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="validation-error-dropzone-contains-sample-content-that-are-not-content-elements"><a class="anchor" href="#validation-error-dropzone-contains-sample-content-that-are-not-content-elements"></a>5.2.1.5. Validation error: Dropzone contains sample content that are not content elements</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/invalid_design_error_sample_content_that_are_not_content_elements.png" alt="error message: Dropzone contains sample content that are not content elements">
+</div>
+<div class="title">Figure 14. error message: Dropzone contains sample content that are not content elements</div>
+</div>
+<div class="paragraph">
+<p>A dropzone can contain 0&#8230;&#8203;n content elements. Only content elements are allowed as direct child nodes of dropzones. Therefore, HTML that is not part of a content element must not be placed in a dropzone.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 52. example of a detached paragraph that must not be placed in a dropzone</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-dropzone="content" data-bsi-dropzone-allowed-elements="title-h1 title-h2 title-h3 basic-text basic-image basic-cta"&gt;
+    &lt;h1 data-bsi-element="title-h1" data-bsi-element-part="plain-text" class="element title-h1"&gt;Lorem ipsum&lt;/h1&gt;
+    &lt;p&gt;The paragraph surrounding me is not part of a content element and therefore must not be placed in the dropzone 'content'.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="validation-error-part-uses-tag-x-but-requires-one-of-the-following-yz"><a class="anchor" href="#validation-error-part-uses-tag-x-but-requires-one-of-the-following-yz"></a>5.2.1.6. Validation error: Part uses tag X but requires one of the following: Y,Z</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/invalid_design_error_wrong_HTML_tag.png" alt="error message: Part uses tag div but requires one of the following: a" width="img">
+</div>
+<div class="title">Figure 15. error message: Part uses tag div but requires one of the following: a,img</div>
+</div>
+<div class="paragraph">
+<p>Make sure to user proper HTML tags for your element parts. Consult the content element <a href="#parts">Parts</a> documentation for the validation error causing element.</p>
+</div>
+<div class="paragraph">
+<p><em>In the example above, this would be the <a href="#image">Image</a> content element <a href="#parts">Parts</a> documentation.</em></p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 53. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Invalid: uses &lt;div&gt; which is not an image --&gt;
+&lt;div data-bsi-element-part="image" src="img.png" alt=""&gt;&lt;/div&gt;
+&lt;!-- Correct way: use an &lt;img&gt; tag --&gt;
+&lt;img data-bsi-element-part="image" src="img.png" alt="" /&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="validation-error-the-x-tag-must-contain-exactly-one-y-tag"><a class="anchor" href="#validation-error-the-x-tag-must-contain-exactly-one-y-tag"></a>5.2.1.7. Validation error: The X tag must contain exactly one Y tag</h5>
+<div class="paragraph">
+<p>Make sure to user proper HTML tags for your element parts. Consult the content element <a href="#parts">Parts</a> documentation for the validation error causing element.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-update"><a class="anchor" href="#design-update"></a>5.2.2. Design Update</h4>
+<div class="paragraph">
+<p>To update existing content onto the most recent version of a design, the content has to be explicitly updated by clicking the <em><strong>Update Design</strong></em> button in the content editor.
+Success or failure of such a design update is indicated by a message box.</p>
+</div>
+<div class="paragraph">
+<p>After an update, we advise to visually cross-check the content to make sure that a change in the design has not broken your content. In case if you are seeing content that does no longer render properly, your recent design version has introduced a flaw. in that case, you can revert the design update by clicking on the cancel button in the content editor.</p>
+</div>
+<div class="paragraph">
+<p>Be reminded that once an updated content is saved, there is no way to go back to the older design version, unless you explicitly create a new version by selecting the respective checkbox next to the save button before saving the content.</p>
+</div>
+<div class="sect4">
+<h5 id="design-validation"><a class="anchor" href="#design-validation"></a>5.2.2.1. Design Validation</h5>
+<div class="paragraph">
+<p>After hitting the <em>design update</em> button or after a modification of your content, you may see a validation error indicated in the top-right corner.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/design-update-validation-error.png" alt="validation error indicator on design update">
+</div>
+</div>
+<div class="paragraph">
+<div class="title">the red exclamation mark indicates a validation error on design update</div>
+<p>In such a case, there is an issue in the design used by your content. The most typical error messages related to design issues are described in the following chapter. You may also see some that are already described in the <a href="#design-upload">Design Upload</a> section.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="content-does-not-match-the-structure-of-the-referenced-content-element"><a class="anchor" href="#content-does-not-match-the-structure-of-the-referenced-content-element"></a>5.2.2.2. Content does not match the structure of the referenced content element</h5>
+<div class="paragraph">
+<p>The structure of one of your content elements that is being used right now in your content does no longer match it&#8217;s specification.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+It is helpful to to view the details of the error message by clicking on <strong>Details</strong>, if available.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/design-update-validation-error-details.png" alt="viewing validation error details">
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">viewing validation error details</div>
+In Versions prior to CX 1.2.48, the error message may be cut off in the message box. Use <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> and paste the error message to any text file to view the full details.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The details of such an error message always have the same structure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">Content Element:
+&lt;div&gt;....&lt;/div&gt;
+
+Content:
+&lt;div&gt;.....&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the difference is difficult to find, we recommend using a diff tool to compare the concrete content with the content element specification.</p>
+</div>
+<div class="paragraph">
+<p>The root cause of a difference between a concrete content and the content element specification may be one of the following:</p>
+</div>
+<div class="sect5">
+<h6 id="javascript"><a class="anchor" href="#javascript"></a>JavaScript</h6>
+<div class="paragraph">
+<p>You have a JavaScript running that is manipulating your content element. To prevent your content from being modified through a script, make sure that you update your <code>&lt;script&gt;</code> tags in your <em>design.html</em> file so that the scripts will only be loaded if your content is <strong>not</strong> being edited right now in the content editor.
+Removing a <code>script</code> tag from the DOM if the content is being edited can be achieved by adding <code>data-bsi-remove-if='draft'</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 54. removing a sript in draft (edit) mode</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;script data-bsi-remove-if="draft" src="your-javascript that manipulates-the-DOM.js" &gt;&lt;/script&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="usage-of-invalid-html"><a class="anchor" href="#usage-of-invalid-html"></a>Usage of invalid HTML</h6>
+<div class="paragraph">
+<p>Some browsers detect and try to <em>fix</em> invalid HTML. As a consequence, the DOM structure of the HTML is modified by the browsers, whereas CX still expects the specified structure.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 55. invalid HTML will lead to issues</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Invalid HTML, as defined in content-elements.html --&gt;
+&lt;table data-bsi-dropzone="table"&gt;
+    &lt;div data-bsi-element="text"&gt;...&lt;/div&gt;
+&lt;/table&gt;
+
+&lt;!-- As soon as the HTML is dropped in CX, the browser will 'fix' the HTML, leading to a different HTML for the concrete content --&gt;
+&lt;table data-bsi-dropzone="table"&gt;&lt;/table&gt;
+&lt;div data-bsi-element="text"&gt;...&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="inline-svg-older-cx-versions"><a class="anchor" href="#inline-svg-older-cx-versions"></a>Inline SVG (older CX versions)</h6>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This section applies to installations prior to CX 1.2.48.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Inline SVG is not supported in older CX versions. As a workaround, you may save the SVG to a file instead and  include it with an <code>&lt;img&gt;</code> tag. If it is a requirement to render the SVG inline, some projects have successfully used the open source library <a href="https://github.com/iconfu/svg-inject">svg-inject</a> as a fallback.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="dropzone-issues"><a class="anchor" href="#dropzone-issues"></a>5.2.3. Dropzone Issues</h4>
+<div class="paragraph">
+<p>If you face issues related to dropzones (a dropzone does not allow to drop your element, the element is dropped in a different place, &#8230;&#8203;), you may find a solution in this section.</p>
+</div>
+<div class="sect4">
+<h5 id="element-is-not-dropable-or-being-dropped-in-another-place"><a class="anchor" href="#element-is-not-dropable-or-being-dropped-in-another-place"></a>5.2.3.1. Element is not dropable or being dropped in another place</h5>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This section applies to installations prior to CX 1.2.46.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/unique-dropzone-name-violated.png" alt="element is being dropped outside of the dropzone (or nowhere)">
+</div>
+<div class="title">Figure 16. element is being dropped outside of the dropzone (or nowhere)</div>
+</div>
+<div class="paragraph">
+<p>This may happen if a dropzone name is duplicated. Drop zones must have unique identifiers in older versions of BSI CX. Make sure that a unique name is specified for each usage of <code>data-bsi-dropzone</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 56. data-bsi-dropzone uniqueness violated</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- design.html --&gt;
+&lt;div class="main-dropzone" data-bsi-dropzone="content" <i class="conum" data-value="1"></i><b>(1)</b>
+     data-bsi-dropzone-allowed-elements="....."&gt;
+    &lt;!-- ... --&gt;
+&lt;/div&gt;
+
+&lt;!-- content-elements.html --&gt;
+&lt;div class="image-area" data-bsi-dropzone="content" <i class="conum" data-value="2"></i><b>(2)</b>
+     data-bsi-dropzone-allowed-elements="download-item"&gt;&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A dropzone named 'content' is being defined properly</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Violation: another dropzone with the same name is defined again. Solution: change <code>data-bsi-dropzone</code> to another value, e.g. data-bsi-dropzone="image-area-content"</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last update 2021-08-05 18:31:04 +0200
+</div>
+</div>
+</body>
+</html>

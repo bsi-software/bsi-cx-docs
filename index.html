@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>BSI CX - Design Documentation</title>
+    <meta name="description" content="A documentation and reference on design development with BSI CX." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./assets/css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="navigation-bar">
+            <div class="navigation-item right">
+                <a id="logo" href="https://www.bsi-software.com/cx">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTEiIGhlaWdodD0iMzEiIHZpZXdCb3g9IjAgMCA5MSAzMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSI+CjxwYXRoIGQ9Ik01MS44NTYgMTkuNzI3M0M1MS44NTYgMTcuNTMwOCA1MS41NjI4IDE2LjAzODkgNTEuMDE4NyAxNS4yNTE1QzUwLjQ3NDIgMTQuNDY0MSA0OS40Njk3IDE0LjA5MTEgNDcuOTYyNSAxNC4wOTExQzQ1Ljk5NDUgMTQuMDkxMSA0NC41MjkzIDE0LjcxMjggNDQuNTI5MyAxNS41ODMyVjI1LjM2MzhDNDUuNDkyNCAyNS43MzY4IDQ2LjU4MDcgMjUuOTAyNSA0Ny43OTQ5IDI1LjkwMjVDNTAuOTc3IDI1LjgxOTcgNTEuNjg4NyAyNS4xOTgxIDUxLjg1NiAxOS43MjczWk01Ni4yNTE5IDExLjAyNDNDNTcuNjMzNiAxMi42NDA2IDU4LjMwMzYgMTUuNTAwMyA1OC4zMDM2IDE5LjYwM0M1OC4zMDM2IDIzLjg3MTggNTcuNDY2MyAyNi44MTQzIDU1LjgzMzIgMjguNTEzM0M1NC4yMDA1IDMwLjE3MTIgNTEuNTIxMSAzMSA0Ny43OTQ5IDMxQzQzLjk0MzEgMzEgNDAuNzE5NiAzMC41MDI4IDM4LjA4MiAyOS41MDhWMC40OTc3ODFINDQuNTI5M1Y5LjgyMjQ0QzQ2LjA3ODMgOS4wMzUwMyA0Ny44Nzg3IDguNjIwNjcgNDkuODQ2NiA4LjYyMDY3QzUyLjc3NyA4LjYyMDY3IDU0LjkxMjIgOS40MDgwOCA1Ni4yNTE5IDExLjAyNDNaIiBmaWxsPSIjMDA4MkExIi8+CjxwYXRoIGQ9Ik03Ny4zOTQ5IDE0LjUwNTZDNzUuMTc2MiAxMy44ODM5IDczLjA0MDcgMTMuNTkzNyA3MS4wNzMxIDEzLjU5MzdDNjguODU0MSAxMy41OTM3IDY4LjA1ODYgMTMuODgzOSA2OC4wNTg2IDE1LjQxNzRDNjguMDU4NiAxNi41MzYzIDY4LjY0NDggMTYuODY3NyA3MS45NTIxIDE3LjI0MDlDNzcuMTAxOCAxNy45MDM5IDc5LjE1MzIgMTkuNTIwMSA3OS4xNTMyIDIzLjcwNjFDNzkuMTUzMiAyOS4wNTIzIDc1LjU1MjggMzEgNjkuNTY1OSAzMUM2Ni42MzUyIDMxIDY0LjA4MTMgMzAuNjI3MSA2MS45NDYyIDI5LjgzOTZMNjMuMjAyIDI1LjAzMjFDNjUuMjUzOCAyNS42MTI1IDY3LjI2MzEgMjUuOTAyNSA2OS4yNzI4IDI1LjkwMjVDNzEuOTk0MiAyNS45MDI1IDcyLjk1NjkgMjUuNTcwOSA3Mi45NTY5IDI0LjAzNzVDNzIuOTU2OSAyMi44MzU2IDcyLjE2MTQgMjIuNDIxMyA2OC42ODY2IDIyLjA4OTdDNjMuODcyIDIxLjYzMzggNjEuODIwMyAyMC4xODMyIDYxLjgyMDMgMTUuODczMUM2MS44MjAzIDEwLjUyNzIgNjUuMzM3MiA4LjYyMDY3IDcxLjMyNDIgOC42MjA2N0M3NC4wMDM4IDguNjIwNjcgNzYuNDMyMSA4Ljk5MzU5IDc4LjY1MTEgOS43ODA5N0w3Ny4zOTQ5IDE0LjUwNTZaIiBmaWxsPSIjMDA4MkExIi8+CjxwYXRoIGQ9Ik05MC41ODI3IDkuMjAwODhWMzAuNDE5OUg4NC4xMzU0VjkuMjAwODhIOTAuNTgyN1pNODcuMzU5MiA2LjM4Mjc5Qzg0LjUxMjMgNi4zODI3OSA4My43MTY4IDUuODAyNzEgODMuNzE2OCAzLjAyNThDODMuNzE2OCAwLjQ5NzkxIDg0LjUxMjMgMC4wMDA1MTIyOTcgODcuMzU5MiAwLjAwMDUxMjI5N0M5MC4yMDYyIDAuMDAwNTEyMjk3IDkxLjAwMTcgMC40OTc5MSA5MS4wMDE3IDMuMDI1OEM5MS4wMDE3IDUuODAyNzEgOTAuMjA2MiA2LjM4Mjc5IDg3LjM1OTIgNi4zODI3OSIgZmlsbD0iIzAwODJBMSIvPgo8cGF0aCBkPSJNOC43NDE2MyAyMS44NDRWMjEuODQzNkMxMC4yMjE4IDIxLjc0MjcgMTAuNjYxOSAyMC43NjU0IDEwLjY0MzIgMjAuMzA4QzEwLjYwMiAxOS4zMDMgMTAuMjQ3OCAxOC44MzQ0IDkuNjYxMSAxOC4wMDgyQzguODkzMzUgMTYuOTI3NCA3LjcyNDQ3IDE1LjU1MjIgNy40NDkyMSAxMy4wMDgyQzcuMTc1NzMgMTAuNDc5IDguMDEwODkgOC4wNzk2OCA5LjM2ODg5IDYuNDc3ODVDMTAuNTQyNyA1LjA5MzEgMTIuMjI2NSA0LjMxOTUyIDE0LjIzODIgNC4xODQyQzE0LjQyMDUgNC4xNzE5IDE0LjYwMzcgNC4xNjU3MSAxNC43ODI4IDQuMTY1NzFDMTYuNzA5OCA0LjE2NTk2IDE4LjQwOTYgNC44MzQ3NyAxOS42OTg3IDYuMTU2ODJDMjEuMTcyMiA3LjY2ODA1IDIyLjE4MjIgOS45MjM1NyAyMi4wOTc2IDEyLjI5MjhDMjEuOTk4NiAxNS4wNjA0IDIwLjkyOTcgMTYuNTM0OSAyMC4zMDUxIDE3LjU4OTVDMTkuODE0IDE4LjQxODUgMTkuNTkgMTguNzY2OSAxOS42OTc5IDE5LjcyNjlDMTkuNzMxOSAyMC4wMzAzIDIwLjE0MDcgMjEuMjU1NyAyMS4zOTI3IDIxLjI1NTdDMjEuNDA0IDIxLjI1NTcgMjEuNDE1MyAyMS4yNTU2IDIxLjQyNjYgMjEuMjU1NUwzMC4yNDI3IDIwLjg0N1YwLjQ5NjM5NUgwVjIyLjI0NjFDNi44MjQzMiAyMS45MzEyIDguMzY4MDQgMjEuODU5OSA4Ljc0MTYzIDIxLjg0NFoiIGZpbGw9IiNGRTk5MTUiLz4KPHBhdGggZD0iTTMwLjI0MjggMzAuNDMzNlYyMi42NzM1TDIxLjQ4ODggMjMuMDc5MkMxOS4xOTk3IDIzLjEzNDEgMTguMDExMyAyMS4yMTkyIDE3Ljg2NjIgMTkuOTI5QzE3LjUwNjEgMTYuNzIzIDIwLjA5NTIgMTYuNzI3MiAyMC4yNTU5IDEyLjIyODhDMjAuMzc1NyA4Ljg3NzY1IDE4LjEwOTYgNS43NTI1OCAxNC4zNjMxIDYuMDA0NTVDMTAuMzY1OSA2LjI3MzQzIDguOTQ3MDMgOS43MjI1MiA5LjI4MTYxIDEyLjgxNDNDOS43MTY2NCAxNi44MzU4IDEyLjM1NCAxNy4wNTA1IDEyLjQ4NDYgMjAuMjM0NEMxMi41NDA5IDIxLjYwNzggMTEuNDEyIDIzLjQ5MDUgOC44NjgxNSAyMy42NjRDOC44OTAzNyAyMy42NjI0IDIuMzEzNDQgMjMuOTY1OSAwIDI0LjA3MjdWMzAuNDMzNkgzMC4yNDI4WiIgZmlsbD0iIzAwODJBMSIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwIj4KPHJlY3Qgd2lkdGg9IjkxIiBoZWlnaHQ9IjMxIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo="
+                        class="logo" alt="logo">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="panel" id="intro-panel">
+            <div class="intro-column first">
+                <img src="assets/img/bsi-cx.jpg">
+            </div>
+            <div class="intro-column last">
+                <h1>BSI CX Design Documentation</h1>
+                <p>Welcome to the BSI CX design <b>documentation platform</b>. Whether you are just getting started or
+                    are already an expert: you have come to the right place to learn more about BSI CX designs.</p>
+            </div>
+        </div>
+        <div class="panel">
+
+            <h2>Before You Start</h2>
+            <p>If you are completely new and wondering what BSI CX is, please visit our <a
+                    href="https://www.bsi-software.com/cx">website</a>.</p>
+
+            <h2>Choose Your Version</h2>
+            <p>BSI CX is a mature software and since we release a major version once a year, there are quite a few
+                versions out there.</p>
+            <p>
+                The link for the current stable version provides the most recent and accurate documentation.
+                If you use an older version of BSI CX, you should consult the documentation for that specific version.
+            </p>
+
+            <table class="content-table version-table">
+                <tbody>
+                    <tr>
+                        <td class="first version-marker next">next</td>
+                        <td>Version 22.0</td>
+                        <td><a href="./docs/22.0/index.html">Browse</a></td>
+                        <td><a href="./docs/22.0/bsi-cx-design-docs-22.0.pdf">pdf</a></td>
+                    </tr>
+                    <tr class="stable-version-row">
+                        <td class="first version-marker stable">stable</td>
+                        <td>Version 1.3</td>
+                        <td><a href="./docs/1.3/index.html">Browse</a></td>
+                        <td><a href="./docs/1.3/bsi-cx-design-docs-1.3.pdf">pdf</a></td>
+                    </tr>
+                    <tr>
+                        <td class="first"></td>
+                        <td>Version 1.2</td>
+                        <td><a href="./docs/1.2/index.html">Browse</a></td>
+                        <td><a href="./docs/1.2/bsi-cx-design-docs-1.2.pdf">pdf</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

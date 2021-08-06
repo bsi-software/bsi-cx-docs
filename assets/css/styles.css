@@ -1,0 +1,307 @@
+/*
+ * Copyright (c) BSI Business Systems Integration AG. All rights reserved.
+ * http://www.bsiag.com/
+ */
+
+@import "normalize.css";
+@import "main.css";
+
+*, *::before, *::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'DaxOT';
+    src: url('../fonts/DaxWeb.eot');
+    src: url('../fonts/DaxWeb.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DaxOT';
+    src: url('../fonts/DaxWeb-Bold.eot');
+    src: url('../fonts/DaxWeb-Bold.woff') format('woff');
+    font-weight: 700;
+    /* Bold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: streamlineIcons;
+    font-style: normal;
+    src: url("../fonts/streamlineIcons.woff") format("woff");
+}
+
+body {
+    margin-top: 0;
+    font-family: DaxOT, sans-serif;
+    font-size: 22px;
+    background-color: #E5E5E5;
+}
+
+h1 {
+    margin-top: 0;
+    font-weight: bold;
+    font-size: 42px;
+    color: #014786;
+    line-height: 48px;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-top: 60px;
+    font-weight: bold;
+    font-size: 34px;
+    color: #014786;
+}
+
+h3 {
+    padding-top: 15px;
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #014786;
+}
+
+p {
+    margin: 15px 0;
+}
+
+a {
+    color: #428bca;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #428bca;
+}
+
+a:hover {
+    color: #014786;
+    text-decoration: none;
+}
+
+.header {
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 0;
+    background-color: #FFF;
+}
+
+#logo {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+#logo > img {
+    height: 40px;
+    display: block;
+}
+
+.navigation-bar {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+
+.navigation-item {
+    font-size: 22px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.navigation-item.home > a::before {
+    content: "\e900";
+    font-family: streamlineIcons, sans-serif;
+    padding-right: 6px;
+    font-size: 24px;
+    line-height: 0;
+    top: 1px;
+    position: relative;
+}
+
+.navigation-item > a {
+    color: #333;
+    text-decoration: none;
+}
+
+.navigation-item > a:visited {
+    color: #333;
+}
+
+.navigation-item > a:hover {
+    color: #FE9915;
+}
+
+.navigation-item.right {
+    flex-grow: 1;
+    text-align: right;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: auto;
+    background-color: #FFF;
+    padding-bottom: 60px;
+}
+
+.panel {
+    margin: auto;
+    width: 80%;
+}
+
+.two-column-panel {
+    display: flex;
+}
+
+#intro-panel {
+    display: flex;
+}
+
+.intro-column.first {
+    margin-right: 30px;
+}
+
+.intro-column.first > img {
+    width: 100%;
+    border-radius: 10px;
+    filter: drop-shadow(0px 6px 15px rgba(0, 0, 0, 0.4));
+}
+
+.intro-column.last {
+    width: 45%;
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin: 15px auto 15px 0;
+    font-size: 20px;
+}
+
+.content-table caption {
+    text-align: left;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.content-table td {
+    border-bottom: solid 1px #BBB;
+    padding: 10px 20px;
+}
+
+.content-table .small-cell {
+    width: 70px;
+    max-width: 70px;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.version-table {
+    margin-left: auto;
+    margin-top: 30px;
+}
+
+.version-table td {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.version-table td.first {
+    padding-right: 0;
+}
+
+.version-marker {
+    text-transform: uppercase;
+    color: #014786;
+}
+
+.version-marker.stable {
+    font-weight: bold;
+}
+
+.stable-version-row {
+    background-color: #ecf6ff;
+}
+
+@media screen and (max-width: 740px) {
+    body {
+        font-size: 16px;
+        background-color: white;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 22px;
+        padding-top: 40px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .header {
+        padding: 10px 0;
+        border-bottom: solid 1px #1482A1;
+        margin-bottom: 30px;
+    }
+
+    .navigation-bar {
+        width: 90%;
+        margin: auto;
+    }
+
+    .panel {
+        width: 90%;
+    }
+
+    #intro-panel {
+        flex-direction: column-reverse;
+    }
+
+    .intro-column.first {
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .intro-column.first > img {
+        width: 100%;
+    }
+
+    .intro-column.last {
+        width: auto;
+    }
+
+    .two-column-panel {
+        display: block;
+    }
+
+    .content-table {
+        font-size: 16px;
+    }
+
+    .content-table:not(.version-table) {
+        width: 100%;
+    }
+
+    .content-table:not(.version-table) td {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .content-table:not(.version-table) caption {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .version-table td {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
