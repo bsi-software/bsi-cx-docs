@@ -651,7 +651,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h1>Design Documentation: BSI Studio 22.0</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2021-08-05</span>
+<span id="revdate">Version Date 2021-08-10</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -777,7 +777,7 @@ The files and folders in the ZIP file must not contain any umlauts.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">design.zip
+<pre class="CodeRay highlight"><code data-lang="text">design.zip
 │   content-elements.html <i class="conum" data-value="1"></i><b>(1)</b>
 │   design.html <i class="conum" data-value="2"></i><b>(2)</b>
 │   design.properties <i class="conum" data-value="3"></i><b>(3)</b>
@@ -871,18 +871,18 @@ Below you see an HTML-example of the three groups <code>Header</code>, <code>Hea
 <div class="listingblock">
 <div class="title">Listing 1. example of attribute <code>data-bsi-group</code> : HTML</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-group="header"&gt;
-&lt;img data-bsi-element="logo" data-bsi-element-part="image" /&gt;
-&lt;div data-bsi-element="main-navigation" data-bsi-element-part="html" /&gt;
-&lt;/div&gt;
-&lt;div data-bsi-group="headings"&gt;
-&lt;div data-bsi-element="heading1" data-bsi-element-part="plain-text" /&gt;
-&lt;div data-bsi-element="heading2" data-bsi-element-part="plain-text" /&gt;
-&lt;/div&gt;
-&lt;div data-bsi-group="textAndImages"&gt;
-&lt;div data-bsi-element="text" data-bsi-element-part="formatted-text" /&gt;
-&lt;img data-bsi-element="image" data-bsi-element-part="image" /&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-group</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">header</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<span class="tag">&lt;img</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">logo</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">main-navigation</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">html</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-group</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">headings</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">heading1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">heading2</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-group</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">textAndImages</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">formatted-text</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;img</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -899,7 +899,7 @@ Below you see an HTML-example of the three groups <code>Header</code>, <code>Hea
 <div class="listingblock">
 <div class="title">Listing 2. specifying design meta data</div>
 <div class="content">
-<pre class="highlight"><code>#metadata example
+<pre class="CodeRay highlight"><code>#metadata example
 design.name=My Customer Design
 design.author=John Doe, Doe Design Agency</code></pre>
 </div>
@@ -910,7 +910,7 @@ design.author=John Doe, Doe Design Agency</code></pre>
 <div class="listingblock">
 <div class="title">Listing 3. example of a fully featured design.properties file</div>
 <div class="content">
-<pre class="highlight"><code>#metadata
+<pre class="CodeRay highlight"><code>#metadata
 design.name=My Customer Design
 design.author=John Doe, Doe Design Agency
 
@@ -947,7 +947,7 @@ element.button.styles=background-color</code></pre>
 <div class="listingblock">
 <div class="title">Listing 4. giving groups clearly identifiable descriptions</div>
 <div class="content">
-<pre class="highlight"><code>#Specification
+<pre class="CodeRay highlight"><code>#Specification
 group.&lt;group-identifier&gt;.label=&lt;Name of the group&gt;
 
 #Example
@@ -963,7 +963,7 @@ group.textAndImages.label=Text &amp; Images</code></pre>
 <div class="listingblock">
 <div class="title">Listing 5. important metadata for content elements</div>
 <div class="content">
-<pre class="highlight"><code>#Specification
+<pre class="CodeRay highlight"><code>#Specification
 element.&lt;element-identifier&gt;.label=&lt;Name of the content element&gt;
 element.&lt;element-identifier&gt;.description=&lt; Description of the content element&gt;
 element.&lt;element-identifier&gt;.icon=&lt;icon identifier&gt;
@@ -989,7 +989,7 @@ element.logo.icon=image</code></pre>
 <div class="listingblock">
 <div class="title">Listing 6. important metadata for content element parts</div>
 <div class="content">
-<pre class="highlight"><code>#Specification
+<pre class="CodeRay highlight"><code>#Specification
 element.&lt;element-identifier&gt;.parts.&lt;part-identifier&gt;.label=&lt;part label&gt;
 
 Usage:
@@ -1003,7 +1003,7 @@ The index starts at 0 and is only necessary if there are multiple parts of the s
 <div class="listingblock">
 <div class="title">Listing 7. defining metadata for multiple element parts of the same element part type for a certain content element</div>
 <div class="content">
-<pre class="highlight"><code>element.logo.parts.image[0].label=Desktop image for Logo
+<pre class="CodeRay highlight"><code>element.logo.parts.image[0].label=Desktop image for Logo
 element.logo.parts.image[1].label=Mobile image for Logo</code></pre>
 </div>
 </div>
@@ -1034,7 +1034,7 @@ We strongly discourage from using styles in email templates. Many email clients 
 <div class="listingblock">
 <div class="title">Listing 8. defining style capabilities</div>
 <div class="content">
-<pre class="highlight"><code>#Specification
+<pre class="CodeRay highlight"><code>#Specification
 style.&lt;style-capability-identifier&gt;.label=&lt;Style capability dropdown label&gt;
 style.&lt;style-capability-identifier&gt;.class.&lt;CSS-class-identifier&gt;.label=&lt;Label to describe the dropdown option&gt;
 
@@ -1050,7 +1050,7 @@ style.background-color.class.bg-color-red.label=Red</code></pre>
 <div class="listingblock">
 <div class="title">Listing 9. assigning style capabilities to content elements</div>
 <div class="content">
-<pre class="highlight"><code>#Specification
+<pre class="CodeRay highlight"><code>#Specification
 element.&lt;element-identifier&gt;.styles=&lt;style-capability-identifier&gt;, &lt;style-capability-identifier&gt;
 
 Usage:
@@ -1063,14 +1063,14 @@ element.button.styles=background-color,border-color,text-color</code></pre>
 <div class="listingblock">
 <div class="title">Listing 10. CSS class for a style</div>
 <div class="content">
-<pre class="highlight"><code class="language-css" data-lang="css">.colored-button.bg-color-green { background-color: green; }
-.colored-button.bg-color-red { background-color: red; }</code></pre>
+<pre class="CodeRay highlight"><code data-lang="css"><span class="class">.colored-button</span><span class="class">.bg-color-green</span> { <span class="key">background-color</span>: <span class="value">green</span>; }
+<span class="class">.colored-button</span><span class="class">.bg-color-red</span> { <span class="key">background-color</span>: <span class="value">red</span>; }</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Listing 11. how styles are applied on content elements</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;button data-bsi-element="button" class="colored-button bg-color-green"&gt;&lt;/button&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;button</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">colored-button bg-color-green</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/button&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -1097,7 +1097,7 @@ CX 1.2.13
 <div class="listingblock">
 <div class="title">Listing 12. Rich text editor configuration example</div>
 <div class="content">
-<pre class="highlight"><code>html-editor-config.my-config.features=bold,italic,underline,strikeThrough,textColor
+<pre class="CodeRay highlight"><code>html-editor-config.my-config.features=bold,italic,underline,strikeThrough,textColor
 html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
 </div>
 </div>
@@ -1107,7 +1107,7 @@ html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
 <div class="listingblock">
 <div class="title">Listing 13. Applying an HTML editor configuration on a content element 'text'</div>
 <div class="content">
-<pre class="highlight"><code>element.text.parts.formatted-text.html-editor-config=my-config</code></pre>
+<pre class="CodeRay highlight"><code>element.text.parts.formatted-text.html-editor-config=my-config</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1129,7 +1129,7 @@ html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
 <div class="listingblock">
 <div class="title">Listing 14. Feature list format</div>
 <div class="content">
-<pre class="highlight"><code>html-editor-config.&lt;config identifier&gt;.features=&lt;comma separated feature list&gt;</code></pre>
+<pre class="CodeRay highlight"><code>html-editor-config.&lt;config identifier&gt;.features=&lt;comma separated feature list&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1138,7 +1138,7 @@ html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
 <div class="listingblock">
 <div class="title">Listing 15. Feature list example</div>
 <div class="content">
-<pre class="highlight"><code class="language-env" data-lang="env">html-editor-config.my-config.features=bold,italic,underline</code></pre>
+<pre class="CodeRay highlight"><code data-lang="env">html-editor-config.my-config.features=bold,italic,underline</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1410,7 +1410,7 @@ selectAll
 <div class="listingblock">
 <div class="title">Listing 16. An example using configuration with different value lists set</div>
 <div class="content">
-<pre class="highlight"><code>html-editor-config.my-extended-config.features=bold,italic,underline,strikeThrough,textColor,backgroundColor,fontSize,paragraphFormat,lineHeight
+<pre class="CodeRay highlight"><code>html-editor-config.my-extended-config.features=bold,italic,underline,strikeThrough,textColor,backgroundColor,fontSize,paragraphFormat,lineHeight
 html-editor-config.my-extended-config.text-colors=#ff0000,#00ff00,#0000ff
 html-editor-config.my-extended-config.background-colors=#ff0000,#00ff00,#0000ff
 html-editor-config.my-extended-config.formats=h1,h2,h3,h4,pre
@@ -1435,13 +1435,13 @@ To customize the color picker for <code>textColor</code> and <code>backgroundCol
 <div class="listingblock">
 <div class="title">Listing 17. text-colors example</div>
 <div class="content">
-<pre class="highlight"><code>html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
+<pre class="CodeRay highlight"><code>html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Listing 18. background-colors example</div>
 <div class="content">
-<pre class="highlight"><code>html-editor-config.my-config.background-colors=#dddddd,#abcdef</code></pre>
+<pre class="CodeRay highlight"><code>html-editor-config.my-config.background-colors=#dddddd,#abcdef</code></pre>
 </div>
 </div>
 </div>
@@ -1465,7 +1465,7 @@ CX 1.2.46
 <div class="listingblock">
 <div class="title">Listing 19. formats example</div>
 <div class="content">
-<pre class="highlight"><code>html-editor-config.my-config.formats=p,h1,h3</code></pre>
+<pre class="CodeRay highlight"><code>html-editor-config.my-config.formats=p,h1,h3</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1548,7 +1548,7 @@ pre
 <div class="listingblock">
 <div class="title">Listing 20. line-height example</div>
 <div class="content">
-<pre class="highlight"><code>html-editor-config.my-config.line-heights=1,1.15,1.5,2</code></pre>
+<pre class="CodeRay highlight"><code>html-editor-config.my-config.line-heights=1,1.15,1.5,2</code></pre>
 </div>
 </div>
 </div>
@@ -1618,7 +1618,7 @@ mm
 <div class="listingblock">
 <div class="title">Listing 21. font-sizes, font-size-unit and font-size-default example</div>
 <div class="content">
-<pre class="highlight"><code>html-editor-config.my-config.font-sizes=8,9,10,11,12,14,16,18,24,30,36,48,72
+<pre class="CodeRay highlight"><code>html-editor-config.my-config.font-sizes=8,9,10,11,12,14,16,18,24,30,36,48,72
 html-editor-config.my-config.font-size-unit=px
 html-editor-config.my-config.font-size-default=12</code></pre>
 </div>
@@ -1663,7 +1663,7 @@ br
 <div class="listingblock">
 <div class="title">Listing 22. enter mode example</div>
 <div class="content">
-<pre class="highlight"><code>html-editor-config.my-config.enter=div</code></pre>
+<pre class="CodeRay highlight"><code>html-editor-config.my-config.enter=div</code></pre>
 </div>
 </div>
 </div>
@@ -1707,20 +1707,20 @@ CX 1.2.46
 <div class="listingblock">
 <div class="title">Listing 23. editor specific CSS example: HTML</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;html&gt;&lt;head&gt;&lt;!-- head omitted --&gt;&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1 class="hide show-if-edit"&gt;this is edit mode&lt;/h1&gt;
-    &lt;h1 class="hide show-if-preview"&gt;this is preview mode&lt;/h1&gt;
-    &lt;!-- rest of body omitted --&gt;
-&lt;/body&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;html&gt;</span><span class="tag">&lt;head&gt;</span><span class="comment">&lt;!-- head omitted --&gt;</span><span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hide show-if-edit</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>this is edit mode<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;h1</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hide show-if-preview</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>this is preview mode<span class="tag">&lt;/h1&gt;</span>
+    <span class="comment">&lt;!-- rest of body omitted --&gt;</span>
+<span class="tag">&lt;/body&gt;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Listing 24. editor specific CSS example: CSS</div>
 <div class="content">
-<pre class="highlight"><code class="language-css" data-lang="css">.hide { display: none; }
-.bsi-ce-edit-mode .show-if-edit { display: block; color:green; }
-.bsi-ce-preview-mode .show-if-preview { display: block; color:darkorange; }</code></pre>
+<pre class="CodeRay highlight"><code data-lang="css"><span class="class">.hide</span> { <span class="key">display</span>: <span class="value">none</span>; }
+<span class="class">.bsi-ce-edit-mode</span> <span class="class">.show-if-edit</span> { <span class="key">display</span>: <span class="value">block</span>; <span class="key">color</span>:<span class="value">green</span>; }
+<span class="class">.bsi-ce-preview-mode</span> <span class="class">.show-if-preview</span> { <span class="key">display</span>: <span class="value">block</span>; <span class="key">color</span>:<span class="value">darkorange</span>; }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1765,7 +1765,7 @@ Doing so will add a link editor to enter a URL and a link text to the content ed
 <div class="listingblock">
 <div class="title">Listing 25. Adding an editable link to a content element.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;a data-bsi-element-part="link" href="https://www.bsi-software.com/"&gt;BSI Website&lt;/a&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;a</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.bsi-software.com/</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>BSI Website<span class="tag">&lt;/a&gt;</span></code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1781,7 +1781,7 @@ This mechanism in built into the content editor itself to create a link anywhere
 <div class="listingblock">
 <div class="title">Listing 26. Example on adding a link anywhere in the text.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;span data-bsi-element-part="plain-text" &gt;If you do not wish to receive further promotions, you can [unsubscribe] now.&lt;/span&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;span</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>If you do not wish to receive further promotions, you can [unsubscribe] now.<span class="tag">&lt;/span&gt;</span></code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1840,7 +1840,7 @@ An example of doing so is to add it to an <code>href</code> of a link.</p>
 <div class="listingblock">
 <div class="title">Listing 27. Adding a bracket link to a link will allow us to track the "Facebook" link in CX.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;a href="[Facebook]"&gt;&lt;img src="img/facebook.png" /&gt;&lt;/a&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">[Facebook]</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img/facebook.png</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;/a&gt;</span></code></pre>
 </div>
 </div>
 <div class="admonitionblock warning">
@@ -1859,11 +1859,11 @@ It is your responsibility as a developer to use escaping where brackets have a d
 <div class="listingblock">
 <div class="title">Listing 28. Escaping is important in cases like this one.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- CX will convert this to a bracket link --&gt;
-&lt;input pattern="[0-9]"&gt;
+<pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- CX will convert this to a bracket link --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute-name">pattern</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">[0-9]</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
 
-&lt;!-- escaping is mandatory for the pattern mechanism to work as desired --&gt;
-&lt;input pattern="\[0-9]"&gt;</code></pre>
+<span class="comment">&lt;!-- escaping is mandatory for the pattern mechanism to work as desired --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute-name">pattern</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">\[0-9]</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span></code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -1877,15 +1877,15 @@ This is due to the fact, that bracket links meant to be trackable by CX and this
 <div class="listingblock">
 <div class="title">Listing 29. How to use anchor links in a design.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;section id="news"&gt;
-    &lt;!-- some news --&gt;
-&lt;/section&gt;
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;section</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">news</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="comment">&lt;!-- some news --&gt;</span>
+<span class="tag">&lt;/section&gt;</span>
 
-&lt;!-- some more html code --&gt;
+<span class="comment">&lt;!-- some more html code --&gt;</span>
 
-&lt;div data-bsi-element="cta"&gt;
-    &lt;a href="#news" data-bsi-element-part="link"&gt;Jump to news&lt;/a&gt;
-&lt;/div&gt;</code></pre>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#news</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Jump to news<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -1918,9 +1918,9 @@ But the containing HTML must be valid.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="logo"&gt;
-    &lt;img src="logo.png" alt="My Company"/&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">logo</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">logo.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">My Company</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1958,21 +1958,21 @@ The following listing illustrates such a grouping:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-group="texts"&gt;
-    &lt;div data-bsi-element="default-text" data-bsi-element-part="formatted-text"&gt;
-        &lt;p&gt;Lorem ipsum&lt;/p&gt;
-        &lt;ul&gt;
-            &lt;li&gt;lorem&lt;/li&gt;
-            &lt;li&gt;ipsum&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-    &lt;div data-bsi-element="raw-text" data-bsi-element-part="plain-text"&gt;Lorem ipsum&lt;/div&gt;
-&lt;/div&gt;
-&lt;div data-bsi-group="images"&gt;
-    &lt;div data-bsi-element="full-size-image"&gt;
-        &lt;img src="example.jpg" data-bsi-element-part="image"/&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-group</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">texts</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">default-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">formatted-text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;p&gt;</span>Lorem ipsum<span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li&gt;</span>lorem<span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span>ipsum<span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">raw-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-group</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">images</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">full-size-image</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">example.jpg</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -1986,10 +1986,10 @@ The following listing illustrates the example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;figure class="element text-with-image" data-bsi-element="text-with-image"&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-    &lt;img class="image" data-bsi-element-part="image" src="example.jpg"/&gt; <i class="conum" data-value="2"></i><b>(2)</b>
-    &lt;figcaption class="text" data-bsi-element-part="plain-text"&gt;Lorem ipsum&lt;/figcaption&gt; <i class="conum" data-value="3"></i><b>(3)</b>
-&lt;/figure&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;figure</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element text-with-image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text-with-image</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="tag">&lt;img</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">example.jpg</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="tag">&lt;figcaption</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/figcaption&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="tag">&lt;/figure&gt;</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2045,13 +2045,13 @@ Boolean attributes like <code>data-bsi-multiline</code> require an empty value <
 <div class="listingblock">
 <div class="title">Listing 30. Sample usage of the plain text part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;h1 data-bsi-element="title-h1" data-bsi-element-part="plain-text" class="element title-h1"&gt;Lorem ipsum&lt;/h1&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;h1</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element title-h1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/h1&gt;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Listing 31. Sample usage of the plain text part with the multiline feature.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;p data-bsi-element="paragraph" data-bsi-element-part="plain-text" data-bsi-multiline=""&gt;Lorem ipsum&lt;br&gt;dolor sit amet&lt;/p&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;p</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">paragraph</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-multiline</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;br&gt;</span>dolor sit amet<span class="tag">&lt;/p&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2066,11 +2066,11 @@ For more information about the available configuration options see chapter <a hr
 <div class="listingblock">
 <div class="title">Listing 32. Sample usage of the formatted text part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;section data-bsi-element="section" data-bsi-element-part="formatted-text"&gt;
-    &lt;h1&gt;Lorem ipsum dolor sit amet&lt;/h1&gt;
-    &lt;p&gt;Proin porta &lt;strong&gt;pharetra est non&lt;/strong&gt; molestie.&lt;/p&gt;
-    &lt;p&gt;&lt;a href="https://www.example.org/"&gt;More&lt;/a&gt;&lt;/p&gt;
-&lt;/section&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;section</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">section</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">formatted-text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Lorem ipsum dolor sit amet<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Proin porta <span class="tag">&lt;strong&gt;</span>pharetra est non<span class="tag">&lt;/strong&gt;</span> molestie.<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.example.org/</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>More<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/section&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2086,9 +2086,9 @@ HTML can be written directly into this field.</p>
 <div class="listingblock">
 <div class="title">Listing 33. Sample usage of the HTML part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="html" data-bsi-element-part="html"&gt;
-    &lt;iframe src="https://www.openstreetmap.org/export/embed.html" style="height: 500px;"&gt;&lt;/iframe&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">html</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">html</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;iframe</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.openstreetmap.org/export/embed.html</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">height</span>: <span class="float">500px</span>;<span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/iframe&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2196,11 +2196,11 @@ The following listing illustrates the use of sample content for a simple video e
 <div class="listingblock">
 <div class="title">Listing 34. Example of a simple video element.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element video" data-bsi-element="video-simple"&gt;
-    &lt;div class="responsive-video" data-bsi-element-part="video" data-bsi-video-data-link="https://www.youtube.com/watch?v=YpnFs4aBLQA"&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-        &lt;iframe width="1120" height="630" frameborder="0" src="https://www.youtube.com/embed/YpnFs4aBLQA" allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt; <i class="conum" data-value="2"></i><b>(2)</b>
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element video</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">video-simple</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">responsive-video</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">video</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-video-data-link</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.youtube.com/watch?v=YpnFs4aBLQA</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="tag">&lt;iframe</span> <span class="attribute-name">width</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">1120</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">height</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">630</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">frameborder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.youtube.com/embed/YpnFs4aBLQA</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">allow</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">autoplay; encrypted-media</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">webkitallowfullscreen</span> <span class="attribute-name">mozallowfullscreen</span> <span class="attribute-name">allowfullscreen</span><span class="tag">&gt;</span><span class="tag">&lt;/iframe&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2230,17 +2230,17 @@ The following listing illustrates the use of sample content for a simple video e
 <div class="listingblock">
 <div class="title">Listing 35. Example of a complex video element.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element video" data-bsi-element="video-thumbnail"&gt;
-    &lt;div class="video-thumbnail" data-bsi-element-part="video" data-bsi-video-data-link="https://www.youtube.com/watch?v=YpnFs4aBLQA"&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-        &lt;p&gt;
-            &lt;a href="https://www.youtube.com/watch?v=YpnFs4aBLQA" data-bsi-video-link="" target="_blank"&gt; <i class="conum" data-value="2"></i><b>(2)</b>
-                &lt;img src="https://i.ytimg.com/vi/YpnFs4aBLQA/maxresdefault.jpg" alt="" data-bsi-video-thumbnail=""/&gt; <i class="conum" data-value="3"></i><b>(3)</b>
-            &lt;/a&gt;
-        &lt;/p&gt;
-        &lt;h3 data-bsi-video-title=""&gt;BSI Tech Lovers&lt;/h3&gt; <i class="conum" data-value="4"></i><b>(4)</b>
-        &lt;p data-bsi-video-description=""&gt;Für mehr WOW-Momente mit BSI. Monika Freiburghaus, Ralf Muri, Thomas Lindauer und Urs Frick zeigen Einblicke in ihre persönlichen WOW-Momente.&lt;/p&gt; <i class="conum" data-value="5"></i><b>(5)</b>
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element video</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">video-thumbnail</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">video-thumbnail</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">video</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-video-data-link</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.youtube.com/watch?v=YpnFs4aBLQA</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="tag">&lt;p&gt;</span>
+            <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.youtube.com/watch?v=YpnFs4aBLQA</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-video-link</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">target</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">_blank</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+                <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://i.ytimg.com/vi/YpnFs4aBLQA/maxresdefault.jpg</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-video-thumbnail</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+            <span class="tag">&lt;/a&gt;</span>
+        <span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;h3</span> <span class="attribute-name">data-bsi-video-title</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>BSI Tech Lovers<span class="tag">&lt;/h3&gt;</span> <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="tag">&lt;p</span> <span class="attribute-name">data-bsi-video-description</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Für mehr WOW-Momente mit BSI. Monika Freiburghaus, Ralf Muri, Thomas Lindauer und Urs Frick zeigen Einblicke in ihre persönlichen WOW-Momente.<span class="tag">&lt;/p&gt;</span> <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2325,9 +2325,9 @@ The following listing illustrates a simple image element with <code>srcset</code
 <div class="listingblock">
 <div class="title">Listing 36. Example of a simple image element.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element image" data-bsi-element="image-simple"&gt;
-    &lt;img src="example-800w.jpg" srcset="example-480w.jpg 480w, example-800w.jpg 800w" alt="Example image" data-bsi-element-part="image" /&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image-simple</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">example-800w.jpg</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">srcset</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">example-480w.jpg 480w, example-800w.jpg 800w</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Example image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2341,9 +2341,9 @@ The image selection is available as the editor just like with the image part.</p
 <div class="listingblock">
 <div class="title">Listing 37. Example usage of the background-image part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element scene" data-bsi-element="scene"&gt;
-    &lt;div data-bsi-element-part="background-image" style="background-image: url('example.jpg')"&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element scene</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">scene</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">background-image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">background-image</span>: <span class="function"><span class="delimiter">url(</span><span class="content">'example.jpg'</span><span class="delimiter">)</span></span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2371,20 +2371,20 @@ It is possible to use an iterator to generate dynamic tables.
 <div class="listingblock">
 <div class="title">Listing 38. Example usage of the table part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element table" data-bsi-element="simple-table" data-bsi-element-part="table"&gt;
-    &lt;table&gt;
-        &lt;tr&gt;
-            &lt;th&gt;Firstname&lt;/th&gt;
-            &lt;th&gt;Lastname&lt;/th&gt;
-            &lt;th&gt;Age&lt;/th&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;John&lt;/td&gt;
-            &lt;td&gt;Doe&lt;/td&gt;
-            &lt;td&gt;42&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/table&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element table</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">simple-table</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;table&gt;</span>
+        <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;th&gt;</span>Firstname<span class="tag">&lt;/th&gt;</span>
+            <span class="tag">&lt;th&gt;</span>Lastname<span class="tag">&lt;/th&gt;</span>
+            <span class="tag">&lt;th&gt;</span>Age<span class="tag">&lt;/th&gt;</span>
+        <span class="tag">&lt;/tr&gt;</span>
+        <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;td&gt;</span>John<span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;td&gt;</span>Doe<span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;td&gt;</span>42<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;/table&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2417,16 +2417,16 @@ The name of the iterator can be placed in this text field.</p>
 <div class="listingblock">
 <div class="title">Listing 39. Example usage of the iterator part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element iterator" data-bsi-element="iterator" data-bsi-iterator="sample"&gt;
-    &lt;div class="customer" data-bsi-iterator-item=""&gt;
-        &lt;dl&gt;
-            &lt;dt&gt;Name&lt;/dt&gt;
-            &lt;dd&gt;{customer.name}&lt;/dd&gt;
-            &lt;dt&gt;Address&lt;/dt&gt;
-            &lt;dd&gt;{customer.address}&lt;/dd&gt;
-        &lt;/dl&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element iterator</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">iterator</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-iterator</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">sample</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">customer</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-iterator-item</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;dl&gt;</span>
+            <span class="tag">&lt;dt&gt;</span>Name<span class="tag">&lt;/dt&gt;</span>
+            <span class="tag">&lt;dd&gt;</span>{customer.name}<span class="tag">&lt;/dd&gt;</span>
+            <span class="tag">&lt;dt&gt;</span>Address<span class="tag">&lt;/dt&gt;</span>
+            <span class="tag">&lt;dd&gt;</span>{customer.address}<span class="tag">&lt;/dd&gt;</span>
+        <span class="tag">&lt;/dl&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2491,16 +2491,16 @@ last
 <div class="listingblock">
 <div class="title">Listing 40. Example usage of the news-snippets part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element news" data-bsi-element="news-snippets" data-bsi-element-part="news-snippets"&gt;
-    &lt;div class="news-image element"&gt;
-        &lt;img class="ns-image" src="placeholder.jpg" data-bsi-property="image"/&gt;
-    &lt;/div&gt;
-    &lt;div class="news-text element"&gt;
-        &lt;h2 class="ns-title" data-bsi-property="title"&gt;Breaking News&lt;/h2&gt;
-        &lt;p class="ns-headline" data-bsi-property="headline"&gt;Lorem ipsum dolor sit amet&lt;/p&gt;
-        &lt;p class="ns-text" data-bsi-property="text"&gt;Ea vis odio voluptua, pri ei facer denique.&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element news</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">news-snippets</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">news-snippets</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">news-image element</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;img</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ns-image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">placeholder.jpg</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-property</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">news-text element</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;h2</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ns-title</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-property</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Breaking News<span class="tag">&lt;/h2&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ns-headline</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-property</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">headline</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum dolor sit amet<span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ns-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-property</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Ea vis odio voluptua, pri ei facer denique.<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2548,19 +2548,19 @@ Any form with this marker will be left untouched by CX.</p>
 <div class="listingblock">
 <div class="title">Listing 41. Example usage of the form part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element form" data-bsi-element="slim-form"&gt;
-    &lt;form class="form form-wrapper" data-bsi-element-part="form" id="form"&gt;
-        &lt;ul class="form-validation" data-bsi-form-validation=""&gt;
-            &lt;li class="form-validation-item" data-bsi-form-validation-item=""&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;div class="form-content" data-bsi-dropzone="form-content" data-bsi-dropzone-allowed-elements="form-field"&gt;
-        &lt;/div&gt;
-        &lt;div class="form-button-bar"&gt;
-            &lt;input type="submit" class="form-button send" value="Senden" /&gt;
-            &lt;input type="reset" class="form-button reset" value="Zurücksetzen" /&gt;
-        &lt;/div&gt;
-    &lt;/form&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element form</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">slim-form</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;form</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form form-wrapper</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;ul</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-validation</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-form-validation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;li</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-validation-item</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-form-validation-item</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;/ul&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-content</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-content</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-button-bar</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">submit</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-button send</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Senden</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">reset</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-button reset</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Zurücksetzen</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/form&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2678,10 +2678,10 @@ It is up to the developer to use polyfills where this is required.
 <div class="listingblock">
 <div class="title">Listing 42. Example usage of the form-field part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="form-field" data-bsi-element="date-field" data-bsi-element-part="form-field" data-bsi-form-field-fixed-type=""&gt;
-    &lt;label class="label"&gt;Date&lt;/label&gt;
-    &lt;input class="input" type="date" value="2009-11-13" required="" /&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-form-field-fixed-type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Date<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">input</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">2009-11-13</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">required</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -2706,10 +2706,10 @@ Contains a <code>&lt;label&gt;</code> and an <code>&lt;input&gt;</code> element 
 <div class="listingblock">
 <div class="title">Listing 43. Example usage of the form-checkbox part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-checkbox" data-bsi-element-part="form-checkbox" class="element checkbox"&gt;
-    &lt;input type="checkbox" id="checkbox1" /&gt;
-    &lt;label for="checkbox1"&gt;Checkbox 1&lt;/label&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-checkbox</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-checkbox</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element checkbox</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">checkbox</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">checkbox1</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">checkbox1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Checkbox 1<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2722,10 +2722,10 @@ Contains a <code>&lt;label&gt;</code> and a <code>&lt;textarea&gt;</code> elemen
 <div class="listingblock">
 <div class="title">Listing 44. Example usage of the form-textarea part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-textarea" data-bsi-element-part="form-textarea" class="form-field form-element"&gt;
-    &lt;label class="label"&gt;Description&lt;/label&gt;
-    &lt;textarea rows="5" cols="20" class="textarea" maxlength="500"&gt;Lorem ipsum&lt;/textarea&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-textarea</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-textarea</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field form-element</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Description<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;textarea</span> <span class="attribute-name">rows</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">5</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">cols</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">20</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">textarea</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">maxlength</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">500</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/textarea&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2758,19 +2758,19 @@ The <code>multiple</code> attribute is not supported.
 <div class="listingblock">
 <div class="title">Listing 45. Example usage of the form-select part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-select" data-bsi-element-part="form-select" class="form-select form-element" data-bsi-value-list="Yes
-No
-Unsure" data-bsi-value="No"&gt;
-    &lt;label class="label"&gt;Decision&lt;/label&gt;
-    &lt;div class="select-wrapper"&gt;
-        &lt;select size="1"&gt;
-            &lt;option&gt;Yes&lt;/option&gt;
-            &lt;option selected=""&gt;No&lt;/option&gt;
-            &lt;option&gt;Unsure&lt;/option&gt;
-        &lt;/select&gt;
-        &lt;div class="dropdown" role="presentation"&gt;a&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-select</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-select</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-select form-element</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-value-list</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Yes</span>
+<span class="content">No</span>
+<span class="content">Unsure</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">No</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Decision<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">select-wrapper</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;select</span> <span class="attribute-name">size</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;option&gt;</span>Yes<span class="tag">&lt;/option&gt;</span>
+            <span class="tag">&lt;option</span> <span class="attribute-name">selected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>No<span class="tag">&lt;/option&gt;</span>
+            <span class="tag">&lt;option&gt;</span>Unsure<span class="tag">&lt;/option&gt;</span>
+        <span class="tag">&lt;/select&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dropdown</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">presentation</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>a<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2789,15 +2789,15 @@ The same applies to the <code>data-bsi-form-select-fixed-value-list</code> attri
 <div class="listingblock">
 <div class="title">Listing 46. Example usage of the form-radio part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-radio" data-bsi-element-part="form-radio" class="form-radio form-element"&gt;
-    &lt;label class="label"&gt;To be or not to be?&lt;/label&gt;
-    &lt;div data-bsi-radio-group=""&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-        &lt;div class="form-radio-item" data-bsi-radio-item=""&gt; <i class="conum" data-value="2"></i><b>(2)</b>
-            &lt;input type="radio" id="radio1" /&gt;
-            &lt;label for="radio1"&gt;Radio-Button 1&lt;/label&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-radio</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-radio</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-radio form-element</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>To be or not to be?<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-radio-group</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-radio-item</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-radio-item</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+            <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">radio</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">radio1</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;label</span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">radio1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Radio-Button 1<span class="tag">&lt;/label&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2861,9 +2861,9 @@ Boolean attributes like <code>data-bsi-link-fixed-inner-html</code> require an e
 <div class="listingblock">
 <div class="title">Listing 47. Example usage of the link part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="cta" class="element cta"&gt;
-    &lt;a href="https://www.bsi-software.com/" data-bsi-element-part="link"&gt;More&lt;/a&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cta</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.bsi-software.com/</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>More<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2887,18 +2887,18 @@ The link <code>href</code> can be preselected with a URL or with CX links in squ
 <div class="listingblock">
 <div class="title">Listing 48. Example usage of the social-follow part.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="social-follow" data-bsi-element-part="social-follow"&gt;
-    &lt;div data-bsi-social-follow="Facebook" class="social-media-item"&gt;
-        &lt;a href="https://www.facebook.com/"&gt;
-            &lt;img src="facebook.png" alt="Facebook" /&gt;
-        &lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div data-bsi-social-follow="Twitter" class="social-media-item"&gt;
-        &lt;a href="https://www.twitter.com/"&gt;
-            &lt;img src="twitter.png" alt="Twitter" /&gt;
-        &lt;/a&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-follow</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-follow</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-follow</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Facebook</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-media-item</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.facebook.com/</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">facebook.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Facebook</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-follow</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Twitter</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-media-item</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.twitter.com/</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">twitter.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Twitter</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2998,30 +2998,30 @@ preview.image.url
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="social-share" data-bsi-element-part="social-share"&gt;
-    &lt;div class="social-media-info"&gt;Share this page&lt;/div&gt;
-    &lt;div data-bsi-social-share="E-Mail" class="sm-email social-media-item share"&gt;
-        &lt;a href="mailto:?subject=(subject.with.title)&amp;body=(description.with.url)"&gt;&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div data-bsi-social-share="Facebook" class="sm-facebook social-media-item share"&gt;
-        &lt;a href="https://www.facebook.com/sharer/sharer.php?u=(url)" target="_blank"&gt;&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div data-bsi-social-share="LinkedIn" class="sm-linkedin social-media-item share"&gt;
-        &lt;a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=(url)&amp;summary=(title)&amp;source=FancyUnicorns" target="_blank"&gt;&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div data-bsi-social-share="Pinterest" class="sm-pinterest social-media-item share"&gt;
-        &lt;a href="http://pinterest.com/pin/create/button/?url=(url)&amp;description=(title)&amp;media=(preview.image.url)" target="_blank"&gt;&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div data-bsi-social-share="Twitter" class="sm-twitter social-media-item share"&gt;
-        &lt;a href="https://twitter.com/intent/tweet?url=(url)&amp;text=(description.short)" target="_blank"&gt;&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div data-bsi-social-share="WhatsApp" class="sm-whatsapp social-media-item share"&gt;
-        &lt;a href="whatsapp://send?text=(title.with.url)" target="_blank"&gt;&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div data-bsi-social-share="Xing" class="sm-xing social-media-item share"&gt;
-        &lt;a href="https://www.xing.com/spi/shares/new?url=(url)" target="_blank"&gt;&lt;/a&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-share</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-share</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-media-info</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Share this page<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-share</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">E-Mail</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">sm-email social-media-item share</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">mailto:?subject=(subject.with.title)</span><span class="content">&amp;</span><span class="content">body=(description.with.url)</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-share</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Facebook</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">sm-facebook social-media-item share</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.facebook.com/sharer/sharer.php?u=(url)</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">target</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">_blank</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-share</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">LinkedIn</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">sm-linkedin social-media-item share</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.linkedin.com/shareArticle?mini=true</span><span class="content">&amp;</span><span class="content">url=(url)</span><span class="content">&amp;</span><span class="content">summary=(title)</span><span class="content">&amp;</span><span class="content">source=FancyUnicorns</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">target</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">_blank</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-share</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Pinterest</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">sm-pinterest social-media-item share</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://pinterest.com/pin/create/button/?url=(url)</span><span class="content">&amp;</span><span class="content">description=(title)</span><span class="content">&amp;</span><span class="content">media=(preview.image.url)</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">target</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">_blank</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-share</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Twitter</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">sm-twitter social-media-item share</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://twitter.com/intent/tweet?url=(url)</span><span class="content">&amp;</span><span class="content">text=(description.short)</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">target</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">_blank</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-share</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">WhatsApp</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">sm-whatsapp social-media-item share</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">whatsapp://send?text=(title.with.url)</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">target</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">_blank</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-share</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Xing</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">sm-xing social-media-item share</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.xing.com/spi/shares/new?url=(url)</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">target</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">_blank</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -3087,14 +3087,14 @@ The CX Design Creator has the following functionality and tasks:</p>
 <div class="listingblock">
 <div class="title">Listing 49. Example of a compiler.yml file</div>
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">engine: { version: '0.79.4' }
-watch:
-    - resources
-    - properties.yml
-    - template/src
-task:
-    ### bundle and process component specific less and javascript files
-    - twig:
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">engine</span>: <span class="string"><span class="content">{ version: '0.79.4' }</span></span>
+<span class="key">watch</span>:
+    - <span class="string"><span class="content">resources</span></span>
+    - <span class="string"><span class="content">properties.yml</span></span>
+    - <span class="string"><span class="content">template/src</span></span>
+<span class="key">task</span>:
+    <span class="comment">### bundle and process component specific less and javascript files</span>
+    - <span class="string"><span class="content">twig:</span><span class="content">
         - source: [template/src/_setup/components.less.twig]
           target: template/tmp/components.less
           model: [properties.yml]
@@ -3104,25 +3104,25 @@ task:
           target: template/tmp/components.js
           model: [properties.yml]
           tidy: false
-          validate: false
-    - less:
+          validate: false</span></span>
+    - <span class="string"><span class="content">less:</span><span class="content">
         - source: [template/tmp/components.less]
           target: template/www/static/styles.css
           model:
               stack: [properties.yml]
-              scope: [styles]
-      js:
-        - source: [template/tmp/components.js]
-          target: template/www/static/scripts.js
-      rm:
-        - template/tmp/components.js
-        - template/tmp/components.less
-    ### copy resources
-    - cp:
+              scope: [styles]</span></span>
+      <span class="key">js</span>:
+        - <span class="string"><span class="content">source: [template/tmp/components.js]</span></span>
+          <span class="key">target</span>: <span class="string"><span class="content">template/www/static/scripts.js</span></span>
+      <span class="key">rm</span>:
+        - <span class="string"><span class="content">template/tmp/components.js</span></span>
+        - <span class="string"><span class="content">template/tmp/components.less</span></span>
+    <span class="comment">### copy resources</span>
+    - <span class="string"><span class="content">cp:</span><span class="content">
         - source: resources
-          target: template/www/static
-    ### create regular design files
-    - twig:
+          target: template/www/static</span></span>
+    <span class="comment">### create regular design files</span>
+    - <span class="string"><span class="content">twig:</span><span class="content">
           ### design.html
           - source: [template/src/base/twig/design.twig]
             target: template/www/design.html
@@ -3140,47 +3140,47 @@ task:
             target: template/www/design.properties
             model: [properties.yml]
             tidy: false
-            validate: false
-      zip:
-          - base: template/www
-            source:
-              - design.html
-              - content-elements.html
-              - preview-template.html
-              - design.properties
-              - static
-            target: ../../Scaffold-1.0.1.zip
-defaults:
-    twig:
-        validate: true
-        tidy: true
-        tabsize: 4
-        comments: true
-    less:
-        compress: true
-    js:
-        compress: true
-    global:
-        charset: utf8
-        compress: true
-        failonerror: false
-webserver:
-    packages:
-        - name: 'Company - Templates'
-          designs:
-            - name: 'Scaffold'
-              viewports:
-                  - type: desktop
-                    width: 100%
-                  - type: desktop
-                    width: 940px
-                  - type: tablet
-                    width: 768px
-                  - type: mobile
-                    width: 360px
-              templates:
-                  - file: template/www/preview-template.html
-                    language: Deutsch</code></pre>
+            validate: false</span></span>
+      <span class="key">zip</span>:
+          - <span class="string"><span class="content">base: template/www</span></span>
+            <span class="key">source</span>:
+              - <span class="string"><span class="content">design.html</span></span>
+              - <span class="string"><span class="content">content-elements.html</span></span>
+              - <span class="string"><span class="content">preview-template.html</span></span>
+              - <span class="string"><span class="content">design.properties</span></span>
+              - <span class="string"><span class="content">static</span></span>
+            <span class="key">target</span>: <span class="string"><span class="content">../../Scaffold-1.0.1.zip</span></span>
+<span class="key">defaults</span>:
+    <span class="key">twig</span>:
+        <span class="key">validate</span>: <span class="string"><span class="content">true</span></span>
+        <span class="key">tidy</span>: <span class="string"><span class="content">true</span></span>
+        <span class="key">tabsize</span>: <span class="string"><span class="content">4</span></span>
+        <span class="key">comments</span>: <span class="string"><span class="content">true</span></span>
+    <span class="key">less</span>:
+        <span class="key">compress</span>: <span class="string"><span class="content">true</span></span>
+    <span class="key">js</span>:
+        <span class="key">compress</span>: <span class="string"><span class="content">true</span></span>
+    <span class="key">global</span>:
+        <span class="key">charset</span>: <span class="string"><span class="content">utf8</span></span>
+        <span class="key">compress</span>: <span class="string"><span class="content">true</span></span>
+        <span class="key">failonerror</span>: <span class="string"><span class="content">false</span></span>
+<span class="key">webserver</span>:
+    <span class="key">packages</span>:
+        - <span class="string"><span class="content">name: 'Company - Templates'</span></span>
+          <span class="key">designs</span>:
+            - <span class="string"><span class="content">name: 'Scaffold'</span></span>
+              <span class="key">viewports</span>:
+                  - <span class="string"><span class="content">type: desktop</span></span>
+                    <span class="key">width</span>: <span class="string"><span class="content">100%</span></span>
+                  - <span class="string"><span class="content">type: desktop</span></span>
+                    <span class="key">width</span>: <span class="string"><span class="content">940px</span></span>
+                  - <span class="string"><span class="content">type: tablet</span></span>
+                    <span class="key">width</span>: <span class="string"><span class="content">768px</span></span>
+                  - <span class="string"><span class="content">type: mobile</span></span>
+                    <span class="key">width</span>: <span class="string"><span class="content">360px</span></span>
+              <span class="key">templates</span>:
+                  - <span class="string"><span class="content">file: template/www/preview-template.html</span></span>
+                    <span class="key">language</span>: <span class="string"><span class="content">Deutsch</span></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3314,20 +3314,20 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <div class="listingblock">
 <div class="title">Listing 50. example of a badly referenced element in a dropzone</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Design_de-CH.zip/design.html --&gt;
-&lt;div data-bsi-dropzone="content"
-        data-bsi-dropzone-allowed-elements="basic-cta hello-world"&gt;
-        &lt;!-- hello-world should be hello-text, see below --&gt;
-&lt;/div&gt;
+<pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Design_de-CH.zip/design.html --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span>
+        <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-cta hello-world</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="comment">&lt;!-- hello-world should be hello-text, see below --&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
 
-&lt;!-- Design_de-CH.zip/content-elements.html --&gt;
-&lt;div data-bsi-group="basic"&gt;
-    &lt;!-- in design.html, the element is incorrectly referenced under the name hello-world --&gt;
-    &lt;div data-bsi-element="hello-text" data-bsi-element-part="formatted-text"&gt;
-        &lt;p&gt;Lorem ipsum&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;a data-bsi-element="basic-cta" href="#" data-bsi-element-part="link" class="element basic-cta"&gt;Lorem ipsum&lt;/a&gt;
-&lt;/div&gt;</code></pre>
+<span class="comment">&lt;!-- Design_de-CH.zip/content-elements.html --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-group</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="comment">&lt;!-- in design.html, the element is incorrectly referenced under the name hello-world --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hello-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">formatted-text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;p&gt;</span>Lorem ipsum<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-cta</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element basic-cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -3381,17 +3381,17 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="listingblock">
 <div class="title">Listing 51. example of a sample content that does not match the specified content element</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Content Element: Specification of the element (content-elements.html) --&gt;
-&lt;div class="hello-world" data-bsi-element="basic-hello-world"&gt;
-    &lt;h1 data-bsi-element-part="plain-text"&gt;Placeholder&lt;/h1&gt;
-    &lt;img data-bsi-element-part="image" src="placeholder.png" alt="" /&gt;
-&lt;/div&gt;
-&lt;!-- Content: sample content (design.html or content-elements.html) --&gt;
-&lt;div class="hello-world" data-bsi-element="basic-hello-world"&gt;
-    &lt;h1 data-bsi-element-part="plain-text"&gt;Hello World, how are you?&lt;/h1&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-    &lt;p&gt;just another text&lt;/p&gt; <i class="conum" data-value="3"></i><b>(3)</b>
-    &lt;img data-bsi-element-part="image" src="hello-my-dear-world.png" alt="" /&gt; <i class="conum" data-value="2"></i><b>(2)</b>
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Content Element: Specification of the element (content-elements.html) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hello-world</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-hello-world</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h1</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Placeholder<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">placeholder.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+<span class="comment">&lt;!-- Content: sample content (design.html or content-elements.html) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hello-world</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-hello-world</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h1</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Hello World, how are you?<span class="tag">&lt;/h1&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="tag">&lt;p&gt;</span>just another text<span class="tag">&lt;/p&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="tag">&lt;img</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hello-my-dear-world.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -3425,10 +3425,10 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="listingblock">
 <div class="title">Listing 52. example of a detached paragraph that must not be placed in a dropzone</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-dropzone="content" data-bsi-dropzone-allowed-elements="title-h1 title-h2 title-h3 basic-text basic-image basic-cta"&gt;
-    &lt;h1 data-bsi-element="title-h1" data-bsi-element-part="plain-text" class="element title-h1"&gt;Lorem ipsum&lt;/h1&gt;
-    &lt;p&gt;The paragraph surrounding me is not part of a content element and therefore must not be placed in the dropzone 'content'.&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1 title-h2 title-h3 basic-text basic-image basic-cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h1</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element title-h1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span>The paragraph surrounding me is not part of a content element and therefore must not be placed in the dropzone 'content'.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -3449,10 +3449,10 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="listingblock">
 <div class="title">Listing 53. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Invalid: uses &lt;div&gt; which is not an image --&gt;
-&lt;div data-bsi-element-part="image" src="img.png" alt=""&gt;&lt;/div&gt;
-&lt;!-- Correct way: use an &lt;img&gt; tag --&gt;
-&lt;img data-bsi-element-part="image" src="img.png" alt="" /&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid: uses &lt;div&gt; which is not an image --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
+<span class="comment">&lt;!-- Correct way: use an &lt;img&gt; tag --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -3530,7 +3530,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-text" data-lang="text">Content Element:
+<pre class="CodeRay highlight"><code data-lang="text">Content Element:
 &lt;div&gt;....&lt;/div&gt;
 
 Content:
@@ -3552,7 +3552,7 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 <div class="listingblock">
 <div class="title">Listing 54. removing a sript in draft (edit) mode</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;script data-bsi-remove-if="draft" src="your-javascript that manipulates-the-DOM.js" &gt;&lt;/script&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">draft</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">your-javascript that manipulates-the-DOM.js</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -3564,14 +3564,14 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 <div class="listingblock">
 <div class="title">Listing 55. invalid HTML will lead to issues</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Invalid HTML, as defined in content-elements.html --&gt;
-&lt;table data-bsi-dropzone="table"&gt;
-    &lt;div data-bsi-element="text"&gt;...&lt;/div&gt;
-&lt;/table&gt;
+<pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML, as defined in content-elements.html --&gt;</span>
+<span class="tag">&lt;table</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/table&gt;</span>
 
-&lt;!-- As soon as the HTML is dropped in CX, the browser will 'fix' the HTML, leading to a different HTML for the concrete content --&gt;
-&lt;table data-bsi-dropzone="table"&gt;&lt;/table&gt;
-&lt;div data-bsi-element="text"&gt;...&lt;/div&gt;</code></pre>
+<span class="comment">&lt;!-- As soon as the HTML is dropped in CX, the browser will 'fix' the HTML, leading to a different HTML for the concrete content --&gt;</span>
+<span class="tag">&lt;table</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/table&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -3626,15 +3626,15 @@ This section applies to installations prior to CX 1.2.46.
 <div class="listingblock">
 <div class="title">Listing 56. data-bsi-dropzone uniqueness violated</div>
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- design.html --&gt;
-&lt;div class="main-dropzone" data-bsi-dropzone="content" <i class="conum" data-value="1"></i><b>(1)</b>
-     data-bsi-dropzone-allowed-elements="....."&gt;
-    &lt;!-- ... --&gt;
-&lt;/div&gt;
+<pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- design.html --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">main-dropzone</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
+     <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">.....</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="comment">&lt;!-- ... --&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
 
-&lt;!-- content-elements.html --&gt;
-&lt;div class="image-area" data-bsi-dropzone="content" <i class="conum" data-value="2"></i><b>(2)</b>
-     data-bsi-dropzone-allowed-elements="download-item"&gt;&lt;/div&gt;</code></pre>
+<span class="comment">&lt;!-- content-elements.html --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image-area</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="2"></i><b>(2)</b>
+     <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">download-item</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -3657,8 +3657,97 @@ This section applies to installations prior to CX 1.2.46.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2021-08-05 18:31:04 +0200
+Last update 2021-08-10 16:13:52 +0200
 </div>
 </div>
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
 </body>
 </html>
