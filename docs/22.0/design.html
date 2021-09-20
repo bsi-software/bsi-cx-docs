@@ -651,7 +651,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h1>Design Documentation: BSI CX 22.0</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2021-09-08</span>
+<span id="revdate">Version Date 2021-09-20</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -690,6 +690,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <ul class="sectlevel3">
 <li><a href="#grouping">3.3.1. Grouping</a></li>
 <li><a href="#parts">3.3.2. Parts</a></li>
+</ul>
+</li>
+<li><a href="#data-bsi-attributes">3.4. Data BSI Attributes</a>
+<ul class="sectlevel3">
+<li><a href="#control-attributes">3.4.1. Control Attributes</a></li>
+<li><a href="#form-processor-attributes">3.4.2. Form Processor Attributes</a></li>
 </ul>
 </li>
 </ul>
@@ -1817,6 +1823,9 @@ The bracket technique itself is usable everywhere in the content editor and is n
 <p>The convenience format of a bracket link for CX is <code>[link text|ID]</code>.
 The full syntax is <code>[ID|text=link text|url=https://example.com|newWindow]</code>.</p>
 </div>
+<div class="paragraph">
+<p>You may use the following optional parameters:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1825,10 +1834,13 @@ The full syntax is <code>[ID|text=link text|url=https://example.com|newWindow]</
 <li>
 <p><code>newWindow</code> will force to open the target in a new tab or window.</p>
 </li>
+<li>
+<p><code>login</code> creates a link having the query parameter ?login, which redirects to the login page in a website.</p>
+</li>
+<li>
+<p><code>logout</code> creates a link having the query parameter ?logout, which removes the authenticated user from a CX HTTP session in a website.</p>
+</li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Both <code>url</code> and <code>newWindow</code> are optional.</p>
 </div>
 <div class="paragraph">
 <p>If a bracket itself should be part of a link, it can be escaped with a backslash (e.g. <code>[\[click me\]|id]</code> will then be visualized as <em>[click me]</em>).</p>
@@ -3027,6 +3039,99 @@ preview.image.url
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="data-bsi-attributes"><a class="anchor" href="#data-bsi-attributes"></a>3.4. Data BSI Attributes</h3>
+<div class="paragraph">
+<p>Data BSI attribute are regular DOM element attributes, starting with <code>data-bsi-</code>. In a CX design they must be used to amend CX specific semantic information to the DOM or to control processing logic while the DOM is rendered by the CX server.</p>
+</div>
+<div class="sect3">
+<h4 id="control-attributes"><a class="anchor" href="#control-attributes"></a>3.4.1. Control Attributes</h4>
+<div class="paragraph">
+<p>The presence of an HTML element in the generated content can be controlled by using <code>data-bsi-remove-if</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>draft</code>: The element is only inserted if the content is being edited in the editor.</p>
+</li>
+<li>
+<p><code>live</code>: The element is only inserted if the content is driven by a story.</p>
+</li>
+<li>
+<p><code>authenticated</code>: The element in only inserted if an authenticated visitor exists on the CX HTTP session.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The attribute value may have a negate operator (!). Using this operator you can negate the condition, for instance <code>!authenticated</code> will only be removed in case the visitor is <em>not</em> logged in.</p>
+</div>
+<div class="paragraph">
+<p>A common and recommended use of <code>data-bsi-remove-if="draft"</code> is to suppress executing JavaScript in the content editor, which may lead to unintended side effects
+.hiding information in draft mode.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">draft</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<span class="inline"><span class="comment">// this script will not mess around with your content while being edited in the content editor</span></span>
+<span class="tag">&lt;/script&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A common use case of <code>data-bsi-remove-if="live"</code> mode is to display context information to the user that should only be present while editing a content.
+.hiding information in live mode.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;p</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">live</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>This hint will never be shown in any content driven by a story.<span class="tag">&lt;/p&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<code>data-bsi-remove-if</code> must not be used for tag elements containing content elements! Otherwise, those cannot be edited in draft mode.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>data-bsi-hide-edit-button</strong> may be used to prevent editing of a content element. The attribute must be located on the same tag as the <code>data-bsi-element</code> attribute.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 49. hiding the content element edit button</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">...</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-edit-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>data-bsi-hide-move-button</strong>, <strong>data-bsi-hide-copy-button</strong>, and <strong>data-bsi-hide-remove-button</strong> are working in the same manner, but on dropzone level. They will prevent from moving, copying, or removing content elements on a dropzone.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 50. prevent moving, copying and removal of content elements.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">...</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-move-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-copy-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-remove-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="form-processor-attributes"><a class="anchor" href="#form-processor-attributes"></a>3.4.2. Form Processor Attributes</h4>
+<div class="paragraph">
+<p>The CX server may implement programmed backend logic to validate and process a specific form in a CX website. The following attributes control which form processor is called on a form submit. A CX project that implements its own backend logic may contribute its own form processors.</p>
+</div>
+<div class="paragraph">
+<p>Set the <code>data-bsi-form-type</code> on a form element to specify which form processor handles the form on submit. Predefined values are <code>login</code> and <code>change-password</code>. A CX project may define custom values, which must map to a form processor implementation in the CX backend server.</p>
+</div>
+<div class="paragraph">
+<p>The <code>data-bsi-show-form-type-field</code> controls whether the CX content editor shows a drop-down menu to choose a form type in the Form element part. This gives a design author the freedom to create a generic content element for forms, where the content author can choose to create a standard form or a form using a form processor via drop-down menu, or to provide a complete form as a dedicated form element, where the content author cannot change the form type in the content editor.</p>
+</div>
+<div class="paragraph">
+<p>Set the <code>data-bsi-form-type</code> attribute on a form field element to mark a field interpreted by a form processor. For instance a <code>login</code> form requires the form to have two fields, one must define <code>data-bsi-form-type="user-id"</code> and the other <code>data-bsi-form-type="password"</code> in order to pass the form processor validation. Each form process may define custom values for this attribute.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -3085,7 +3190,7 @@ The CX Design Creator has the following functionality and tasks:</p>
 <p>The CX Design Creator itself is configured with a YAML file compiler.yml:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 49. Example of a compiler.yml file</div>
+<div class="title">Listing 51. Example of a compiler.yml file</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">engine</span>: <span class="string"><span class="content">{ version: '0.79.4' }</span></span>
 <span class="key">watch</span>:
@@ -3312,7 +3417,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Listing 50. example of a badly referenced element in a dropzone</div>
+<div class="title">Listing 52. example of a badly referenced element in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Design_de-CH.zip/design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span>
@@ -3379,7 +3484,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 51. example of a sample content that does not match the specified content element</div>
+<div class="title">Listing 53. example of a sample content that does not match the specified content element</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Content Element: Specification of the element (content-elements.html) --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hello-world</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-hello-world</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -3423,7 +3528,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p>A dropzone can contain 0&#8230;&#8203;n content elements. Only content elements are allowed as direct child nodes of dropzones. Therefore, HTML that is not part of a content element must not be placed in a dropzone.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 52. example of a detached paragraph that must not be placed in a dropzone</div>
+<div class="title">Listing 54. example of a detached paragraph that must not be placed in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1 title-h2 title-h3 basic-text basic-image basic-cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;h1</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element title-h1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/h1&gt;</span>
@@ -3447,7 +3552,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p><em>In the example above, this would be the <a href="#image">Image</a> content element <a href="#parts">Parts</a> documentation.</em></p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 53. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
+<div class="title">Listing 55. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid: uses &lt;div&gt; which is not an image --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
@@ -3550,7 +3655,7 @@ Content:
 Removing a <code>script</code> tag from the DOM if the content is being edited can be achieved by adding <code>data-bsi-remove-if='draft'</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 54. removing a sript in draft (edit) mode</div>
+<div class="title">Listing 56. removing a sript in draft (edit) mode</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">draft</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">your-javascript that manipulates-the-DOM.js</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span></code></pre>
 </div>
@@ -3562,7 +3667,7 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 <p>Some browsers detect and try to <em>fix</em> invalid HTML. As a consequence, the DOM structure of the HTML is modified by the browsers, whereas CX still expects the specified structure.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 55. invalid HTML will lead to issues</div>
+<div class="title">Listing 57. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML, as defined in content-elements.html --&gt;</span>
 <span class="tag">&lt;table</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -3624,7 +3729,7 @@ This section applies to installations prior to CX 1.2.46.
 <p>This may happen if a dropzone name is duplicated. Drop zones must have unique identifiers in older versions of BSI CX. Make sure that a unique name is specified for each usage of <code>data-bsi-dropzone</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 56. data-bsi-dropzone uniqueness violated</div>
+<div class="title">Listing 58. data-bsi-dropzone uniqueness violated</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">main-dropzone</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -3657,7 +3762,7 @@ This section applies to installations prior to CX 1.2.46.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2021-09-08 18:34:11 +0200
+Last update 2021-09-20 18:30:51 +0200
 </div>
 </div>
 <style>
