@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 22.0</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2021-10-11</span>
+<span id="revdate">Version Date 2021-10-18</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -2765,6 +2765,9 @@ file
 Doing so allows the setup of a customized date field, for example.
 The type of the form field is then set and cannot be changed in the content editor.</p>
 </div>
+<div class="paragraph">
+<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> check-box is visible and editable in the content editor. If the check-box is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+</div>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -2807,6 +2810,9 @@ Boolean attributes like <code>data-bsi-form-field-fixed-type</code> require an e
 <p>A <code>&lt;div&gt;</code> element.
 Contains a <code>&lt;label&gt;</code> and an <code>&lt;input&gt;</code> element with the <code>checkbox</code> type.</p>
 </div>
+<div class="paragraph">
+<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> check-box is visible and editable in the content editor. If the check-box is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+</div>
 <div class="listingblock">
 <div class="title">Listing 43. Example usage of the form-checkbox part.</div>
 <div class="content">
@@ -2822,6 +2828,9 @@ Contains a <code>&lt;label&gt;</code> and an <code>&lt;input&gt;</code> element 
 <div class="paragraph">
 <p>A <code>&lt;div&gt;</code> element.
 Contains a <code>&lt;label&gt;</code> and a <code>&lt;textarea&gt;</code> element.</p>
+</div>
+<div class="paragraph">
+<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> check-box is visible and editable in the content editor. If the check-box is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
 </div>
 <div class="listingblock">
 <div class="title">Listing 44. Example usage of the form-textarea part.</div>
@@ -2846,6 +2855,9 @@ A line break (<code>\n</code> or <code>\r\n</code>) separates each of those.</p>
 <p>To fixate the values that are available for selection, the <code>data-bsi-form-select-fixed-value-list</code> attribute can be set on the element.
 Then, the list of values cannot be changed in the content editor.
 Only the preselection can be changed.</p>
+</div>
+<div class="paragraph">
+<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> check-box is visible and editable in the content editor. If the check-box is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -2889,6 +2901,9 @@ These are identified with the <code>data-bsi-radio-item</code> attribute and con
 The preselection of this element can be controlled with the <code>data-bsi-value</code> and <code>data-bsi-value-list</code> attributes.
 Same as the <a href="#form-select">form-select</a> part.
 The same applies to the <code>data-bsi-form-select-fixed-value-list</code> attribute.</p>
+</div>
+<div class="paragraph">
+<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> check-box is visible and editable in the content editor. If the check-box is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
 </div>
 <div class="listingblock">
 <div class="title">Listing 46. Example usage of the form-radio part.</div>
@@ -3854,7 +3869,7 @@ This section applies to installations prior to CX 1.2.46.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2021-10-11 18:30:41 +0200
+Last update 2021-10-18 18:35:28 +0200
 </div>
 </div>
 </body>
