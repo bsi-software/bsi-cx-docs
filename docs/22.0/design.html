@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 22.0</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2022-01-14</span>
+<span id="revdate">Version Date 2022-01-17</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -1922,6 +1922,9 @@ The full syntax is <code>[ID|text=link text|url=https://example.com|newWindow]</
 </li>
 <li>
 <p><code>newWindow</code> will force to open the target in a new tab or window.</p>
+</li>
+<li>
+<p><code>follow</code> removes the <em>nofollow</em> value from the html <em>rel</em> attribute. Without <em>nofollow</em>, bots are allowed to crawl your page (not recommended for personalised links).</p>
 </li>
 <li>
 <p><code>login</code> creates a link having the query parameter ?login, which redirects to the login page in a website.</p>
@@ -3869,7 +3872,7 @@ This section applies to installations prior to CX 1.2.46.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2022-01-14 18:30:57 +0100
+Last update 2022-01-17 18:31:25 +0100
 </div>
 </div>
 </body>
