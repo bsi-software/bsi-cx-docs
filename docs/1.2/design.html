@@ -742,17 +742,21 @@ table.CodeRay td.code>pre{padding:0}
 <h1>Design Documentation: BSI Studio 1.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2021-08-05</span>
+<span id="revdate">Version Date 2022-01-27</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
 <ul class="sectlevel1">
 <li><a href="#introduction">1. Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#file-format">1.1. File format</a></li>
-<li><a href="#content-editor">1.2. Content Editor</a></li>
-<li><a href="#structure-reference">1.3. Structure Reference</a></li>
-<li><a href="#groups">1.4. Groups</a></li>
+<li><a href="#technical-introduction">1.1. Technical Introduction</a></li>
+<li><a href="#branding-visual-design">1.2. Branding &amp; Visual Design</a></li>
+<li><a href="#getting-started">1.3. Getting started</a></li>
+<li><a href="#file-format">1.4. File format</a></li>
+<li><a href="#content-editor">1.5. Content Editor</a></li>
+<li><a href="#structure-reference">1.6. Structure Reference</a></li>
+<li><a href="#dropzones">1.7. Dropzones</a></li>
+<li><a href="#groups">1.8. Groups</a></li>
 </ul>
 </li>
 <li><a href="#design-properties">2. design.properties</a>
@@ -799,6 +803,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#design-upload">5.2.1. Design Upload</a></li>
 <li><a href="#design-update">5.2.2. Design Update</a></li>
 <li><a href="#dropzone-issues">5.2.3. Dropzone Issues</a></li>
+<li><a href="#design-creator-issues">5.2.4. Design Creator issues</a></li>
 </ul>
 </li>
 </ul>
@@ -811,45 +816,115 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The agency’s design specifies the basic layout of a mail, landingpage or a website.
-The design consists of two com-ponents.
-One component describes the potential content elements, and the other component describes the actual design.</p>
+<p>Create experiences that delight customers.
+For marketing, sales, and service: Find, win, retain, and understand customers with BSI CX. Design, execute and optimize perfect customer journeys.
+Everything is cross-departmental, individualized for every customer, in real time, across all touchpoints, and fully automated – for extraordinary and emotional experiences.</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="./video/EN_CX-Screencast.mp4" width="600px" controls>
+Your browser does not support the video tag.
+</video>
+</div>
 </div>
 <div class="paragraph">
-<p>Outside of the marked drop zones, the design cannot be edited in the content editor.</p>
+<p>Learn more about all features of BSI CX by visiting <a href="https://www.bsi-software.com/en/cx">our product website</a>.</p>
 </div>
-<div class="paragraph">
-<p>The agency makes the design available as a ZIP file.
-An image for the preview can be supplied separately.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>CX, Customer Experience and Studio.</strong> The <em>BSI Customer Suite</em> consists of multiple Products, <em>BSI CX</em> is one of it. Formerly called <em>BSI Studio</em>, <em>CX</em> is an abbreviation of <em>BSI Customer Experience</em>.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
-<h3 id="file-format"><a class="anchor" href="#file-format"></a>1.1. File format</h3>
+<h3 id="technical-introduction"><a class="anchor" href="#technical-introduction"></a>1.1. Technical Introduction</h3>
 <div class="paragraph">
-<p>A BSI CX design is stored in a ZIP format and must contain the following mandatory files:</p>
+<p>This documentation acts as the primary resource for developers that wish to implement a design for BSI CX. Designs are a vital part of BSI CX. While focusing on BSI CX Designs, a basic knowledge of the following layers is necessary:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/cx-illustration_story_content_design.png" alt="cx illustration story content design">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Story</dt>
+<dd>
+<p>The Story controls the flow of a participant. It offers various steps which can be placed on the storyboard via drag and drop. Your next customer journey delivering a landing page, event invitation, website or newsletter will be born here.</p>
+</dd>
+<dt class="hdlist1">Content</dt>
+<dd>
+<p>Websites, landing pages and newsletters require rich content. The content editor of BSI CX is here to configure such contents. By user using <em>Content Elements</em> – reusable building blocks that can be placed in your content via drag and drop – you can build attractive newsletters, innovative landing pages and feature rich websites.</p>
+</dd>
+<dt class="hdlist1">Design</dt>
+<dd>
+<p>The foundation of every <em>Content</em> is its design. The design defines the available „Content Elements“, the visual representation of the content and the behavior of the content and content elements. The <em>Design</em> must be created externally and uploaded into BSI CX. This documentation covers how to build such designs.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can book a BSI CX Design training <a href="https://www.bsi-software.com/en/training-courses">on our website</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="branding-visual-design"><a class="anchor" href="#branding-visual-design"></a>1.2. Branding &amp; Visual Design</h3>
+<div class="paragraph">
+<p>Each brand has its own and unique visual design language. The branding guidelines of your company or customer define the boundary conditions for building a design. As a design developer for BSI CX, it is your responsibility to get a specification on how the website, landing page or newsletter should look like and what elements it should consist of.
+Especially when it comes to designing HTML emails, you may have to find a compromise between the developers' ideas of visual design and the actual technical possibilities of HTML emails.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getting-started"><a class="anchor" href="#getting-started"></a>1.3. Getting started</h3>
+<div class="paragraph">
+<p>We recommend to start by adopting an existing design for BSI CX. This will help you to get started and will already come with existing content elements which act as examples for your customizations.
+BSI provides a set of design templates that are called <strong>Master Templates</strong>. As of today, the <em>Master Template</em> designs are not yet available publicly. Reach out to us in order to get them. In the future, we will publish them on GitHub as Open-Source projects.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can start off from scratch by following the guidance in this documentation and build a completely new template.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="file-format"><a class="anchor" href="#file-format"></a>1.4. File format</h3>
+<div class="paragraph">
+<p>A BSI CX design is stored in a ZIP archive. A valid design for BSI CX must contain the following mandatory files:</p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">design.html</dt>
 <dd>
-<p>Defines the design, particularly the drop zones the user can use in the BSI CX content editor to place content elements.
+<p>Defines the design, particularly the dropzones the user can use in the BSI CX content editor to place content elements.
 The exact design.html syntax is described below.
 This file must be in the root of the ZIP file.</p>
 </dd>
 <dt class="hdlist1">content-elements.html</dt>
 <dd>
-<p>Defines the individual content elements that can be selected in BSI CX (HTML that is inserted into the content using drag &amp; drop).
+<p>Defines the individual content elements that can be selected in BSI CX. A content element is a HTML snippet that is inserted into the content using drag &amp; drop.
 The exact content-elements.html syntax is described below.</p>
 </dd>
 <dt class="hdlist1">design.properties</dt>
 <dd>
-<p>Contains metadata on the design, such as the name and author, and names and descriptions of the content elements and groups.</p>
+<p>Contains metadata on the design, such as names and descriptions of the content elements and groups.</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p>Beside these three mandatory files you are free to organize your ZIP file.
-Additional optional files and folders may be supplied in the ZIP file.
-But one ZIP file can only contain a single design.</p>
+<p>Beside these three mandatory files you are free to organize your ZIP file as you want. It is essential though to make sure that the above-mentioned files are placed in the root of the ZIP file.
+Additional optional files and folders may be supplied in the ZIP file as well. Note that one ZIP file can only contain a single design.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -864,7 +939,7 @@ The files and folders in the ZIP file must not contain any umlauts.
 </table>
 </div>
 <div class="paragraph">
-<p>The following folder structure describes the content of an example design:</p>
+<p>The following folder structure showcases the content of a simple design:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -877,14 +952,10 @@ The files and folders in the ZIP file must not contain any umlauts.
 │       styles.min.css
 │
 ├───img
-│       bokeh.jpg
-│       brains-logo.png
-│       brains.jpg
 │       logo.png
-│       logo.svg
 │
 └───js
-        gauge.min.js
+        3rd-party.min.js
         scripts.min.js</code></pre>
 </div>
 </div>
@@ -892,11 +963,11 @@ The files and folders in the ZIP file must not contain any umlauts.
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The <code>content-elements.html</code> file holds all defined content elements.</td>
+<td>The <code>content-elements.html</code> file holds all content elements.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <code>design.html</code> defines the surrounding design.</td>
+<td>The <code>design.html</code> defines the base layout of the page/email.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -906,28 +977,32 @@ The files and folders in the ZIP file must not contain any umlauts.
 </div>
 </div>
 <div class="sect2">
-<h3 id="content-editor"><a class="anchor" href="#content-editor"></a>1.2. Content Editor</h3>
+<h3 id="content-editor"><a class="anchor" href="#content-editor"></a>1.5. Content Editor</h3>
+<div class="paragraph">
+<p>The content editor is where specific websites, newsletters and landing pages are created. The content creator relies on a design of good quality to build contents which on the other hand are referred from a story.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="./images/content_editor.png" alt="Content Editor">
 </div>
+<div class="title">Figure 1. example of the BSI CX content editor</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Design preview</p>
+<p>Design preview in content editor</p>
 </li>
 <li>
-<p>Content elements</p>
+<p>List of available content elements</p>
 </li>
 <li>
-<p>Content element</p>
+<p>Use of a customizable content element</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="structure-reference"><a class="anchor" href="#structure-reference"></a>1.3. Structure Reference</h3>
+<h3 id="structure-reference"><a class="anchor" href="#structure-reference"></a>1.6. Structure Reference</h3>
 <div class="paragraph">
 <p>The file <code>design.html</code> contains the <code>frame</code> of the design and must include at least one outermost dropzone.
 It must contain valid, XHTML conform HTML with Doctype, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> tags.</p>
@@ -940,27 +1015,50 @@ Here no Doctype, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> or <code>&
 <div class="content">
 <img src="./images/structure-reference.png" alt="structure reference">
 </div>
-<div class="title">Figure 1. structure reference</div>
+<div class="title">Figure 2. structure reference</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="groups"><a class="anchor" href="#groups"></a>1.4. Groups</h3>
-<div class="imageblock" style="float: left">
-<div class="content">
-<img src="./images/data-bsi-group.png" alt="Groups1">
-</div>
-<div class="title">Figure 2. Groups</div>
-</div>
+<h3 id="dropzones"><a class="anchor" href="#dropzones"></a>1.7. Dropzones</h3>
 <div class="paragraph">
-<p>All content elements can be structured in groups.
-On the left side, three Groups are defined: <code>Header</code>, <code>Headings</code> and <code>Text &amp; Images</code>.
+<p>While dragging a content element into the content area, you will notice blue lines and blue areas. These areas are called dropzones and identify areas where certain content elements can be placed. Each dropzone has a list of allowed content elements that are specified in the design.
+A dropzone is defined by adding the attribute <code>data-bsi-dropzone</code> to an HTML element. The list of allowed content elements is specified by the <code>data-bsi-dropzone-allowed-elements</code> attribute. An optional limit of elements that can be placed inside the dropzone is defined by adding the <code>data-bsi-dropzone-max-number-of-elements</code> attribute.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/dropzone.png" alt="dropzone example">
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 1. A dropzone that allows to place a maximum of one pre header element inside a newsletter design</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">preheader-zone</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">nl-preheader</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone-max-number-of-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="comment">&lt;!-- Add element --&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="groups"><a class="anchor" href="#groups"></a>1.8. Groups</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="./images/data-bsi-group.png" alt="Groups1"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All content elements can be structured in groups.
+In the example screenshot on the left side, three groups are defined: <code>Header</code>, <code>Headings</code> and <code>Text &amp; Images</code>.
 To structure the content elements in such groups, the attribute <code>data-bsi-group</code> is used.
 Each content element is checked to determine if one of its parent elements has this attribute.
 A group may be defined only once.
-Below you see an HTML-example of the three groups <code>Header</code>, <code>Headings</code> and <code>Text &amp; Images</code>:</p>
-</div>
+Below you see an HTML example of the three groups <code>Header</code>, <code>Headings</code> and <code>Text &amp; Images</code>:</p></td>
+</tr>
+</tbody>
+</table>
 <div class="listingblock">
-<div class="title">Listing 1. example of attribute <code>data-bsi-group</code> : HTML</div>
+<div class="title">Listing 2. example of attribute <code>data-bsi-group</code> : HTML</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-group</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">header</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
 <span class="tag">&lt;img</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">logo</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
@@ -988,7 +1086,7 @@ Below you see an HTML-example of the three groups <code>Header</code>, <code>Hea
 <p>Metadata for a design is defined in the <code>design.properties</code> file. It contains general information on the design, such as the name and author, as well as element specific information, such as with which description and icon the elements are to be displayed to the right of the editor.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 2. specifying design meta data</div>
+<div class="title">Listing 3. specifying design meta data</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>#metadata example
 design.name=My Customer Design
@@ -999,7 +1097,7 @@ design.author=John Doe, Doe Design Agency</code></pre>
 <p>Group information, content element specific entries, configuration capabilities for styles (allowing you to mixin different CSS styles or adding certain features using JavaScript) as well as instructions on how to customize the rich text editor experience can be found in the subsequent chapters.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 3. example of a fully featured design.properties file</div>
+<div class="title">Listing 4. example of a fully featured design.properties file</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>#metadata
 design.name=My Customer Design
@@ -1036,7 +1134,7 @@ element.button.styles=background-color</code></pre>
 <p>Each content element is assigned to a group. To specify a display name for each <em>group</em> element that exists in the <code>content-elements.html</code> file, add an entry based on the <code>data-bsi-group</code> identifier to the <code>design.properties</code> file.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 4. giving groups clearly identifiable descriptions</div>
+<div class="title">Listing 5. giving groups clearly identifiable descriptions</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>#Specification
 group.&lt;group-identifier&gt;.label=&lt;Name of the group&gt;
@@ -1049,10 +1147,10 @@ group.textAndImages.label=Text &amp; Images</code></pre>
 <div class="sect2">
 <h3 id="content-elements"><a class="anchor" href="#content-elements"></a>2.3. Content Elements</h3>
 <div class="paragraph">
-<p>For each content element that is defined in the <code>content-elements.html</code> file, the following entries have to be defined in order to get a clean user experience. The <em>element identifier</em> is the value of the <code>data-bsi-element</code> attribute:</p>
+<p>For each content element that is defined in the <code>content-elements.html</code> file, the following entries should be defined in order to get a clean user experience. The <em>element identifier</em> is the value of the <code>data-bsi-element</code> attribute:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 5. important metadata for content elements</div>
+<div class="title">Listing 6. important metadata for content elements</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>#Specification
 element.&lt;element-identifier&gt;.label=&lt;Name of the content element&gt;
@@ -1078,7 +1176,7 @@ element.logo.icon=image</code></pre>
 <p>For element parts, labels can be defined. Those are then used as section headings while editing a content element in the content editor. <code>&lt;part-identifier&gt;</code> is the <code>data-bsi-element-part</code> value of the element part.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 6. important metadata for content element parts</div>
+<div class="title">Listing 7. important metadata for content element parts</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>#Specification
 element.&lt;element-identifier&gt;.parts.&lt;part-identifier&gt;.label=&lt;part label&gt;
@@ -1092,7 +1190,7 @@ element.logo.parts.image.label=Image for Logo</code></pre>
 The index starts at 0 and is only necessary if there are multiple parts of the same type.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 7. defining metadata for multiple element parts of the same element part type for a certain content element</div>
+<div class="title">Listing 8. defining metadata for multiple element parts of the same element part type for a certain content element</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>element.logo.parts.image[0].label=Desktop image for Logo
 element.logo.parts.image[1].label=Mobile image for Logo</code></pre>
@@ -1123,7 +1221,7 @@ We strongly discourage from using styles in email templates. Many email clients 
 <div class="title">Figure 4. example of a style dropdown</div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 8. defining style capabilities</div>
+<div class="title">Listing 9. defining style capabilities</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>#Specification
 style.&lt;style-capability-identifier&gt;.label=&lt;Style capability dropdown label&gt;
@@ -1139,7 +1237,7 @@ style.background-color.class.bg-color-red.label=Red</code></pre>
 <p>1 to n styles can be defined in a comma separated format. Each will then appear as an individual dropdown in the editor, where one style can be selected from the list of styles.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 9. assigning style capabilities to content elements</div>
+<div class="title">Listing 10. assigning style capabilities to content elements</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>#Specification
 element.&lt;element-identifier&gt;.styles=&lt;style-capability-identifier&gt;, &lt;style-capability-identifier&gt;
@@ -1152,14 +1250,14 @@ element.button.styles=background-color,border-color,text-color</code></pre>
 <p>To ensure that a style is effective, a CSS class must be defined for it. If a style is preselected on an element, it is sufficient to add the desired CSS class to the respective element in the HTML.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 10. CSS class for a style</div>
+<div class="title">Listing 11. CSS class for a style</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="css"><span class="class">.colored-button</span><span class="class">.bg-color-green</span> { <span class="key">background-color</span>: <span class="value">green</span>; }
 <span class="class">.colored-button</span><span class="class">.bg-color-red</span> { <span class="key">background-color</span>: <span class="value">red</span>; }</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 11. how styles are applied on content elements</div>
+<div class="title">Listing 12. how styles are applied on content elements</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;button</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">colored-button bg-color-green</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/button&gt;</span></code></pre>
 </div>
@@ -1180,23 +1278,23 @@ CX 1.2.13
 </table>
 </div>
 <div class="paragraph">
-<p>By defining a content element part of type <code>formatted-text</code>, a fully featured rich text editor will be available to the users of the content editor. The built-in WYSIWYG rich text editor is powered by <a href="https://froala.com/">Froala</a>. BSI allows to customize a subset of Froala features directly out of a design. In order to do so, a configuration section in the <code>design.properties</code> can be used to customize the features of the rich text editor. Each element part of type <code>formatted-text</code> can have it&#8217;s own custom list of features, altough in most cases one feature definition is shared among different content elements.</p>
+<p>By defining a content element part of type <code>formatted-text</code>, a fully featured rich text editor will be available to the users of the content editor. The built-in WYSIWYG rich text editor is powered by <a href="https://froala.com/">Froala</a>. BSI allows to customize a subset of Froala features directly out of a design. In order to do so, a configuration section in the <code>design.properties</code> can be used to customize the features of the rich text editor. Each element part of type <code>formatted-text</code> can have it&#8217;s own custom list of features, although in most cases one feature definition is shared among different content elements.</p>
 </div>
 <div class="paragraph">
 <p>A typical, simple rich text editor configuration will look like this:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 12. Rich text editor configuration example</div>
+<div class="title">Listing 13. Rich text editor configuration example</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>html-editor-config.my-config.features=bold,italic,underline,strikeThrough,textColor
 html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The above configuration (named <code>my-config</code>) has to applied on a concrete element part in order to apply the customizations:</p>
+<p>The above configuration (named <code>my-config</code>) needs to be assigned to a concrete element part in order to apply the customizations:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 13. Applying an HTML editor configuration on a content element 'text'</div>
+<div class="title">Listing 14. Applying an HTML editor configuration on a content element 'text'</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>element.text.parts.formatted-text.html-editor-config=my-config</code></pre>
 </div>
@@ -1218,7 +1316,7 @@ html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
 <p>The format is as follows:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 14. Feature list format</div>
+<div class="title">Listing 15. Feature list format</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>html-editor-config.&lt;config identifier&gt;.features=&lt;comma separated feature list&gt;</code></pre>
 </div>
@@ -1227,13 +1325,14 @@ html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
 <p>If one wants to support <strong>bold</strong>, <em>italic</em>, and <span class="underline">underlined</span> text, the definition for doing so would be like this:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 15. Feature list example</div>
+<div class="title">Listing 16. Feature list example</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="env">html-editor-config.my-config.features=bold,italic,underline</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The keys in below list (indicated in <strong>bold</strong>) have to be provided as a comma-separated list as in the example above. Each key identifies a certain feature which will then be displayed as separate button in the editor. The sequence is irrelevant and does not affect the display order, as the display order is given by the server side implementation.</p>
+<p>The keys in the list below (indicated in <strong>bold</strong>) must be provided as a comma separated list as in the example above.
+Each key identifies a certain feature which is then displayed as a separate button in the editor. The sequence is irrelevant and does not affect the display order, as the display order is given by the server-side implementation.</p>
 </div>
 <div class="paragraph">
 <p>The following features are available:</p>
@@ -1476,7 +1575,7 @@ redo
 fullscreen
 </td>
 <td class="hdlist2">
-<p>displays the editor in fullscreen.</p>
+<p>displays the editor in full screen mode.</p>
 </td>
 </tr>
 <tr>
@@ -1499,7 +1598,7 @@ selectAll
 <p>A list of values that will be shown in the editor can be defined for certain features (e.g. the list of colors when the font color feature is active).</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 16. An example using configuration with different value lists set</div>
+<div class="title">Listing 17. An example using configuration with different value lists set</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>html-editor-config.my-extended-config.features=bold,italic,underline,strikeThrough,textColor,backgroundColor,fontSize,paragraphFormat,lineHeight
 html-editor-config.my-extended-config.text-colors=#ff0000,#00ff00,#0000ff
@@ -1520,17 +1619,17 @@ html-editor-config.my-extended-config.enter=p</code></pre>
 <div class="sect4">
 <h5 id="colors"><a class="anchor" href="#colors"></a>2.5.2.1. Colors</h5>
 <div class="paragraph">
-<p>A comma-separated list of RGB colors in hexadecimal format.
+<p>A comma separated list of RGB colors in hexadecimal format.
 To customize the color picker for <code>textColor</code> and <code>backgroundColor</code>, provide a list of colors through the <code>text-colors</code> and <code>background-colors</code> value list.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 17. text-colors example</div>
+<div class="title">Listing 18. text-colors example</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>html-editor-config.my-config.text-colors=#ff00cc,#aabbcc</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 18. background-colors example</div>
+<div class="title">Listing 19. background-colors example</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>html-editor-config.my-config.background-colors=#dddddd,#abcdef</code></pre>
 </div>
@@ -1554,7 +1653,7 @@ CX 1.2.46
 <p>Paragraph formatting and headings can be configured as well. This may be customized through the <code>formats</code> value list, which will only have an effect if the feature <code>paragraphFormat</code> is active.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 19. formats example</div>
+<div class="title">Listing 20. formats example</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>html-editor-config.my-config.formats=p,h1,h3</code></pre>
 </div>
@@ -1634,10 +1733,10 @@ pre
 <div class="sect4">
 <h5 id="line-heights"><a class="anchor" href="#line-heights"></a>2.5.2.3. Line heights</h5>
 <div class="paragraph">
-<p>To customize the <code>lineHeight</code> value list, provide a list of heights in percentages, comma-separated. The line height values define the factor by which factor the current line height is multiplied based on the font size used.</p>
+<p>To customize the <code>lineHeight</code> value list, provide a list of heights in percentages, comma separated. The line height values define the factor by which factor the current line height is multiplied based on the font size used.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 20. line-height example</div>
+<div class="title">Listing 21. line-height example</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>html-editor-config.my-config.line-heights=1,1.15,1.5,2</code></pre>
 </div>
@@ -1649,7 +1748,7 @@ pre
 <p>To customize the list of font sizes for <code>fontSize</code>, provide a list of sizes through the <code>font-sizes</code> value list. A custom default value can be set by using <code>font-size-default</code>.</p>
 </div>
 <div class="paragraph">
-<p>Size information is provided numerically. If several sizes are permitted, then each individual entry is listed in a comma-separated format. The data on font sizes (font size and font size default) are absolute values.</p>
+<p>Size information is provided numerically. If several sizes are permitted, then each individual entry is listed in a comma separated format. The data on font sizes (font size and font size default) are absolute values.</p>
 </div>
 <div class="paragraph">
 <p>The unit of measurement (<code>font-size-unit</code>) defines which unit to be used for information regarding the font sizes. The following are permitted:</p>
@@ -1707,7 +1806,7 @@ mm
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 21. font-sizes, font-size-unit and font-size-default example</div>
+<div class="title">Listing 22. font-sizes, font-size-unit and font-size-default example</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>html-editor-config.my-config.font-sizes=8,9,10,11,12,14,16,18,24,30,36,48,72
 html-editor-config.my-config.font-size-unit=px
@@ -1752,7 +1851,7 @@ br
 <p>In <code>p</code> and <code>div</code> modes, there is the option to force a simple line break with <span class="keyseq"><kbd>Shift</kbd>+<kbd>Enter</kbd></span>. This will add <code>&lt;br&gt;</code> without immediately ending the block and starting a new one.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 22. enter mode example</div>
+<div class="title">Listing 23. enter mode example</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>html-editor-config.my-config.enter=div</code></pre>
 </div>
@@ -1796,7 +1895,7 @@ CX 1.2.46
 <p>The preview mode inside the content editor or any content that is delivered by a story will not have any of the above listed classes.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 23. editor specific CSS example: HTML</div>
+<div class="title">Listing 24. editor specific CSS example: HTML</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;html&gt;</span><span class="tag">&lt;head&gt;</span><span class="comment">&lt;!-- head omitted --&gt;</span><span class="tag">&lt;/head&gt;</span>
 <span class="tag">&lt;body&gt;</span>
@@ -1807,7 +1906,7 @@ CX 1.2.46
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 24. editor specific CSS example: CSS</div>
+<div class="title">Listing 25. editor specific CSS example: CSS</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="css"><span class="class">.hide</span> { <span class="key">display</span>: <span class="value">none</span>; }
 <span class="class">.bsi-ce-edit-mode</span> <span class="class">.show-if-edit</span> { <span class="key">display</span>: <span class="value">block</span>; <span class="key">color</span>:<span class="value">green</span>; }
@@ -1841,7 +1940,7 @@ CX 1.2.46
 Doing so will add a link editor to enter a URL and a link text to the content editor.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 25. Adding an editable link to a content element.</div>
+<div class="title">Listing 26. Adding an editable link to a content element.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;a</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.bsi-software.com/</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>BSI Website<span class="tag">&lt;/a&gt;</span></code></pre>
 </div>
@@ -1857,7 +1956,7 @@ Doing so will add a link editor to enter a URL and a link text to the content ed
 This mechanism in built into the content editor itself to create a link anywhere in a text.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 26. Example on adding a link anywhere in the text.</div>
+<div class="title">Listing 27. Example on adding a link anywhere in the text.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;span</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>If you do not wish to receive further promotions, you can [unsubscribe] now.<span class="tag">&lt;/span&gt;</span></code></pre>
 </div>
@@ -1916,7 +2015,7 @@ The full syntax is <code>[ID|text=link text|url=https://example.com|newWindow]</
 An example of doing so is to add it to an <code>href</code> of a link.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 27. Adding a bracket link to a link will allow us to track the "Facebook" link in CX.</div>
+<div class="title">Listing 28. Adding a bracket link to a link will allow us to track the "Facebook" link in CX.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">[Facebook]</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img/facebook.png</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;/a&gt;</span></code></pre>
 </div>
@@ -1935,7 +2034,7 @@ It is your responsibility as a developer to use escaping where brackets have a d
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 28. Escaping is important in cases like this one.</div>
+<div class="title">Listing 29. Escaping is important in cases like this one.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- CX will convert this to a bracket link --&gt;</span>
 <span class="tag">&lt;input</span> <span class="attribute-name">pattern</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">[0-9]</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -1953,7 +2052,7 @@ However, it is not possible to use anchor links as <code>url</code> of a bracket
 This is due to the fact, that bracket links meant to be trackable by CX and this requires a complete roundtrip to the server.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 29. How to use anchor links in a design.</div>
+<div class="title">Listing 30. How to use anchor links in a design.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;section</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">news</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="comment">&lt;!-- some news --&gt;</span>
@@ -2004,8 +2103,8 @@ But the containing HTML must be valid.
 <div class="paragraph">
 <p>As we can see in the listing, <code>data-bsi-element</code> defines the identifier of the content element.
 It must not contain any spaces.
-The identifier corresponds to the value that can be used in the attribute called <code>data-bsi-dropzone-allowed-elements</code> in the drop zone.
-The element marked with the identifier, when used, is inserted into the relevant drop zone (not only the child elements).</p>
+The identifier corresponds to the value that can be used in the attribute called <code>data-bsi-dropzone-allowed-elements</code> in the dropzone.
+The element marked with the identifier, when used, is inserted into the relevant dropzone (not only the child elements).</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -2021,10 +2120,10 @@ To make sure this works properly, all content elements must be block elements ra
 </table>
 </div>
 <div class="paragraph">
-<p>A content element can define one or more internal drop zones.
+<p>A content element can define one or more internal dropzones.
 The definition is the same as for <code>design.html</code>.
-For example, use it with a content element for a 3-column layout with three internal drop zones.
-While the drop zones may be nested arbitrarily, please pay attention to usability.</p>
+For example, use it with a content element for a 3-column layout with three internal dropzones.
+While the dropzones may be nested arbitrarily, please pay attention to usability.</p>
 </div>
 <div class="sect3">
 <h4 id="grouping"><a class="anchor" href="#grouping"></a>3.3.1. Grouping</h4>
@@ -2121,13 +2220,13 @@ Boolean attributes like <code>data-bsi-multiline</code> require an empty value <
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 30. Sample usage of the plain text part.</div>
+<div class="title">Listing 31. Sample usage of the plain text part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;h1</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element title-h1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/h1&gt;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 31. Sample usage of the plain text part with the multiline feature.</div>
+<div class="title">Listing 32. Sample usage of the plain text part with the multiline feature.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;p</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">paragraph</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-multiline</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;br&gt;</span>dolor sit amet<span class="tag">&lt;/p&gt;</span></code></pre>
 </div>
@@ -2142,7 +2241,7 @@ The rich text field with a limited number of formatting options is available as 
 For more information about the available configuration options see chapter <a href="#rich-text-editor">Configuration capabilities of the Rich Text Editor</a>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 32. Sample usage of the formatted text part.</div>
+<div class="title">Listing 33. Sample usage of the formatted text part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;section</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">section</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">formatted-text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;h1&gt;</span>Lorem ipsum dolor sit amet<span class="tag">&lt;/h1&gt;</span>
@@ -2162,7 +2261,7 @@ A text field is used as the editor.
 HTML can be written directly into this field.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 33. Sample usage of the HTML part.</div>
+<div class="title">Listing 34. Sample usage of the HTML part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">html</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">html</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;iframe</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.openstreetmap.org/export/embed.html</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">height</span>: <span class="float">500px</span>;<span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/iframe&gt;</span>
@@ -2265,14 +2364,14 @@ More information on obtaining a YouTube API key: <a href="https://developers.goo
 </div>
 <div class="paragraph">
 <p>Be aware that there are two kinds of URLs involved:
-One is the link to the video platform itself for the <code>href</code> attribute on the <code>&lt;a&gt;</code> tag and there is the embeded URL for the <code>&lt;iframe&gt;</code> player.
+One is the link to the video platform itself for the <code>href</code> attribute on the <code>&lt;a&gt;</code> tag and there is the embedded URL for the <code>&lt;iframe&gt;</code> player.
 In the case of YouTube <a href="https://www.youtube.com/watch?v=YpnFs4aBLQA" class="bare">https://www.youtube.com/watch?v=YpnFs4aBLQA</a> is the link to the video platform.
-The corresponding embeded URL would be <a href="https://www.youtube.com/embed/YpnFs4aBLQA" class="bare">https://www.youtube.com/embed/YpnFs4aBLQA</a>.
+The corresponding embedded URL would be <a href="https://www.youtube.com/embed/YpnFs4aBLQA" class="bare">https://www.youtube.com/embed/YpnFs4aBLQA</a>.
 If you want to provide sample content for your element you may have to fill both URLs in the right tag.
 The following listing illustrates the use of sample content for a simple video element:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 34. Example of a simple video element.</div>
+<div class="title">Listing 35. Example of a simple video element.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element video</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">video-simple</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">responsive-video</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">video</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-video-data-link</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.youtube.com/watch?v=YpnFs4aBLQA</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -2306,7 +2405,7 @@ The following listing illustrates the use of sample content for a simple video e
 <p>A more complex video element would be the following:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 35. Example of a complex video element.</div>
+<div class="title">Listing 36. Example of a complex video element.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element video</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">video-thumbnail</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">video-thumbnail</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">video</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-video-data-link</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.youtube.com/watch?v=YpnFs4aBLQA</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -2360,7 +2459,7 @@ The following listing illustrates the use of sample content for a simple video e
 <div class="ulist">
 <ul>
 <li>
-<p>Enrich your landingpage or website with embedded videos.</p>
+<p>Enrich your landing page or website with embedded videos.</p>
 </li>
 <li>
 <p>Use video thumbnails in your content.</p>
@@ -2374,13 +2473,30 @@ The following listing illustrates the use of sample content for a simple video e
 <div class="sect4">
 <h5 id="image"><a class="anchor" href="#image"></a>3.3.2.5. Image</h5>
 <div class="paragraph">
-<p>The <code>image</code> part can only be placed on a <code>&lt;img&gt;</code> or <code>&lt;a&gt;</code> tag.
-The source is inserted in the <code>src</code> attribute.
-By specifying the <code>srcset</code> attribute, the images are also scaled accordingly.
+<p>The <code>image</code> element part can only be placed inside of a <code>&lt;img&gt;</code> or <code>&lt;a&gt;</code> tag.
+The source is inserted in the <code>src</code> attribute.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 37. Example of an image element</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image-simple</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">example.jpg</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Example image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is not possible to omit the image of an <code>image</code> part.
+Therefore it is mandatory to specify an image in the content editor.
+Otherwise a validation error will occur.</p>
+</div>
+<div class="sect5">
+<h6 id="srcset"><a class="anchor" href="#srcset"></a>srcset</h6>
+<div class="paragraph">
+<p>By specifying the <code>srcset</code> attribute, the images are also scaled accordingly.
 If a <code>srcset</code> attribute is present, the <code>src</code> attribute is set to the image at its highest resolution (according to the defined <code>srcset</code>).
 If there is no <code>srcset</code> attribute, the selected image is not scaled and is placed directly as <code>src</code>.
-For images with dynamic sources, the definition of the <code>srcset</code> is ignored.
-Thus, dynamic image sources are not scaled.</p>
+For images with dynamic sources (the image is set through the story), the definition of the <code>srcset</code> is ignored.
+If you set an image in the content editor, make sure it is of decent size. After saving the content, the image is scaled to the sizes specified in the <code>srcset</code> attribute and stored on the CX resource server. Depending on the resolution of device that is requesting the landing page/website, a different resolution of the image is loaded.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2389,23 +2505,24 @@ Thus, dynamic image sources are not scaled.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Dynamic image sources can be specified with angle brackets, e.g. <code>&lt;my-dynamic-image&gt;</code>.
+We highly recommend to set the <code>srcset</code> attribute.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>It is not possible to omit the image of an <code>image</code> part.
-Therefore it is mandatory to specify an image in the content editor.
-Otherwise a validation error will occur.
-The following listing illustrates a simple image element with <code>srcset</code> attributes included:</p>
-</div>
 <div class="listingblock">
-<div class="title">Listing 36. Example of a simple image element.</div>
+<div class="title">Listing 38. Example of a image element that scales to the sizes specified in srcset</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image-simple</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image-simple</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">example-800w.jpg</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">srcset</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">example-480w.jpg 480w, example-800w.jpg 800w</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Example image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
 <span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="providing-an-image-through-the-story"><a class="anchor" href="#providing-an-image-through-the-story"></a>Providing an image through the story</h6>
+<div class="paragraph">
+<p>Dynamic image sources can be specified with angle brackets, e.g. <code>&lt;my-dynamic-image&gt;</code>. The image URL will then be provided by the story. Please note that in this case the <code>srcset</code> attribute will be ignored.  Thus, dynamic image sources are not scaled.</p>
 </div>
 </div>
 </div>
@@ -2417,7 +2534,7 @@ It places the CSS attribute <code>background-image</code>.
 The image selection is available as the editor just like with the image part.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 37. Example usage of the background-image part.</div>
+<div class="title">Listing 39. Example usage of the background-image part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element scene</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">scene</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">background-image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">background-image</span>: <span class="function"><span class="delimiter">url(</span><span class="content">'example.jpg'</span><span class="delimiter">)</span></span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
@@ -2447,7 +2564,7 @@ It is possible to use an iterator to generate dynamic tables.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 38. Example usage of the table part.</div>
+<div class="title">Listing 40. Example usage of the table part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element table</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">simple-table</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;table&gt;</span>
@@ -2471,7 +2588,7 @@ It is possible to use an iterator to generate dynamic tables.
 <div class="paragraph">
 <p>An arbitrary element.
 The attribute <code>data-bsi-iterator</code> can be defined on this element.
-The attribute <code>data-bsi-iterator-item</code> has to be defined on the element or on one of the included elements.
+The attribute <code>data-bsi-iterator-item</code> must be defined on the element or on one of the included elements.
 This defines the element to be duplicated.
 If <code>data-bsi-iterator</code> is defined and the iterator does not provide any data, the entire element is removed.
 Otherwise, only the element to be duplicated is marked with <code>data-bsi-iterator-item</code>.</p>
@@ -2493,7 +2610,7 @@ Boolean attributes like <code>data-bsi-iterator-item</code> require an empty val
 The name of the iterator can be placed in this text field.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 39. Example usage of the iterator part.</div>
+<div class="title">Listing 41. Example usage of the iterator part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element iterator</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">iterator</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-iterator</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">sample</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">customer</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-iterator-item</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -2567,7 +2684,7 @@ last
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 40. Example usage of the news-snippets part.</div>
+<div class="title">Listing 42. Example usage of the news-snippets part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element news</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">news-snippets</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">news-snippets</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">news-image element</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -2589,7 +2706,7 @@ last
 The element must contain a submit button and may also contain a reset button.
 Those buttons must be <code>&lt;input&gt;</code> elements.
 In the form configuration, the reset button can be hidden or displayed.
-Then, in the DOM, the attribute disabled is set on the input element.</p>
+In that case, the DOM attribute <code>disabled</code> is set on the input element.</p>
 </div>
 <div class="paragraph">
 <p>The form element must contain an element with the <code>data-bsi-form-validation</code> attribute, and this attribute must contain an element with the <code>data-bsi-form-validation-item</code> attribute.</p>
@@ -2624,7 +2741,7 @@ Thus, the mandatory elements are styled using the respective CSS selectors.</p>
 Any form with this marker will be left untouched by CX.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 41. Example usage of the form part.</div>
+<div class="title">Listing 43. Example usage of the form part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element form</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">slim-form</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;form</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form form-wrapper</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -2754,7 +2871,7 @@ It is up to the developer to use polyfills where this is required.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 42. Example usage of the form-field part.</div>
+<div class="title">Listing 44. Example usage of the form-field part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-form-field-fixed-type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Date<span class="tag">&lt;/label&gt;</span>
@@ -2782,7 +2899,7 @@ Boolean attributes like <code>data-bsi-form-field-fixed-type</code> require an e
 Contains a <code>&lt;label&gt;</code> and an <code>&lt;input&gt;</code> element with the <code>checkbox</code> type.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 43. Example usage of the form-checkbox part.</div>
+<div class="title">Listing 45. Example usage of the form-checkbox part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-checkbox</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-checkbox</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element checkbox</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">checkbox</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">checkbox1</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
@@ -2798,7 +2915,7 @@ Contains a <code>&lt;label&gt;</code> and an <code>&lt;input&gt;</code> element 
 Contains a <code>&lt;label&gt;</code> and a <code>&lt;textarea&gt;</code> element.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 44. Example usage of the form-textarea part.</div>
+<div class="title">Listing 46. Example usage of the form-textarea part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-textarea</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-textarea</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field form-element</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Description<span class="tag">&lt;/label&gt;</span>
@@ -2834,7 +2951,7 @@ The <code>multiple</code> attribute is not supported.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 45. Example usage of the form-select part.</div>
+<div class="title">Listing 47. Example usage of the form-select part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-select</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-select</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-select form-element</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-value-list</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Yes</span>
 <span class="content">No</span>
@@ -2865,7 +2982,7 @@ Same as the <a href="#form-select">form-select</a> part.
 The same applies to the <code>data-bsi-form-select-fixed-value-list</code> attribute.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 46. Example usage of the form-radio part.</div>
+<div class="title">Listing 48. Example usage of the form-radio part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-radio</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-radio</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-radio form-element</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>To be or not to be?<span class="tag">&lt;/label&gt;</span>
@@ -2937,7 +3054,7 @@ Boolean attributes like <code>data-bsi-link-fixed-inner-html</code> require an e
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 47. Example usage of the link part.</div>
+<div class="title">Listing 49. Example usage of the link part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cta</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.bsi-software.com/</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>More<span class="tag">&lt;/a&gt;</span>
@@ -2963,7 +3080,7 @@ The link <code>href</code> can be preselected with a URL or with CX links in squ
 <p>The <code>&lt;a&gt;</code> element, in turn, can contain additional elements.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 48. Example usage of the social-follow part.</div>
+<div class="title">Listing 50. Example usage of the social-follow part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-follow</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-follow</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-follow</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Facebook</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-media-item</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -3151,7 +3268,7 @@ The CX Design Creator has the following functionality and tasks:</p>
 <div class="title">Figure 8. Run the CX Design Creator</div>
 </div>
 <div class="paragraph">
-<p>Note the reference Webserver: <a href="http://127.0.0.1:1234" class="bare">http://127.0.0.1:1234</a>. The CX Design Creator publishes all content-elements that are mentioned in the file "preview-template.html" to a webserver. It is very useful to check all changes on a certain content-element locally in your browser, before a .zip file is uploaded to a CX-Environment.</p>
+<p>Note the reference Webserver: <a href="http://127.0.0.1:1234" class="bare">http://127.0.0.1:1234</a>. The CX Design Creator publishes all content-elements that are mentioned in the file "preview-template.html" to a webserver. It is very useful to check all changes on a certain content-element locally in your browser before a .zip file is uploaded to a CX-Environment.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -3163,7 +3280,7 @@ The CX Design Creator has the following functionality and tasks:</p>
 <p>The CX Design Creator itself is configured with a YAML file compiler.yml:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 49. Example of a compiler.yml file</div>
+<div class="title">Listing 51. Example of a compiler.yml file</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">engine</span>: <span class="string"><span class="content">{ version: '0.79.4' }</span></span>
 <span class="key">watch</span>:
@@ -3269,7 +3386,7 @@ Instead, any modifications should be made in the source code itself.</p>
 <div class="paragraph">
 <p>Of course, you can also use a separate tool stack to develop a design.
 We do not recommend the development of a design directly in HTML, CSS, and JavaScript.
-This may work with small templates, but it quickly becomes confusing and error-prone.</p>
+This may work with small templates, but it quickly becomes confusing and error prone.</p>
 </div>
 </div>
 </div>
@@ -3390,7 +3507,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Listing 50. example of a badly referenced element in a dropzone</div>
+<div class="title">Listing 52. example of a badly referenced element in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Design_de-CH.zip/design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span>
@@ -3427,7 +3544,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-In the example above, a <em>text</em> element part is specified. According to the documentation, it has to either be <em>plain-text</em> or <em>formatted-text</em>. Thus, it is unknown to CX.
+In the example above, a <em>text</em> element part is specified. According to the documentation, it must either be <em>plain-text</em> or <em>formatted-text</em>. Thus, it is unknown to CX.
 </td>
 </tr>
 </table>
@@ -3457,7 +3574,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 51. example of a sample content that does not match the specified content element</div>
+<div class="title">Listing 53. example of a sample content that does not match the specified content element</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Content Element: Specification of the element (content-elements.html) --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hello-world</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-hello-world</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -3501,7 +3618,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p>A dropzone can contain 0&#8230;&#8203;n content elements. Only content elements are allowed as direct child nodes of dropzones. Therefore, HTML that is not part of a content element must not be placed in a dropzone.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 52. example of a detached paragraph that must not be placed in a dropzone</div>
+<div class="title">Listing 54. example of a detached paragraph that must not be placed in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1 title-h2 title-h3 basic-text basic-image basic-cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;h1</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element title-h1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/h1&gt;</span>
@@ -3525,7 +3642,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p><em>In the example above, this would be the <a href="#image">Image</a> content element <a href="#parts">Parts</a> documentation.</em></p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 53. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
+<div class="title">Listing 55. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid: uses &lt;div&gt; which is not an image --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
@@ -3544,7 +3661,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="sect3">
 <h4 id="design-update"><a class="anchor" href="#design-update"></a>5.2.2. Design Update</h4>
 <div class="paragraph">
-<p>To update existing content onto the most recent version of a design, the content has to be explicitly updated by clicking the <em><strong>Update Design</strong></em> button in the content editor.
+<p>To update existing content onto the most recent version of a design, the content must be explicitly updated by clicking the <em><strong>Update Design</strong></em> button in the content editor.
 Success or failure of such a design update is indicated by a message box.</p>
 </div>
 <div class="paragraph">
@@ -3628,7 +3745,7 @@ Content:
 Removing a <code>script</code> tag from the DOM if the content is being edited can be achieved by adding <code>data-bsi-remove-if='draft'</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 54. removing a sript in draft (edit) mode</div>
+<div class="title">Listing 56. removing a sript in draft (edit) mode</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">draft</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">your-javascript that manipulates-the-DOM.js</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span></code></pre>
 </div>
@@ -3637,10 +3754,10 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 <div class="sect5">
 <h6 id="usage-of-invalid-html"><a class="anchor" href="#usage-of-invalid-html"></a>Usage of invalid HTML</h6>
 <div class="paragraph">
-<p>Some browsers detect and try to <em>fix</em> invalid HTML. As a consequence, the DOM structure of the HTML is modified by the browsers, whereas CX still expects the specified structure.</p>
+<p>Some browsers detect and try to <em>fix</em> invalid HTML. Therefore, the DOM structure of the HTML is modified by the browsers, whereas CX still expects the specified structure.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 55. invalid HTML will lead to issues</div>
+<div class="title">Listing 57. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML, as defined in content-elements.html --&gt;</span>
 <span class="tag">&lt;table</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -3668,7 +3785,7 @@ This section applies to installations prior to CX 1.2.48.
 </table>
 </div>
 <div class="paragraph">
-<p>Inline SVG is not supported in older CX versions. As a workaround, you may save the SVG to a file instead and  include it with an <code>&lt;img&gt;</code> tag. If it is a requirement to render the SVG inline, some projects have successfully used the open source library <a href="https://github.com/iconfu/svg-inject">svg-inject</a> as a fallback.</p>
+<p>Inline SVG is not supported in older CX versions. As a workaround, you may save the SVG to a file instead and  include it with an <code>&lt;img&gt;</code> tag. If it is a requirement to render the SVG inline, some projects have successfully used the Open-Source library <a href="https://github.com/iconfu/svg-inject">svg-inject</a> as a fallback.</p>
 </div>
 </div>
 </div>
@@ -3699,10 +3816,12 @@ This section applies to installations prior to CX 1.2.46.
 <div class="title">Figure 16. element is being dropped outside of the dropzone (or nowhere)</div>
 </div>
 <div class="paragraph">
-<p>This may happen if a dropzone name is duplicated. Drop zones must have unique identifiers in older versions of BSI CX. Make sure that a unique name is specified for each usage of <code>data-bsi-dropzone</code>.</p>
+<p>This may happen if a dropzone name is duplicated.
+Dropzones must have unique identifiers in older versions of BSI CX.
+Make sure that a unique name is specified for each usage of <code>data-bsi-dropzone</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 56. data-bsi-dropzone uniqueness violated</div>
+<div class="title">Listing 58. data-bsi-dropzone uniqueness violated</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">main-dropzone</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -3729,13 +3848,42 @@ This section applies to installations prior to CX 1.2.46.
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="design-creator-issues"><a class="anchor" href="#design-creator-issues"></a>5.2.4. Design Creator issues</h4>
+<div class="sect4">
+<h5 id="why-is-the-design-creator-end-of-life"><a class="anchor" href="#why-is-the-design-creator-end-of-life"></a>5.2.4.1. Why is the Design Creator End of Life?</h5>
+<div class="paragraph">
+<p>We&#8217;ve built a next generation Design Build that is Open-Source and based on widely used tech stack. You may find more information on <a href="https://github.com/bsi-software/bsi-cx-design-build">GitHub</a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="is-there-any-detailed-documentation-for-the-cx-design-creator"><a class="anchor" href="#is-there-any-detailed-documentation-for-the-cx-design-creator"></a>5.2.4.2. Is there any detailed documentation for the CX Design Creator</h5>
+<div class="paragraph">
+<p>Unfortunately there is no detailed documentation. We do no longer invest into the <em>CX Design Creator</em> as our sucessor, the <a href="https://github.com/bsi-software/bsi-cx-design-build">CX Design Build</a> as ready to use soon.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="html-comments-mso-tags-missing-after-running-the-cx-design-creator"><a class="anchor" href="#html-comments-mso-tags-missing-after-running-the-cx-design-creator"></a>5.2.4.3. HTML Comments / MSO Tags missing after running the CX Design Creator</h5>
+<div class="paragraph">
+<p>If you are using the <em>CX Design Creator</em> and your HTML in the <code>design.zip</code> is missing all HTML comments and therefore all outlook specific code is missing, change the <code>tidy</code> property to <code>false</code> in the <code>compiler.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yml"><span class="key">defaults</span>:
+    <span class="key">twig</span>:
+        <span class="key">comments</span>: <span class="string"><span class="content">true</span></span>
+        <span class="key">tidy</span>: <span class="string"><span class="content">false</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2021-08-05 18:59:17 CEST
+Last update 2022-01-27 18:59:55 CET
 </div>
 </div>
 </body>
