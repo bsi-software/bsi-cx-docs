@@ -742,7 +742,7 @@ table.CodeRay td.code>pre{padding:0}
 <h1>Design Documentation: BSI Studio 1.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2022-01-27</span>
+<span id="revdate">Version Date 2022-02-07</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -819,13 +819,6 @@ table.CodeRay td.code>pre{padding:0}
 <p>Create experiences that delight customers.
 For marketing, sales, and service: Find, win, retain, and understand customers with BSI CX. Design, execute and optimize perfect customer journeys.
 Everything is cross-departmental, individualized for every customer, in real time, across all touchpoints, and fully automated – for extraordinary and emotional experiences.</p>
-</div>
-<div class="videoblock">
-<div class="content">
-<video src="./video/EN_CX-Screencast.mp4" width="600px" controls>
-Your browser does not support the video tag.
-</video>
-</div>
 </div>
 <div class="paragraph">
 <p>Learn more about all features of BSI CX by visiting <a href="https://www.bsi-software.com/en/cx">our product website</a>.</p>
@@ -3715,7 +3708,19 @@ It is helpful to to view the details of the error message by clicking on <strong
 </td>
 <td class="content">
 <div class="title">viewing validation error details</div>
-In Versions prior to CX 1.2.48, the error message may be cut off in the message box. Use <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> and paste the error message to any text file to view the full details.
+In versions prior to CX 1.2.48, the error message may be cut off in the message box.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Use <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> and paste the error message to any text file to view the full details.
 </td>
 </tr>
 </table>
@@ -3752,12 +3757,33 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 </div>
 </div>
 <div class="sect5">
+<h6 id="duplicate-attributes"><a class="anchor" href="#duplicate-attributes"></a>Duplicate attributes</h6>
+<div class="paragraph">
+<p>If you compare the specification of the content element to the actual content and the difference is somehow related to a CSS value that is being replaced by the term <em><strong>placeholder</strong></em>, then you might have defined the error causing HTML attribute twice.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/troubleshooting_placeholder_duplicate_attribute.png" alt="splitting the error message to compare _content_ and _content element_">
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 57. invalid HTML will lead to issues</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML: the attribute 'style' is defined twice --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">text-decoration</span>: <span class="value">none</span>;<span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img/example.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">width</span>:<span class="float">100%</span>; <span class="key">max-width</span>: <span class="float">100%</span>;<span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+
+<span class="comment">&lt;!-- By merging the 'style' attribute, we can fix the issue above --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img/example.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">text-decoration</span>: <span class="value">none</span>; <span class="key">width</span>:<span class="float">100%</span>; <span class="key">max-width</span>: <span class="float">100%</span>;<span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
 <h6 id="usage-of-invalid-html"><a class="anchor" href="#usage-of-invalid-html"></a>Usage of invalid HTML</h6>
 <div class="paragraph">
 <p>Some browsers detect and try to <em>fix</em> invalid HTML. Therefore, the DOM structure of the HTML is modified by the browsers, whereas CX still expects the specified structure.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 57. invalid HTML will lead to issues</div>
+<div class="title">Listing 58. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML, as defined in content-elements.html --&gt;</span>
 <span class="tag">&lt;table</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -3821,7 +3847,7 @@ Dropzones must have unique identifiers in older versions of BSI CX.
 Make sure that a unique name is specified for each usage of <code>data-bsi-dropzone</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 58. data-bsi-dropzone uniqueness violated</div>
+<div class="title">Listing 59. data-bsi-dropzone uniqueness violated</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">main-dropzone</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -3883,7 +3909,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2022-01-27 18:59:55 CET
+Last update 2022-02-07 18:58:44 CET
 </div>
 </div>
 </body>
