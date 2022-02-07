@@ -651,7 +651,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h1>Design Documentation: BSI CX 1.3</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2022-01-31</span>
+<span id="revdate">Version Date 2022-02-07</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -2447,16 +2447,28 @@ We highly recommend to set the <code>srcset</code> attribute.
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<div class="title">Example of a image element that scales to the sizes specified in srcset</div>
-<p>The attribute <code>data-bsi-hide-link</code> controls whether the field <em>URL/internet address</em> and the check-box <em>Open in new window</em> is visible and editable in the content editor. A design developer may still wrap the image inside an <code>A</code> element in the content element, but the user cannot change the link.</p>
-</div>
 <div class="listingblock">
+<div class="title">Listing 38. Example of a image element that scales to the sizes specified in srcset</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="image-simple"&gt;
     &lt;img src="example-800w.jpg" srcset="example-480w.jpg 480w, example-800w.jpg 800w" alt="Example image" data-bsi-element-part="image" /&gt;
 &lt;/div&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The attribute <code>data-bsi-hide-link</code> controls whether the field <em>URL/internet address</em> and the checkbox <em>Open in new window</em> is visible and editable in the content editor. A design developer may still wrap the image inside an <code>&lt;a&gt;</code> tag in the content element, but the user cannot change the link.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The attribute <code>data-bsi-hide-link</code> is available from CX 1.3.40 onward
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect5">
@@ -2474,7 +2486,7 @@ It places the CSS attribute <code>background-image</code>.
 The image selection is available as the editor just like with the image part.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 38. Example usage of the background-image part.</div>
+<div class="title">Listing 39. Example usage of the background-image part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element scene" data-bsi-element="scene"&gt;
     &lt;div data-bsi-element-part="background-image" style="background-image: url('example.jpg')"&gt;&lt;/div&gt;
@@ -2504,7 +2516,7 @@ It is possible to use an iterator to generate dynamic tables.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 39. Example usage of the table part.</div>
+<div class="title">Listing 40. Example usage of the table part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element table" data-bsi-element="simple-table" data-bsi-element-part="table"&gt;
     &lt;table&gt;
@@ -2550,7 +2562,7 @@ Boolean attributes like <code>data-bsi-iterator-item</code> require an empty val
 The name of the iterator can be placed in this text field.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 40. Example usage of the iterator part.</div>
+<div class="title">Listing 41. Example usage of the iterator part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element iterator" data-bsi-element="iterator" data-bsi-iterator="sample"&gt;
     &lt;div class="customer" data-bsi-iterator-item=""&gt;
@@ -2624,7 +2636,7 @@ last
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 41. Example usage of the news-snippets part.</div>
+<div class="title">Listing 42. Example usage of the news-snippets part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element news" data-bsi-element="news-snippets" data-bsi-element-part="news-snippets"&gt;
     &lt;div class="news-image element"&gt;
@@ -2681,7 +2693,7 @@ Thus, the mandatory elements are styled using the respective CSS selectors.</p>
 Any form with this marker will be left untouched by CX.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 42. Example usage of the form part.</div>
+<div class="title">Listing 43. Example usage of the form part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="element form" data-bsi-element="slim-form"&gt;
     &lt;form class="form form-wrapper" data-bsi-element-part="form" id="form"&gt;
@@ -2797,7 +2809,19 @@ Doing so allows the setup of a customized date field, for example.
 The type of the form field is then set and cannot be changed in the content editor.</p>
 </div>
 <div class="paragraph">
-<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> check-box is visible and editable in the content editor. If the check-box is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> checkbox is visible and editable in the content editor. If the checkbox is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The attribute <code>data-bsi-hide-required</code> is available from CX 1.3.40 onward
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -2814,7 +2838,7 @@ It is up to the developer to use polyfills where this is required.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 43. Example usage of the form-field part.</div>
+<div class="title">Listing 44. Example usage of the form-field part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div class="form-field" data-bsi-element="date-field" data-bsi-element-part="form-field" data-bsi-form-field-fixed-type=""&gt;
     &lt;label class="label"&gt;Date&lt;/label&gt;
@@ -2842,10 +2866,22 @@ Boolean attributes like <code>data-bsi-form-field-fixed-type</code> require an e
 Contains a <code>&lt;label&gt;</code> and an <code>&lt;input&gt;</code> element with the <code>checkbox</code> type.</p>
 </div>
 <div class="paragraph">
-<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> check-box is visible and editable in the content editor. If the check-box is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> checkbox is visible and editable in the content editor. If the checkbox is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The attribute <code>data-bsi-hide-required</code> is available from CX 1.3.40 onward
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 44. Example usage of the form-checkbox part.</div>
+<div class="title">Listing 45. Example usage of the form-checkbox part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-checkbox" data-bsi-element-part="form-checkbox" class="element checkbox"&gt;
     &lt;input type="checkbox" id="checkbox1" /&gt;
@@ -2861,10 +2897,22 @@ Contains a <code>&lt;label&gt;</code> and an <code>&lt;input&gt;</code> element 
 Contains a <code>&lt;label&gt;</code> and a <code>&lt;textarea&gt;</code> element.</p>
 </div>
 <div class="paragraph">
-<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> check-box is visible and editable in the content editor. If the check-box is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> checkbox is visible and editable in the content editor. If the checkbox is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The attribute <code>data-bsi-hide-required</code> is available from CX 1.3.40 onward
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 45. Example usage of the form-textarea part.</div>
+<div class="title">Listing 46. Example usage of the form-textarea part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-textarea" data-bsi-element-part="form-textarea" class="form-field form-element"&gt;
     &lt;label class="label"&gt;Description&lt;/label&gt;
@@ -2888,7 +2936,19 @@ Then, the list of values cannot be changed in the content editor.
 Only the preselection can be changed.</p>
 </div>
 <div class="paragraph">
-<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> check-box is visible and editable in the content editor. If the check-box is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> checkbox is visible and editable in the content editor. If the checkbox is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The attribute <code>data-bsi-hide-required</code> is available from CX 1.3.40 onward
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -2903,7 +2963,7 @@ The <code>multiple</code> attribute is not supported.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 46. Example usage of the form-select part.</div>
+<div class="title">Listing 47. Example usage of the form-select part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-select" data-bsi-element-part="form-select" class="form-select form-element" data-bsi-value-list="Yes
 No
@@ -2934,10 +2994,22 @@ Same as the <a href="#form-select">form-select</a> part.
 The same applies to the <code>data-bsi-form-select-fixed-value-list</code> attribute.</p>
 </div>
 <div class="paragraph">
-<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> check-box is visible and editable in the content editor. If the check-box is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+<p>The attribute <code>data-bsi-hide-required</code> controls whether the <em>mandatory</em> checkbox is visible and editable in the content editor. If the checkbox is not shown, the original state of the <code>required</code> attribute is preserved, as defined by the content element.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The attribute <code>data-bsi-hide-required</code> is available from CX 1.3.40 onward
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 47. Example usage of the form-radio part.</div>
+<div class="title">Listing 48. Example usage of the form-radio part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="form-radio" data-bsi-element-part="form-radio" class="form-radio form-element"&gt;
     &lt;label class="label"&gt;To be or not to be?&lt;/label&gt;
@@ -3009,7 +3081,7 @@ Boolean attributes like <code>data-bsi-link-fixed-inner-html</code> require an e
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 48. Example usage of the link part.</div>
+<div class="title">Listing 49. Example usage of the link part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="cta" class="element cta"&gt;
     &lt;a href="https://www.bsi-software.com/" data-bsi-element-part="link"&gt;More&lt;/a&gt;
@@ -3035,7 +3107,7 @@ The link <code>href</code> can be preselected with a URL or with CX links in squ
 <p>The <code>&lt;a&gt;</code> element, in turn, can contain additional elements.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 49. Example usage of the social-follow part.</div>
+<div class="title">Listing 50. Example usage of the social-follow part.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="social-follow" data-bsi-element-part="social-follow"&gt;
     &lt;div data-bsi-social-follow="Facebook" class="social-media-item"&gt;
@@ -3239,7 +3311,7 @@ preview.image.url
 <p><strong>data-bsi-hide-edit-button</strong> may be used to prevent editing of a content element. The attribute must be located on the same tag as the <code>data-bsi-element</code> attribute.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 50. hiding the content element edit button</div>
+<div class="title">Listing 51. hiding the content element edit button</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="..." data-bsi-hide-edit-button="true"&gt;...&lt;/div&gt;</code></pre>
 </div>
@@ -3248,7 +3320,7 @@ preview.image.url
 <p><strong>data-bsi-hide-move-button</strong>, <strong>data-bsi-hide-copy-button</strong>, and <strong>data-bsi-hide-remove-button</strong> are working in the same manner, but on dropzone level. They will prevent from moving, copying, or removing content elements on a dropzone.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 51. prevent moving, copying and removal of content elements.</div>
+<div class="title">Listing 52. prevent moving, copying and removal of content elements.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-dropzone="..." data-bsi-hide-move-button="true" data-bsi-hide-copy-button="true" data-bsi-hide-remove-button="true"&gt;...&lt;/div&gt;</code></pre>
 </div>
@@ -3328,7 +3400,7 @@ The CX Design Creator has the following functionality and tasks:</p>
 <p>The CX Design Creator itself is configured with a YAML file compiler.yml:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 52. Example of a compiler.yml file</div>
+<div class="title">Listing 53. Example of a compiler.yml file</div>
 <div class="content">
 <pre class="highlight"><code class="language-yaml" data-lang="yaml">engine: { version: '0.79.4' }
 watch:
@@ -3555,7 +3627,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Listing 53. example of a badly referenced element in a dropzone</div>
+<div class="title">Listing 54. example of a badly referenced element in a dropzone</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Design_de-CH.zip/design.html --&gt;
 &lt;div data-bsi-dropzone="content"
@@ -3622,7 +3694,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 54. example of a sample content that does not match the specified content element</div>
+<div class="title">Listing 55. example of a sample content that does not match the specified content element</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Content Element: Specification of the element (content-elements.html) --&gt;
 &lt;div class="hello-world" data-bsi-element="basic-hello-world"&gt;
@@ -3666,7 +3738,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p>A dropzone can contain 0&#8230;&#8203;n content elements. Only content elements are allowed as direct child nodes of dropzones. Therefore, HTML that is not part of a content element must not be placed in a dropzone.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 55. example of a detached paragraph that must not be placed in a dropzone</div>
+<div class="title">Listing 56. example of a detached paragraph that must not be placed in a dropzone</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-dropzone="content" data-bsi-dropzone-allowed-elements="title-h1 title-h2 title-h3 basic-text basic-image basic-cta"&gt;
     &lt;h1 data-bsi-element="title-h1" data-bsi-element-part="plain-text" class="element title-h1"&gt;Lorem ipsum&lt;/h1&gt;
@@ -3690,7 +3762,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p><em>In the example above, this would be the <a href="#image">Image</a> content element <a href="#parts">Parts</a> documentation.</em></p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 56. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
+<div class="title">Listing 57. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Invalid: uses &lt;div&gt; which is not an image --&gt;
 &lt;div data-bsi-element-part="image" src="img.png" alt=""&gt;&lt;/div&gt;
@@ -3793,7 +3865,7 @@ Content:
 Removing a <code>script</code> tag from the DOM if the content is being edited can be achieved by adding <code>data-bsi-remove-if='draft'</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 57. removing a sript in draft (edit) mode</div>
+<div class="title">Listing 58. removing a sript in draft (edit) mode</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;script data-bsi-remove-if="draft" src="your-javascript that manipulates-the-DOM.js" &gt;&lt;/script&gt;</code></pre>
 </div>
@@ -3805,7 +3877,7 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 <p>Some browsers detect and try to <em>fix</em> invalid HTML. Therefore, the DOM structure of the HTML is modified by the browsers, whereas CX still expects the specified structure.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 58. invalid HTML will lead to issues</div>
+<div class="title">Listing 59. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- Invalid HTML, as defined in content-elements.html --&gt;
 &lt;table data-bsi-dropzone="table"&gt;
@@ -3869,7 +3941,7 @@ Dropzones must have unique identifiers in older versions of BSI CX.
 Make sure that a unique name is specified for each usage of <code>data-bsi-dropzone</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 59. data-bsi-dropzone uniqueness violated</div>
+<div class="title">Listing 60. data-bsi-dropzone uniqueness violated</div>
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- design.html --&gt;
 &lt;div class="main-dropzone" data-bsi-dropzone="content" <i class="conum" data-value="1"></i><b>(1)</b>
@@ -3931,7 +4003,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2022-01-31 18:53:49 +0100
+Last update 2022-02-07 18:54:06 +0100
 </div>
 </div>
 </body>
