@@ -651,7 +651,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h1>Design Documentation: BSI CX 1.3</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2022-02-14</span>
+<span id="revdate">Version Date 2022-04-25</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -700,6 +700,18 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <ul class="sectlevel3">
 <li><a href="#control-attributes">3.4.1. Control Attributes</a></li>
 <li><a href="#form-processor-attributes">3.4.2. Form Processor Attributes</a></li>
+</ul>
+</li>
+<li><a href="#websites">3.5. Websites</a>
+<ul class="sectlevel3">
+<li><a href="#terms">3.5.1. Terms</a></li>
+<li><a href="#concepts">3.5.2. Concepts</a></li>
+<li><a href="#configuration-files">3.5.3. Configuration files</a></li>
+<li><a href="#includes">3.5.4. Includes</a></li>
+<li><a href="#content-editor-3">3.5.5. Content-Editor</a></li>
+<li><a href="#metadata-images-for-the-navigation">3.5.6. Metadata / Images for the navigation</a></li>
+<li><a href="#security-google-recaptcha">3.5.7. Security - Google reCAPTCHA</a></li>
+<li><a href="#migration-guide-cx-versions-up-to-and-including-16-3">3.5.8. Migration Guide (CX versions up to and including 16.3)</a></li>
 </ul>
 </li>
 </ul>
@@ -3335,6 +3347,679 @@ preview.image.url
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="websites"><a class="anchor" href="#websites"></a>3.5. Websites</h3>
+<div class="sect3">
+<h4 id="terms"><a class="anchor" href="#terms"></a>3.5.1. Terms</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Website: The complete website. Contains several pages in different languages.</p>
+</li>
+<li>
+<p>Page: A single page within a website. Pages appear in the navigation and have a content in different languages.</p>
+</li>
+<li>
+<p>Include: A content snippet, which is saved locally once and can be referenced at any point within the website. We differentiate between built-in includes and custom includes. Built-in includes are content snippets that are included in the design.zip, custom includes are created by the user based on a content-element.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="concepts"><a class="anchor" href="#concepts"></a>3.5.2. Concepts</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>CX-Placeholders can be used on every page of a website. Their scope generally involves a single page. For example the placeholder <code>"{Subject}"</code> has to be mapped once for each page that uses it. A placeholder within an include (e.g. header or footer) only has to be mapped once. An example for that case would be the display of <code>"{Username}"</code> within the header of a portal-website. Placeholders can <em>not</em> be used within page-titles or the navigation.</p>
+</li>
+<li>
+<p>Custom includes <em>can&#8217;t</em> be nested. Technically, that would be possible, but it would need many checks and visualizations inside the content editor to detect potential infinite rekursions and give feedback to the user through reasonable error messages. For that reason we currently don&#8217;t support that feature.</p>
+</li>
+<li>
+<p>An include can only be used <em>once</em> within the same page.</p>
+</li>
+<li>
+<p>Multilingualism: All contents and their includes are always created in every active language for their website. E.g.: The website is configured to be German and Italian. On the creation of a new page, two pages will be created: one for Italian and one for German (including their dummy-contents). Within the UI there is no option to create a single page in one specific language only. If necessary, a CX-condition may be used to hide a page for a specific language inside the navigation-tree.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="handlebars-templates"><a class="anchor" href="#handlebars-templates"></a>3.5.2.1. Handlebars, Templates</h5>
+<div class="paragraph">
+<p>The template-engine <em>Handlebars</em> is available to the design developer on runtime. The templates are parsed server-sided. We&#8217;re using the <a href="https://github.com/jknack/handlebars.java">Java-Port by JKnack</a>. In the design, handlebars templates are important especially for display of the navigation.</p>
+</div>
+<div class="paragraph">
+<p>Handlebars templates can only be used for parts of a website that <em>can&#8217;t</em> be edited by the user. We set that rule, because templates are parsed server-sided. When the content-editor receives the HTML source, the templates have already been resolved. If the user would edit a content-element that contained handlebars syntax, we could only save the rendered content that the user edited. The original handlebars code would be lost.</p>
+</div>
+<div class="paragraph">
+<p>For that reason, handlebars should mostly be used for includes that <em>can&#8217;t</em> be edited. Examples for such includes are the master (<code>design.html</code>), the navigation or areas outside a dropzone.</p>
+</div>
+<div class="paragraph">
+<p>This mechanism can also be used conciously to set multilingual default texts, which are deposited inside the <code>website.json</code> file. An example for an include for the website header in handlebars code could look something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-bsi-element="master-header"&gt;
+  &lt;img src="img/nyan-cat.gif"&gt;
+  &lt;h1 data-bsi-element-part="plain-text"&gt;{{bsi.nls "website.title"}}&lt;/h1&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On the initial rendering of the page inside the content editor, the text <code>"website.title"</code> is resolved. As the user saves the page, the initial handlebars code is substituted by the actual text.</p>
+</div>
+<div class="paragraph">
+<p>Handlebars syntax may also be used for the <code>content-elements.html</code> file; especially for the NLS-helper to define multilingual default texts for each content-element.</p>
+</div>
+<div class="paragraph">
+<p><strong>Important:</strong> Files that contain handlebars syntax <em>aren&#8217;t</em> valid HTML documents. They shouldn&#8217;t be handled with HTML parsers like JSoup, otherwise the handlebars syntax gets corrupted. Files that include handlebars code should use the suffix <em>.hbs</em>. <em>IntelliJ</em> supports this syntax with respective plugins.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="mustache-helpers"><a class="anchor" href="#mustache-helpers"></a>3.5.2.2. Mustache Helpers</h5>
+<div class="paragraph">
+<p>Besides the built-in standard helper, BSI CX may also use the following helpers:</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="bsi-nls"><a class="anchor" href="#bsi-nls"></a>3.5.2.3. bsi.nls</h5>
+<div class="paragraph">
+<p>This helper is used to display localized texts or resources inside the design. The syntax looks like this: <code>{{bsi.nls "[textKey]"}}</code>.</p>
+</div>
+<div class="paragraph">
+<p>It can also be used inside the content-elements.html file to deliver localized default texts for different languages.</p>
+</div>
+<div class="paragraph">
+<p>Text keys are created inside the <code>design.json</code> at the property <code>nls</code>. Text that doesn&#8217;t depend on the locale is defined with the key <code>*</code>. The resolution follows from the most specific locale up to the default, e.g.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "nls": {
+    "hello.world": {
+      "*": "Hello World",
+      "de": "Hallo Welt",
+      "de-CH": "Sali Wält"
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="website-variables"><a class="anchor" href="#website-variables"></a>3.5.2.4. Website variables</h5>
+<div class="paragraph">
+<p>Following variables are available to the design developer on runtime. The variables can be used in mustache-templates, e.g.: <code>{{navigation.activePage.contentId}}</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="general-root"><a class="anchor" href="#general-root"></a>3.5.2.5. General (Root)</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>title</strong> (String): Title of the website. Matches the field "Title" in the website-masters editor. Can be used in combination with the title of the current page to display the title of the HTML document, e.g.: <code>{{title}} | {{navigation.activePage.pageTitle}}</code>.</p>
+</li>
+<li>
+<p><strong>language</strong> (String): Current language as it&#8217;s used in the <code>lang</code> attribute of the HTML tag, e.g.: <code>de</code>.</p>
+</li>
+<li>
+<p><strong>locale</strong> (String): Complete locale. The locale is used to resolve text keys through the <code>bsi.nls</code> helper, e.g. <code>de-CH</code>.</p>
+</li>
+<li>
+<p><strong>navigation</strong> (Object): Contains the hierarchical navigation tree, example follows.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="navigation-item"><a class="anchor" href="#navigation-item"></a>3.5.2.6. Navigation Item</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>active</strong> (Boolean): True, when the navigation element (page) or the HTML site is active.</p>
+</li>
+<li>
+<p><strong>id</strong> (UUID): Primary key according to table BSI_WEBSITE_REV_NAV#ID.</p>
+</li>
+<li>
+<p><strong>contentId</strong> (UUID): Primary key according to table BSI_WEBSITE_REV_CONT#ID.</p>
+</li>
+<li>
+<p><strong>url</strong> (String): URL according to table BSI_WEBSITE_REV_NAV_LOCALE#URL.</p>
+</li>
+<li>
+<p><strong>title</strong> (String): Title according to table BSI_WEBSITE_REV_NAV_LOCALE#NAVIGATION_ITEM_TITLE.</p>
+</li>
+<li>
+<p><strong>folder</strong> (Boolean): True, when BSI_WEBSITE_REV_NAV_LOCALE#NAV_ITEM_TYPE = "folder". Used for separation between pages and folders.</p>
+</li>
+<li>
+<p><strong>level</strong> (Integer): Recursion-level of the navigation element, starting with 0 = Root.</p>
+</li>
+<li>
+<p><strong>image</strong>: Absolute URL for the navigation image according to table BSI_WEBSITE_NAVIGATION#IMAGE.</p>
+</li>
+<li>
+<p><strong>metadata</strong>: JSON metadata object according to table BSI_WEBSITE_NAVIGATION#METADATA.</p>
+</li>
+<li>
+<p><strong>localizedUrls</strong>: Object with URL as value for the language-change widget and locale as key.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="example-json"><a class="anchor" href="#example-json"></a>3.5.2.7. Example JSON</h5>
+<div class="paragraph">
+<p>This example shows the possible content of a variables object on runtime.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "language": "de",
+  "locale": "de-CH",
+  "navigation": {
+    "activePage": {
+      "id": "1006",
+      "contentId": "2006",
+      "url": "ueber-bsi.html",
+      "title": "Über BSI",
+      "level": 0,
+      "active": true,
+      "localizedUrls": {
+        "de-CH": "ueber-bsi.html",
+        "en-CH": "about-bsi.html"
+      }
+    },
+    "index": {
+      "id": "1001",
+      "contentId": "2001",
+      "url": "index",
+      "title": "Willkommen bei BSI",
+      "level": 0
+    },
+    "items": [
+      {
+        "id": "1002",
+        "contentId": "2002",
+        "url": "loesungen.html",
+        "title": "Lösungen",
+        "level": 0
+      },
+      {
+        "id": "1003",
+        "contentId": "2003",
+        "url": "branchen.html",
+        "title": "Branchen",
+        "folder": true,
+        "level": 0,
+        "items": [
+          {
+            "id": "1004",
+            "contentId": "2004",
+            "url": "banking.html",
+            "title": "Banking",
+            "level": 1
+          },
+          {
+            "id": "1005",
+            "contentId": "2005",
+            "url": "health.html",
+            "title": "Health",
+            "level": 1
+          }
+        ]
+      },
+      {
+        "id": "1006",
+        "contentId": "2006",
+        "url": "ueber-bsi.html",
+        "title": "Über BSI",
+        "level": 0,
+        "active": true
+      }
+    ]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">{{#navigation}}
+&lt;nav class="navigation"&gt;
+  {{#items}}
+    &lt;ul class="nav-item-container level-root"&gt;
+      &lt;li class="nav-item level-root"&gt;
+      &lt;!-- root level --&gt;
+      {{#active}}
+        &lt;span class="nav-item-active"&gt;{{title}}&lt;/span&gt;
+      {{/active}}
+      {{^active}}
+        &lt;a href="{{url}}"&gt;{{title}}&lt;/a&gt;
+      {{/active}}
+      &lt;/li&gt;
+      {{#items}}
+      &lt;ul class="nav-item-container level-1st"&gt;
+        &lt;!-- 1st level --&gt;
+        &lt;li class="nav-item level-1st"&gt;
+        {{#active}}
+          &lt;span class="nav-item-active"&gt;{{title}}&lt;/span&gt;
+        {{/active}}
+        {{^active}}
+          &lt;a href="{{url}}"&gt;{{title}}&lt;/a&gt;
+        {{/active}}
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      {{/items}}
+    &lt;/ul&gt;
+  {{/items}}
+&lt;/nav&gt;
+{{/navigation}}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="configuration-files"><a class="anchor" href="#configuration-files"></a>3.5.3. Configuration files</h4>
+<div class="paragraph">
+<p>This chapter describes the necessary configuration files.</p>
+</div>
+<div class="sect4">
+<h5 id="design-json"><a class="anchor" href="#design-json"></a>3.5.3.1. design.json</h5>
+<div class="paragraph">
+<p>The <em>design.json</em> file is a new metadata file for structured configuration data for websites. This file might supersede the <em>design.properties</em> file on a future release.</p>
+</div>
+<div class="paragraph">
+<p>Example for the design.json file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "schemaVersion": "1.0",
+  "defaultLocale": "de",
+  "locales": ["de", "en"],
+  "nls": {
+    "page": {
+      "*": "Seite",
+      "en": "Page"
+    }
+  },
+  "website": {
+    "maxNavigationLevel": 2,
+    "includes":{
+      "__page__": {
+        "name": "Vorlage für Inhaltsseiten",
+        "reference": "__page__",
+        "file": "include/page.html"
+      },
+      "navigation":{
+         "name":"Navigation",
+         "reference":"navigation",
+         "file":"include/navigation.hbs"
+      },
+      "header":{
+         "name":"Kopfzeile",
+         "reference":"header",
+         "file":"include/header.html",
+         "editable":true
+      },
+      "footer":{
+         "name":"Fusszeile",
+         "reference":"footer",
+         "file":"include/footer.html",
+         "editable":true
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>schemaVersion</code>: Needs to be set to 1.0, might be relevant for changes in later versions.</p>
+</li>
+<li>
+<p><code>defaultLocale</code>: Default language (must be contained in <code>locales</code>).</p>
+</li>
+<li>
+<p><code>locales</code>: List with languages (e.g.: <code>en</code>, <code>de</code>, <code>de-CH</code>).</p>
+</li>
+<li>
+<p><code>nls</code>: Contains a map with NLS keys, which can be used within the .hbs files with <code>bsi.nls</code>.</p>
+</li>
+<li>
+<p><code>website</code>: <code>maxNavigationLevel</code> defines the maximum depth of the navigation (level of the hierarchy) that can be displayed by the design. To allow better structuring of pages and folders, the website editor allows the creation of websites with greater depth, but such pages or folders can&#8217;t be selected through the navigation on runtime. However, an internal link from one page to another page with greater depth is still possible.</p>
+</li>
+<li>
+<p><code>includes</code>: See below.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="includes"><a class="anchor" href="#includes"></a>3.5.4. Includes</h4>
+<div class="paragraph">
+<p>All files that are inherited to the database on the creation of a website as navigation item or include have to be referenced in the <code>design.json</code> file. All includes from the design.zip are inherited automatically with <code>content-type=built-in</code>.</p>
+</div>
+<div class="paragraph">
+<p>The file <code>design.html</code> matches the master and is automatically created inside the website internally as an include with the reference <code><em>master</em></code>. For that reason this include should <em>not</em> be defined in the design.json file, as it is defined already.</p>
+</div>
+<div class="paragraph">
+<p>The minimal include is <code><em>page</em></code>, which works as a template for new pages within a website.</p>
+</div>
+<div class="paragraph">
+<p>The key, which is used for the <code>bsi:include</code>-tags, is used as a unique reference to the include.</p>
+</div>
+<div class="paragraph">
+<p>For each include, the following properties can be configured:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>name</code>: Displayed name of the include.</p>
+</li>
+<li>
+<p><code>file</code>: Points to a file inside the zip archive, relative to the root of the zip file. Only .html and .hbs are allowed.</p>
+</li>
+<li>
+<p><code>contentType</code>: <code>built-in</code> (default, if not set manually), <code>user-defined</code>.</p>
+</li>
+<li>
+<p><code>editable</code>: True, when the include can be edited in the content editor by the user. Default is true. Must be <code>editable: false</code> for all includes that use handlebars.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="design-properties-2"><a class="anchor" href="#design-properties-2"></a>3.5.4.1. design.properties</h5>
+<div class="paragraph">
+<p>There are currently no website-specific changes to this file.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-html"><a class="anchor" href="#design-html"></a>3.5.4.2. design.html</h5>
+<div class="paragraph">
+<p>The <code>design.html</code> file is equivalent to the "master" of the website. On the creation of a website, an include "Design" with this file&#8217;s content is created. This include <em>can&#8217;t</em> be edited by the user. However, the design can reference other includes that may be edited, so that e.g. the footer can be edited by the user.</p>
+</div>
+<div class="paragraph">
+<p>A design can contain exactly one include for a page (attribute "pageid"). For the editor this include has a special meaning: when displayed in the editor, the full page (including the master) is displayed, but when saved, only the content of the respective page is saved.</p>
+</div>
+<div class="paragraph">
+<p>Advice: There should be no tags of the template-engine used for includes or pages that the user may edit.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;{{site.title}} | {{navigation.activePage.title}}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;header&gt;
+  &lt;h1&gt;Unicorn Inc.&lt;/h1&gt;
+  {{#navigation.index.active}}
+    &lt;img src="logo.png" width="100" height="100"&gt;
+  {{/navigation.index.active}}
+  {{^navigation.index.active}}
+    &lt;a href="{{navigation.index.url}}"&gt;&lt;img src="logo.png" width="100" height="100"&gt;&lt;/a&gt;
+  {{/navigation.index.active}}
+  &lt;bsi:include id="navigation" editable="false"&gt;
+&lt;/header&gt;
+
+	&lt;!--
+    ActivePage is always set by the framework. When the root-URL '/' is loaded,
+    'index' is used automatically.
+    When the include-tag is resolved, it's replaced by the respective HTML-snippet.
+    Having a single root-element (e.g.: &lt;div&gt;, &lt;p&gt;, ...), that capsulates the entire DOM of the include, is a technical requirement for any include.
+    When changed, the attribute "data-ce-include-id" is set on this element with the value of the original attribute "id".
+    --&gt;
+    {{#response.ok}}
+	&lt;bsi:include reference="{navigation.activePage.contentId}" editable="true"&gt;
+    {{/response.ok}}
+    &lt;!--
+    This include is only loaded when the reposnse is != OK. It takes a special function to set response.ok to false in the content-editor, to even make it editable in the editor.
+    --&gt;
+    {{^response.ok}}
+    &lt;bsi:include id="error" editable="false"&gt;
+    {{/response.ok}}
+
+&lt;footer&gt;
+  &lt;!--
+  The include "design" can't be edited, so the part that should be editable by the user needs to be transfered to a separate include. --&gt;
+  &lt;bsi:include id="footer-text" editable="true"&gt;
+&lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The include "footer-text" loads the built-in include footer-text.html. This file looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div data-ce-content-element="footer-text"
+   data-ce-element-part="formatted-text"&gt;
+  This is a default-text for the footer. This text can be changed in the editor by the user.
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="content-editor-3"><a class="anchor" href="#content-editor-3"></a>3.5.5. Content-Editor</h4>
+<div class="paragraph">
+<p>Before the content is displayed in the editor, it has to be preprocessed by the <code>WebsiteProcessor</code>. It resolves includes and starts the template-engine. Just like the live-website, the content editor also creates an object with website variables.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example for content, when it&#8217;s loaded from the database:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;bsi:include reference="footer-text"&gt;
+{{title}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is an example for content, when it&#8217;s shown in the editor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;div
+  data-bsi-include-reference="footer-text"
+  data-bsi-element="footer-text"
+  data-bsi-element-part="formatted-text"&gt;
+  Ipsem Lorum
+&lt;/div&gt;
+BSI Website</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="metadata-images-for-the-navigation"><a class="anchor" href="#metadata-images-for-the-navigation"></a>3.5.6. Metadata / Images for the navigation</h4>
+<div class="imageblock">
+<div class="content">
+<img src="./images/header_data.png" alt="header data">
+</div>
+</div>
+<div class="paragraph">
+<p>Each page and each folder of a website can have JSON metadata and an image to describe the navigation. These two elements are special, because they can only be edited programatically and within a project-specific step. A possible use case is a REST webservice, which is embedded to the design through javascript. The project-specific step can return the image and the metadata on a GET request. This allows the rendered website to give images and information to the navigation.</p>
+</div>
+<div class="paragraph">
+<p>These two attributes are invisible per default. However, they can be enabled thorugh the CX setting <em>Website-Editor</em>. Both attributes are the same for every language, so it&#8217;s <em>not</em> possible to deposit different images for a German and an English website.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="security-google-recaptcha"><a class="anchor" href="#security-google-recaptcha"></a>3.5.7. Security - Google reCAPTCHA</h4>
+<div class="paragraph">
+<p>It&#8217;s highly advised to use the Google reCAPTCHA service "I&#8217;m not a robot", when using username/password authentification with non-internal users (public). For that we use the optional CX module <code>com.bsiag.studio.media.googlerecaptcha</code>, which can be configured in the CX settings.</p>
+</div>
+<div class="paragraph">
+<p>Example for including the dependency in the CX app and the dev pom.xml:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">    &lt;!-- google reCAPTCHA service for website step --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.bsiag.studio&lt;/groupId&gt;
+      &lt;artifactId&gt;com.bsiag.studio.media.googlerecaptcha&lt;/artifactId&gt;
+    &lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A script can be included on the website&#8217;s design.html:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;script src="https://www.google.com/recaptcha/enterprise.js" async defer&gt;&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The captcha-field can be added to the login form of the content-elements.html as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;form ... data-bsi-element="login-form"&gt;
+...
+&lt;!-- Content Element: Google reCAPTCHGA Enterprise --&gt;
+&lt;div data-bsi-element-part="form-field" class="form-field-container form-field"&gt;
+  &lt;label data-bsi-remove-if="live"&gt;{{bsi.nls "captcha"}}&lt;/label&gt;
+  &lt;input data-bsi-remove-if="live" type="text" data-bsi-form-field-type="captcha" value="Google reCAPTCHA" id="g-recaptcha-response" name="g-recaptcha-response"&gt;
+  &lt;div class="g-recaptcha" data-sitekey="the site key from the google api recaptcha registration" data-action="login"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The label text can be added to the design.json as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">    "captcha": {
+      "*": "Captcha",
+      "de": "Captcha"
+    },</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The group-box-title for the captcha in the edit-dialogue can be set within the design.properties file as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-properties" data-lang="properties">element.login-form.parts.form-field.label=Captcha</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After that, the field ID of the captcha field (on the website, that uses the design, simply open the edit dialogue and scroll down to the captcha field ID) has to be set to <code>g-recaptcha-response</code>. This value has to match the settings of the Google reCAPTCHA in the administration view.</p>
+</div>
+<div class="paragraph">
+<p>The last step is to generate a reCAPTCHA key on the Google Cloud of the customer/company and register it in the settings under <em>Administration</em> - <em>Customer Experience</em> - <em>Settings</em> - <code>Google reCAPTCHA Settings</code>.</p>
+</div>
+<div class="paragraph">
+<p>For local testing, the URL of the BSI CX website <em>can&#8217;t</em> be <code>localhost</code>. For this purpose, the local domain <code>bsiag.local</code> may be used. Simply go to the administration view - <em>CX</em> - <em>Settings</em> under <code>base URL for public links</code> and register a second path, e.g. <code>bsiw0160</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "_type": "start.BaseUrlSetting",
+  "default": false,
+  "inboundBaseUrl": "http://bsiw0160.bsiag.local:8085/inbound/default",
+  "qualifier": "default",
+  "resourceBaseUrl": "http://bsiw0160.bsiag.local:8085/dev/resources"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then select this URL on the smart field <code>base path</code> on the website step.</p>
+</div>
+<div class="paragraph">
+<p>Here is an approximate guide for the creation of a reCAPTCHA site on the example of BSI (customers have to adapt it to their company):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create project: BSI CX - Website Step &#8594; projectId=bsi-cx-website-step</p>
+</li>
+<li>
+<p>Add the service <code>reCAPTCHA Enterprise API</code> to the project</p>
+</li>
+<li>
+<p>Create login/access data for that api by creating a service account <code>Service account for bsi cx</code> with role <code>recaptcha enterprise agent</code> &#8594; serviceAccountId=service-account-for-bsi-cx</p>
+</li>
+<li>
+<p>Add access key (json file) for that agent service account in IAM section of Google Cloud &#8594; credentials json file</p>
+</li>
+<li>
+<p>Create reCAPTCHA site key <a href="https://console.cloud.google.com/security/recaptcha/create?authuser=1&amp;project=bsi-cx-website-step">here</a> (this is just an example)</p>
+</li>
+<li>
+<p>Add domains bsi-software.com and bsiag.local to site &#8594; recaptchaSiteKey=6Lcxp-&#8230;&#8203;._lWrq</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Documentation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://cloud.google.com/recaptcha-enterprise/docs/getting-started?hl=en">Choosing the setup method for reCAPTCHA Enterprise</a></p>
+</li>
+<li>
+<p><a href="https://cloud.google.com/recaptcha-enterprise/docs/libraries?hl=en#cloud-console">reCAPTCHA Enterprise client libraries</a></p>
+</li>
+<li>
+<p><a href="https://console.cloud.google.com/marketplace/product/google/recaptchaenterprise.googleapis.com?returnUrl=%2Fsecurity%2Frecaptcha%3Fproject%3Ddspa-course-2019-236311%26folder%3D%26organizationId%3D&amp;authuser=1&amp;project=bsi-customer-suite-website">Marketplace reCAPTCHA Enterprise API</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="migration-guide-cx-versions-up-to-and-including-16-3"><a class="anchor" href="#migration-guide-cx-versions-up-to-and-including-16-3"></a>3.5.8. Migration Guide (CX versions up to and including 16.3)</h4>
+<div class="paragraph">
+<p>The following steps are necessary to create a website template from an existing landingpage template:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The design.json file has to be created.</p>
+</li>
+<li>
+<p>For navigation inside the website, the navigation has to be created inside an include.</p>
+</li>
+<li>
+<p>Includes for the header- and footer-area have to be defined inside the design.json file. Furthermore, the <em>Page-Include</em> has to be defined. That area contains the proper content of the website.</p>
+</li>
+<li>
+<p>For landingpages images and other resources of the design can be referenced with relative paths. Because the base URL of a website points to the location of the website and not to the design, the handlebars template <code>{{designBaseUrl}}</code> needs to be put in front of every design resource URL. For example, <code>"img/my-image.jpg"</code> has to be converted to <code>"{{designBaseUrl}}/img/my-image.jpg"</code>. The handlebars template is replaced with the design&#8217;s correct URL by the CX server on runtime.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Just like the <em>design.zip</em> for landingpages, the website also needs to be zipped and uploaded to CX. The ZIP file for a website contains the following files:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>design.json</p>
+</li>
+<li>
+<p>design.properties</p>
+</li>
+<li>
+<p>design.html</p>
+</li>
+<li>
+<p>content-elements.html</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These 4 files have to be placed directly in the root of the ZIP file and <em>not</em> inside a nested folder.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -4029,7 +4714,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2022-02-14 18:54:45 +0100
+Last update 2022-04-25 18:56:03 +0200
 </div>
 </div>
 </body>
