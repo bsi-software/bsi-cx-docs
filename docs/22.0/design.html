@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 22.0</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2022-02-14</span>
+<span id="revdate">Version Date 2022-04-25</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -794,20 +794,31 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </ul>
 </li>
 <li><a href="#cx-design-creator">4. CX Design Creator</a></li>
-<li><a href="#help">5. Help</a>
+<li><a href="#design-build-migration-guide">5. Migrate an existing design to the new build</a>
 <ul class="sectlevel2">
-<li><a href="#good-practices">5.1. Good practices</a>
-<ul class="sectlevel3">
-<li><a href="#deleting-or-deprecating-content-elements">5.1.1. Deleting or deprecating content elements</a></li>
-<li><a href="#refactoring-content-elements">5.1.2. Refactoring content elements</a></li>
+<li><a href="#content-elements-2">5.1. Content Elements</a></li>
+<li><a href="#styles-2">5.2. Styles</a></li>
+<li><a href="#design-and-preview-templates">5.3. Design and Preview Templates</a></li>
+<li><a href="#java-script">5.4. Java Script</a></li>
+<li><a href="#stylesheets">5.5. Stylesheets</a></li>
+<li><a href="#properties">5.6. Properties</a></li>
+<li><a href="#build-configuration">5.7. Build Configuration</a></li>
 </ul>
 </li>
-<li><a href="#troubleshooting">5.2. Troubleshooting</a>
+<li><a href="#help">6. Help</a>
+<ul class="sectlevel2">
+<li><a href="#good-practices">6.1. Good practices</a>
 <ul class="sectlevel3">
-<li><a href="#design-upload">5.2.1. Design Upload</a></li>
-<li><a href="#design-update">5.2.2. Design Update</a></li>
-<li><a href="#dropzone-issues">5.2.3. Dropzone Issues</a></li>
-<li><a href="#design-creator-issues">5.2.4. Design Creator issues</a></li>
+<li><a href="#deleting-or-deprecating-content-elements">6.1.1. Deleting or deprecating content elements</a></li>
+<li><a href="#refactoring-content-elements">6.1.2. Refactoring content elements</a></li>
+</ul>
+</li>
+<li><a href="#troubleshooting">6.2. Troubleshooting</a>
+<ul class="sectlevel3">
+<li><a href="#design-upload">6.2.1. Design Upload</a></li>
+<li><a href="#design-update">6.2.2. Design Update</a></li>
+<li><a href="#dropzone-issues">6.2.3. Dropzone Issues</a></li>
+<li><a href="#design-creator-issues">6.2.4. Design Creator issues</a></li>
 </ul>
 </li>
 </ul>
@@ -3329,6 +3340,124 @@ preview.image.url
 </div>
 </div>
 </div>
+<div class="sect4">
+<h5 id="url-provider"><a class="anchor" href="#url-provider"></a>3.3.2.19. url-provider</h5>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+CX 22.0
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The URL provider content element part can be used to load dynamic data inside a story.
+Inside the content editor, the URL provider part only offers a text field to define its name.
+When using the content inside your story, each URL provider part will produce a separate outlet.
+This outlets can be connected to any URL provider (e.g. the <em>Charts</em> Step).</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 51. Example usage of the URL provider part.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">pie-chart</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">url-provider</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">mb-4 chart-js</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">./pie-chart-placeholder.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">w-100</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a story renders the content, the HTML tag with the <code>url-provider</code> part will have a <code>data-bsi-url</code> attribute.
+This attribute will contain an absolute URL to the CX server, where the data can be requested.</p>
+</div>
+<div class="sect5">
+<h6 id="using-the-chart-url-provider"><a class="anchor" href="#using-the-chart-url-provider"></a>Using the Chart URL Provider</h6>
+<div class="paragraph">
+<p>We created a small Java Script library to use the chart URL provider in a template.
+Take a look at the repository on <a href="https://github.com/bsi-software/bsi-cx-chart/tree/releases/22.0">GitHub</a> for more information.
+To integrate the library, install it with NPM:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="shell script">npm install --save github:bsi-software/bsi-cx-chart#semver:^1.1.2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You also must install a chart library of your choice, currently there are only bindings for <a href="https://www.chartjs.org/">Chart.js</a>.
+You can install it using npm:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="shell script">npm install --save chart.js</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, create your content element:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">pie-chart</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">url-provider</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">chart-js</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">./pie-chart-placeholder.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">w-100</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This will be replaced when the library is initialized, and the data from the URL provider is available.
+So it&#8217;s recommended to put some placeholders here.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To use the library, you must initialize it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript"><span class="reserved">import</span> <span class="string"><span class="delimiter">'</span><span class="content">chart.js/auto</span><span class="delimiter">'</span></span>; <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="reserved">import</span> {ChartConfig, ChartUrlProvider} from <span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/chart</span><span class="delimiter">'</span></span>;
+<span class="reserved">import</span> ChartConfigColor from <span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/chart/src/config/color</span><span class="delimiter">'</span></span>;
+
+<span class="comment">/**
+ * @type {{border: ChartConfigColor, background: ChartConfigColor}[]}
+ */</span>
+const colors = [
+  ChartConfigColor.of(<span class="string"><span class="delimiter">'</span><span class="content">#ff6384ff</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">#ff638466</span><span class="delimiter">'</span></span>),
+  ChartConfigColor.of(<span class="string"><span class="delimiter">'</span><span class="content">#36a2ebff</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">#36a2eb66</span><span class="delimiter">'</span></span>),
+  ChartConfigColor.of(<span class="string"><span class="delimiter">'</span><span class="content">#cc65feff</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">#cc65fe66</span><span class="delimiter">'</span></span>),
+  ChartConfigColor.of(<span class="string"><span class="delimiter">'</span><span class="content">#ffce56ff</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">#ffce5666</span><span class="delimiter">'</span></span>)
+]; <i class="conum" data-value="2"></i><b>(2)</b>
+
+const config = <span class="keyword">new</span> ChartConfig()
+  .withColors(...colors);
+
+document.querySelectorAll(<span class="string"><span class="delimiter">'</span><span class="content">.chart-js</span><span class="delimiter">'</span></span>) <i class="conum" data-value="3"></i><b>(3)</b>
+  .map(element =&gt; <span class="keyword">new</span> ChartUrlProvider(element, config))
+  .forEach(chart =&gt; chart.render());</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Initialize the Chart.js library.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Optional, can be used to define your own set of colors.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Select all URL provider parts you want to initialize with the <code>ChartUrlProvider</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -3393,7 +3522,7 @@ preview.image.url
 <p><strong>data-bsi-hide-edit-button</strong> may be used to prevent editing of a content element. The attribute must be located on the same tag as the <code>data-bsi-element</code> attribute.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 51. hiding the content element edit button</div>
+<div class="title">Listing 52. hiding the content element edit button</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">...</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-edit-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
@@ -3402,7 +3531,7 @@ preview.image.url
 <p><strong>data-bsi-hide-move-button</strong>, <strong>data-bsi-hide-copy-button</strong>, and <strong>data-bsi-hide-remove-button</strong> are working in the same manner, but on dropzone level. They will prevent from moving, copying, or removing content elements on a dropzone.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 52. prevent moving, copying and removal of content elements.</div>
+<div class="title">Listing 53. prevent moving, copying and removal of content elements.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">...</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-move-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-copy-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-remove-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
@@ -3482,7 +3611,7 @@ The CX Design Creator has the following functionality and tasks:</p>
 <p>The CX Design Creator itself is configured with a YAML file compiler.yml:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 53. Example of a compiler.yml file</div>
+<div class="title">Listing 54. Example of a compiler.yml file</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">engine</span>: <span class="string"><span class="content">{ version: '0.79.4' }</span></span>
 <span class="key">watch</span>:
@@ -3593,21 +3722,527 @@ This may work with small templates, but it quickly becomes confusing and error p
 </div>
 </div>
 <div class="sect1">
-<h2 id="help"><a class="anchor" href="#help"></a>5. Help</h2>
+<h2 id="design-build-migration-guide"><a class="anchor" href="#design-build-migration-guide"></a>5. Migrate an existing design to the new build</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter provides a short migration guide to the conversion of an existing design to the <a href="https://github.com/bsi-software/bsi-cx-design-build">new design build</a>.
+For basic information on the new design build, please consider the <a href="https://github.com/bsi-software/bsi-cx-design-build/wiki">corresponding Wiki page on GitHub</a>.</p>
+</div>
+<div class="paragraph">
+<p>As a first step of the migration, it is required to set up the project structure.
+It&#8217;s recommended that you start with the <a href="https://github.com/bsi-software/bsi-cx-scaffold-design">Scaffold Design</a> instead of creating the structure all by yourself.
+Also consider reading <a href="https://github.com/bsi-software/bsi-cx-design-build/wiki/First-Steps">this chapter</a> before you start with the migration.</p>
+</div>
+<div class="sect2">
+<h3 id="content-elements-2"><a class="anchor" href="#content-elements-2"></a>5.1. Content Elements</h3>
+<div class="paragraph">
+<p>Now you can start the migration by transforming the content elements.
+This step will be explained on an example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 55. Content element from the old design creator build.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="twig">&lt;div class=&quot;content-element image-wrapper&quot; data-bsi-element=&quot;image&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;flex&quot;&gt;
+            &lt;div class=&quot;element&quot;&gt;
+                &lt;div class=&quot;image&quot;&gt;
+                    &lt;img data-bsi-element-part=&quot;image&quot; src=&quot;{{ src ?: baseUrl|raw ~ &quot;/img/placeholder.jpg&quot; }}&quot; alt=&quot;&quot; /&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;image-legend&quot; data-bsi-element-part=&quot;plain-text&quot;&gt;{{ legend ?: &quot;Lorem ipsum image description&quot; }}&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 56. Corresponding entry in the design.properties file.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="properties">element.image.label=Image
+element.image.description=with description
+element.image.icon=image
+element.image.parts.image.label=Image
+element.image.parts.plain-text.label=Description</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The content elements are usually organized in Twig files inside a <code>content-elements</code> folder.
+While the corresponding properties are placed in a single <code>design.properties</code> file.
+In the new build process, it&#8217;s recommended to keep it all together in a single folder and separated from any other content element.
+So take a look on the existing content elements from the scaffold design.
+They are all nicely organized in separate folders.
+So create a new folder for your own element:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 57. Folder structure of a single content element.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">.
+└───image
+        index.js <i class="conum" data-value="1"></i><b>(1)</b>
+        placeholder.jpg <i class="conum" data-value="2"></i><b>(2)</b>
+        template.twig <i class="conum" data-value="3"></i><b>(3)</b>
+        styles.less <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This file will contain the content element specification.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Feel free to place any content element related assets here.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The Twig template for our content element.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Any content element related Stylesheets.
+This can also be a LESS or SASS file.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Create the <code>index.js</code> and <code>template.twig</code> files inside this folder and feel free to add any related assets too.
+In our example, we add the <code>placeholder.jpg</code> here.
+Now we can create the <code>template.twig</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 58. The transformed template for the content element.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="twig">&lt;div class=&quot;content-element image-wrapper&quot; data-bsi-element=&quot;image&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;flex&quot;&gt;
+            &lt;div class=&quot;element&quot;&gt;
+                &lt;div class=&quot;image&quot;&gt;
+                    &lt;img data-bsi-element-part=&quot;image&quot; src=&quot;{{ url ?: bsi_cx_asset('./placeholder.jpg') }}&quot; alt=&quot;&quot; /&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;image-legend&quot; data-bsi-element-part=&quot;plain-text&quot;&gt;{{ legend ?: &quot;Lorem ipsum image description&quot; }}&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 59. The content element specification in the <code>index.js</code> file.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">require(<span class="string"><span class="delimiter">'</span><span class="content">./styles.less</span><span class="delimiter">'</span></span>); <i class="conum" data-value="1"></i><b>(1)</b>
+
+const {cx, Icon} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>); <i class="conum" data-value="2"></i><b>(2)</b>
+
+module.exports = cx.contentElement
+  .withElementId(<span class="string"><span class="delimiter">'</span><span class="content">image</span><span class="delimiter">'</span></span>)
+  .withLabel(<span class="string"><span class="delimiter">'</span><span class="content">Image</span><span class="delimiter">'</span></span>)
+  .withDescription(<span class="string"><span class="delimiter">'</span><span class="content">with description</span><span class="delimiter">'</span></span>)
+  .withIcon(Icon.IMAGE)
+  .withFile(require(<span class="string"><span class="delimiter">'</span><span class="content">./template.twig</span><span class="delimiter">'</span></span>))
+  .withParts(
+    cx.part.image
+      .withLabel(<span class="string"><span class="delimiter">'</span><span class="content">Image</span><span class="delimiter">'</span></span>),
+    cx.part.plainText
+      .withLabel(<span class="string"><span class="delimiter">'</span><span class="content">Description</span><span class="delimiter">'</span></span>));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Include any related stylesheets right at the beginning of your content element specification.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Be sure you use <code>require()</code> instead of <code>import</code>.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Be aware, that there are some advanced features available with the new design build.
+For example <a href="https://github.com/bsi-software/bsi-cx-design-build/wiki/Design-Reference#content-element-part">referenced content element parts</a>, which can be useful in complex content elements.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once you have finished creating your content element, you can include them in your design specification.
+The design specification is contained in the <code>design.js</code> file and replaces the <code>design.properties</code>.
+You find the <code>design.js</code> at the root folder of your template.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 60. The design specification for the transformed design.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">require(<span class="string"><span class="delimiter">'</span><span class="content">./styles/styles.scss</span><span class="delimiter">'</span></span>); <i class="conum" data-value="1"></i><b>(1)</b>
+
+const {cx, Design} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>);
+
+<span class="comment">/**
+ * @type {Design}
+ */</span>
+module.exports = cx.design
+  .withTitle(<span class="string"><span class="delimiter">'</span><span class="content">BSI - Landingpage</span><span class="delimiter">'</span></span>) <i class="conum" data-value="2"></i><b>(2)</b>
+  .withAuthor(<span class="string"><span class="delimiter">'</span><span class="content">BSI Business Systems Integration AG</span><span class="delimiter">'</span></span>) <i class="conum" data-value="3"></i><b>(3)</b>
+  .withDate(<span class="string"><span class="delimiter">'</span><span class="content">14.04.2022</span><span class="delimiter">'</span></span>)
+  .withContentElementGroups(
+    cx.contentElementGroup
+      .withGroupId(<span class="string"><span class="delimiter">'</span><span class="content">content</span><span class="delimiter">'</span></span>)
+      .withLabel(<span class="string"><span class="delimiter">'</span><span class="content">Content</span><span class="delimiter">'</span></span>)
+      .withContentElements(
+        require(<span class="string"><span class="delimiter">'</span><span class="content">./content-elements/content/image</span><span class="delimiter">'</span></span>), <i class="conum" data-value="4"></i><b>(4)</b>
+        require(<span class="string"><span class="delimiter">'</span><span class="content">./content-elements/content/text</span><span class="delimiter">'</span></span>)));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>You can also include global stylesheets (CSS, LESS or SASS) here.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Title of this template, corresponds to the <code>template.name</code> from the <code>design.properties</code> file.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The author of this template, corresponds to the <code>template.author</code> from the <code>design.properties</code> file.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This is our transformed content element.
+The path points to the folder.
+Since it contains an <code>index.js</code>, it&#8217;s not required to mention the filename here.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="styles-2"><a class="anchor" href="#styles-2"></a>5.2. Styles</h3>
+<div class="paragraph">
+<p>If your content element uses any <a href="#styles">Styles</a>, you must transform them to a Java Script styles definition:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 61. The style definition in the old <code>design.properties</code> format.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="properties">style.element-width.label=Element width
+style.element-width.class.element-with-unset.label=None
+style.element-width.class.element-width-full.label=Full
+style.element-width.class.element-width-left-right.label=Label left, field right</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The transformation to the new format is pretty straightforward:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 62. The style definition in the new Java Script format.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">const {cx} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>);
+
+module.exports = cx.style
+  .withIdentifier(<span class="string"><span class="delimiter">'</span><span class="content">element-width</span><span class="delimiter">'</span></span>)
+  .withLabel(<span class="string"><span class="delimiter">'</span><span class="content">Element width</span><span class="delimiter">'</span></span>)
+  .withCssClasses(
+    cx.cssClass
+      .withLabel(<span class="string"><span class="delimiter">'</span><span class="content">None</span><span class="delimiter">'</span></span>)
+      .withCssClass(<span class="string"><span class="delimiter">'</span><span class="content">element-with-unset</span><span class="delimiter">'</span></span>),
+    cx.cssClass
+      .withLabel(<span class="string"><span class="delimiter">'</span><span class="content">Full</span><span class="delimiter">'</span></span>)
+      .withCssClass(<span class="string"><span class="delimiter">'</span><span class="content">element-width-full</span><span class="delimiter">'</span></span>),
+    cx.cssClass
+      .withLabel(<span class="string"><span class="delimiter">'</span><span class="content">Label left, field right</span><span class="delimiter">'</span></span>)
+      .withCssClass(<span class="string"><span class="delimiter">'</span><span class="content">element-width-left-right</span><span class="delimiter">'</span></span>));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s recommended to place the style definition in a separate Java Script file.
+If your style is exclusively for one element, you can place the file right next to the element definition.
+Otherwise, you should put it in the <code>configs/styles</code> folder inside your template root.
+To use a style in your content element, simply reference the file:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 63. Use a style definition in your content element.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">const {cx, Icon} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>);
+
+module.exports = cx.contentElement
+  .withElementId(<span class="string"><span class="delimiter">'</span><span class="content">image</span><span class="delimiter">'</span></span>)
+  .withLabel(<span class="string"><span class="delimiter">'</span><span class="content">Image</span><span class="delimiter">'</span></span>)
+  .withDescription(<span class="string"><span class="delimiter">'</span><span class="content">with description</span><span class="delimiter">'</span></span>)
+  .withIcon(Icon.IMAGE)
+  .withFile(require(<span class="string"><span class="delimiter">'</span><span class="content">./template.twig</span><span class="delimiter">'</span></span>))
+  .withStyleConfigs(require(<span class="string"><span class="delimiter">'</span><span class="content">../../../configs/styles/fade-out</span><span class="delimiter">'</span></span>)) <i class="conum" data-value="1"></i><b>(1)</b>
+  .withParts(
+    cx.part.image
+      .withLabel(<span class="string"><span class="delimiter">'</span><span class="content">Image</span><span class="delimiter">'</span></span>),
+    cx.part.plainText
+      .withLabel(<span class="string"><span class="delimiter">'</span><span class="content">Description</span><span class="delimiter">'</span></span>));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Just pass the style definition to the builder using <code>withStyleConfigs()</code> and <code>require()</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="design-and-preview-templates"><a class="anchor" href="#design-and-preview-templates"></a>5.3. Design and Preview Templates</h3>
+<div class="paragraph">
+<p>To bundle your design and preview templates, create a new <code>preview.twig</code> and <code>design.twig</code> file inside the template root folder.
+To prevent code duplication, it&#8217;s recommended to create a <code>_layout.twig</code> template and extend it in your <code>design.twig</code> and <code>preview.twig</code>.
+Take a look at the following example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 64. The contents of a simple <code>_layout.twig</code> template.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="twig">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;/&gt;
+    &lt;title&gt;{{ properties.title }}&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ bsi_cx_css_href() }}&quot;/&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+&lt;/head&gt;
+&lt;body class=&quot;d-flex flex-column min-vh-100&quot;&gt;
+{% apply spaceless %}
+    &lt;header id=&quot;header&quot; data-bsi-dropzone=&quot;header&quot;&gt;
+        {% block header %}{% endblock %}
+    &lt;/header&gt;
+    &lt;main id=&quot;content&quot; data-bsi-dropzone=&quot;content&quot;&gt;
+        {% block content %}{% endblock %}
+    &lt;/main&gt;
+    &lt;footer id=&quot;footer&quot; data-bsi-dropzone=&quot;footer&quot;&gt;
+        {% block footer %}{% endblock %}
+    &lt;/footer&gt;
+{% endapply %}
+    &lt;script src=&quot;{{ bsi_cx_js_module_runtime_href() }}&quot; data-bsi-remove-if=&quot;draft&quot; defer=&quot;defer&quot;&gt;&lt;/script&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+    &lt;script src=&quot;{{ bsi_cx_js_module_href('main') }}&quot; data-bsi-remove-if=&quot;draft&quot; defer=&quot;defer&quot;&gt;&lt;/script&gt; <i class="conum" data-value="3"></i><b>(3)</b>
+    {{ bsi_cx_js_module_missing_chunks_import() }} <i class="conum" data-value="4"></i><b>(4)</b>
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use the <code>bsi_cx_css_href()</code> Twig helper to include your stylesheets.
+More options can be found <a href="https://github.com/bsi-software/bsi-cx-design-build/wiki/Design-Reference#include-stylesheets">here</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>You can skip this line if you don&#8217;t have any Java Script modules configured.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Use the <code>bsi_cx_js_module_href()</code> Twig helper to include a Java Script module.
+You can skip this line if you don&#8217;t have any Java Script modules configured.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This imports all missing chunks, related to Java Script modules.
+You can skip this line if you don&#8217;t have any Java Script modules configured.
+More information on including Java Script in your design can be found <a href="https://github.com/bsi-software/bsi-cx-design-build/wiki/Design-Reference#include-javascript">here</a>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now you can extend the blocks from the <code>_layout.twig</code> in your <code>design.twig</code> and <code>preview.twig</code>.
+The following example illustrates this step for the <code>design.twig</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 65. The <code>design.twig</code> extends the <code>_layout.twig</code>.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="twig">{% extends '_layout.twig' %}
+
+{% block header %}
+    {% include './content-elements/header/banner/template.twig' %}
+{% endblock %}
+
+{% block content %}
+    {% include './content-elements/content/title-h1/template.twig' %}
+    {% include './content-elements/content/text/template.twig' %}
+{% endblock %}
+
+{% block footer %}
+    {% include './content-elements/footer/two-col/template.twig' %}
+{% endblock %}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="java-script"><a class="anchor" href="#java-script"></a>5.4. Java Script</h3>
+<div class="paragraph">
+<p>You have two options to include your Java Script code:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Place them in the <code>static</code> folder inside your templates root and include them with <code>bsi_cx_asset()</code>.</p>
+</li>
+<li>
+<p>Create a module in the <code>modules</code> folder and take full advantage of all modern Java Script.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stylesheets"><a class="anchor" href="#stylesheets"></a>5.5. Stylesheets</h3>
+<div class="paragraph">
+<p>Your global can place your global stylesheets directly in the <code>styles</code> folder, located at your template root.
+You can also place any content element specific styles here instead of moving them to the specific content element&#8217;s own folder.
+To bundle your stylesheets, you must reference them in your <code>design.js</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 66. Including a stylesheet in your design.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">require(<span class="string"><span class="delimiter">'</span><span class="content">./styles/styles.scss</span><span class="delimiter">'</span></span>);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="properties"><a class="anchor" href="#properties"></a>5.6. Properties</h3>
+<div class="paragraph">
+<p>The new design build uses Java Script files instead of YAML.
+The <code>properties.js</code> file is a CommonJS module, that exports a simple Java Script object <code>{}</code>.
+Feel free to organize your properties as you wish.
+To access the properties inside your stylesheets and templates, you can use the <code>bsiProperty()</code> helper.
+Take a look at the following example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 67. Old YAML properties file.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">styles</span>:
+    <span class="key">primary-color</span>: <span class="string"><span class="content">'#ed4546'</span></span>
+    <span class="key">secondary-color</span>: <span class="string"><span class="content">'#efefef'</span></span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 68. New Java Script properties file.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">const {css} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>);
+
+module.exports = {
+  <span class="key">styles</span>: {
+    <span class="key"><span class="delimiter">'</span><span class="content">primary-color</span><span class="delimiter">'</span></span>: css.color(<span class="string"><span class="delimiter">'</span><span class="content">#ed4546</span><span class="delimiter">'</span></span>),
+    <span class="key"><span class="delimiter">'</span><span class="content">secondary-color</span><span class="delimiter">'</span></span>: css.color(<span class="string"><span class="delimiter">'</span><span class="content">#efefef</span><span class="delimiter">'</span></span>)
+  }
+};</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Use the <code>css</code> helper to get the most out your properties.
+More information on this feature can be found <a href="https://github.com/bsi-software/bsi-cx-design-build/wiki/Design-Reference#properties">here</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 69. Access the properties inside your Twig templates.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="twig">{% set color = properties.styles['primary-color'] ?: '#ff00ff' %}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 70. Use the <code>bsiProperty()</code> helper inside your templates.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="less">@color: bsiProperty('styles.primary-color');</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="build-configuration"><a class="anchor" href="#build-configuration"></a>5.7. Build Configuration</h3>
+<div class="paragraph">
+<p>In order to compile, it&#8217;s required to add your template to the build configuration in the <code>webpack.config.js</code> file at the project root folder.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 71. Content of the <code>webpack.config.js</code> build configuration file.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">const path = require(<span class="string"><span class="delimiter">'</span><span class="content">path</span><span class="delimiter">'</span></span>);
+
+const {BuildConfig, ModuleConfig, WebpackConfigBuilder, Version, DesignType} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>);
+
+module.exports = WebpackConfigBuilder.fromConfigs(
+  <span class="keyword">new</span> BuildConfig()
+    .withName(<span class="string"><span class="delimiter">'</span><span class="content">landingpage</span><span class="delimiter">'</span></span>) <i class="conum" data-value="1"></i><b>(1)</b>
+    .withVersion(<span class="string"><span class="delimiter">'</span><span class="content">1.0.1-alpha</span><span class="delimiter">'</span></span>) <i class="conum" data-value="2"></i><b>(2)</b>
+    .withTargetVersion(Version.CX_1_3) <i class="conum" data-value="3"></i><b>(3)</b>
+    .withDesignType(DesignType.LANDINGPAGE) <i class="conum" data-value="4"></i><b>(4)</b>
+    .withRootPath(path.resolve(__dirname, <span class="string"><span class="delimiter">'</span><span class="content">templates</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">landingpage</span><span class="delimiter">'</span></span>)) <i class="conum" data-value="5"></i><b>(5)</b>
+    .withPropertiesFilePath(path.resolve(__dirname, <span class="string"><span class="delimiter">'</span><span class="content">properties.js</span><span class="delimiter">'</span></span>)) <i class="conum" data-value="6"></i><b>(6)</b>
+    .withModules(
+      <span class="keyword">new</span> ModuleConfig() <i class="conum" data-value="7"></i><b>(7)</b>
+        .withPath(<span class="string"><span class="delimiter">'</span><span class="content">main.js</span><span class="delimiter">'</span></span>)
+        .withName(<span class="string"><span class="delimiter">'</span><span class="content">main</span><span class="delimiter">'</span></span>)));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The name of this template.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The current version of this template, optional but recommended.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The target BSI CX version. The build is capable of converting a design to the required format of various CX versions.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>What type of design is your template?</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The path to your template root folder. This is where your <code>design.js</code> is located.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The path to your <code>properties.js</code> file.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Configure your Java Script modules here.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="help"><a class="anchor" href="#help"></a>6. Help</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="good-practices"><a class="anchor" href="#good-practices"></a>5.1. Good practices</h3>
+<h3 id="good-practices"><a class="anchor" href="#good-practices"></a>6.1. Good practices</h3>
 <div class="paragraph">
 <p>The following things have been established as good practice in some projects. However, this approach is by no means mandatory and may vary depending on the project and individual preferences.</p>
 </div>
 <div class="sect3">
-<h4 id="deleting-or-deprecating-content-elements"><a class="anchor" href="#deleting-or-deprecating-content-elements"></a>5.1.1. Deleting or deprecating content elements</h4>
+<h4 id="deleting-or-deprecating-content-elements"><a class="anchor" href="#deleting-or-deprecating-content-elements"></a>6.1.1. Deleting or deprecating content elements</h4>
 <div class="paragraph">
 <p>Over time, a design evolves and due to various reasons, a certain content element may become obsolete. A good practice to phase-out a content element is to deprecate an element in a first step instead of directly deleting it. Deprecating helps to inform the end user about a content element that should no longer be added to new contents while still present in existing ones. In addition, it makes manual content migrations easier (see <a href="#refactoring-content-elements">Refactoring content elements</a>). In a future release, when you are sure that the content element is no longer actively in use, you can completely delete the content element.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="refactoring-content-elements"><a class="anchor" href="#refactoring-content-elements"></a>5.1.2. Refactoring content elements</h4>
+<h4 id="refactoring-content-elements"><a class="anchor" href="#refactoring-content-elements"></a>6.1.2. Refactoring content elements</h4>
 <div class="paragraph">
 <p>While refactoring a content element, keep in mind that your changes to a content element should never break existing content. We strongly advice to test your refactored content element to content that was created under the old design version to make sure that you do not introduce breaking changes. Critical points are renamings, changing the order for element parts and big changes to the DOM structure. In spite of that, we do encourage you to refactor where necessary, remind you to test carefully.
 If a refactoring is not possible due to migration issues, adding a new content element and deprecating the preexisting one (see: <a href="#deleting-or-deprecating-content-elements">Deleting or deprecating content elements</a>) is a feasible option.</p>
@@ -3615,12 +4250,12 @@ If a refactoring is not possible due to migration issues, adding a new content e
 </div>
 </div>
 <div class="sect2">
-<h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>5.2. Troubleshooting</h3>
+<h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>6.2. Troubleshooting</h3>
 <div class="paragraph">
 <p>In this chapter, we are collecting some common issues design developers may face in their development process.</p>
 </div>
 <div class="sect3">
-<h4 id="design-upload"><a class="anchor" href="#design-upload"></a>5.2.1. Design Upload</h4>
+<h4 id="design-upload"><a class="anchor" href="#design-upload"></a>6.2.1. Design Upload</h4>
 <div class="paragraph">
 <p>While uploading a design, BSI CX will parse the content of the ZIP file to ensure that the containing design is valid. If the parser detects inconsistencies, an error message is displayed. The following trouble shooting sections will help to correct the error.</p>
 </div>
@@ -3649,7 +4284,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 </table>
 </div>
 <div class="sect4">
-<h5 id="validation-error-file-is-missing"><a class="anchor" href="#validation-error-file-is-missing"></a>5.2.1.1. Validation error: File is missing</h5>
+<h5 id="validation-error-file-is-missing"><a class="anchor" href="#validation-error-file-is-missing"></a>6.2.1.1. Validation error: File is missing</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/invalid_design_error_missing_mandatory_files.png" alt="error message: file is missing">
@@ -3661,7 +4296,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 </div>
 </div>
 <div class="sect4">
-<h5 id="validation-error-invalid-content-element-in-data-bsi-dropzone-allowed-elements"><a class="anchor" href="#validation-error-invalid-content-element-in-data-bsi-dropzone-allowed-elements"></a>5.2.1.2. Validation error: Invalid content element in 'data-bsi-dropzone-allowed-elements'</h5>
+<h5 id="validation-error-invalid-content-element-in-data-bsi-dropzone-allowed-elements"><a class="anchor" href="#validation-error-invalid-content-element-in-data-bsi-dropzone-allowed-elements"></a>6.2.1.2. Validation error: Invalid content element in 'data-bsi-dropzone-allowed-elements'</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/invalid_design_error_invalid_element_in_dropzone.png" alt="error message: invalid content element in 'data-bsi-dropzone-allowed-elements'">
@@ -3709,7 +4344,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Listing 54. example of a badly referenced element in a dropzone</div>
+<div class="title">Listing 72. example of a badly referenced element in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Design_de-CH.zip/design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span>
@@ -3729,7 +4364,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 </div>
 </div>
 <div class="sect4">
-<h5 id="validation-error-unknown-content-element-part"><a class="anchor" href="#validation-error-unknown-content-element-part"></a>5.2.1.3. Validation error: Unknown content element part</h5>
+<h5 id="validation-error-unknown-content-element-part"><a class="anchor" href="#validation-error-unknown-content-element-part"></a>6.2.1.3. Validation error: Unknown content element part</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/invalid_design_error_unknown_content_element_part.png" alt="error message: unknown content element part">
@@ -3753,7 +4388,7 @@ In the example above, a <em>text</em> element part is specified. According to th
 </div>
 </div>
 <div class="sect4">
-<h5 id="validation-error-dropzone-contains-sample-content-element-that-doesnt-match-the-structure-of-the-reference-content-element"><a class="anchor" href="#validation-error-dropzone-contains-sample-content-element-that-doesnt-match-the-structure-of-the-reference-content-element"></a>5.2.1.4. Validation error: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</h5>
+<h5 id="validation-error-dropzone-contains-sample-content-element-that-doesnt-match-the-structure-of-the-reference-content-element"><a class="anchor" href="#validation-error-dropzone-contains-sample-content-element-that-doesnt-match-the-structure-of-the-reference-content-element"></a>6.2.1.4. Validation error: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/invalid_design_error_sample_content_not_matching_content_element_spec.png" alt="error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element">
@@ -3776,7 +4411,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 55. example of a sample content that does not match the specified content element</div>
+<div class="title">Listing 73. example of a sample content that does not match the specified content element</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Content Element: Specification of the element (content-elements.html) --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hello-world</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-hello-world</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -3809,7 +4444,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 </div>
 </div>
 <div class="sect4">
-<h5 id="validation-error-dropzone-contains-sample-content-that-are-not-content-elements"><a class="anchor" href="#validation-error-dropzone-contains-sample-content-that-are-not-content-elements"></a>5.2.1.5. Validation error: Dropzone contains sample content that are not content elements</h5>
+<h5 id="validation-error-dropzone-contains-sample-content-that-are-not-content-elements"><a class="anchor" href="#validation-error-dropzone-contains-sample-content-that-are-not-content-elements"></a>6.2.1.5. Validation error: Dropzone contains sample content that are not content elements</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/invalid_design_error_sample_content_that_are_not_content_elements.png" alt="error message: Dropzone contains sample content that are not content elements">
@@ -3820,7 +4455,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p>A dropzone can contain 0&#8230;&#8203;n content elements. Only content elements are allowed as direct child nodes of dropzones. Therefore, HTML that is not part of a content element must not be placed in a dropzone.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 56. example of a detached paragraph that must not be placed in a dropzone</div>
+<div class="title">Listing 74. example of a detached paragraph that must not be placed in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1 title-h2 title-h3 basic-text basic-image basic-cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;h1</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element title-h1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/h1&gt;</span>
@@ -3830,7 +4465,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 </div>
 </div>
 <div class="sect4">
-<h5 id="validation-error-part-uses-tag-x-but-requires-one-of-the-following-yz"><a class="anchor" href="#validation-error-part-uses-tag-x-but-requires-one-of-the-following-yz"></a>5.2.1.6. Validation error: Part uses tag X but requires one of the following: Y,Z</h5>
+<h5 id="validation-error-part-uses-tag-x-but-requires-one-of-the-following-yz"><a class="anchor" href="#validation-error-part-uses-tag-x-but-requires-one-of-the-following-yz"></a>6.2.1.6. Validation error: Part uses tag X but requires one of the following: Y,Z</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/invalid_design_error_wrong_HTML_tag.png" alt="error message: Part uses tag div but requires one of the following: a" width="img">
@@ -3844,7 +4479,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p><em>In the example above, this would be the <a href="#image">Image</a> content element <a href="#parts">Parts</a> documentation.</em></p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 57. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
+<div class="title">Listing 75. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid: uses &lt;div&gt; which is not an image --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
@@ -3854,14 +4489,14 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 </div>
 </div>
 <div class="sect4">
-<h5 id="validation-error-the-x-tag-must-contain-exactly-one-y-tag"><a class="anchor" href="#validation-error-the-x-tag-must-contain-exactly-one-y-tag"></a>5.2.1.7. Validation error: The X tag must contain exactly one Y tag</h5>
+<h5 id="validation-error-the-x-tag-must-contain-exactly-one-y-tag"><a class="anchor" href="#validation-error-the-x-tag-must-contain-exactly-one-y-tag"></a>6.2.1.7. Validation error: The X tag must contain exactly one Y tag</h5>
 <div class="paragraph">
 <p>Make sure to user proper HTML tags for your element parts. Consult the content element <a href="#parts">Parts</a> documentation for the validation error causing element.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-update"><a class="anchor" href="#design-update"></a>5.2.2. Design Update</h4>
+<h4 id="design-update"><a class="anchor" href="#design-update"></a>6.2.2. Design Update</h4>
 <div class="paragraph">
 <p>To update existing content onto the most recent version of a design, the content must be explicitly updated by clicking the <em><strong>Update Design</strong></em> button in the content editor.
 Success or failure of such a design update is indicated by a message box.</p>
@@ -3873,7 +4508,7 @@ Success or failure of such a design update is indicated by a message box.</p>
 <p>Be reminded that once an updated content is saved, there is no way to go back to the older design version, unless you explicitly create a new version by selecting the respective checkbox next to the save button before saving the content.</p>
 </div>
 <div class="sect4">
-<h5 id="design-validation"><a class="anchor" href="#design-validation"></a>5.2.2.1. Design Validation</h5>
+<h5 id="design-validation"><a class="anchor" href="#design-validation"></a>6.2.2.1. Design Validation</h5>
 <div class="paragraph">
 <p>After hitting the <em>design update</em> button or after a modification of your content, you may see a validation error indicated in the top-right corner.</p>
 </div>
@@ -3888,7 +4523,7 @@ Success or failure of such a design update is indicated by a message box.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="content-does-not-match-the-structure-of-the-referenced-content-element"><a class="anchor" href="#content-does-not-match-the-structure-of-the-referenced-content-element"></a>5.2.2.2. Content does not match the structure of the referenced content element</h5>
+<h5 id="content-does-not-match-the-structure-of-the-referenced-content-element"><a class="anchor" href="#content-does-not-match-the-structure-of-the-referenced-content-element"></a>6.2.2.2. Content does not match the structure of the referenced content element</h5>
 <div class="paragraph">
 <p>The structure of one of your content elements that is being used right now in your content does no longer match it&#8217;s specification.</p>
 </div>
@@ -3959,7 +4594,7 @@ Content:
 Removing a <code>script</code> tag from the DOM if the content is being edited can be achieved by adding <code>data-bsi-remove-if='draft'</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 58. removing a sript in draft (edit) mode</div>
+<div class="title">Listing 76. removing a sript in draft (edit) mode</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">draft</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">your-javascript that manipulates-the-DOM.js</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span></code></pre>
 </div>
@@ -3976,7 +4611,7 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 59. invalid HTML will lead to issues</div>
+<div class="title">Listing 77. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML: the attribute 'style' is defined twice --&gt;</span>
 <span class="tag">&lt;img</span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">text-decoration</span>: <span class="value">none</span>;<span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img/example.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">width</span>:<span class="float">100%</span>; <span class="key">max-width</span>: <span class="float">100%</span>;<span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
@@ -3992,7 +4627,7 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 <p>Some browsers detect and try to <em>fix</em> invalid HTML. Therefore, the DOM structure of the HTML is modified by the browsers, whereas CX still expects the specified structure.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 60. invalid HTML will lead to issues</div>
+<div class="title">Listing 78. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML, as defined in content-elements.html --&gt;</span>
 <span class="tag">&lt;table</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -4026,12 +4661,12 @@ This section applies to installations prior to CX 1.2.48.
 </div>
 </div>
 <div class="sect3">
-<h4 id="dropzone-issues"><a class="anchor" href="#dropzone-issues"></a>5.2.3. Dropzone Issues</h4>
+<h4 id="dropzone-issues"><a class="anchor" href="#dropzone-issues"></a>6.2.3. Dropzone Issues</h4>
 <div class="paragraph">
 <p>If you face issues related to dropzones (a dropzone does not allow to drop your element, the element is dropped in a different place, &#8230;&#8203;), you may find a solution in this section.</p>
 </div>
 <div class="sect4">
-<h5 id="element-is-not-dropable-or-being-dropped-in-another-place"><a class="anchor" href="#element-is-not-dropable-or-being-dropped-in-another-place"></a>5.2.3.1. Element is not dropable or being dropped in another place</h5>
+<h5 id="element-is-not-dropable-or-being-dropped-in-another-place"><a class="anchor" href="#element-is-not-dropable-or-being-dropped-in-another-place"></a>6.2.3.1. Element is not dropable or being dropped in another place</h5>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -4056,7 +4691,7 @@ Dropzones must have unique identifiers in older versions of BSI CX.
 Make sure that a unique name is specified for each usage of <code>data-bsi-dropzone</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 61. data-bsi-dropzone uniqueness violated</div>
+<div class="title">Listing 79. data-bsi-dropzone uniqueness violated</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">main-dropzone</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -4084,21 +4719,21 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-creator-issues"><a class="anchor" href="#design-creator-issues"></a>5.2.4. Design Creator issues</h4>
+<h4 id="design-creator-issues"><a class="anchor" href="#design-creator-issues"></a>6.2.4. Design Creator issues</h4>
 <div class="sect4">
-<h5 id="why-is-the-design-creator-end-of-life"><a class="anchor" href="#why-is-the-design-creator-end-of-life"></a>5.2.4.1. Why is the Design Creator End of Life?</h5>
+<h5 id="why-is-the-design-creator-end-of-life"><a class="anchor" href="#why-is-the-design-creator-end-of-life"></a>6.2.4.1. Why is the Design Creator End of Life?</h5>
 <div class="paragraph">
 <p>We&#8217;ve built a next generation Design Build that is Open-Source and based on widely used tech stack. You may find more information on <a href="https://github.com/bsi-software/bsi-cx-design-build">GitHub</a></p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="is-there-any-detailed-documentation-for-the-cx-design-creator"><a class="anchor" href="#is-there-any-detailed-documentation-for-the-cx-design-creator"></a>5.2.4.2. Is there any detailed documentation for the CX Design Creator</h5>
+<h5 id="is-there-any-detailed-documentation-for-the-cx-design-creator"><a class="anchor" href="#is-there-any-detailed-documentation-for-the-cx-design-creator"></a>6.2.4.2. Is there any detailed documentation for the CX Design Creator</h5>
 <div class="paragraph">
 <p>Unfortunately there is no detailed documentation. We do no longer invest into the <em>CX Design Creator</em> as our sucessor, the <a href="https://github.com/bsi-software/bsi-cx-design-build">CX Design Build</a> as ready to use soon.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="html-comments-mso-tags-missing-after-running-the-cx-design-creator"><a class="anchor" href="#html-comments-mso-tags-missing-after-running-the-cx-design-creator"></a>5.2.4.3. HTML Comments / MSO Tags missing after running the CX Design Creator</h5>
+<h5 id="html-comments-mso-tags-missing-after-running-the-cx-design-creator"><a class="anchor" href="#html-comments-mso-tags-missing-after-running-the-cx-design-creator"></a>6.2.4.3. HTML Comments / MSO Tags missing after running the CX Design Creator</h5>
 <div class="paragraph">
 <p>If you are using the <em>CX Design Creator</em> and your HTML in the <code>design.zip</code> is missing all HTML comments and therefore all outlook specific code is missing, change the <code>tidy</code> property to <code>false</code> in the <code>compiler.yml</code>:</p>
 </div>
@@ -4118,7 +4753,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2022-02-14 18:31:45 +0100
+Last update 2022-04-25 18:30:51 +0200
 </div>
 </div>
 </body>
