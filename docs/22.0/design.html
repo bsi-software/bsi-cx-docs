@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 22.0</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2022-06-13</span>
+<span id="revdate">Version Date 2022-07-12</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -1999,22 +1999,19 @@ This mechanism in built into the content editor itself to create a link anywhere
 <img src="./images/bracket-links-demo.png" alt="usage of bracket links in BSI">
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Definition of links using the CX bracket syntax.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Each link is converted into a story outlet.
-Each outlet can then be linked to an individual action in the story.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The content that is delivered to the user.</td>
-</tr>
-</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Definition of links using the CX bracket syntax.</p>
+</li>
+<li>
+<p>Each link is converted into a story outlet.
+Each outlet can then be linked to an individual action in the story.</p>
+</li>
+<li>
+<p>The content that is delivered to the user.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>While rendering the above content, CX will convert the <code>[unsubscribe]</code> term to a link tag internally, create a unique hyperlink and will add a new outlet to the step to which the current content belongs.
@@ -2089,7 +2086,7 @@ It is your responsibility as a developer to use escaping where brackets have a d
 <h4 id="using-anchor-links-inside-a-design"><a class="anchor" href="#using-anchor-links-inside-a-design"></a>3.2.1. Using anchor links inside a design</h4>
 <div class="paragraph">
 <p>First of all, it is possible to use anchor links in the form of <code>#top</code> inside a CX design.
-Anchor links are allowed as targets of <a href="#link-part">link parts</a>.
+Anchor links are allowed as targets of <a href="#sec-link-part">link parts</a>.
 However, it is not possible to use anchor links as <code>url</code> of a bracket link.
 This is due to the fact, that bracket links meant to be trackable by CX and this requires a complete roundtrip to the server.</p>
 </div>
@@ -3166,7 +3163,7 @@ Boolean attributes like <code>data-bsi-radio-item</code> require an empty value 
 </div>
 </div>
 <div class="sect4">
-<h5 id="link"><a class="anchor" href="#link"></a>3.3.2.16. link</h5>
+<h5 id="sec-link-part"><a class="anchor" href="#sec-link-part"></a>3.3.2.16. link</h5>
 <div class="paragraph">
 <p>The part is defined on the <code>&lt;a&gt;</code> element.
 As an option, the link content can be set with the <code>data-bsi-link-fixed-inner-html</code> attribute.
@@ -4991,29 +4988,24 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 </div>
 <div class="title">Figure 11. error message: invalid content element in 'data-bsi-dropzone-allowed-elements'</div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Error message</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Affected ZIP file</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Affected file (within the ZIP file)</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Name of the <em>data-bsi-dropzone</em> in which the error causing content element is placed</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>The name of the content element. In this case, the content element name is missing</td>
-</tr>
-</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Error message</p>
+</li>
+<li>
+<p>Affected ZIP file</p>
+</li>
+<li>
+<p>Affected file (within the ZIP file)</p>
+</li>
+<li>
+<p>Name of the <em>data-bsi-dropzone</em> in which the error causing content element is placed</p>
+</li>
+<li>
+<p>The name of the content element. In this case, the content element name is missing</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>In one of your <code>data-bsi-dropzone-allowed-elements=''</code> definitions, there is an element listed which does not exist in the <code>content-elements.html</code> file. Common cases where this happens:</p>
@@ -5441,7 +5433,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2022-06-13 18:31:22 +0200
+Last update 2022-07-12 09:09:22 +0200
 </div>
 </div>
 </body>
