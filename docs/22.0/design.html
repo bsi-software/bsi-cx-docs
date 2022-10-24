@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 22.0</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2022-07-12</span>
+<span id="revdate">Version Date 2022-10-24</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -798,9 +798,10 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#configuration-files">3.5.3. Configuration files</a></li>
 <li><a href="#includes">3.5.4. Includes</a></li>
 <li><a href="#content-editor-3">3.5.5. Content-Editor</a></li>
-<li><a href="#metadata-images-for-the-navigation">3.5.6. Metadata / Images for the navigation</a></li>
-<li><a href="#security-google-recaptcha">3.5.7. Security - Google reCAPTCHA</a></li>
-<li><a href="#migration-guide-cx-versions-up-to-and-including-16-3">3.5.8. Migration Guide (CX versions up to and including 16.3)</a></li>
+<li><a href="#pagination">3.5.6. Pagination</a></li>
+<li><a href="#metadata-images-for-the-navigation">3.5.7. Metadata / Images for the navigation</a></li>
+<li><a href="#security-google-recaptcha">3.5.8. Security - Google reCAPTCHA</a></li>
+<li><a href="#migration-guide-cx-versions-up-to-and-including-16-3">3.5.9. Migration Guide (CX versions up to and including 16.3)</a></li>
 </ul>
 </li>
 </ul>
@@ -3686,6 +3687,9 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
 <li>
 <p><strong>navigation</strong> (Object): Contains the hierarchical navigation tree, example follows.</p>
 </li>
+<li>
+<p><strong>paginationInfo</strong> (Object): Contains the information for pagination. This object is only filled if the pagination feature is specified in the <code>design.json</code> file.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -3727,7 +3731,54 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-json"><a class="anchor" href="#example-json"></a>3.5.2.7. Example JSON</h5>
+<h5 id="PaginationVariables"><a class="anchor" href="#PaginationVariables"></a>3.5.2.7. Pagination Info</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>currentPageNo</strong>: Current page number</p>
+</li>
+<li>
+<p><strong>numDataRecordsPerPage</strong>: Number of records per page</p>
+</li>
+<li>
+<p><strong>firstDataRecordOffset</strong>: Index of the first record on the current page</p>
+</li>
+<li>
+<p><strong>totalNumDataRecords</strong>: Total number of existing records</p>
+</li>
+<li>
+<p><strong>firstPageUrl</strong>: URL of the first page</p>
+</li>
+<li>
+<p><strong>lastPageUrl</strong>: URL of the last page</p>
+</li>
+<li>
+<p><strong>lastPageNo</strong>: Page number of the last page</p>
+</li>
+<li>
+<p><strong>previousPages</strong>: Contains information on lower page numbers that are relevant for pagination.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>pageNo</strong>: Page number</p>
+</li>
+<li>
+<p><strong>url</strong>: URL of the page</p>
+</li>
+<li>
+<p><strong>index</strong>: Offset of the page number to the current page number</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>nextpages</strong>: Contains information on higher page numbers that are relevant for pagination. The information set is exactly the same as for <strong>previousPages</strong> and is therefore not listed anew here.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="example-json"><a class="anchor" href="#example-json"></a>3.5.2.8. Example JSON</h5>
 <div class="paragraph">
 <p>This example shows the possible content of a variables object on runtime.</p>
 </div>
@@ -3843,7 +3894,7 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
 <p>This chapter describes the necessary configuration files.</p>
 </div>
 <div class="sect4">
-<h5 id="design-json"><a class="anchor" href="#design-json"></a>3.5.3.1. design.json</h5>
+<h5 id="designjson"><a class="anchor" href="#designjson"></a>3.5.3.1. design.json</h5>
 <div class="paragraph">
 <p>The <em>design.json</em> file is a new metadata file for structured configuration data for websites. This file might supersede the <em>design.properties</em> file on a future release.</p>
 </div>
@@ -3864,6 +3915,10 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
   },
   <span class="key"><span class="delimiter">&quot;</span><span class="content">website</span><span class="delimiter">&quot;</span></span>: {
     <span class="key"><span class="delimiter">&quot;</span><span class="content">maxNavigationLevel</span><span class="delimiter">&quot;</span></span>: <span class="integer">2</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">pagination</span><span class="delimiter">&quot;</span></span>: {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">numDataRecordsPerPage</span><span class="delimiter">&quot;</span></span>: <span class="integer">20</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">numAdjacentPages</span><span class="delimiter">&quot;</span></span>: <span class="integer">3</span>
+    },
     <span class="key"><span class="delimiter">&quot;</span><span class="content">includes</span><span class="delimiter">&quot;</span></span>:{
       <span class="key"><span class="delimiter">&quot;</span><span class="content">__page__</span><span class="delimiter">&quot;</span></span>: {
         <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Vorlage für Inhaltsseiten</span><span class="delimiter">&quot;</span></span>,
@@ -3880,6 +3935,12 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
          <span class="key"><span class="delimiter">&quot;</span><span class="content">reference</span><span class="delimiter">&quot;</span></span>:<span class="string"><span class="delimiter">&quot;</span><span class="content">header</span><span class="delimiter">&quot;</span></span>,
          <span class="key"><span class="delimiter">&quot;</span><span class="content">file</span><span class="delimiter">&quot;</span></span>:<span class="string"><span class="delimiter">&quot;</span><span class="content">include/header.html</span><span class="delimiter">&quot;</span></span>,
          <span class="key"><span class="delimiter">&quot;</span><span class="content">editable</span><span class="delimiter">&quot;</span></span>:<span class="value">true</span>
+      },
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">pagination-element</span><span class="delimiter">&quot;</span></span>: {
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Pagination</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">contentType</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">pre-defined</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">file</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">include/pagination-element.hbs</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">editable</span><span class="delimiter">&quot;</span></span>: <span class="value">false</span>
       },
       <span class="key"><span class="delimiter">&quot;</span><span class="content">footer</span><span class="delimiter">&quot;</span></span>:{
          <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>:<span class="string"><span class="delimiter">&quot;</span><span class="content">Fusszeile</span><span class="delimiter">&quot;</span></span>,
@@ -3910,6 +3971,9 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
 <p><code>website</code>: <code>maxNavigationLevel</code> defines the maximum depth of the navigation (level of the hierarchy) that can be displayed by the design. To allow better structuring of pages and folders, the website editor allows the creation of websites with greater depth, but such pages or folders can&#8217;t be selected through the navigation on runtime. However, an internal link from one page to another page with greater depth is still possible.</p>
 </li>
 <li>
+<p><code>website</code>: <code>pagination</code> is used for pagination (see <a href="#pagination">Pagination</a>). The property <code>numDataRecordsPerPage</code> can be used to specify how many records are to be displayed simultaneously on a page. The property <code>numAdjacentPages</code> describes how many lower and higher page numbers are to be displayed in the pagination navigation. For example, if <code>numAdjacentPages</code> is set to 3 and you are on page 2, then the maximum number of pages displayed in the navigation is 1, 2, 3, 4 and 5.</p>
+</li>
+<li>
 <p><code>includes</code>: See below.</p>
 </li>
 </ul>
@@ -3919,7 +3983,7 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
 <div class="sect3">
 <h4 id="includes"><a class="anchor" href="#includes"></a>3.5.4. Includes</h4>
 <div class="paragraph">
-<p>All files that are inherited to the database on the creation of a website as navigation item or include have to be referenced in the <code>design.json</code> file. All includes from the design.zip are inherited automatically with <code>content-type=built-in</code>.</p>
+<p>All files that are inherited to the database on the creation of a website as navigation item or include have to be referenced in the <code>design.json</code> file. All includes from the design.zip are inherited automatically with <code>content-type=built-in</code>, unless <code>content-type=pre-defined</code> is set explicitly.</p>
 </div>
 <div class="paragraph">
 <p>The file <code>design.html</code> matches the master and is automatically created inside the website internally as an include with the reference <code><em>master</em></code>. For that reason this include should <em>not</em> be defined in the design.json file, as it is defined already.</p>
@@ -3942,7 +4006,7 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
 <p><code>file</code>: Points to a file inside the zip archive, relative to the root of the zip file. Only .html and .hbs are allowed.</p>
 </li>
 <li>
-<p><code>contentType</code>: <code>built-in</code> (default, if not set manually), <code>user-defined</code>.</p>
+<p><code>contentType</code>: <code>built-in</code> (default, if not set manually), <code>pre-defined</code> and <code>user-defined</code>.</p>
 </li>
 <li>
 <p><code>editable</code>: True, when the include can be edited in the content editor by the user. Default is true. Must be <code>editable: false</code> for all includes that use handlebars.</p>
@@ -4055,7 +4119,93 @@ BSI Website</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="metadata-images-for-the-navigation"><a class="anchor" href="#metadata-images-for-the-navigation"></a>3.5.6. Metadata / Images for the navigation</h4>
+<h4 id="pagination"><a class="anchor" href="#pagination"></a>3.5.6. Pagination</h4>
+<div class="paragraph">
+<p>Pagination can be used to distribute data supplied by an external system (e.g. via REST) to several pages on a website, so that only part of the data is displayed on one page. With <em>Next</em> and <em>Back</em> buttons on the website page, it is then possible to display a separate set of data on each page.</p>
+</div>
+<div class="paragraph">
+<p>The pagination must be defined via <code>website: pagination</code> in <code>design.json</code> and provided via an include. The include must exist in the <code>design.json</code> file and have the special content type <code>pre-defined</code> (see <a href="#designjson">design.json</a>). The include itself should have the extension <code>.hbs</code> and use handlebars. The possible values for the Mustache templates are documented in the chapter on website variables (see <a href="#PaginationVariables">Pagination Info</a>). Besides, the attribute <code>data-bsi-hide-edit-button</code> should be set, as includes that use handlebars should not be editable in the website editor. The following is an example of a possible template:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">pagination-element</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">pagination-element</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-edit-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{pagination.firstPageUrl}}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>First Page<span class="tag">&lt;/a&gt;</span>
+    {{#each pagination.previousPages}}
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{url}}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>[{{pageNo}}]<span class="tag">&lt;/a&gt;</span>
+    {{/each}}
+    {{pagination.currentPageNo}}
+    {{#each pagination.nextPages}}
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{{url}}}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>[{{pageNo}}]<span class="tag">&lt;/a&gt;</span>
+    {{/each}}
+    <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{pagination.lastPageUrl}}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Last Page<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This template (include) is then rendered by the template engine at runtime. One possible output is the following. Everything except page 20 are links pointing to the respective pages.</p>
+</div>
+<div class="paragraph">
+<p><em>[First Page] [18] [19] 20 [21] [22] [Last Page]</em></p>
+</div>
+<div class="paragraph">
+<p>The data to be rendered via pagination can finally be displayed with the table content element. For this, a content element with the element part <code>table</code> should be extended by the attribute <code>data-bsi-show-pagination-field</code>. The following is an example of a possible table template:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-show-pagination-field</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;table&gt;</span>
+        <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;th&gt;</span>#<span class="tag">&lt;/th&gt;</span>
+            <span class="tag">&lt;th&gt;</span>Title 1<span class="tag">&lt;/th&gt;</span>
+            <span class="tag">&lt;th&gt;</span>Title 2<span class="tag">&lt;/th&gt;</span>
+            <span class="tag">&lt;th&gt;</span>Title 3<span class="tag">&lt;/th&gt;</span>
+        <span class="tag">&lt;/tr&gt;</span>
+        <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;td&gt;</span>1<span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;td&gt;</span>Text 1<span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;td&gt;</span>Text 2<span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;td&gt;</span>Text 3<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;/tr&gt;</span>
+        <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;td&gt;</span>2<span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;td&gt;</span>Text 1<span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;td&gt;</span>Text 2<span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;td&gt;</span>Text 3<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;/table&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the attribute <code>data-bsi-show-pagination-field</code> is set, the checkbox <code>with Pagination</code> will be displayed in the configuration of the table content element. In order to use pagination, the checkbox should be activated.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/table-with-pagination.png" alt="table with pagination">
+</div>
+</div>
+<div class="sect4">
+<h5 id="limitations"><a class="anchor" href="#limitations"></a>3.5.6.1. Limitations</h5>
+<div class="paragraph">
+<p>There are some limitations to pagination:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pagination has only been implemented for tables (i.e. the element part <code>table</code>).</p>
+</li>
+<li>
+<p>The pagination can only be used directly in a website. We do not support the embedding of such a table in an include. Other content (for example for landing pages) is also not supported.</p>
+</li>
+<li>
+<p>To enable a meaningful display of the handlebars code in the website editor, the Mustache templates are rendered when the editor is initially loaded. Afterwards, the rendering happens only exceptionally. This can lead to the display being incorrect if page-dependent elements (such as <em>{{navigation.activePage}}</em>) are used in the template.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="metadata-images-for-the-navigation"><a class="anchor" href="#metadata-images-for-the-navigation"></a>3.5.7. Metadata / Images for the navigation</h4>
 <div class="imageblock">
 <div class="content">
 <img src="./images/header_data.png" alt="header data">
@@ -4069,7 +4219,7 @@ BSI Website</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="security-google-recaptcha"><a class="anchor" href="#security-google-recaptcha"></a>3.5.7. Security - Google reCAPTCHA</h4>
+<h4 id="security-google-recaptcha"><a class="anchor" href="#security-google-recaptcha"></a>3.5.8. Security - Google reCAPTCHA</h4>
 <div class="paragraph">
 <p>It&#8217;s highly advised to use the Google reCAPTCHA service "I&#8217;m not a robot", when using username/password authentification with non-internal users (public). For that we use the optional CX module <code>com.bsiag.studio.media.googlerecaptcha</code>, which can be configured in the CX settings.</p>
 </div>
@@ -4194,7 +4344,7 @@ BSI Website</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="migration-guide-cx-versions-up-to-and-including-16-3"><a class="anchor" href="#migration-guide-cx-versions-up-to-and-including-16-3"></a>3.5.8. Migration Guide (CX versions up to and including 16.3)</h4>
+<h4 id="migration-guide-cx-versions-up-to-and-including-16-3"><a class="anchor" href="#migration-guide-cx-versions-up-to-and-including-16-3"></a>3.5.9. Migration Guide (CX versions up to and including 16.3)</h4>
 <div class="paragraph">
 <p>The following steps are necessary to create a website template from an existing landingpage template:</p>
 </div>
@@ -5433,7 +5583,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2022-07-12 09:09:22 +0200
+Last update 2022-10-24 18:33:43 +0200
 </div>
 </div>
 </body>
