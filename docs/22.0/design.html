@@ -740,22 +740,21 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 22.0</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2022-11-04</span>
+<span id="revdate">Version Date 2023-01-24</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
 <ul class="sectlevel1">
 <li><a href="#introduction">1. Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#technical-introduction">1.1. Technical Introduction</a></li>
-<li><a href="#branding-visual-design">1.2. Branding &amp; Visual Design</a></li>
-<li><a href="#getting-started">1.3. Getting started</a></li>
+<li><a href="#getting-started">1.1. Getting started</a></li>
+<li><a href="#technical-introduction">1.2. Technical Introduction</a></li>
+<li><a href="#branding-visual-design">1.3. Branding &amp; Visual Design</a></li>
 <li><a href="#design-since-22">1.4. Designs since BSI CX 22.0</a></li>
-<li><a href="#file-format">1.5. File format</a></li>
-<li><a href="#content-editor">1.6. Content Editor</a></li>
-<li><a href="#structure-reference">1.7. Structure Reference</a></li>
-<li><a href="#dropzones">1.8. Dropzones</a></li>
-<li><a href="#groups">1.9. Groups</a></li>
+<li><a href="#content-editor">1.5. Content Editor</a></li>
+<li><a href="#structure-reference">1.6. Structure Reference</a></li>
+<li><a href="#dropzones">1.7. Dropzones</a></li>
+<li><a href="#groups">1.8. Groups</a></li>
 </ul>
 </li>
 <li><a href="#design-properties">2. design.properties</a>
@@ -841,6 +840,13 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Wrong CX-version? <a href="https://bsi-software.github.io/bsi-cx-docs/">Click here</a> to get the documentations of all CX-versions.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
@@ -851,6 +857,18 @@ Everything is cross-departmental, individualized for every customer, in real tim
 </div>
 <div class="paragraph">
 <p>Learn more about all features of BSI CX by visiting <a href="https://www.bsi-software.com/en/cx">our product website</a>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You wan&#8217;t to build a BSI CX Design? <strong>Learn how to use BSI designs by taking part in the <a href="https://services.bsi-software.com/studio/public/e/l/bsi-academy-bsi-cx-design">e-learning for designs</a>!</strong>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -865,7 +883,28 @@ Everything is cross-departmental, individualized for every customer, in real tim
 </table>
 </div>
 <div class="sect2">
-<h3 id="technical-introduction"><a class="anchor" href="#technical-introduction"></a>1.1. Technical Introduction</h3>
+<h3 id="getting-started"><a class="anchor" href="#getting-started"></a>1.1. Getting started</h3>
+<div class="paragraph">
+<p>Learn how to use BSI designs by taking part in the <a href="https://services.bsi-software.com/studio/public/e/l/bsi-academy-bsi-cx-design">e-learning for designs</a>.</p>
+</div>
+<div class="paragraph">
+<p>The interactive e-learning helps you to reach your goal faster.
+We have developed this e-learning from years of experience with various customers, with the aim of learning how to work with designs quickly and delivering good results to the customer in a timely manner.
+In particular, you will learn how to work with our templates so that you don&#8217;t have to start from scratch.</p>
+</div>
+<div class="paragraph">
+<p>We recommend to start by adopting an existing design for BSI CX. This will help you to get started and will already come with existing content elements which act as examples for your customizations.
+BSI provides a set of design templates that are called <strong>Master Templates</strong>. The Master Templates for <a href="https://github.com/bsi-software/bsi-cx-design-master-template-email">email</a> and <a href="https://github.com/bsi-software/bsi-cx-design-master-template-web">web</a> (including landingpage and website) are publicly available on GitHub as an MIT licensed open source project.</p>
+</div>
+<div class="paragraph">
+<p>Besides, the <a href="https://github.com/bsi-software/bsi-cx-design-build">design build</a> which is used to build the templates, as well as the library for <a href="https://github.com/bsi-software/bsi-cx-design-standard-library-email">email content elements</a> and <a href="https://github.com/bsi-software/bsi-cx-design-standard-library-web">web content elements</a> on which the templates are based, are MIT licensed open source projects.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can start off from scratch by using the <a href="https://github.com/bsi-software/bsi-cx-scaffold-design">Scaffold Design</a> and following the guidance in this documentation to build a completely new template.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="technical-introduction"><a class="anchor" href="#technical-introduction"></a>1.2. Technical Introduction</h3>
 <div class="paragraph">
 <p>This documentation acts as the primary resource for developers that wish to implement a design for BSI CX. For implementation of designs for BSI CX 22.0 and later, see also <a href="#design-since-22">Designs since BSI CX 22.0</a> and <a href="https://github.com/bsi-software/bsi-cx-design-build/wiki">our wiki at GitHub</a>.</p>
 </div>
@@ -893,34 +932,17 @@ Everything is cross-departmental, individualized for every customer, in real tim
 </dd>
 </dl>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-You can book a BSI CX Design training <a href="https://www.bsi-software.com/en/training-courses">on our website</a>.
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect2">
-<h3 id="branding-visual-design"><a class="anchor" href="#branding-visual-design"></a>1.2. Branding &amp; Visual Design</h3>
+<h3 id="branding-visual-design"><a class="anchor" href="#branding-visual-design"></a>1.3. Branding &amp; Visual Design</h3>
 <div class="paragraph">
 <p>Each brand has its own and unique visual design language. The branding guidelines of your company or customer define the boundary conditions for building a design. As a design developer for BSI CX, it is your responsibility to get a specification on how the website, landing page or newsletter should look like and what elements it should consist of.
 Especially when it comes to designing HTML emails, you may have to find a compromise between the developers' ideas of visual design and the actual technical possibilities of HTML emails.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="getting-started"><a class="anchor" href="#getting-started"></a>1.3. Getting started</h3>
 <div class="paragraph">
 <p>We recommend to start by adopting an existing design for BSI CX. This will help you to get started and will already come with existing content elements which act as examples for your customizations.
-BSI provides a set of design templates that are called <strong>Master Templates</strong>. The Master Templates for <a href="https://github.com/bsi-software/bsi-cx-design-master-template-email">email</a> and <a href="https://github.com/bsi-software/bsi-cx-design-master-template-web">web</a> (including landingpage and website) are publicly available on GitHub as an MIT licensed open source project (see <a href="#design-since-22">Designs since BSI CX 22.0</a>).</p>
-</div>
-<div class="paragraph">
-<p>Alternatively, you can start off from scratch by using the <a href="https://github.com/bsi-software/bsi-cx-scaffold-design">Scaffold Design</a> and following the guidance in this documentation to build a completely new template.</p>
+BSI provides a set of design templates that are called <strong>Master Templates</strong>. The Master Templates for <a href="https://github.com/bsi-software/bsi-cx-design-master-template-email">email</a> and <a href="https://github.com/bsi-software/bsi-cx-design-master-template-web">web</a> (including landingpage and website) are publicly available on GitHub as an MIT licensed open source project (see <a href="#design-since-22">Designs since BSI CX 22.0</a>).
+Alternatively, you can start off from scratch by using the <a href="https://github.com/bsi-software/bsi-cx-scaffold-design">Scaffold Design</a> and following the guidance in this documentation to build a completely new template.</p>
 </div>
 </div>
 <div class="sect2">
@@ -945,11 +967,9 @@ BSI provides a set of design templates that are called <strong>Master Templates<
 </ul>
 </div>
 <div class="paragraph">
-<p>The current design zip files for uploading to CX are available for download in the GitHub releases of the respective Master Templates.</p>
+<p>The current design zip files for uploading to CX are available for download in the GitHub releases of the respective Master Templates.
+== File format</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="file-format"><a class="anchor" href="#file-format"></a>1.5. File format</h3>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -1039,7 +1059,7 @@ The files and folders in the ZIP file must not contain any umlauts.
 </div>
 </div>
 <div class="sect2">
-<h3 id="content-editor"><a class="anchor" href="#content-editor"></a>1.6. Content Editor</h3>
+<h3 id="content-editor"><a class="anchor" href="#content-editor"></a>1.5. Content Editor</h3>
 <div class="paragraph">
 <p>The content editor is where specific websites, newsletters and landing pages are created. The content creator relies on a design of good quality to build contents which on the other hand are referred from a story.</p>
 </div>
@@ -1064,7 +1084,7 @@ The files and folders in the ZIP file must not contain any umlauts.
 </div>
 </div>
 <div class="sect2">
-<h3 id="structure-reference"><a class="anchor" href="#structure-reference"></a>1.7. Structure Reference</h3>
+<h3 id="structure-reference"><a class="anchor" href="#structure-reference"></a>1.6. Structure Reference</h3>
 <div class="paragraph">
 <p>The file <code>design.html</code> contains the <code>frame</code> of the design and must include at least one outermost dropzone.
 It must contain valid, XHTML conform HTML with Doctype, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> tags.</p>
@@ -1081,10 +1101,12 @@ Here no Doctype, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> or <code>&
 </div>
 </div>
 <div class="sect2">
-<h3 id="dropzones"><a class="anchor" href="#dropzones"></a>1.8. Dropzones</h3>
+<h3 id="dropzones"><a class="anchor" href="#dropzones"></a>1.7. Dropzones</h3>
 <div class="paragraph">
 <p>While dragging a content element into the content area, you will notice blue lines and blue areas. These areas are called dropzones and identify areas where certain content elements can be placed. Each dropzone has a list of allowed content elements that are specified in the design.
-A dropzone is defined by adding the attribute <code>data-bsi-dropzone</code> to an HTML element. The list of allowed content elements is specified by the <code>data-bsi-dropzone-allowed-elements</code> attribute. An optional limit of elements that can be placed inside the dropzone is defined by adding the <code>data-bsi-dropzone-max-number-of-elements</code> attribute.</p>
+A dropzone is defined by adding the attribute <code>data-bsi-dropzone</code> to an HTML container element (e.g. <code>&lt;div&gt;</code> or <code>&lt;table&gt;</code>).
+The list of allowed content elements is specified by the <code>data-bsi-dropzone-allowed-elements</code> attribute.
+An optional limit of elements that can be placed inside the dropzone is defined by adding the <code>data-bsi-dropzone-max-number-of-elements</code> attribute.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1101,7 +1123,7 @@ A dropzone is defined by adding the attribute <code>data-bsi-dropzone</code> to 
 </div>
 </div>
 <div class="sect2">
-<h3 id="groups"><a class="anchor" href="#groups"></a>1.9. Groups</h3>
+<h3 id="groups"><a class="anchor" href="#groups"></a>1.8. Groups</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3235,7 +3257,7 @@ If the link text is to be placed in a tag within the hyperlink (e.g. in a span n
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Boolean attributes like <code>data-bsi-link-fixed-inner-html</code> require an empty value <code>=""</code> or sample value like <code>="true"</code>.
+Boolean attributes like <code>data-bsi-link-fixed-inner-html</code> could require an empty value <code>=""</code> or sample value like <code>="true"</code>.
 </td>
 </tr>
 </table>
@@ -3245,6 +3267,30 @@ Boolean attributes like <code>data-bsi-link-fixed-inner-html</code> require an e
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cta</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.bsi-software.com/</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>More<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 50. Example usage of the link part with <code>data-bsi-link-fixed-inner-html</code>.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cta</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">[dynamic_link]</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-link-fixed-inner-html</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;span&gt;</span>
+            <span class="tag">&lt;p&gt;</span> Some static content <span class="tag">&lt;/p&gt;</span>
+            <span class="tag">&lt;p</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">formatted-text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> Add your text here! <span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 51. Example usage of the link part with <code>data-bsi-link-text-part</code>.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;i</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">icon icon-028-arrow-back</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/i&gt;</span>
+        <span class="tag">&lt;span</span> <span class="attribute-name">data-bsi-link-text-part</span><span class="tag">&gt;</span>The link text is <span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;/a&gt;</span>
 <span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
@@ -3267,7 +3313,7 @@ The link <code>href</code> can be preselected with a URL or with CX links in squ
 <p>The <code>&lt;a&gt;</code> element, in turn, can contain additional elements.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 50. Example usage of the social-follow part.</div>
+<div class="title">Listing 52. Example usage of the social-follow part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-follow</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-follow</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-follow</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Facebook</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-media-item</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -3428,7 +3474,7 @@ When using the content inside your story, each URL provider part will produce a 
 This outlets can be connected to any URL provider (e.g. the <em>Charts</em> Step).</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 51. Example usage of the URL provider part.</div>
+<div class="title">Listing 53. Example usage of the URL provider part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">pie-chart</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">url-provider</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">mb-4 chart-js</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
   <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">./pie-chart-placeholder.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">w-100</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
@@ -3589,7 +3635,7 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
 <p><strong>data-bsi-hide-edit-button</strong> may be used to prevent editing of a content element. The attribute must be located on the same tag as the <code>data-bsi-element</code> attribute.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 52. hiding the content element edit button</div>
+<div class="title">Listing 54. hiding the content element edit button</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">...</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-edit-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
@@ -3598,7 +3644,7 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
 <p><strong>data-bsi-hide-move-button</strong>, <strong>data-bsi-hide-copy-button</strong>, and <strong>data-bsi-hide-remove-button</strong> are working in the same manner, but on dropzone level. They will prevent from moving, copying, or removing content elements on a dropzone.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 53. prevent moving, copying and removal of content elements.</div>
+<div class="title">Listing 55. prevent moving, copying and removal of content elements.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">...</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-move-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-copy-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-remove-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
@@ -4454,7 +4500,7 @@ BSI Website</code></pre>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-BSI CX 22.0 introduced the <a href="https://github.com/bsi-software/bsi-cx-design-build">design build</a>, which superseded the CX Design Creator.
+Meanwhile BSI introduced a npm based <a href="https://github.com/bsi-software/bsi-cx-design-build">design build</a>, which superseded the CX Design Creator.
 For more information see the
 <a href="https://github.com/bsi-software/bsi-cx-design-build/wiki">design build wiki at GitHub</a>.
 </td>
@@ -4514,7 +4560,7 @@ The CX Design Creator has the following functionality and tasks:</p>
 <p>The CX Design Creator itself is configured with a YAML file compiler.yml:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 54. Example of a compiler.yml file</div>
+<div class="title">Listing 56. Example of a compiler.yml file</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">engine</span>: <span class="string"><span class="content">{ version: '0.79.4' }</span></span>
 <span class="key">watch</span>:
@@ -4643,7 +4689,7 @@ Also consider reading <a href="https://github.com/bsi-software/bsi-cx-design-bui
 This step will be explained on an example:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 55. Content element from the old design creator build.</div>
+<div class="title">Listing 57. Content element from the old design creator build.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="twig">&lt;div class=&quot;content-element image-wrapper&quot; data-bsi-element=&quot;image&quot;&gt;
     &lt;div class=&quot;row&quot;&gt;
@@ -4660,7 +4706,7 @@ This step will be explained on an example:</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 56. Corresponding entry in the design.properties file.</div>
+<div class="title">Listing 58. Corresponding entry in the design.properties file.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="properties">element.image.label=Image
 element.image.description=with description
@@ -4678,7 +4724,7 @@ They are all nicely organized in separate folders.
 So create a new folder for your own element:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 57. Folder structure of a single content element.</div>
+<div class="title">Listing 59. Folder structure of a single content element.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">.
 └───image
@@ -4715,7 +4761,7 @@ In our example, we add the <code>placeholder.jpg</code> here.
 Now we can create the <code>template.twig</code>:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 58. The transformed template for the content element.</div>
+<div class="title">Listing 60. The transformed template for the content element.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="twig">&lt;div class=&quot;content-element image-wrapper&quot; data-bsi-element=&quot;image&quot;&gt;
     &lt;div class=&quot;row&quot;&gt;
@@ -4732,7 +4778,7 @@ Now we can create the <code>template.twig</code>:</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 59. The content element specification in the <code>index.js</code> file.</div>
+<div class="title">Listing 61. The content element specification in the <code>index.js</code> file.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">require(<span class="string"><span class="delimiter">'</span><span class="content">./styles.less</span><span class="delimiter">'</span></span>); <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -4782,7 +4828,7 @@ The design specification is contained in the <code>design.js</code> file and rep
 You find the <code>design.js</code> at the root folder of your template.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 60. The design specification for the transformed design.</div>
+<div class="title">Listing 62. The design specification for the transformed design.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">require(<span class="string"><span class="delimiter">'</span><span class="content">./styles/styles.scss</span><span class="delimiter">'</span></span>); <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -4833,7 +4879,7 @@ Since it contains an <code>index.js</code>, it&#8217;s not required to mention t
 <p>If your content element uses any <a href="#styles">Styles</a>, you must transform them to a Java Script styles definition:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 61. The style definition in the old <code>design.properties</code> format.</div>
+<div class="title">Listing 63. The style definition in the old <code>design.properties</code> format.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="properties">style.element-width.label=Element width
 style.element-width.class.element-with-unset.label=None
@@ -4845,7 +4891,7 @@ style.element-width.class.element-width-left-right.label=Label left, field right
 <p>The transformation to the new format is pretty straightforward:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 62. The style definition in the new Java Script format.</div>
+<div class="title">Listing 64. The style definition in the new Java Script format.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">const {cx} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>);
 
@@ -4871,7 +4917,7 @@ Otherwise, you should put it in the <code>configs/styles</code> folder inside yo
 To use a style in your content element, simply reference the file:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 63. Use a style definition in your content element.</div>
+<div class="title">Listing 65. Use a style definition in your content element.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">const {cx, Icon} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>);
 
@@ -4906,7 +4952,7 @@ To prevent code duplication, it&#8217;s recommended to create a <code>_layout.tw
 Take a look at the following example:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 64. The contents of a simple <code>_layout.twig</code> template.</div>
+<div class="title">Listing 66. The contents of a simple <code>_layout.twig</code> template.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="twig">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -4964,7 +5010,7 @@ More information on including Java Script in your design can be found <a href="h
 The following example illustrates this step for the <code>design.twig</code>:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 65. The <code>design.twig</code> extends the <code>_layout.twig</code>.</div>
+<div class="title">Listing 67. The <code>design.twig</code> extends the <code>_layout.twig</code>.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="twig">{% extends '_layout.twig' %}
 
@@ -5007,7 +5053,7 @@ You can also place any content element specific styles here instead of moving th
 To bundle your stylesheets, you must reference them in your <code>design.js</code>:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 66. Including a stylesheet in your design.</div>
+<div class="title">Listing 68. Including a stylesheet in your design.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">require(<span class="string"><span class="delimiter">'</span><span class="content">./styles/styles.scss</span><span class="delimiter">'</span></span>);</code></pre>
 </div>
@@ -5023,7 +5069,7 @@ To access the properties inside your stylesheets and templates, you can use the 
 Take a look at the following example:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 67. Old YAML properties file.</div>
+<div class="title">Listing 69. Old YAML properties file.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">styles</span>:
     <span class="key">primary-color</span>: <span class="string"><span class="content">'#ed4546'</span></span>
@@ -5031,7 +5077,7 @@ Take a look at the following example:</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 68. New Java Script properties file.</div>
+<div class="title">Listing 70. New Java Script properties file.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">const {css} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>);
 
@@ -5057,13 +5103,13 @@ More information on this feature can be found <a href="https://github.com/bsi-so
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 69. Access the properties inside your Twig templates.</div>
+<div class="title">Listing 71. Access the properties inside your Twig templates.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="twig">{% set color = properties.styles['primary-color'] ?: '#ff00ff' %}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 70. Use the <code>bsiProperty()</code> helper inside your templates.</div>
+<div class="title">Listing 72. Use the <code>bsiProperty()</code> helper inside your templates.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="less">@color: bsiProperty('styles.primary-color');</code></pre>
 </div>
@@ -5075,7 +5121,7 @@ More information on this feature can be found <a href="https://github.com/bsi-so
 <p>In order to compile, it&#8217;s required to add your template to the build configuration in the <code>webpack.config.js</code> file at the project root folder.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 71. Content of the <code>webpack.config.js</code> build configuration file.</div>
+<div class="title">Listing 73. Content of the <code>webpack.config.js</code> build configuration file.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">const path = require(<span class="string"><span class="delimiter">'</span><span class="content">path</span><span class="delimiter">'</span></span>);
 
@@ -5195,7 +5241,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <div class="title">Figure 10. error message: file is missing</div>
 </div>
 <div class="paragraph">
-<p>Your upload is missing a mandatory file. Please refer to <a href="#file-format">File format</a> where the mandatory files for your design type is described in detail.</p>
+<p>Your upload is missing a mandatory file. Please refer to <a href="#File format">[File format]</a> where the mandatory files for your design type is described in detail.</p>
 </div>
 </div>
 <div class="sect4">
@@ -5242,7 +5288,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Listing 72. example of a badly referenced element in a dropzone</div>
+<div class="title">Listing 74. example of a badly referenced element in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Design_de-CH.zip/design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span>
@@ -5309,7 +5355,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 73. example of a sample content that does not match the specified content element</div>
+<div class="title">Listing 75. example of a sample content that does not match the specified content element</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Content Element: Specification of the element (content-elements.html) --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hello-world</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-hello-world</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -5353,7 +5399,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p>A dropzone can contain 0&#8230;&#8203;n content elements. Only content elements are allowed as direct child nodes of dropzones. Therefore, HTML that is not part of a content element must not be placed in a dropzone.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 74. example of a detached paragraph that must not be placed in a dropzone</div>
+<div class="title">Listing 76. example of a detached paragraph that must not be placed in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1 title-h2 title-h3 basic-text basic-image basic-cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;h1</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element title-h1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/h1&gt;</span>
@@ -5377,7 +5423,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p><em>In the example above, this would be the <a href="#image">Image</a> content element <a href="#parts">Parts</a> documentation.</em></p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 75. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
+<div class="title">Listing 77. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid: uses &lt;div&gt; which is not an image --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
@@ -5492,7 +5538,7 @@ Content:
 Removing a <code>script</code> tag from the DOM if the content is being edited can be achieved by adding <code>data-bsi-remove-if='draft'</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 76. removing a sript in draft (edit) mode</div>
+<div class="title">Listing 78. removing a sript in draft (edit) mode</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">draft</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">your-javascript that manipulates-the-DOM.js</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span></code></pre>
 </div>
@@ -5509,7 +5555,7 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 77. invalid HTML will lead to issues</div>
+<div class="title">Listing 79. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML: the attribute 'style' is defined twice --&gt;</span>
 <span class="tag">&lt;img</span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">text-decoration</span>: <span class="value">none</span>;<span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img/example.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">width</span>:<span class="float">100%</span>; <span class="key">max-width</span>: <span class="float">100%</span>;<span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
@@ -5525,7 +5571,7 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 <p>Some browsers detect and try to <em>fix</em> invalid HTML. Therefore, the DOM structure of the HTML is modified by the browsers, whereas CX still expects the specified structure.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 78. invalid HTML will lead to issues</div>
+<div class="title">Listing 80. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML, as defined in content-elements.html --&gt;</span>
 <span class="tag">&lt;table</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -5589,7 +5635,7 @@ Dropzones must have unique identifiers in older versions of BSI CX.
 Make sure that a unique name is specified for each usage of <code>data-bsi-dropzone</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 79. data-bsi-dropzone uniqueness violated</div>
+<div class="title">Listing 81. data-bsi-dropzone uniqueness violated</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">main-dropzone</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -5651,7 +5697,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2022-11-04 18:30:35 +0100
+Last update 2023-01-24 18:30:31 +0100
 </div>
 </div>
 </body>
