@@ -44,18 +44,20 @@ mainZipDir="${files[0]##*/}"
 sourceDir="${sourceBaseDir}/${mainZipDir}"
 targetDir="${targetRepoDir}/docs/${version}"
 
+mkdir -p ${targetDir}/images/
+
 echo "Copy files from $sourceDir to $targetDir ..."
 
 # copy images and track changes (rsync using only checksums)
-rsync -uac --info=name ${sourceDir}/images/* ${targetDir}/images/
+rsync --archive --checksum --info=name ${sourceDir}/images/* ${targetDir}/images/
 
 for htmlFile in ${sourceDir}/*.html
 do
   htmlFilename=${htmlFile##*/}
   filename=${htmlFilename%.*}
 
-  # for each html, check if there are changes except for timestamps
-  if [[ -n "$(diff -q --ignore-matching-lines='Last update [0-9\-]\+ [0-9:]\+' --ignore-matching-lines='Version Date [0-9\-]\+' ${sourceDir}/${htmlFilename} ${targetDir}/${htmlFilename})" ]]; then
+  # for each html, check if the target file exists or if there are changes except for 'last updated timestamp'
+  if [ ! -f ${targetDir}/${htmlFilename} ] || [[ -n "$(diff -q --ignore-matching-lines='Last update [0-9\-]\+ [0-9:]\+' --ignore-matching-lines='Version Date [0-9\-]\+' ${sourceDir}/${htmlFilename} ${targetDir}/${htmlFilename})" ]]; then
     echo "File ${htmlFilename} changed: copy ${filename}.html, ${filename}.pdf"
 
     cp "${sourceDir}/${filename}.html" "${targetDir}/${filename}.html"
