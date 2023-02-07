@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 23.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2023-02-02</span>
+<span id="revdate">Version Date 2023-02-07</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -831,7 +831,8 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#design-upload">6.2.1. Design Upload</a></li>
 <li><a href="#design-update">6.2.2. Design Update</a></li>
 <li><a href="#dropzone-issues">6.2.3. Dropzone Issues</a></li>
-<li><a href="#design-creator-issues">6.2.4. Design Creator issues</a></li>
+<li><a href="#design-creator-issues">6.2.4. Design Creator Issues</a></li>
+<li><a href="#content-editor-limitations">6.2.5. Content Editor Limitations</a></li>
 </ul>
 </li>
 </ul>
@@ -1989,7 +1990,7 @@ CX 1.2.46
 </ul>
 </div>
 <div class="paragraph">
-<p>The preview mode inside the content editor or any content that is delivered by a story will not have any of the above listed classes.</p>
+<p>The preview mode outside the content editor or any content that is delivered by a story will not have any of the above listed classes.</p>
 </div>
 <div class="listingblock">
 <div class="title">Listing 24. editor specific CSS example: HTML</div>
@@ -5663,17 +5664,17 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-creator-issues"><a class="anchor" href="#design-creator-issues"></a>6.2.4. Design Creator issues</h4>
+<h4 id="design-creator-issues"><a class="anchor" href="#design-creator-issues"></a>6.2.4. Design Creator Issues</h4>
 <div class="sect4">
 <h5 id="why-is-the-design-creator-end-of-life"><a class="anchor" href="#why-is-the-design-creator-end-of-life"></a>6.2.4.1. Why is the Design Creator End of Life?</h5>
 <div class="paragraph">
-<p>We&#8217;ve built a next generation Design Build that is Open-Source and based on widely used tech stack. You may find more information on <a href="https://github.com/bsi-software/bsi-cx-design-build">GitHub</a></p>
+<p>We&#8217;ve built a next generation Design Build that is Open-Source and based on widely used tech stack. You may find more information on <a href="https://github.com/bsi-software/bsi-cx-design-build">GitHub</a>.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="is-there-any-detailed-documentation-for-the-cx-design-creator"><a class="anchor" href="#is-there-any-detailed-documentation-for-the-cx-design-creator"></a>6.2.4.2. Is there any detailed documentation for the CX Design Creator</h5>
 <div class="paragraph">
-<p>Unfortunately there is no detailed documentation. We do no longer invest into the <em>CX Design Creator</em> as our sucessor, the <a href="https://github.com/bsi-software/bsi-cx-design-build">CX Design Build</a> as ready to use soon.</p>
+<p>Unfortunately there is no detailed documentation. We do no longer invest into the <em>CX Design Creator</em> as our sucessor, the <a href="https://github.com/bsi-software/bsi-cx-design-build">CX Design Build</a>, is ready to use.</p>
 </div>
 </div>
 <div class="sect4">
@@ -5691,13 +5692,44 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="content-editor-limitations"><a class="anchor" href="#content-editor-limitations"></a>6.2.5. Content Editor Limitations</h4>
+<div class="sect4">
+<h5 id="using-css-viewport-units"><a class="anchor" href="#using-css-viewport-units"></a>6.2.5.1. Using CSS viewport units</h5>
+<div class="paragraph">
+<p>If you want to use CSS viewport units, e.g. viewport-height <code>vh</code>, please note the following:</p>
+</div>
+<div class="paragraph">
+<p>The content displayed in the content editor is embedded in an iframe. When elements defined by a CSS viewport unit are placed inside an iframe, the size of the iframe is used as a reference, not the size of the screen as desired.</p>
+</div>
+<div class="paragraph">
+<p>Therefore, the CSS classes <code>bsi-ce-edit-mode</code> and <code>bsi-ce-preview-mode</code> (see <a href="#content-editor-specific-css">Content editor specific CSS</a>) should be used to define a fixed height/width as alternative to the viewport height/width for proper display in the content editor and preview mode. It is also important to note that this fixed height/width should be set as minimum size of the element with the CSS viewport unit. Otherwise CX will calculate the size of the content editor incorrectly.</p>
+</div>
+<div class="paragraph">
+<p>See the following example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 82. CSS of an element using viewport unit</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="class">.header-image</span> {
+    <span class="key">height</span>: <span class="error">c</span><span class="error">a</span><span class="error">l</span><span class="error">c</span>(<span class="float">100</span><span class="value">vh</span> <span class="error">-</span> <span class="float">32px</span>);
+    <span class="key">min-height</span>: <span class="float">800px</span> <span class="important">!important</span>;
+}
+<span class="class">.bsi-ce-edit-mode</span> <span class="class">.header-image</span>,
+<span class="class">.bsi-ce-preview-mode</span> <span class="class">.header-image</span> {
+    <span class="key">height</span>: <span class="float">800px</span> <span class="important">!important</span>;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2023-02-02 09:05:32 +0100
+Last update 2023-02-07 18:42:41 +0100
 </div>
 </div>
 </body>
