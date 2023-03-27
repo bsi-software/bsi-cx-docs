@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 23.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2023-02-06</span>
+<span id="revdate">Version Date 2023-03-27</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -750,11 +750,12 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#getting-started">1.1. Getting started</a></li>
 <li><a href="#technical-introduction">1.2. Technical Introduction</a></li>
 <li><a href="#branding-visual-design">1.3. Branding &amp; Visual Design</a></li>
-<li><a href="#design-since-22">1.4. Designs since BSI CX 22.0</a></li>
-<li><a href="#content-editor">1.5. Content Editor</a></li>
-<li><a href="#structure-reference">1.6. Structure Reference</a></li>
-<li><a href="#dropzones">1.7. Dropzones</a></li>
-<li><a href="#groups">1.8. Groups</a></li>
+<li><a href="#constraints">1.4. Constraints</a></li>
+<li><a href="#design-since-22">1.5. Designs since BSI CX 22.0</a></li>
+<li><a href="#content-editor">1.6. Content Editor</a></li>
+<li><a href="#structure-reference">1.7. Structure Reference</a></li>
+<li><a href="#dropzones">1.8. Dropzones</a></li>
+<li><a href="#groups">1.9. Groups</a></li>
 </ul>
 </li>
 <li><a href="#design-properties">2. design.properties</a>
@@ -940,6 +941,41 @@ BSI provides a set of design templates that are called <strong>Master Templates<
 <p>Each brand has its own and unique visual design language. The branding guidelines of your company or customer define the boundary conditions for building a design. As a design developer for BSI CX, it is your responsibility to get a specification on how the website, landing page or newsletter should look like and what elements it should consist of.
 Especially when it comes to designing HTML emails, you may have to find a compromise between the developers' ideas of visual design and the actual technical possibilities of HTML emails.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="constraints"><a class="anchor" href="#constraints"></a>1.4. Constraints</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Our build and the CX-Editor has to be taken "as-is".
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the Design Validation fails or the Editor doesn&#8217;t show the Elements properly, it&#8217;s the responsibility of the developer (probably you) to adjust the template accordingly.</p>
+</div>
+<div class="paragraph">
+<p>There are some web technologies we do <strong>NOT</strong> support. Two common examples are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Webcomponents</strong> might work in the resulting landingpages, but are not supported within the CX editor.</p>
+</li>
+<li>
+<p><strong>Other Frameworks</strong> like Angular or React are familiar to most web developers, but not supported by CX.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We strongly recommend you to use our npm build or the CX-Design-Creator.
+Feel free to contact the design team, if you miss a feature or have an improvement idea.</p>
+</div>
 <div class="paragraph">
 <p>We recommend to start by adopting an existing design for BSI CX. This will help you to get started and will already come with existing content elements which act as examples for your customizations.
 BSI provides a set of design templates that are called <strong>Master Templates</strong>. The Master Templates for <a href="https://github.com/bsi-software/bsi-cx-design-master-template-email">email</a> and <a href="https://github.com/bsi-software/bsi-cx-design-master-template-web">web</a> (including landingpage and website) are publicly available on GitHub as an MIT licensed open source project (see <a href="#design-since-22">Designs since BSI CX 22.0</a>).
@@ -947,7 +983,7 @@ Alternatively, you can start off from scratch by using the <a href="https://gith
 </div>
 </div>
 <div class="sect2">
-<h3 id="design-since-22"><a class="anchor" href="#design-since-22"></a>1.4. Designs since BSI CX 22.0</h3>
+<h3 id="design-since-22"><a class="anchor" href="#design-since-22"></a>1.5. Designs since BSI CX 22.0</h3>
 <div class="paragraph">
 <p>As of BSI CX 22.0, a new <a href="https://github.com/bsi-software/bsi-cx-design-build">design build</a> has been introduced to create design ZIP files that are uploaded to BSI CX using a webpack build. The build is NPM based and replaces the previous <a href="#design-creator">CX Design Creator</a>, which is available as an executable file. The technical adjustments that come with the new design build are documented in the <a href="https://github.com/bsi-software/bsi-cx-design-build/wiki">design build wiki at GitHub</a>. Existing designs can be migrated to the new design build using the migration instructions (see <a href="#design-build-migration-guide">Migrate an existing design to the new build</a>).</p>
 </div>
@@ -1060,7 +1096,7 @@ The files and folders in the ZIP file must not contain any umlauts.
 </div>
 </div>
 <div class="sect2">
-<h3 id="content-editor"><a class="anchor" href="#content-editor"></a>1.5. Content Editor</h3>
+<h3 id="content-editor"><a class="anchor" href="#content-editor"></a>1.6. Content Editor</h3>
 <div class="paragraph">
 <p>The content editor is where specific websites, newsletters and landing pages are created. The content creator relies on a design of good quality to build contents which on the other hand are referred from a story.</p>
 </div>
@@ -1085,7 +1121,7 @@ The files and folders in the ZIP file must not contain any umlauts.
 </div>
 </div>
 <div class="sect2">
-<h3 id="structure-reference"><a class="anchor" href="#structure-reference"></a>1.6. Structure Reference</h3>
+<h3 id="structure-reference"><a class="anchor" href="#structure-reference"></a>1.7. Structure Reference</h3>
 <div class="paragraph">
 <p>The file <code>design.html</code> contains the <code>frame</code> of the design and must include at least one outermost dropzone.
 It must contain valid, XHTML conform HTML with Doctype, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> tags.</p>
@@ -1102,7 +1138,7 @@ Here no Doctype, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> or <code>&
 </div>
 </div>
 <div class="sect2">
-<h3 id="dropzones"><a class="anchor" href="#dropzones"></a>1.7. Dropzones</h3>
+<h3 id="dropzones"><a class="anchor" href="#dropzones"></a>1.8. Dropzones</h3>
 <div class="paragraph">
 <p>While dragging a content element into the content area, you will notice blue lines and blue areas. These areas are called dropzones and identify areas where certain content elements can be placed. Each dropzone has a list of allowed content elements that are specified in the design.
 A dropzone is defined by adding the attribute <code>data-bsi-dropzone</code> to an HTML container element (e.g. <code>&lt;div&gt;</code> or <code>&lt;table&gt;</code>).
@@ -1122,9 +1158,22 @@ An optional limit of elements that can be placed inside the dropzone is defined 
 <span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Problems can occour when placing a dropzone into a link or button element.
+In this case, we recommend using a style.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="groups"><a class="anchor" href="#groups"></a>1.8. Groups</h3>
+<h3 id="groups"><a class="anchor" href="#groups"></a>1.9. Groups</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -5729,7 +5778,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2023-02-06 18:04:40 +0100
+Last update 2023-03-27 18:10:31 +0200
 </div>
 </div>
 </body>
