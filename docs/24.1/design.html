@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 24.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2023-12-21</span>
+<span id="revdate">Version Date 2024-02-01</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -868,7 +868,7 @@ Everything is cross-departmental, individualized for every customer, in real tim
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You wan&#8217;t to build a BSI CX Design? <strong>Learn how to use BSI designs by taking part in the <a href="https://services.bsi-software.com/studio/public/e/l/bsi-academy-bsi-cx-design">e-learning for designs</a>!</strong>
+You wan&#8217;t to build a BSI CX Design? <strong>Learn how to use BSI designs by taking part in the <a href="https://academy.bsi-software.com/gb/en-GB/Details/92/">e-learning for designs</a>!</strong>
 </td>
 </tr>
 </table>
@@ -888,7 +888,7 @@ You wan&#8217;t to build a BSI CX Design? <strong>Learn how to use BSI designs b
 <div class="sect2">
 <h3 id="getting-started"><a class="anchor" href="#getting-started"></a>1.1. Getting started</h3>
 <div class="paragraph">
-<p>Learn how to use BSI designs by taking part in the <a href="https://services.bsi-software.com/studio/public/e/l/bsi-academy-bsi-cx-design">e-learning for designs</a>.</p>
+<p>Learn how to use BSI designs by taking part in the <a href="https://academy.bsi-software.com/gb/en-GB/Details/92/">e-learning for designs</a>.</p>
 </div>
 <div class="paragraph">
 <p>The interactive e-learning helps you to reach your goal faster.
@@ -1234,11 +1234,11 @@ If you are using the <a href="#designbuild">CX Design Build</a>, the <code>desig
 <p>Metadata for a design is defined in the <code>design.json</code> file. It contains general information on the design, such as the name and author, as well as element specific information, such as with which description and icon the elements are to be displayed to the right of the editor.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 2. specifying design meta data</div>
+<div class="title">Listing 2. Specifying design meta data</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>{
-  &quot;title&quot;: &quot;My Customer Design&quot;,
-  &quot;author&quot;: &quot;John Doe, Doe Design Agency&quot;
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My Customer Design</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">author</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">John Doe, Doe Design Agency</span><span class="delimiter">&quot;</span></span>
 }</code></pre>
 </div>
 </div>
@@ -1246,51 +1246,51 @@ If you are using the <a href="#designbuild">CX Design Build</a>, the <code>desig
 <p>Group information, content element specific entries, configuration capabilities for styles (allowing you to mixin different CSS styles or adding certain features using JavaScript) as well as instructions on how to customize the rich text editor experience can be found in the subsequent chapters.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 3. example of a fully featured design.json file</div>
+<div class="title">Listing 3. Example of a fully featured design.json file</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>{
-  &quot;__REM000&quot;: &quot;-------------------- Metadata --------------------&quot;,
-  &quot;title&quot;: &quot;My Customer Design&quot;,
-  &quot;author&quot;: &quot;John Doe, Doe Design Agency&quot;,
-  &quot;schemaVersion&quot;: &quot;22.0&quot;,
-  &quot;defaultLocale&quot;: &quot;en&quot;,
-  &quot;__REM001&quot;: &quot;-------------------- Content-Elements, -Groups and -Parts --------------------&quot;,
-  &quot;contentElementGroups&quot;: [
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">__REM000</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">-------------------- Metadata --------------------</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My Customer Design</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">author</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">John Doe, Doe Design Agency</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">schemaVersion</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">22.0</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">defaultLocale</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">en</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">__REM001</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">-------------------- Content-Elements, -Groups and -Parts --------------------</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">contentElementGroups</span><span class="delimiter">&quot;</span></span>: [
     {
-      &quot;groupId&quot;: &quot;buttons-and-links&quot;,
-      &quot;label&quot;: &quot;Buttons &amp; Links&quot;,
-      &quot;contentElements&quot;: [
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">groupId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">buttons-and-links</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Buttons &amp; Links</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">contentElements</span><span class="delimiter">&quot;</span></span>: [
         {
-          &quot;elementId&quot;: &quot;button&quot;,
-          &quot;label&quot;: &quot;Button&quot;,
-          &quot;icon&quot;: &quot;megaphone&quot;,
-          &quot;file&quot;: &quot;content-elements/button.html&quot;,
-          &quot;parts&quot;: [
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Button</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">icon</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">megaphone</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">file</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">content-elements/button.html</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">parts</span><span class="delimiter">&quot;</span></span>: [
             {
-              &quot;partId&quot;: &quot;link&quot;,
-              &quot;label&quot;: &quot;Button&quot;
+              <span class="key"><span class="delimiter">&quot;</span><span class="content">partId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span>,
+              <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Button</span><span class="delimiter">&quot;</span></span>
             }
           ],
-          &quot;styleConfigs&quot;: [
-            &quot;background-color&quot;
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">styleConfigs</span><span class="delimiter">&quot;</span></span>: [
+            <span class="string"><span class="delimiter">&quot;</span><span class="content">background-color</span><span class="delimiter">&quot;</span></span>
           ]
         }
       ]
     },
     {
-      &quot;groupId&quot;: &quot;text-and-images&quot;,
-      &quot;label&quot;: &quot;Text &amp; Images&quot;,
-      &quot;contentElements&quot;: [
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">groupId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">text-and-images</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Text &amp; Images</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">contentElements</span><span class="delimiter">&quot;</span></span>: [
         {
-          &quot;elementId&quot;: &quot;text&quot;,
-          &quot;label&quot;: &quot;Text&quot;,
-          &quot;icon&quot;: &quot;text&quot;,
-          &quot;file&quot;: &quot;content-elements/text.html&quot;,
-          &quot;parts&quot;: [
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Text</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">icon</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">file</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">content-elements/text.html</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">parts</span><span class="delimiter">&quot;</span></span>: [
             {
-              &quot;partId&quot;: &quot;formatted-text&quot;,
-              &quot;label&quot;: &quot;Text&quot;,
-              &quot;htmlEditorConfig&quot;: &quot;custom&quot;
+              <span class="key"><span class="delimiter">&quot;</span><span class="content">partId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">formatted-text</span><span class="delimiter">&quot;</span></span>,
+              <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Text</span><span class="delimiter">&quot;</span></span>,
+              <span class="key"><span class="delimiter">&quot;</span><span class="content">htmlEditorConfig</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">custom</span><span class="delimiter">&quot;</span></span>
 
             }
           ]
@@ -1298,34 +1298,34 @@ If you are using the <a href="#designbuild">CX Design Build</a>, the <code>desig
       ]
     }
   ],
-  &quot;__REM002&quot;: &quot;-------------------- Style Configs --------------------&quot;,
-  &quot;styleConfigs&quot;: {
-    &quot;background-color&quot;: {
-      &quot;label&quot;: &quot;Background color&quot;,
-      &quot;cssClasses&quot;: [
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">__REM002</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">-------------------- Style Configs --------------------</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">styleConfigs</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">background-color</span><span class="delimiter">&quot;</span></span>: {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Background color</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">cssClasses</span><span class="delimiter">&quot;</span></span>: [
         {
-          &quot;cssClass&quot;: &quot;green-background&quot;,
-          &quot;label&quot;: &quot;Green&quot;
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">cssClass</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">green-background</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Green</span><span class="delimiter">&quot;</span></span>
         },
         {
-          &quot;cssClass&quot;: &quot;red-background&quot;,
-          &quot;label&quot;: &quot;Red&quot;
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">cssClass</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">red-background</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Red</span><span class="delimiter">&quot;</span></span>
         }
       ]
     }
   },
-  &quot;__REM003&quot;: &quot;-------------------- HTML Editor Configs --------------------&quot;,
-  &quot;htmlEditorConfigs&quot;: {
-    &quot;custom&quot;: {
-      &quot;features&quot;: [
-        &quot;bold&quot;,
-        &quot;italic&quot;,
-        &quot;underline&quot;,
-        &quot;textColor&quot;
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">__REM003</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">-------------------- HTML Editor Configs --------------------</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">htmlEditorConfigs</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">custom</span><span class="delimiter">&quot;</span></span>: {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">features</span><span class="delimiter">&quot;</span></span>: [
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">bold</span><span class="delimiter">&quot;</span></span>,
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">italic</span><span class="delimiter">&quot;</span></span>,
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">underline</span><span class="delimiter">&quot;</span></span>,
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">textColor</span><span class="delimiter">&quot;</span></span>
       ],
-        &quot;textColors&quot;: [
-          &quot;#16616d&quot;,
-          &quot;#383e42&quot;
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">textColors</span><span class="delimiter">&quot;</span></span>: [
+          <span class="string"><span class="delimiter">&quot;</span><span class="content">#16616d</span><span class="delimiter">&quot;</span></span>,
+          <span class="string"><span class="delimiter">&quot;</span><span class="content">#383e42</span><span class="delimiter">&quot;</span></span>
       ]
     }
   }
@@ -1339,16 +1339,16 @@ If you are using the <a href="#designbuild">CX Design Build</a>, the <code>desig
 <p>Each content element is assigned to a group. Add an entry to the <code>design.json</code> file to specify an identifier and a display name for each <em>group</em> element.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 4. giving groups clearly identifiable descriptions</div>
+<div class="title">Listing 4. Giving groups clearly identifiable descriptions</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;contentElementGroups&quot;: [
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">contentElementGroups</span><span class="delimiter">&quot;</span></span>: [
   {
-    &quot;groupId&quot;: &quot;buttons-and-links&quot;,
-    &quot;label&quot;: &quot;Buttons &amp; Links&quot;
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">groupId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">buttons-and-links</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Buttons &amp; Links</span><span class="delimiter">&quot;</span></span>
   },
   {
-    &quot;groupId&quot;: &quot;text-and-images&quot;,
-    &quot;label&quot;: &quot;Text &amp; Images&quot;
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">groupId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">text-and-images</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Text &amp; Images</span><span class="delimiter">&quot;</span></span>
   }
 ]</code></pre>
 </div>
@@ -1360,19 +1360,19 @@ If you are using the <a href="#designbuild">CX Design Build</a>, the <code>desig
 <p>For each content element the following entries should be defined in order to get a clean user experience. The <em>element identifier</em> is the value of the <code>data-bsi-element</code> attribute, that is defined in the corresponding <code>html</code> file.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 5. important metadata for content elements</div>
+<div class="title">Listing 5. Important metadata for content elements</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;contentElements&quot;: [
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">contentElements</span><span class="delimiter">&quot;</span></span>: [
   {
-    &quot;elementId&quot;: &quot;logo&quot;,
-    &quot;label&quot;: &quot;Cooperate Logo&quot;,
-    &quot;description&quot;: &quot;Visualize your corporate logo&quot;,
-    &quot;icon&quot;: &quot;image&quot;,
-    &quot;file&quot;: &quot;content-elements/logo.html&quot;,
-    &quot;parts&quot;: [
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">logo</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Cooperate Logo</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">description</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Visualize your corporate logo</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">icon</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">file</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">content-elements/logo.html</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">parts</span><span class="delimiter">&quot;</span></span>: [
       {
-        &quot;partId&quot;: &quot;image&quot;,
-        &quot;label&quot;: &quot;Mobile image for Logo&quot;
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">partId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Mobile image for Logo</span><span class="delimiter">&quot;</span></span>
       }
     ]
   }
@@ -1417,19 +1417,19 @@ With CX 23.2 an improved <em>styles feature</em> supporting inline styles was in
 <div class="title">Figure 4. example of a style dropdown</div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 6. defining style capabilities</div>
+<div class="title">Listing 6. Defining style capabilities</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;styleConfigs&quot;: {
-  &quot;background-color&quot;: {
-    &quot;label&quot;: &quot;Background color&quot;,
-    &quot;cssClasses&quot;: [
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">styleConfigs</span><span class="delimiter">&quot;</span></span>: {
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">background-color</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Background color</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">cssClasses</span><span class="delimiter">&quot;</span></span>: [
       {
-        &quot;cssClass&quot;: &quot;green-background&quot;,
-        &quot;label&quot;: &quot;Green&quot;
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">cssClass</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">green-background</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Green</span><span class="delimiter">&quot;</span></span>
       },
       {
-        &quot;cssClass&quot;: &quot;red-background&quot;,
-        &quot;label&quot;: &quot;Red&quot;
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">cssClass</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">red-background</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Red</span><span class="delimiter">&quot;</span></span>
       }
     ]
   }
@@ -1440,16 +1440,16 @@ With CX 23.2 an improved <em>styles feature</em> supporting inline styles was in
 <p>1 to n styles can be defined to appear as individual dropdowns in the editor, where one style can be selected from the list of styles.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 7. assigning style capabilities to content elements</div>
+<div class="title">Listing 7. Assigning style capabilities to content elements</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;contentElements&quot;: [
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">contentElements</span><span class="delimiter">&quot;</span></span>: [
   {
-    &quot;elementId&quot;: &quot;button&quot;,
-    &quot;label&quot;: &quot;Button&quot;,
-    &quot;styleConfigs&quot;: [
-      &quot;background-color&quot;,
-      &quot;border-color&quot;,
-      &quot;text-color&quot;
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Button</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">styleConfigs</span><span class="delimiter">&quot;</span></span>: [
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">background-color</span><span class="delimiter">&quot;</span></span>,
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">border-color</span><span class="delimiter">&quot;</span></span>,
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">text-color</span><span class="delimiter">&quot;</span></span>
     ]
   }
 ]</code></pre>
@@ -1483,17 +1483,17 @@ With CX 23.2 an improved <em>styles feature</em> supporting inline styles was in
 <div class="listingblock">
 <div class="title">Listing 10. Rich text editor configuration example</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;htmlEditorConfigs&quot;: {
-  &quot;my-config&quot;: {
-    &quot;features&quot;: [
-        &quot;bold&quot;,
-        &quot;italic&quot;,
-        &quot;underline&quot;,
-        &quot;textColor&quot;
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">htmlEditorConfigs</span><span class="delimiter">&quot;</span></span>: {
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">my-config</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">features</span><span class="delimiter">&quot;</span></span>: [
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">bold</span><span class="delimiter">&quot;</span></span>,
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">italic</span><span class="delimiter">&quot;</span></span>,
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">underline</span><span class="delimiter">&quot;</span></span>,
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">textColor</span><span class="delimiter">&quot;</span></span>
     ],
-      &quot;textColors&quot;: [
-        &quot;#ff00cc&quot;,
-        &quot;#aabbcc&quot;
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">textColors</span><span class="delimiter">&quot;</span></span>: [
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">#ff00cc</span><span class="delimiter">&quot;</span></span>,
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">#aabbcc</span><span class="delimiter">&quot;</span></span>
     ]
   }
 }</code></pre>
@@ -1505,15 +1505,15 @@ With CX 23.2 an improved <em>styles feature</em> supporting inline styles was in
 <div class="listingblock">
 <div class="title">Listing 11. Applying an HTML editor configuration on a content element 'text'</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;contentElements&quot;: [
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">contentElements</span><span class="delimiter">&quot;</span></span>: [
   {
-    &quot;elementId&quot;: &quot;text&quot;,
-    &quot;label&quot;: &quot;Text&quot;,
-    &quot;parts&quot;: [
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Text</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">parts</span><span class="delimiter">&quot;</span></span>: [
       {
-        &quot;partId&quot;: &quot;formatted-text&quot;,
-        &quot;label&quot;: &quot;Text&quot;,
-        &quot;htmlEditorConfig&quot;: &quot;my-config&quot;
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">partId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">formatted-text</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Text</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">htmlEditorConfig</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">my-config</span><span class="delimiter">&quot;</span></span>
 
       }
     ]
@@ -1540,12 +1540,12 @@ With CX 23.2 an improved <em>styles feature</em> supporting inline styles was in
 <div class="listingblock">
 <div class="title">Listing 12. Feature list example</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="env">&quot;htmlEditorConfigs&quot;: {
-  &quot;my-config&quot;: {
-    &quot;features&quot;: [
-        &quot;bold&quot;,
-        &quot;italic&quot;,
-        &quot;underline&quot;
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">htmlEditorConfigs</span><span class="delimiter">&quot;</span></span>: {
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">my-config</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">features</span><span class="delimiter">&quot;</span></span>: [
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">bold</span><span class="delimiter">&quot;</span></span>,
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">italic</span><span class="delimiter">&quot;</span></span>,
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">underline</span><span class="delimiter">&quot;</span></span>
     ]
   }
 }</code></pre>
@@ -1820,42 +1820,42 @@ selectAll
 <div class="listingblock">
 <div class="title">Listing 13. An example using configuration with different value lists set</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;htmlEditorConfigs&quot;: {
-  &quot;my-extended-config&quot;: {
-    &quot;features&quot;: [
-      &quot;bold&quot;,
-      &quot;italic&quot;,
-      &quot;underline&quot;
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">htmlEditorConfigs</span><span class="delimiter">&quot;</span></span>: {
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">my-extended-config</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">features</span><span class="delimiter">&quot;</span></span>: [
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">bold</span><span class="delimiter">&quot;</span></span>,
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">italic</span><span class="delimiter">&quot;</span></span>,
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">underline</span><span class="delimiter">&quot;</span></span>
     ],
-    &quot;textColors&quot;: [
-      &quot;#16616d&quot;,
-      &quot;#ff7d00&quot;,
-      &quot;#383e42&quot;
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">textColors</span><span class="delimiter">&quot;</span></span>: [
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">#16616d</span><span class="delimiter">&quot;</span></span>,
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">#ff7d00</span><span class="delimiter">&quot;</span></span>,
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">#383e42</span><span class="delimiter">&quot;</span></span>
     ],
-    &quot;backgroundColors&quot;: [
-      &quot;#ffffff&quot;,
-      &quot;#383e42&quot;
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">backgroundColors</span><span class="delimiter">&quot;</span></span>: [
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">#ffffff</span><span class="delimiter">&quot;</span></span>,
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">#383e42</span><span class="delimiter">&quot;</span></span>
     ],
-    &quot;formats&quot;: [
-      &quot;p&quot;,
-      &quot;h1&quot;,
-      &quot;h2&quot;,
-      &quot;pre&quot;
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">formats</span><span class="delimiter">&quot;</span></span>: [
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">p</span><span class="delimiter">&quot;</span></span>,
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">h1</span><span class="delimiter">&quot;</span></span>,
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">h2</span><span class="delimiter">&quot;</span></span>,
+      <span class="string"><span class="delimiter">&quot;</span><span class="content">pre</span><span class="delimiter">&quot;</span></span>
     ],
-    &quot;fontSizes&quot;: [
-      12,
-      16,
-      24
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">fontSizes</span><span class="delimiter">&quot;</span></span>: [
+      <span class="integer">12</span>,
+      <span class="integer">16</span>,
+      <span class="integer">24</span>
     ],
-    &quot;fontSizeUnit&quot;: &quot;px&quot;,
-    &quot;fontSizeDefault&quot;: 16,
-    &quot;lineHeights&quot;: [
-      1,
-      1.15,
-      1.5,
-      2
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">fontSizeUnit</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">px</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">fontSizeDefault</span><span class="delimiter">&quot;</span></span>: <span class="integer">16</span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">lineHeights</span><span class="delimiter">&quot;</span></span>: [
+      <span class="integer">1</span>,
+      <span class="float">1.15</span>,
+      <span class="float">1.5</span>,
+      <span class="integer">2</span>
     ],
-    &quot;enter&quot;: &quot;p&quot;
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">enter</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">p</span><span class="delimiter">&quot;</span></span>
   }
 }</code></pre>
 </div>
@@ -1873,19 +1873,19 @@ selectAll
 <div class="listingblock">
 <div class="title">Listing 14. textColor example</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;textColors&quot;: [
-  &quot;#16616d&quot;,
-  &quot;#ff7d00&quot;,
-  &quot;#383e42&quot;
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">textColors</span><span class="delimiter">&quot;</span></span>: [
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">#16616d</span><span class="delimiter">&quot;</span></span>,
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">#ff7d00</span><span class="delimiter">&quot;</span></span>,
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">#383e42</span><span class="delimiter">&quot;</span></span>
 ]</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Listing 15. backgroundColor example</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;backgroundColors&quot;: [
-  &quot;#ffffff&quot;,
-  &quot;#383e42&quot;
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">backgroundColors</span><span class="delimiter">&quot;</span></span>: [
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">#ffffff</span><span class="delimiter">&quot;</span></span>,
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">#383e42</span><span class="delimiter">&quot;</span></span>
 ]</code></pre>
 </div>
 </div>
@@ -1898,11 +1898,11 @@ selectAll
 <div class="listingblock">
 <div class="title">Listing 16. formats example</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;formats&quot;: [
-  &quot;p&quot;,
-  &quot;h1&quot;,
-  &quot;h2&quot;,
-  &quot;pre&quot;
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">formats</span><span class="delimiter">&quot;</span></span>: [
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">p</span><span class="delimiter">&quot;</span></span>,
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">h1</span><span class="delimiter">&quot;</span></span>,
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">h2</span><span class="delimiter">&quot;</span></span>,
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">pre</span><span class="delimiter">&quot;</span></span>
 ]</code></pre>
 </div>
 </div>
@@ -1986,11 +1986,11 @@ pre
 <div class="listingblock">
 <div class="title">Listing 17. lineHeight example</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;lineHeights&quot;: [
-  1,
-  1.15,
-  1.5,
-  2
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">lineHeights</span><span class="delimiter">&quot;</span></span>: [
+  <span class="integer">1</span>,
+  <span class="float">1.15</span>,
+  <span class="float">1.5</span>,
+  <span class="integer">2</span>
 ]</code></pre>
 </div>
 </div>
@@ -2061,15 +2061,15 @@ mm
 <div class="listingblock">
 <div class="title">Listing 18. fontSizes, fontSizeUnit and fontSizeDefault example</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;fontSizes&quot;: [
-  8,
-  12,
-  16,
-  24,
-  32
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">fontSizes</span><span class="delimiter">&quot;</span></span>: [
+  <span class="integer">8</span>,
+  <span class="integer">12</span>,
+  <span class="integer">16</span>,
+  <span class="integer">24</span>,
+  <span class="integer">32</span>
 ],
-&quot;fontSizeUnit&quot;: &quot;px&quot;,
-&quot;fontSizeDefault&quot;: 16</code></pre>
+<span class="key"><span class="delimiter">&quot;</span><span class="content">fontSizeUnit</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">px</span><span class="delimiter">&quot;</span></span>,
+<span class="key"><span class="delimiter">&quot;</span><span class="content">fontSizeDefault</span><span class="delimiter">&quot;</span></span>: <span class="integer">16</span></code></pre>
 </div>
 </div>
 </div>
@@ -2112,7 +2112,7 @@ br
 <div class="listingblock">
 <div class="title">Listing 19. enter mode example</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&quot;enter&quot;: &quot;div&quot;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">enter</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">div</span><span class="delimiter">&quot;</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -5727,7 +5727,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2023-12-21 18:57:32 +0100
+Last update 2024-02-01 18:57:40 +0100
 </div>
 </div>
 </body>
