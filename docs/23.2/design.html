@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 23.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2024-02-12</span>
+<span id="revdate">Version Date 2024-02-15</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -828,6 +828,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <ul class="sectlevel3">
 <li><a href="#deleting-or-deprecating-content-elements">6.1.1. Deleting or deprecating content elements</a></li>
 <li><a href="#refactoring-content-elements">6.1.2. Refactoring content elements</a></li>
+<li><a href="#creating-accessible-designs">6.1.3. Creating accessible designs</a></li>
 </ul>
 </li>
 <li><a href="#troubleshooting">6.2. Troubleshooting</a>
@@ -3320,8 +3321,8 @@ It is up to the developer to use polyfills where this is required.
 <div class="title">Listing 42. Example usage of the form-field part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-form-field-fixed-type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Date<span class="tag">&lt;/label&gt;</span>
-    <span class="tag">&lt;input</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">input</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">2009-11-13</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">required</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Date<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">input</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">2009-11-13</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">required</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
 <span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
@@ -3394,8 +3395,8 @@ The attribute <code>data-bsi-hide-required</code> is available from CX 1.3.40 on
 <div class="title">Listing 44. Example usage of the form-textarea part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-textarea</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-textarea</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field form-element</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Description<span class="tag">&lt;/label&gt;</span>
-    <span class="tag">&lt;textarea</span> <span class="attribute-name">rows</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">5</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">cols</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">20</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">textarea</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">maxlength</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">500</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/textarea&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">textarea</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Description<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;textarea</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">textarea</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">rows</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">5</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">cols</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">20</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">textarea</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">maxlength</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">500</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/textarea&gt;</span>
 <span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
@@ -3447,9 +3448,9 @@ The <code>multiple</code> attribute is not supported.
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-select</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-select</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-select form-element</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-value-list</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Yes</span>
 <span class="content">No</span>
 <span class="content">Unsure</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">No</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Decision<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">select</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Decision<span class="tag">&lt;/label&gt;</span>
     <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">select-wrapper</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-        <span class="tag">&lt;select</span> <span class="attribute-name">size</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;select</span> <span class="attribute-name">size</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">select</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
             <span class="tag">&lt;option&gt;</span>Yes<span class="tag">&lt;/option&gt;</span>
             <span class="tag">&lt;option</span> <span class="attribute-name">selected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>No<span class="tag">&lt;/option&gt;</span>
             <span class="tag">&lt;option&gt;</span>Unsure<span class="tag">&lt;/option&gt;</span>
@@ -5363,6 +5364,103 @@ module.exports = WebpackConfigBuilder.fromConfigs(
 If a refactoring is not possible due to migration issues, adding a new content element and deprecating the preexisting one (see: <a href="#deleting-or-deprecating-content-elements">Deleting or deprecating content elements</a>) is a feasible option.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="creating-accessible-designs"><a class="anchor" href="#creating-accessible-designs"></a>6.1.3. Creating accessible designs</h4>
+<div class="paragraph">
+<p>To ensure accessibility in CX contents, several things should be taken into account when developing a design. They help to ensure that screen readers can read out the content in the best possible way and that people with impaired vision will not be disadvantaged.</p>
+</div>
+<div class="sect4">
+<h5 id="layout"><a class="anchor" href="#layout"></a>6.1.3.1. Layout</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>All functionalities (form input fields and control elements) should be accessible and operable using the keyboard (tab key). It must also be possible to exit all elements using the keyboard so that the user can navigate through all content.</p>
+</li>
+<li>
+<p>Every website has a correct language declaration. If the main language of the page is English, all texts should be in English. If the intention is to insert text in another language, then this should be marked up accordingly with the lang attribute in the correct language.</p>
+</li>
+<li>
+<p>Enlargement is possible in the browser, both with "Zoom" and by setting a user-defined font size</p>
+</li>
+<li>
+<p>To ensure that screen readers interpret and parse all page content correctly, HTML elements of a website must be implemented in accordance with their W3C specifications. The <a href="https://validator.w3.org/">W3C&#8217;s Markup Validation Services</a> can be used to check whether the source code of a website complies with the W3C specifications.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="styling"><a class="anchor" href="#styling"></a>6.1.3.2. Styling</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>The contrast ratio of the font color to the background color is at least 4.5:1</p>
+</li>
+<li>
+<p>The contrast ratio of the font color of large font and the background color is at least 3:1</p>
+</li>
+<li>
+<p>If color differentiation alone is used, e.g. for links in a text, the links have a contrast ratio to the surrounding continuous text of at least 3:1</p>
+</li>
+<li>
+<p>Each element must have a visible focus state that has a contrast ratio of 3:1 to the background or non-focused state</p>
+</li>
+<li>
+<p>No spaces to create spacing, but CSS instead</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="elements"><a class="anchor" href="#elements"></a>6.1.3.3. Elements</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>For information-bearing images, the alternative text must describe the visual information</p>
+</li>
+<li>
+<p>Headings are marked with the heading element (h1, h2, &#8230;&#8203; , h6)</p>
+</li>
+<li>
+<p>The text size (font size) in web templates is defined in CSS in % or em</p>
+</li>
+<li>
+<p>Enumerations are formatted as lists (ul, ol, dl)</p>
+</li>
+<li>
+<p>Special text is formatted correctly, e.g. quotes as &lt;blockquote&gt; and &lt;cite&gt;</p>
+</li>
+<li>
+<p>Video content should have synchronous subtitles</p>
+</li>
+<li>
+<p>Data tables are formatted with the necessary markup, e.g. column, row and table headings are labeled and headings and summaries are present</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="forms"><a class="anchor" href="#forms"></a>6.1.3.4. Forms</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Labels are present and meaningful. Labels and associated form input fields are logically linked (implementation with <em>for</em> attribute for label elements). The label should be present prior to the associated input field (exception: checkboxes, radio buttons).</p>
+</li>
+<li>
+<p>Form fields may have an additional information text to describe what input is expected. If, for example, a certain format is expected, this should be described (e.g. <em>"Date format: DD.MM.YYYY"</em>). This text should be placed in front of the input field.</p>
+</li>
+<li>
+<p>Mandatory fields should be marked (e.g. with <em>*</em>). The mandatory field star must not be integrated via CSS, it should be placed directly in the label. The required attribute should be added to the input element.</p>
+</li>
+<li>
+<p>A mandatory field explanation should be provided (e.g. "Please fill in all fields marked with <em>*</em>"). The information must appear before the first mandatory field.</p>
+</li>
+<li>
+<p>Error messages should appear directly below the relevant input field. They should have the attributes <em>aria-live="assertive"</em> (or <em>aria-live="polite"</em>) and <em>role="alert"</em> so that they are read aloud by the screen reader as soon as they appear.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>6.2. Troubleshooting</h3>
@@ -5894,7 +5992,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2024-02-12 18:44:28 +0100
+Last update 2024-02-15 18:46:07 +0100
 </div>
 </div>
 </body>
