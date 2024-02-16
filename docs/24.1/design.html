@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 24.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2024-02-15</span>
+<span id="revdate">Version Date 2024-02-16</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -3898,10 +3898,10 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
 <p><code>authenticated</code>: The element is only inserted if an authenticated visitor exists on the CX HTTP session (only available in CX websites).</p>
 </li>
 <li>
-<p><code>production</code>: The element is only inserted if the CX server is configured as production system. This is defined by the config property 'bsi.studio.html.output.environment'. Introduced in CX 23.2.21.</p>
+<p><code>production</code>: The element is only inserted if the CX server is configured as production system. This is defined by the config property 'bsi.studio.html.output.environment'.</p>
 </li>
 <li>
-<p><code>test</code>: The element is only inserted if the CX server is configured as test system. This is defined by the config property 'bsi.studio.html.output.environment'. Introduced in CX 23.2.21.</p>
+<p><code>test</code>: The element is only inserted if the CX server is configured as test system. This is defined by the config property 'bsi.studio.html.output.environment'.</p>
 </li>
 </ul>
 </div>
@@ -3909,7 +3909,7 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
 <p>The attribute value may have a negate operator (!). Using this operator you can negate the condition, for instance <code>!authenticated</code> will only be removed in case the visitor is <em>not</em> logged in.</p>
 </div>
 <div class="paragraph">
-<p>Since CX 23.2.21 the attribute value can be a complex expression, see example below.</p>
+<p>The attribute value can be a complex expression, see example below.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -3946,7 +3946,7 @@ document.querySelectorAll(<span class="string"><span class="delimiter">'</span><
 </div>
 </div>
 <div class="paragraph">
-<p>The following example shows a complex expression. If your design includes a script for analytic/tracking tools, you should make sure the script is never executed on a test system and never in the editor. Complex expressions were introduced in CX 23.2.21.</p>
+<p>The following example shows a complex expression. If your design includes a script for analytic/tracking tools, you should make sure the script is never executed on a test system and never in the editor.</p>
 </div>
 <div class="listingblock">
 <div class="title">Listing 54. Remove script tag on non-production systems or in draft mode</div>
@@ -5992,7 +5992,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2024-02-15 18:57:37 +0100
+Last update 2024-02-16 18:57:38 +0100
 </div>
 </div>
 </body>
