@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 24.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2024-02-22</span>
+<span id="revdate">Version Date 2024-06-21</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -754,9 +754,15 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#design-since-22">1.5. Designs since BSI CX 22.0</a></li>
 <li><a href="#file-format">1.6. File format</a></li>
 <li><a href="#content-editor">1.7. Content Editor</a></li>
-<li><a href="#structure-reference">1.8. Structure Reference</a></li>
-<li><a href="#dropzones">1.9. Dropzones</a></li>
-<li><a href="#groups">1.10. Groups</a></li>
+<li><a href="#content-security-policy-csp">1.8. Content Security Policy (CSP)</a>
+<ul class="sectlevel3">
+<li><a href="#http-headers-for-public-links">1.8.1. HTTP headers for public links</a></li>
+<li><a href="#http-headers-for-the-index-page-of-the-bsi-customer-suite">1.8.2. HTTP headers for the index page of the BSI Customer Suite</a></li>
+</ul>
+</li>
+<li><a href="#structure-reference">1.9. Structure Reference</a></li>
+<li><a href="#dropzones">1.10. Dropzones</a></li>
+<li><a href="#groups">1.11. Groups</a></li>
 </ul>
 </li>
 <li><a href="#designjson">2. design.json</a>
@@ -1134,7 +1140,52 @@ The files and folders in the ZIP file must not contain any umlauts.
 </div>
 </div>
 <div class="sect2">
-<h3 id="structure-reference"><a class="anchor" href="#structure-reference"></a>1.8. Structure Reference</h3>
+<h3 id="content-security-policy-csp"><a class="anchor" href="#content-security-policy-csp"></a>1.8. Content Security Policy (CSP)</h3>
+<div class="paragraph">
+<p>If a design requires resources from external servers, e.g. from a Content Delivery Network (CDN), two settings must be checked in the BSI Customer Suite and, if necessary, adjusted according to the needs of the design. The settings can be configured by a user with the appropriate permissions in the BSI Customer Suite administration.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Observe the notes on the integration of CSS and scripts in chapter <a href="#control-attributes">Control Attributes</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="http-headers-for-public-links"><a class="anchor" href="#http-headers-for-public-links"></a>1.8.1. HTTP headers for public links</h4>
+<div class="paragraph">
+<p>The HTTP headers including CSP settings for CX landing pages and websites are configured here. These are relevant for displaying the landing pages and websites in the end user&#8217;s browser.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="http-headers-for-the-index-page-of-the-bsi-customer-suite"><a class="anchor" href="#http-headers-for-the-index-page-of-the-bsi-customer-suite"></a>1.8.2. HTTP headers for the index page of the BSI Customer Suite</h4>
+<div class="paragraph">
+<p>The HTTP headers including CSP settings for the index page of the <em>BSI Customer Suite</em> are configured here. This includes the CX Content Editor. This setting overrides the server-side configured default values for CSP.</p>
+</div>
+<div class="paragraph">
+<p>This setting should be configured more restrictively than the setting for landing pages and websites above. Only what is absolutely necessary for error-free display in the content editor should be allowed. As a rule, styles and fonts are allowed, but not JavaScript.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The CSP settings configured here apply to the entire <em>BSI Customer Suite</em> GUI, not just the CX Content Editor.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="structure-reference"><a class="anchor" href="#structure-reference"></a>1.9. Structure Reference</h3>
 <div class="paragraph">
 <p>The file <code>design.html</code> contains the <code>frame</code> of the design and must include at least one outermost dropzone.
 It must contain valid, XHTML conform HTML with Doctype, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> tags.</p>
@@ -1150,7 +1201,7 @@ It must contain valid, XHTML conform HTML with Doctype, <code>&lt;html&gt;</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="dropzones"><a class="anchor" href="#dropzones"></a>1.9. Dropzones</h3>
+<h3 id="dropzones"><a class="anchor" href="#dropzones"></a>1.10. Dropzones</h3>
 <div class="paragraph">
 <p>While dragging a content element into the content area, you will notice blue lines and blue areas. These areas are called dropzones and identify areas where certain content elements can be placed. Each dropzone has a list of allowed content elements that are specified in the design.
 A dropzone is defined by adding the attribute <code>data-bsi-dropzone</code> to an HTML container element (e.g. <code>&lt;div&gt;</code> or <code>&lt;table&gt;</code>).
@@ -1177,7 +1228,7 @@ An optional limit of elements that can be placed inside the dropzone is defined 
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Problems can occour when placing a dropzone into a link or button element.
+Problems can occur when placing a dropzone into a link or button element.
 In this case, we recommend using a style.
 </td>
 </tr>
@@ -1185,7 +1236,7 @@ In this case, we recommend using a style.
 </div>
 </div>
 <div class="sect2">
-<h3 id="groups"><a class="anchor" href="#groups"></a>1.10. Groups</h3>
+<h3 id="groups"><a class="anchor" href="#groups"></a>1.11. Groups</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -5992,7 +6043,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2024-02-22 18:57:30 +0100
+Last update 2024-06-21 18:58:35 +0200
 </div>
 </div>
 </body>
