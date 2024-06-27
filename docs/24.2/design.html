@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 24.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2024-06-21</span>
+<span id="revdate">Version Date 2024-06-27</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -3076,18 +3076,6 @@ This defines the element to be duplicated.
 If <code>data-bsi-iterator</code> is defined and the iterator does not provide any data, the entire element is removed.
 Otherwise, only the element to be duplicated is marked with <code>data-bsi-iterator-item</code>.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Boolean attributes like <code>data-bsi-iterator-item</code> require an empty value <code>=""</code> or sample value like <code>="true"</code>.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>A text field is used as the editor.
 The name of the iterator can be placed in this text field.</p>
@@ -3095,13 +3083,13 @@ The name of the iterator can be placed in this text field.</p>
 <div class="listingblock">
 <div class="title">Listing 39. Example usage of the iterator part.</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element iterator</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">iterator</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-iterator</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">sample</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">customer</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-iterator-item</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element iterator</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">iterator</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-iterator</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Customer</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">customer</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-iterator-item</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Customer</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
         <span class="tag">&lt;dl&gt;</span>
             <span class="tag">&lt;dt&gt;</span>Name<span class="tag">&lt;/dt&gt;</span>
-            <span class="tag">&lt;dd&gt;</span>{customer.name}<span class="tag">&lt;/dd&gt;</span>
+            <span class="tag">&lt;dd&gt;</span>{Customer.name}<span class="tag">&lt;/dd&gt;</span>
             <span class="tag">&lt;dt&gt;</span>Address<span class="tag">&lt;/dt&gt;</span>
-            <span class="tag">&lt;dd&gt;</span>{customer.address}<span class="tag">&lt;/dd&gt;</span>
+            <span class="tag">&lt;dd&gt;</span>{Customer.address}<span class="tag">&lt;/dd&gt;</span>
         <span class="tag">&lt;/dl&gt;</span>
     <span class="tag">&lt;/div&gt;</span>
 <span class="tag">&lt;/div&gt;</span></code></pre>
@@ -6043,7 +6031,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2024-06-21 18:58:35 +0200
+Last update 2024-06-27 18:59:56 +0200
 </div>
 </div>
 </body>
