@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 25.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2025-04-07</span>
+<span id="revdate">Version Date 2025-04-10</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -794,8 +794,9 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#content-editor-specific-css">3.1. Content editor specific CSS</a></li>
 <li><a href="#predefined-story-outlets-bracket-links">3.2. Predefined Story outlets (Bracket Links)</a>
 <ul class="sectlevel3">
-<li><a href="#styling-of-bracket-links">3.2.1. Styling of bracket links</a></li>
-<li><a href="#using-anchor-links-inside-a-design">3.2.2. Using anchor links inside a design</a></li>
+<li><a href="#bracket-links-in-iterators">3.2.1. Bracket links in iterators</a></li>
+<li><a href="#styling-of-bracket-links">3.2.2. Styling of bracket links</a></li>
+<li><a href="#using-anchor-links-inside-a-design">3.2.3. Using anchor links inside a design</a></li>
 </ul>
 </li>
 <li><a href="#content-elements-and-parts">3.3. Content Elements and Parts</a>
@@ -2726,7 +2727,43 @@ It is your responsibility as a developer to use escaping where brackets have a d
 </div>
 </div>
 <div class="sect3">
-<h4 id="styling-of-bracket-links"><a class="anchor" href="#styling-of-bracket-links"></a>3.2.1. Styling of bracket links</h4>
+<h4 id="bracket-links-in-iterators"><a class="anchor" href="#bracket-links-in-iterators"></a>3.2.1. Bracket links in iterators</h4>
+<div class="paragraph">
+<p>When you display data in a table, you will use the iterator feature of BSI CX.
+In this example we display a list of blog articles.</p>
+</div>
+<div class="paragraph">
+<p>In the content editor you use a table content-element.
+You activate the 'Dynamic table' checkbox in the editor form.
+Now you define the columns. Let&#8217;s assume we have 3 columns:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>{blog.title}</p>
+</li>
+<li>
+<p>{blog.releaseDate}</p>
+</li>
+<li>
+<p>[blog.details] [blog.edit]</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The third column defines two iterator bracket links.
+The link ID must start with the entity prefix,
+which is followed by an arbitrary name that defines the function of the link.</p>
+</div>
+<div class="paragraph">
+<p>When you use this content in a media step in the storyboard,
+the step will provide a GUI, to pick an entity and the values for the placeholders 'title' and 'releaseDate'.
+For the two links the step will generate two outlets.
+A consequent step connected to these outlets can pick from the iterator property which is labeled with 'Chosen via link' and can access the properties of that distinct iterator item.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="styling-of-bracket-links"><a class="anchor" href="#styling-of-bracket-links"></a>3.2.2. Styling of bracket links</h4>
 <div class="paragraph">
 <p>When CX converts a <code>[placeholder]</code> term internally into a link tag, it adds the CSS class <code>placeholder-link</code> to the <code>a</code> tag. This allows bracket links to be selected and styled separately from other link elements.</p>
 </div>
@@ -2742,7 +2779,7 @@ It is your responsibility as a developer to use escaping where brackets have a d
 </div>
 </div>
 <div class="sect3">
-<h4 id="using-anchor-links-inside-a-design"><a class="anchor" href="#using-anchor-links-inside-a-design"></a>3.2.2. Using anchor links inside a design</h4>
+<h4 id="using-anchor-links-inside-a-design"><a class="anchor" href="#using-anchor-links-inside-a-design"></a>3.2.3. Using anchor links inside a design</h4>
 <div class="paragraph">
 <p>First of all, it is possible to use anchor links in the form of <code>#top</code> inside a CX design.
 Anchor links are allowed as targets of <a href="#sec-link-part">link parts</a>.
@@ -5009,6 +5046,11 @@ no
 <div class="ulist">
 <ul>
 <li>
+<p><strong>defaultLocale</strong> (String): Default locale of the website.
+Can be used to compare locales, for instance in an <code>hreflang</code> attribute to render the value <code>x-default</code> when a locale is equals the defaultLocale.
+Example: <code>en</code>.</p>
+</li>
+<li>
 <p><strong>designBaseUrl</strong> (String): base URL of the design on the resource server.</p>
 </li>
 <li>
@@ -7069,7 +7111,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2025-04-07 18:53:26 +0200
+Last update 2025-04-10 18:52:23 +0200
 </div>
 </div>
 </body>
