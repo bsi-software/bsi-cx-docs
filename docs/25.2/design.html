@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 25.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2025-04-10</span>
+<span id="revdate">Version Date 2025-07-16</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -825,6 +825,13 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#metadata-images-for-the-navigation">3.5.8. Metadata / Images for the navigation</a></li>
 <li><a href="#security-google-recaptcha">3.5.9. Security - Google reCAPTCHA</a></li>
 <li><a href="#creation-of-websites-from-existing-landingpage-templates">3.5.10. Creation of websites from existing landingpage templates</a></li>
+</ul>
+</li>
+<li><a href="#teasers">3.6. Teasers</a>
+<ul class="sectlevel3">
+<li><a href="#server-side-rendering">3.6.1. Server-side Rendering</a></li>
+<li><a href="#client-side-rendering">3.6.2. Client-side Rendering</a></li>
+<li><a href="#the-json-design-teaser-content-type">3.6.3. The JSON Design / Teaser Content Type</a></li>
 </ul>
 </li>
 </ul>
@@ -4261,7 +4268,7 @@ This results in the following content element editor:</p>
 <div class="listingblock">
 <div class="title">Listing 58. Handlebars template of the content element.</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">about-story-wrap</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">medium-quote-hbs</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content-element-wrap</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">medium-quote-hbs</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">paragraph-light</span><span class="delimiter">&quot;</span></span> <span class="error">{</span><span class="error">{</span><span class="error">#</span><span class="attribute-name">if</span> <span class="attribute-name">italic.value</span><span class="error">}</span><span class="error">}</span><span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">font-style</span>: <span class="value">italic</span><span class="delimiter">&quot;</span></span><span class="error">{</span><span class="error">{</span><span class="error">/</span><span class="attribute-name">if</span><span class="error">}</span><span class="error">}</span><span class="tag">&gt;</span>{{text.value}}<span class="tag">&lt;/div&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b>
 <span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
@@ -5898,6 +5905,308 @@ BSI Website</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="teasers"><a class="anchor" href="#teasers"></a>3.6. Teasers</h3>
+<div class="paragraph">
+<p>Teasers are personalized data tailored by CX.
+An external system can request teaser data via EIP.
+The response is a JSON object which contains personalized text, images and callback URLs to CX.
+The external system renders the JSON data into HTML and uses existing tools and libraries in that specific web frontend.</p>
+</div>
+<div class="paragraph">
+<p>However, teasers can also be used internally in CX, for instance in landingpages, in e-mails and in websites.
+For that CX provides a special content element, which is rendered server- or client-side.
+Like the external system, CX requests teaser data from EIP when the content element is rendered.</p>
+</div>
+<div class="paragraph">
+<p>Depending on the use case, CX design- and content authors can use either server- or client-side rendering:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>E-mail</strong>: only server-side rendering is possible</p>
+</li>
+<li>
+<p><strong>Landingpages</strong>: server- or client-side rendering</p>
+</li>
+<li>
+<p><strong>Websites</strong>: server- or client-side rendering</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="server-side-rendering"><a class="anchor" href="#server-side-rendering"></a>3.6.1. Server-side Rendering</h4>
+<div class="paragraph">
+<p>The CX design must provide a teaser content element, based on a Handlebars template.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example for a teaser content element (teaser.hbs):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="handlebars">{{#if numTeasers}}&lt;div class=&quot;teaser-display&quot; data-bsi-element=&quot;teaser-display&quot;
+     data-bsi-teaser-rendering=&quot;{{teaserRendering.value}}&quot;
+     data-bsi-teaser-target=&quot;{{teaserTarget.value}}&quot;&gt;
+    &lt;img src=&quot;{{teasers.[0].imageUrl}}&quot; alt=&quot;&quot; class=&quot;teaser-image-url&quot;&gt;
+    &lt;div class=&quot;teaser-text&quot;&gt;{{{teasers.[0].text}}}&lt;/div&gt;
+    &lt;a href=&quot;{{teasers.[0].ctaUrl}}&quot; class=&quot;button cc-jumbo-button w-inline-block teaser-cta-url&quot;&gt;
+        &lt;div class=&quot;teaser-cta-text&quot;&gt;{{teasers.[0].ctaText}}&lt;/div&gt;
+    &lt;/a&gt;
+&lt;/div&gt;{{/if}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is an example for the context file for the teaser content element (teaser-context.json):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">teaserTarget</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">value</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Standard</span><span class="delimiter">&quot;</span></span>
+  },
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">teaserRendering</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">value</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">server-side</span><span class="delimiter">&quot;</span></span>
+  },
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">numTeasers</span><span class="delimiter">&quot;</span></span>: <span class="integer">1</span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">teasers</span><span class="delimiter">&quot;</span></span>: [
+    {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">imageUrl</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">{{designBaseUrl}}/img/placeholder.svg</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Lorem ipsum dolor sit amet.</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">ctaUrl</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">#</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">ctaText</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Dolore Magna</span><span class="delimiter">&quot;</span></span>
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following properties in the JSON are mandatory:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>numTeasers</strong>: a teaser request may return 0 to <em>n</em> teasers.
+Check this value to control, whether the teaser should appear in the DOM.
+The CX framework sets this value to 0 if the current participant is not a CRM customer, or EIP returned no teasers for the current participant.</p>
+</li>
+<li>
+<p><strong>teasers</strong>: an array of teasers, ordered by priority.
+Note that the teaser data is not fixed and depends on the content configuration.
+See the chapter about the JSON design to understand how the teaser data is configured in CX.
+Usually you build a specific to teaser content element to render a fixed set of teaser data properties.
+The property names form the contract between the CX content configuration for the teaser,
+and the Handlebars code in the content element.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You must set these properties in the context JSON, in order to render a proper preview in the CX content editor.
+All other properties in the context JSON are regular properties required for the Handlebars feature.
+In this example the design defines two fields 'teaserTarget' and 'teaserRendering' for this content element.</p>
+</div>
+<div class="paragraph">
+<p>The following data BSI attributes, can be used for teaser content elements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>data-bsi-teaser-rendering</code> controls whether the content element is rendered by the CX server.
+If the value is set to <code>server-side</code>, fixed in the template or by the content editor,
+the CX framework will load the Handlebars template for this content element, request the teaser data
+from EIP, will render the Handlebars template into HTML and replace the content element in the DOM.</p>
+</li>
+<li>
+<p><code>data-bsi-teaser-target</code> this value is set either fixed in the template or by the content editor.
+Valid teaser targets are configured in the CX settings.
+In the content you can specify a target for the teaser content element.
+This target is added to the request when CX requests a teaser from EIP.
+Example value: <code>Standard</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="client-side-rendering"><a class="anchor" href="#client-side-rendering"></a>3.6.2. Client-side Rendering</h4>
+<div class="paragraph">
+<p>If the value for the attribute <code>data-bsi-teaser-rendering</code> is set to <code>client-side</code> the HTML remains untouched by the CX backend.
+However, the attribute <code>data-bsi-teaser-endpoint</code> will be added to the DOM.
+The attribute value provides an absolute URL to make a REST call from the web frontend to the EIP system.</p>
+</div>
+<div class="paragraph">
+<p>If your CX design must support client-side rendering, you need to add some JavaScript code to your design.
+A simple example implementation can look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript"><span class="comment">/**
+ * Initializes the teasers in the document. This method is a blueprint for other frontend implementations,
+ * not only in BSI CX designs, but also in external CMS or websites. Here, the endpoint URL is provided by
+ * the BSI CX backend. The URL consists of these 3 parts:
+ *
+ * 1. The EIP host and path to the interface
+ * 2. The teaser target (e.g. 'Standard')
+ * 3. The teaser user ID (typically a UUID)
+ *
+ * Example: https://eip.bsi-software-com/web-api/get-teaser/Standard/1234567890
+ */</span>
+<span class="keyword">function</span> <span class="function">initTeasers</span>() {
+  let <span class="predefined">$elements</span> = document.querySelector(<span class="string"><span class="delimiter">'</span><span class="content">[data-bsi-teaser-endpoint]</span><span class="delimiter">'</span></span>);
+  <span class="keyword">if</span> (!<span class="predefined">$elements</span>) {
+    <span class="keyword">return</span>; <span class="comment">// Skip. There are no teasers to handle.</span>
+  }
+
+  Array.of(<span class="predefined">$elements</span>).forEach(<span class="predefined">$e</span> =&gt; {
+    let teaserEndpoint = <span class="predefined">$e</span>.getAttribute(<span class="string"><span class="delimiter">'</span><span class="content">data-bsi-teaser-endpoint</span><span class="delimiter">'</span></span>);
+    <span class="keyword">if</span> (!teaserEndpoint) {
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Teaser endpoint attribute is empty -&gt; Skip teaser request, hide teaser content element.</span><span class="delimiter">'</span></span>);
+      <span class="predefined">$e</span>.classList.add(<span class="string"><span class="delimiter">&quot;</span><span class="content">w-hidden</span><span class="delimiter">&quot;</span></span>);
+      <span class="keyword">return</span>;
+    }
+    console.log(<span class="string"><span class="delimiter">'</span><span class="content">Request teaser. Endpoint:</span><span class="delimiter">'</span></span>, teaserEndpoint);
+    fetch(teaserEndpoint)
+        .then(response =&gt; {
+          response.json().then(response =&gt; {
+            console.log(<span class="string"><span class="delimiter">'</span><span class="content">REST response for teaser:</span><span class="delimiter">'</span></span>, response);
+            <span class="keyword">if</span> (!Array.isArray(response)) {
+              <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string"><span class="delimiter">'</span><span class="content">Expected an array as teaser response</span><span class="delimiter">'</span></span>);
+            }
+            let numTeasers = response.length;
+            <span class="keyword">if</span> (!numTeasers) {
+              <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string"><span class="delimiter">'</span><span class="content">Teaser response is empty</span><span class="delimiter">'</span></span>);
+            }
+            console.log(<span class="string"><span class="delimiter">'</span><span class="content">Teaser response contains </span><span class="delimiter">'</span></span> + numTeasers + <span class="string"><span class="delimiter">'</span><span class="content"> teaser elements. Using first element...</span><span class="delimiter">'</span></span>);
+            let teaser = response[<span class="integer">0</span>];
+            <span class="predefined">$e</span>.querySelector(<span class="string"><span class="delimiter">'</span><span class="content">.teaser-text</span><span class="delimiter">'</span></span>).innerHTML = teaser.text;
+            <span class="predefined">$e</span>.querySelector(<span class="string"><span class="delimiter">'</span><span class="content">.teaser-image-url</span><span class="delimiter">'</span></span>).setAttribute(<span class="string"><span class="delimiter">'</span><span class="content">src</span><span class="delimiter">'</span></span>, teaser.imageUrl);
+            <span class="predefined">$e</span>.querySelector(<span class="string"><span class="delimiter">'</span><span class="content">.teaser-cta-text</span><span class="delimiter">'</span></span>).innerText = teaser.ctaText;
+            <span class="predefined">$e</span>.querySelector(<span class="string"><span class="delimiter">'</span><span class="content">.teaser-cta-url</span><span class="delimiter">'</span></span>).setAttribute(<span class="string"><span class="delimiter">'</span><span class="content">href</span><span class="delimiter">'</span></span>, teaser.ctaUrl);
+          });
+        })
+        .<span class="keyword">catch</span>(reason =&gt; {
+          console.error(<span class="string"><span class="delimiter">'</span><span class="content">REST request for teaser failed</span><span class="delimiter">'</span></span>, reason);
+        });
+  });
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This function manipulates the DOM to apply the values from the teaser data request.
+See the code snippet for the <code>teaser.hbs</code> above, to understand how the HTML looks like for this example.
+Also note that some properties values can contain HTML, to avoid security issues, you should always sanitize the HTML before adding it to the DOM.</p>
+</div>
+<div class="paragraph">
+<p>When the CX backend detects, that it is not possible to request teaser data, for the current participant in CX,
+  the attribute <code>data-bsi-teaser-endpoint</code> will be empty.
+This can happen, if the participant is not a CRM customer.
+In that case the design author should skip the REST request and hide the teaser content element, or show a generic placeholder instead.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="the-json-design-teaser-content-type"><a class="anchor" href="#the-json-design-teaser-content-type"></a>3.6.3. The JSON Design / Teaser Content Type</h4>
+<div class="paragraph">
+<p>You have already learned that teasers are basically JSON data.
+This means a content author must configure JSON data for a teaser, as he or she would do with HTML content.
+In order to do that, CX defines the content type 'Teaser'.</p>
+</div>
+<div class="paragraph">
+<p>CX comes with a special built-in design for this content type.
+Basically this design type works as a regular HTML based design.
+CX uses the regular content editor to work with teaser content.
+However, although we work with HTML content in the content editor, this content is later transformed to JSON data by the CX framework.</p>
+</div>
+<div class="paragraph">
+<p>In order to do that, the content elements in the JSON design must use the following data BSI attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>data-bsi-json-property</code> Defines the JSON property name.
+By default, the value for the property name is extracted from the body of the DOM element where this attribute is defined.</p>
+</li>
+<li>
+<p><code>data-bsi-json-value-attribute</code> Optional attribute used in case, where the value is not stored in the body of the DOM element,
+but must be extracted from an attribute. See <em>Example 2</em> below.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="handlebars">&lt;div class=&quot;content-element-wrap&quot; data-bsi-element=&quot;plain-text&quot;&gt;
+  &lt;div class=&quot;json-property&quot;&gt;{{jsonProperty.value}}&lt;/div&gt;
+  &lt;div class=&quot;paragraph-light&quot; data-bsi-json-property=&quot;{{jsonProperty.value}}&quot;&gt;{{value.value}}&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Example 1: a simple plain text content element for the JSON editor.
+The content user can freely define a property name in the content editor.</em></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="handlebars">&lt;div class=&quot;detail-image-container&quot; data-bsi-element=&quot;image&quot;&gt;
+&lt;div class=&quot;json-property&quot;&gt;{{jsonProperty.value}}&lt;/div&gt;
+&lt;img src=&quot;{{image.srcUrl}}&quot; width=&quot;920&quot; alt=&quot;&quot; class=&quot;detail-image&quot;
+    data-bsi-json-property=&quot;{{jsonProperty.value}}&quot; data-bsi-json-value-attribute=&quot;src&quot;&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Example 2: an image element for the JSON editor.
+The content user can freely define a property name in the content editor.</em></p>
+</div>
+<div class="paragraph">
+<p>Note, the DIV with the class "json-property" is just eye candy to visualize the property name in the content editor (see the image below).</p>
+</div>
+<div class="paragraph">
+<p>As in a regular design, you can use existing element parts to build your JSON content elements,
+like the image element part, for choosing images from the CX media library.</p>
+</div>
+<div class="paragraph">
+<p>You can also build JSON content elements that emit multiple json properties,
+like a CTA button that emits a ctaText and a ctaUrl.</p>
+</div>
+<div class="paragraph">
+<p>With that you can provide a reasonable content preview to the content user, although he or she configures just JSON data.
+This is how the JSON design looks like in the content editor:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/json-design-preview.png" alt="json design preview">
+</div>
+</div>
+<div class="sect4">
+<h5 id="fixed-json-designs"><a class="anchor" href="#fixed-json-designs"></a>3.6.3.1. Fixed JSON Designs</h5>
+<div class="paragraph">
+<p>For rapid prototyping it is very convenient to have a flexible JSON design, which allows to define arbitrary property names.</p>
+</div>
+<div class="paragraph">
+<p>However, in a real-life project you want to fix property names, because they are the contract between the CX content,
+  the teaser data stored in EIP, the design which must render that data or even an external third party system,
+  which must render teaser data.</p>
+</div>
+<div class="paragraph">
+<p>For that purpose the CX design developer can make a <em>fixed</em> JSON design.
+In that design all property names are pre-defined, and they can not be changed by the content author.
+It is also not possible to add additional content elements or remove existing content elements.
+All this is achieved by using the existing CX design features, like hiding copy and remove buttons in the content editor
+  or limiting the number of content elements in a dropzone.
+In comparison to the examples above a fixed plain text element can look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="handlebars">&lt;div class=&quot;content-element-wrap&quot; data-bsi-element=&quot;plain-text&quot;&gt;
+  &lt;div class=&quot;json-property&quot;&gt;plainText&lt;/div&gt;
+  &lt;div class=&quot;paragraph-light&quot; data-bsi-json-property=&quot;plainText&quot;&gt;{{value.value}}&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Example 3: a plain text content element for the JSON editor.
+The property name is fixed (plainText) and can not be changed by the content user.</em></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -7111,7 +7420,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2025-04-10 18:52:23 +0200
+Last update 2025-07-16 18:52:14 +0200
 </div>
 </div>
 </body>
