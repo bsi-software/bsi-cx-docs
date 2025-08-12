@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 25.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2025-04-07</span>
+<span id="revdate">Version Date 2025-08-12</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -5558,26 +5558,40 @@ Do not forget to add the new content-element/include to the <code>data-bsi-dropz
 <p><code>contentType</code>: <code>built-in</code> (default, if not set manually), <code>pre-defined</code> and <code>user-defined</code>.</p>
 </li>
 <li>
-<p><code>editable</code>: True, when the include can be edited in the content editor by the user. Default is true. Must be <code>editable: false</code> for all includes that use Handlebars.</p>
+<p><code>editable</code>: True, when the include can be edited in the content editor by the user.
+Default is <code>true</code>. Must be <code>false</code> for all includes that use Handlebars.
+You should avoid to change the value of this property in design updates.
+If you must change the value, a 'direct update' of the content is enforced in the design update.
+This means, that the existing HTML content of the current website cannot be migrated and will be <em>overridden</em> with the content of the include in the new version of the design.
+Instead of changing the editable property, you should consider to define a new include with a new reference/ID.</p>
 </li>
 </ul>
 </div>
 <div class="sect4">
 <h5 id="design-hbs"><a class="anchor" href="#design-hbs"></a>3.5.5.1. Design.hbs</h5>
 <div class="paragraph">
-<p>The <code>design.hbs</code> file is equivalent to the "master" of the website. On the creation of a website, an include "Design" with this file&#8217;s content is created. This include <em>can&#8217;t</em> be edited by the user. However, the design can reference other includes that may be edited, so that e.g. the footer can be edited by the user.</p>
+<p>The <code>design.hbs</code> file is equivalent to the "master" of the website.
+On the creation of a website, an include with reference <code><em>master</em></code> is created with the contents of the <em>design.hbs</em> file.
+This include <em>can&#8217;t</em> be edited by the user.
+However, the design can reference other includes that may be edited, so that e.g. the footer can be edited by the user.</p>
 </div>
 <div class="paragraph">
-<p>A design can contain exactly one include for a page (attribute "pageid"). For the editor this include has a special meaning: when displayed in the editor, the full page (including the master) is displayed, but when saved, only the content of the respective page is saved.</p>
+<p>A design can contain exactly one include for a page.
+That include uses the dynamic reference <code>{navigation.activePage.contentId}</code>.
+For the editor this include has a special meaning:
+When displayed in the editor, the full page (including the master) is displayed, but when saved, only the content of the respective page is saved.</p>
 </div>
 <div class="paragraph">
 <p>Advice: There should be no tags of the template-engine used for includes or pages that the user may edit.</p>
+</div>
+<div class="paragraph">
+<p>In the example below the value of the <code>editable</code> property from the include definition in the <em>design.json</em> file is shown as an HTML comment, for better understanding.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;html&gt;</span>
 <span class="tag">&lt;head&gt;</span>
-  <span class="tag">&lt;title&gt;</span>{{site.title}} | {{navigation.activePage.title}}<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;title&gt;</span>{{title}} | {{page.pageTitle}}<span class="tag">&lt;/title&gt;</span>
 <span class="tag">&lt;/head&gt;</span>
 <span class="tag">&lt;body&gt;</span>
 
@@ -5589,30 +5603,30 @@ Do not forget to add the new content-element/include to the <code>data-bsi-dropz
   {{^navigation.index.active}}
     <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{navigation.index.url}}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">logo.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">width</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">100</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">height</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">100</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
   {{/navigation.index.active}}
-  <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">navigation</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">editable</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">navigation</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="comment">&lt;!-- editable: false --&gt;</span>
 <span class="tag">&lt;/header&gt;</span>
 
         <span class="comment">&lt;!--
-    ActivePage is always set by the framework. When the root-URL '/' is loaded,
+    activePage is always set by the framework. When the root-URL '/' is loaded,
     'index' is used automatically.
     When the include-tag is resolved, it's replaced by the respective HTML-snippet.
-    Having a single root-element (e.g.: &lt;div&gt;, &lt;p&gt;, ...), that capsulates the entire DOM of the include, is a technical requirement for any include.
+    Having a single root-element (e.g.: &lt;div&gt;, &lt;p&gt;, ...), that encapsulates the entire DOM of the include, is a technical requirement for any include.
     When changed, the attribute &quot;data-ce-include-id&quot; is set on this element with the value of the original attribute &quot;id&quot;.
     --&gt;</span>
     {{#response.ok}}
-        <span class="tag">&lt;bsi:include</span> <span class="attribute-name">reference</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{navigation.activePage.contentId}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">editable</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;bsi:include</span> <span class="attribute-name">reference</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{navigation.activePage.contentId}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="comment">&lt;!-- editable: true --&gt;</span>
     {{/response.ok}}
     <span class="comment">&lt;!--
-    This include is only loaded when the reposnse is != OK. It takes a special function to set response.ok to false in the content-editor, to even make it editable in the editor.
+    This include is only loaded when the response is != OK. It takes a special function to set response.ok to false in the content-editor, to even make it editable in the editor.
     --&gt;</span>
     {{^response.ok}}
-    <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">error</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">editable</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">error</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="comment">&lt;!-- editable: false --&gt;</span>
     {{/response.ok}}
 
 <span class="tag">&lt;footer&gt;</span>
   <span class="comment">&lt;!--
-  The include &quot;design&quot; can't be edited, so the part that should be editable by the user needs to be transfered to a separate include. --&gt;</span>
-  <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">footer-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">editable</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  The contents of the &quot;design.hbs&quot; cannot be edited directly, so the part that should be editable by the user needs to be transferred to a separate include. --&gt;</span>
+  <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">footer-text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="comment">&lt;!-- editable: true --&gt;</span>
 <span class="tag">&lt;/footer&gt;</span>
 
 <span class="tag">&lt;/body&gt;</span>
@@ -7111,7 +7125,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2025-04-07 18:56:14 +0200
+Last update 2025-08-12 18:50:14 +0200
 </div>
 </div>
 </body>
