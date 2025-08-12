@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 25.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2025-07-16</span>
+<span id="revdate">Version Date 2025-08-12</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -4667,6 +4667,395 @@ It allows to define a list of key/value options in the design and provides the k
 </div>
 </div>
 </div>
+<div class="sect4">
+<h5 id="dynamic-value-list"><a class="anchor" href="#dynamic-value-list"></a>3.3.4.8. dynamic-value-list</h5>
+<div class="paragraph">
+<p>This Handlebars template part offers functionality for the integration of BSI Suite value lists into any HTML form, providing REST endpoints for the purpose of retrieving values from such lists.</p>
+</div>
+<div class="sect5">
+<h6 id="editor-8"><a class="anchor" href="#editor-8"></a>Editor</h6>
+<div class="imageblock">
+<div class="content">
+<img src="./images/dynamic-value-list-template-part.png" alt="Template part user interface.">
+</div>
+<div class="title">Figure 16. Template part user interface.</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="variables-8"><a class="anchor" href="#variables-8"></a>Variables</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Value list</strong>: A reference to a BSI Suite value list.
+Mandatory.</p>
+</li>
+<li>
+<p><strong>Initial value</strong>: Optional initial value for the HTML form field.
+Only values belonging to the referenced <strong>Value list</strong> are available.
+Only editable if <strong>Value list</strong> is set.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is also possible to define an initial value within the configuration of a story, which supersedes the initial value of the content.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect5">
+<h6 id="backend-processing-and-html-rendering"><a class="anchor" href="#backend-processing-and-html-rendering"></a>Backend processing and HTML rendering</h6>
+<div class="paragraph">
+<p>The BSI backend processes dynamic value lists in the following manner:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The BSI Suite value list is defined in the content using the content editor, and this value is stored in the CX database.</p>
+</li>
+<li>
+<p>During the rendering of the HTML, the ID of the value list is utilized to create a REST endpoint, and the URL of this endpoint is transmitted to and made available in the client&#8217;s DOM.</p>
+</li>
+<li>
+<p>The endpoint is invoked by the client to retrieve all values of the value list.</p>
+</li>
+<li>
+<p>The values are processed and transmitted to the CX backend upon form submission, and these values can be utilized in CX stories for further processing.
+The values automatically possess the correct BSI data model type.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="involved-bsi-html-attributes"><a class="anchor" href="#involved-bsi-html-attributes"></a>Involved BSI HTML Attributes</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>data-bsi-entity-id</strong>: Holds a BSI datamodel entity ID (i.e., an ID referencing the BSI Suite value list).
+Only used at configuration time, not sent to clients.</p>
+</li>
+<li>
+<p><strong>data-bsi-entity-key-value</strong>: Holds an entity key belonging to the element&#8217;s <strong>data-bsi-entity-id</strong>.
+This value is used to set the form field&#8217;s initial value.
+Only used at configuration time, not sent to clients.
+The value of this attribute is symmetrically encrypted and set into the HTML element&#8217;s <em>value</em> attribute before the HTML is sent to any clients.</p>
+</li>
+<li>
+<p><strong>data-bsi-entity-key-display-text</strong>: Human readable label of the key stored in <strong>data-bsi-entity-key-value</strong>.
+This attribute is preserved and sent to clients.</p>
+</li>
+<li>
+<p><strong>data-bsi-rest-resource</strong>: Target endpoint to lookup values belonging to the element&#8217;s <strong>data-bsi-entity-id</strong>.
+This attribute is preserved and sent to clients.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5">
+<h6 id="design-integration"><a class="anchor" href="#design-integration"></a>Design integration</h6>
+<div class="paragraph">
+<p>The integration process consists of two stages.
+Firstly, the BSI data model entity IDs and keys are set in the content during configuration time.
+Secondly, these values are retrieved when the HTML form is opened via REST during runtime.</p>
+</div>
+<div class="sect6">
+<h7 id="configuration-time"><a class="anchor" href="#configuration-time"></a>Configuration time</h7>
+<div class="paragraph">
+<p>The Handlebars template part&#8217;s editor persists the following context variables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>dataModelValue</strong>: A nested JSON holding the BSI datamodel type and (if set) initial value key.</p>
+</li>
+<li>
+<p><strong>displayText</strong>: The initial value key&#8217;s human-readable label.
+May be empty.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Listing 60. The element&#8217;s context structure.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">dataModelValue</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">type</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">entity:1234</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">value</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">entity:1234:key:9876</span><span class="delimiter">&quot;</span></span>
+  },
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">displayText</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">I belong to key 9876</span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To correctly encrypt and map BSI datamodel values, the CX backend expects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The HTML element tagged with <em>dynamic-value-list</em> also has to reference and set the BSI HTML attribute <em>data-bsi-entity-id</em>.
+<em>data-bsi-entity-id</em> is used to create the URL for the lookup-call.</p>
+</li>
+<li>
+<p>The HTML input on the form has to reference the BSI HTML attribute <em>data-bsi-entity-key-value</em>.
+This enables default values.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Listing 61. The element&#8217;s BSI HTML attributes at configuration time.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dynamic-value-list</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-entity-id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{context.dataModelValue.type}}</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span>
+      <span class="attribute-name">data-bsi-entity-key-value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{context.dataModelValue.value}}</span><span class="delimiter">&quot;</span></span>
+      <span class="attribute-name">data-bsi-entity-key-display-text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{context.displayText}}</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect6">
+<h7 id="runtime"><a class="anchor" href="#runtime"></a>Runtime</h7>
+<div class="paragraph">
+<p>It is the frontend code&#8217;s responsibility to retrieve and display a value list&#8217;s values.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The element tagged with <em>dynamic-value-list</em> contains a REST endpoint to retrieve the values of the value list.
+It is exposed via the BSI HTML attribute <strong>data-bsi-rest-resource</strong>.
+The REST call uses the <em>GET</em> method and returns a JSON containing one attribute called <em>options</em>.
+This attribute holds a list of <em>id</em>-<em>text</em> pairs.
+The <em>id</em> is always encrypted.</p>
+</li>
+<li>
+<p>Ensure that the correct encrypted <em>id</em> is sent to the CX backend on a form submit.</p>
+</li>
+<li>
+<p>The element marked with the tag "<em>dynamic-value-list</em>" contains a REST endpoint for retrieving the values of the value list, which is exposed via the BSI HTML attribute "data-bsi-rest-resource".
+The REST call utilizes the GET method and returns a JSON object containing a single attribute named "options", which holds a list of id-text pairs.
+The id is always encrypted.</p>
+</li>
+<li>
+<p>It is essential to ensure that the correct encrypted id is transmitted to the CX backend upon form submission.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Listing 62. An example HTML element sent to a customer opening a CX landing page.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-rest-resource</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://your-client.bsi/inbound/default/r/bsi-code-rest-resource?entityId=WcaYlNlwe6VnI72</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span>
+      <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">kOi4pUb17YbVcvVlaU9-kiQW993</span><span class="delimiter">&quot;</span></span>
+      <span class="attribute-name">data-bsi-entity-key-display-text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">I belong to the encrypted key kOi4pUb17YbVcvVlaU9-kiQW993</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 63. An example response when calling the URL provided via <strong>data-bsi-rest-resource</strong>.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">options</span><span class="delimiter">&quot;</span></span>: [
+    {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">kOi4pUb17YbVcvVlaU9-kiQW993</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">label 1</span><span class="delimiter">&quot;</span></span>
+    },
+    {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">mRt7xQe42NcBzxTpoL3-zvER581</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">label 2</span><span class="delimiter">&quot;</span></span>
+    },
+    {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">fLn2vHd89JmTqyWkdA6-wuTY764</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">label 3</span><span class="delimiter">&quot;</span></span>
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect6">
+<h7 id="rest-parameters"><a class="anchor" href="#rest-parameters"></a>REST parameters</h7>
+<div class="paragraph">
+<p>The REST endpoint exposed via <strong>data-bsi-rest-resource</strong> accepts the following query parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>entityId</strong>: The encrypted value list type.
+Mandatory.
+This parameter is provided by the CX backend and already set.
+There is no need to adapt it in the frontend.</p>
+</li>
+<li>
+<p><strong>q</strong>: Query parameter.
+Optional.
+If set, it&#8217;s value is used to perform a case-insensitive prefix search on the lookup result&#8217;s texts.
+Only matching results are sent to the client.</p>
+</li>
+<li>
+<p><strong>lang</strong>: Requested language parameter.
+Optional.
+If set, the value is used to parse a <em>JAVA</em> locale.
+The locale is used to perform the lookup and returns the result in the corresponding language.
+It is recommended to set this attribute to the DOM&#8217;s language attribute (which is normally set via CX&#8217;s content engine).
+If no value is provided, the request&#8217;s language (i.e., the client&#8217;s browser language) is used.
+The last fallback is the CX backend&#8217;s system language.
+Example values: <em>de-DE</em>, <em>de-CH</em>, <em>de</em>, <em>en</em>, <em>en-US</em>, <em>fr</em>, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Listing 64. Example URL. The design has to handle q and lang parameters.</div>
+<div class="content">
+<pre>http://your-client.bsi/inbound/default/r/bsi-code-rest-resource?entityId=WcaYlNlwe6VnI72&amp;q=searchVal&amp;lang=de</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The REST endpoint made available via <strong>data-bsi-rest-resource</strong> supports the following query parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>entityId</strong>: The encrypted value list type.
+Mandatory.
+This parameter is provided by the CX backend and is already set, therefore no adjustments are necessary in the frontend.</p>
+</li>
+<li>
+<p><strong>q</strong>: Query parameter.
+Optional.
+If specified, its value is utilized to perform a case-insensitive prefix search on the lookup result&#8217;s texts.
+Only matching results are transmitted to the client.</p>
+</li>
+<li>
+<p><strong>lang</strong>: Requested language parameter.
+Optional.
+If specified, the value is used to parse a <em>JAVA</em> locale.
+The locale is then used to perform the lookup and return the result in the corresponding language.
+It is recommended to set this attribute to the DOM&#8217;s language attribute, which is typically set via CX&#8217;s content engine.
+If no value is provided, the request&#8217;s language (i.e., the client&#8217;s browser language) is used.
+The last fallback is the CX backend&#8217;s system language.
+Example values include <em>de-DE</em>, <em>de-CH</em>, <em>de</em>, <em>en</em>, <em>en-US</em>, <em>fr</em>, etc.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect6">
+<h7 id="how-to-create-a-content-element-using-the-value-list-part"><a class="anchor" href="#how-to-create-a-content-element-using-the-value-list-part"></a>How to create a content element using the value list part</h7>
+<div class="paragraph">
+<p>The element is based on the new Handlebars integration in BSI CX designs.
+To work properly with the CX form engine, your element should also contain two additional template element parts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>id</strong>: A plain-text Handlebars template part to uniquely identify the form field in a form.
+Ensure that the HTML form field&#8217;s ID attribute is set to this value.
+Mandatory.</p>
+</li>
+<li>
+<p><strong>name</strong>: The form field&#8217;s label.
+Mandatory.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect6">
+<h7 id="minimal-example-implementation"><a class="anchor" href="#minimal-example-implementation"></a>Minimal example implementation</h7>
+<div class="listingblock">
+<div class="title">Listing 65. The example&#8217;s context .json. The content editor sets the datamodel values.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">value</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">dynamic-dropdown-1</span><span class="delimiter">&quot;</span></span>
+  },
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">value</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Field</span><span class="delimiter">&quot;</span></span>
+  },
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">entityTypeAndInitialValue</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">dataModelValue</span><span class="delimiter">&quot;</span></span>: {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">type</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">value</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>
+    },
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">displayText</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 66. The examples .hbs file. The content editor sets the datamodel values.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dynamic-value-list</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-entity-id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{entityTypeAndInitialValue.dataModelValue.type}}</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{id.value}}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>{{name.value}}<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{id.value}}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{id.value}}</span><span class="delimiter">&quot;</span></span>
+      <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{entityTypeAndInitialValue.displayText}}</span><span class="delimiter">&quot;</span></span>
+      <span class="attribute-name">data-bsi-entity-key-value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{entityTypeAndInitialValue.dataModelValue.value}}</span><span class="delimiter">&quot;</span></span>
+      <span class="attribute-name">data-bsi-entity-key-display-text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{entityTypeAndInitialValue.displayText}}</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Listing 67. The element&#8217;s entry in the www-design.json file. Don&#8217;t forget to include the element in the respective dropzones.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">contentElements</span><span class="delimiter">&quot;</span></span>: [
+    {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">example-dynamic-value-list</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">type</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">template-element</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">file</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">path/to/my-example.hbs</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">contextFile</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">path/to/my-example.json</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Dynamic select</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">templateParts</span><span class="delimiter">&quot;</span></span>: [
+        {
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">partId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">partContextId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">ID</span><span class="delimiter">&quot;</span></span>
+        },
+        {
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">partId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">partContextId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Field name</span><span class="delimiter">&quot;</span></span>
+        },
+        {
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">partId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">dynamic-value-list</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">partContextId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">entityTypeAndInitialValue</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Value list</span><span class="delimiter">&quot;</span></span>
+        }
+      ]
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code snippets above represent the HTML component.
+A possible method for invoking the REST endpoint is provided in the snippet below.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing 68. Script calling the value list endpoint.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="js">    let <span class="predefined">$valueListElem</span> = findValueListElement(); <span class="comment">// Frontend code's responsibility</span>
+    let dataSourceUrl = <span class="predefined">$valueListElem</span>.attr(<span class="string"><span class="delimiter">'</span><span class="content">data-bsi-rest-resource</span><span class="delimiter">'</span></span>);
+    fetch(dataSourceUrl, {
+      <span class="key">method</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">GET</span><span class="delimiter">&quot;</span></span>,
+      <span class="key">body</span>: <span class="keyword">new</span> URLSearchParams({
+        <span class="key">q</span>: getQueryParam(<span class="predefined">$valueListElem</span>), <span class="comment">// Frontend code's responsibility</span>
+        <span class="key">lang</span>: document.documentElement.lang })
+    })
+    .then(response =&gt; {
+      <span class="comment">// ... Frontend code's responsibility</span>
+    });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to implement a dropdown including autocompletion, you may consider <a href="https://jqueryui.com/autocomplete/">JQuery UI</a> as a starting point.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -4724,7 +5113,7 @@ It allows to define a list of key/value options in the design and provides the k
 <p>A common and recommended use of <code>data-bsi-remove-if="draft"</code> is to suppress executing JavaScript in the content editor, which may lead to unintended side effects.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 60. Hiding information in draft mode</div>
+<div class="title">Listing 69. Hiding information in draft mode</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">draft</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
 <span class="inline"><span class="comment">// this script will not mess around with your content while being edited in the content editor</span></span>
@@ -4735,7 +5124,7 @@ It allows to define a list of key/value options in the design and provides the k
 <p>A common use case of <code>data-bsi-remove-if="live"</code> mode is to display context information to the user that should only be present while editing a content.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 61. Hiding information in live mode</div>
+<div class="title">Listing 70. Hiding information in live mode</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;p</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">live</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>This hint will never be shown in any content driven by a story.<span class="tag">&lt;/p&gt;</span></code></pre>
 </div>
@@ -4744,7 +5133,7 @@ It allows to define a list of key/value options in the design and provides the k
 <p>The following example shows a complex expression. If your design includes a script for analytic/tracking tools, you should make sure the script is never executed on a test system and never in the editor.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 62. Remove script tag on non-production systems or in draft mode</div>
+<div class="title">Listing 71. Remove script tag on non-production systems or in draft mode</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">!production || draft</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
 <span class="inline">  console.log(<span class="string"><span class="delimiter">'</span><span class="content">run only in production</span><span class="delimiter">'</span></span>);</span>
@@ -4759,7 +5148,7 @@ It allows to define a list of key/value options in the design and provides the k
 <p><strong>data-bsi-hide-edit-button</strong> may be used to prevent editing of a content element. The attribute must be located on the same tag as the <code>data-bsi-element</code> attribute.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 63. Hiding the content element edit button</div>
+<div class="title">Listing 72. Hiding the content element edit button</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">...</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-edit-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
@@ -4768,7 +5157,7 @@ It allows to define a list of key/value options in the design and provides the k
 <p><strong>data-bsi-hide-move-button</strong>, <strong>data-bsi-hide-copy-button</strong>, and <strong>data-bsi-hide-remove-button</strong> are working in the same manner, but on dropzone level. They will prevent from moving, copying, or removing content elements on a dropzone.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 64. Prevent moving, copying and removal of content elements</div>
+<div class="title">Listing 73. Prevent moving, copying and removal of content elements</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">...</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-move-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-copy-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-hide-remove-button</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
@@ -4788,6 +5177,21 @@ It allows to define a list of key/value options in the design and provides the k
 </div>
 <div class="paragraph">
 <p>Set the <code>data-bsi-form-type</code> attribute on a form field element to mark a field interpreted by a form processor. For instance a <code>login</code> form requires the form to have two fields, one must define <code>data-bsi-form-type="user-id"</code> and the other <code>data-bsi-form-type="password"</code> in order to pass the form processor validation. Each form process may define custom values for this attribute.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="#">dynamic value list template part</a> for more information <code>data-bsi-entity-id</code>, <code>data-bsi-entity-key-value</code>, <code>data-bsi-entity-key-display-text</code> and <code>data-bsi-rest-resource</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The CX backend guarantees that values defined in <code>data-bsi-entity-key-value</code> are consistently encrypted prior to transmission to clients.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -5565,26 +5969,40 @@ Do not forget to add the new content-element/include to the <code>data-bsi-dropz
 <p><code>contentType</code>: <code>built-in</code> (default, if not set manually), <code>pre-defined</code> and <code>user-defined</code>.</p>
 </li>
 <li>
-<p><code>editable</code>: True, when the include can be edited in the content editor by the user. Default is true. Must be <code>editable: false</code> for all includes that use Handlebars.</p>
+<p><code>editable</code>: True, when the include can be edited in the content editor by the user.
+Default is <code>true</code>. Must be <code>false</code> for all includes that use Handlebars.
+You should avoid to change the value of this property in design updates.
+If you must change the value, a 'direct update' of the content is enforced in the design update.
+This means, that the existing HTML content of the current website cannot be migrated and will be <em>overridden</em> with the content of the include in the new version of the design.
+Instead of changing the editable property, you should consider to define a new include with a new reference/ID.</p>
 </li>
 </ul>
 </div>
 <div class="sect4">
 <h5 id="design-hbs"><a class="anchor" href="#design-hbs"></a>3.5.5.1. Design.hbs</h5>
 <div class="paragraph">
-<p>The <code>design.hbs</code> file is equivalent to the "master" of the website. On the creation of a website, an include "Design" with this file&#8217;s content is created. This include <em>can&#8217;t</em> be edited by the user. However, the design can reference other includes that may be edited, so that e.g. the footer can be edited by the user.</p>
+<p>The <code>design.hbs</code> file is equivalent to the "master" of the website.
+On the creation of a website, an include with reference <code><em>master</em></code> is created with the contents of the <em>design.hbs</em> file.
+This include <em>can&#8217;t</em> be edited by the user.
+However, the design can reference other includes that may be edited, so that e.g. the footer can be edited by the user.</p>
 </div>
 <div class="paragraph">
-<p>A design can contain exactly one include for a page (attribute "pageid"). For the editor this include has a special meaning: when displayed in the editor, the full page (including the master) is displayed, but when saved, only the content of the respective page is saved.</p>
+<p>A design can contain exactly one include for a page.
+That include uses the dynamic reference <code>{navigation.activePage.contentId}</code>.
+For the editor this include has a special meaning:
+When displayed in the editor, the full page (including the master) is displayed, but when saved, only the content of the respective page is saved.</p>
 </div>
 <div class="paragraph">
 <p>Advice: There should be no tags of the template-engine used for includes or pages that the user may edit.</p>
+</div>
+<div class="paragraph">
+<p>In the example below the value of the <code>editable</code> property from the include definition in the <em>design.json</em> file is shown as an HTML comment, for better understanding.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;html&gt;</span>
 <span class="tag">&lt;head&gt;</span>
-  <span class="tag">&lt;title&gt;</span>{{site.title}} | {{navigation.activePage.title}}<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;title&gt;</span>{{title}} | {{page.pageTitle}}<span class="tag">&lt;/title&gt;</span>
 <span class="tag">&lt;/head&gt;</span>
 <span class="tag">&lt;body&gt;</span>
 
@@ -5596,30 +6014,30 @@ Do not forget to add the new content-element/include to the <code>data-bsi-dropz
   {{^navigation.index.active}}
     <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{navigation.index.url}}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">logo.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">width</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">100</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">height</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">100</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
   {{/navigation.index.active}}
-  <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">navigation</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">editable</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">navigation</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="comment">&lt;!-- editable: false --&gt;</span>
 <span class="tag">&lt;/header&gt;</span>
 
         <span class="comment">&lt;!--
-    ActivePage is always set by the framework. When the root-URL '/' is loaded,
+    activePage is always set by the framework. When the root-URL '/' is loaded,
     'index' is used automatically.
     When the include-tag is resolved, it's replaced by the respective HTML-snippet.
-    Having a single root-element (e.g.: &lt;div&gt;, &lt;p&gt;, ...), that capsulates the entire DOM of the include, is a technical requirement for any include.
+    Having a single root-element (e.g.: &lt;div&gt;, &lt;p&gt;, ...), that encapsulates the entire DOM of the include, is a technical requirement for any include.
     When changed, the attribute &quot;data-ce-include-id&quot; is set on this element with the value of the original attribute &quot;id&quot;.
     --&gt;</span>
     {{#response.ok}}
-        <span class="tag">&lt;bsi:include</span> <span class="attribute-name">reference</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{navigation.activePage.contentId}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">editable</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;bsi:include</span> <span class="attribute-name">reference</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{navigation.activePage.contentId}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="comment">&lt;!-- editable: true --&gt;</span>
     {{/response.ok}}
     <span class="comment">&lt;!--
-    This include is only loaded when the reposnse is != OK. It takes a special function to set response.ok to false in the content-editor, to even make it editable in the editor.
+    This include is only loaded when the response is != OK. It takes a special function to set response.ok to false in the content-editor, to even make it editable in the editor.
     --&gt;</span>
     {{^response.ok}}
-    <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">error</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">editable</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">error</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="comment">&lt;!-- editable: false --&gt;</span>
     {{/response.ok}}
 
 <span class="tag">&lt;footer&gt;</span>
   <span class="comment">&lt;!--
-  The include &quot;design&quot; can't be edited, so the part that should be editable by the user needs to be transfered to a separate include. --&gt;</span>
-  <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">footer-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">editable</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  The contents of the &quot;design.hbs&quot; cannot be edited directly, so the part that should be editable by the user needs to be transferred to a separate include. --&gt;</span>
+  <span class="tag">&lt;bsi:include</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">footer-text</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="comment">&lt;!-- editable: true --&gt;</span>
 <span class="tag">&lt;/footer&gt;</span>
 
 <span class="tag">&lt;/body&gt;</span>
@@ -6284,7 +6702,7 @@ Also consider reading <a href="https://github.com/bsi-software/bsi-cx-design-bui
 This step will be explained on an example:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 65. Content element from the old design creator build.</div>
+<div class="title">Listing 74. Content element from the old design creator build.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="twig">&lt;div class=&quot;content-element image-wrapper&quot; data-bsi-element=&quot;image&quot;&gt;
     &lt;div class=&quot;row&quot;&gt;
@@ -6301,7 +6719,7 @@ This step will be explained on an example:</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 66. Corresponding entry in the design.properties file.</div>
+<div class="title">Listing 75. Corresponding entry in the design.properties file.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="properties">element.image.label=Image
 element.image.description=with description
@@ -6319,7 +6737,7 @@ They are all nicely organized in separate folders.
 So create a new folder for your own element:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 67. Folder structure of a single content element.</div>
+<div class="title">Listing 76. Folder structure of a single content element.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="text">.
 └───image
@@ -6356,7 +6774,7 @@ In our example, we add the <code>placeholder.jpg</code> here.
 Now we can create the <code>template.twig</code>:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 68. The transformed template for the content element.</div>
+<div class="title">Listing 77. The transformed template for the content element.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="twig">&lt;div class=&quot;content-element image-wrapper&quot; data-bsi-element=&quot;image&quot;&gt;
     &lt;div class=&quot;row&quot;&gt;
@@ -6373,7 +6791,7 @@ Now we can create the <code>template.twig</code>:</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 69. The content element specification in the <code>index.js</code> file.</div>
+<div class="title">Listing 78. The content element specification in the <code>index.js</code> file.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">require(<span class="string"><span class="delimiter">'</span><span class="content">./styles.less</span><span class="delimiter">'</span></span>); <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -6423,7 +6841,7 @@ The design specification is contained in the <code>design.js</code> file and rep
 You find the <code>design.js</code> at the root folder of your template.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 70. The design specification for the transformed design.</div>
+<div class="title">Listing 79. The design specification for the transformed design.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">require(<span class="string"><span class="delimiter">'</span><span class="content">./styles/styles.scss</span><span class="delimiter">'</span></span>); <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -6474,7 +6892,7 @@ Since it contains an <code>index.js</code>, it&#8217;s not required to mention t
 <p>If your content element uses any <a href="#styles">Styles</a>, you must transform them to a Java Script styles definition:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 71. The style definition in the old <code>design.properties</code> format.</div>
+<div class="title">Listing 80. The style definition in the old <code>design.properties</code> format.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="properties">style.element-width.label=Element width
 style.element-width.class.element-with-unset.label=None
@@ -6486,7 +6904,7 @@ style.element-width.class.element-width-left-right.label=Label left, field right
 <p>The transformation to the new format is pretty straightforward:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 72. The style definition in the new Java Script format.</div>
+<div class="title">Listing 81. The style definition in the new Java Script format.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">const {cx} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>);
 
@@ -6512,7 +6930,7 @@ Otherwise, you should put it in the <code>configs/styles</code> folder inside yo
 To use a style in your content element, simply reference the file:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 73. Use a style definition in your content element.</div>
+<div class="title">Listing 82. Use a style definition in your content element.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">const {cx, Icon} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>);
 
@@ -6547,7 +6965,7 @@ To prevent code duplication, it&#8217;s recommended to create a <code>_layout.tw
 Take a look at the following example:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 74. The contents of a simple <code>_layout.twig</code> template.</div>
+<div class="title">Listing 83. The contents of a simple <code>_layout.twig</code> template.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="twig">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -6605,7 +7023,7 @@ More information on including Java Script in your design can be found <a href="h
 The following example illustrates this step for the <code>design.twig</code>:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 75. The <code>design.twig</code> extends the <code>_layout.twig</code>.</div>
+<div class="title">Listing 84. The <code>design.twig</code> extends the <code>_layout.twig</code>.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="twig">{% extends '_layout.twig' %}
 
@@ -6648,7 +7066,7 @@ You can also place any content element specific styles here instead of moving th
 To bundle your stylesheets, you must reference them in your <code>design.js</code>:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 76. Including a stylesheet in your design.</div>
+<div class="title">Listing 85. Including a stylesheet in your design.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">require(<span class="string"><span class="delimiter">'</span><span class="content">./styles/styles.scss</span><span class="delimiter">'</span></span>);</code></pre>
 </div>
@@ -6664,7 +7082,7 @@ To access the properties inside your stylesheets and templates, you can use the 
 Take a look at the following example:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 77. Old YAML properties file.</div>
+<div class="title">Listing 86. Old YAML properties file.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">styles</span>:
     <span class="key">primary-color</span>: <span class="string"><span class="content">'#ed4546'</span></span>
@@ -6672,7 +7090,7 @@ Take a look at the following example:</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 78. New Java Script properties file.</div>
+<div class="title">Listing 87. New Java Script properties file.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">const {css} = require(<span class="string"><span class="delimiter">'</span><span class="content">@bsi-cx/design-build</span><span class="delimiter">'</span></span>);
 
@@ -6698,13 +7116,13 @@ More information on this feature can be found <a href="https://github.com/bsi-so
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 79. Access the properties inside your Twig templates.</div>
+<div class="title">Listing 88. Access the properties inside your Twig templates.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="twig">{% set color = properties.styles['primary-color'] ?: '#ff00ff' %}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 80. Use the <code>bsiProperty()</code> helper inside your templates.</div>
+<div class="title">Listing 89. Use the <code>bsiProperty()</code> helper inside your templates.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="less">@color: bsiProperty('styles.primary-color');</code></pre>
 </div>
@@ -6716,7 +7134,7 @@ More information on this feature can be found <a href="https://github.com/bsi-so
 <p>In order to compile, it&#8217;s required to add your template to the build configuration in the <code>webpack.config.js</code> file at the project root folder.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 81. Content of the <code>webpack.config.js</code> build configuration file.</div>
+<div class="title">Listing 90. Content of the <code>webpack.config.js</code> build configuration file.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">const path = require(<span class="string"><span class="delimiter">'</span><span class="content">path</span><span class="delimiter">'</span></span>);
 
@@ -6930,7 +7348,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <div class="content">
 <img src="./images/invalid_design_error_missing_mandatory_files.png" alt="error message: file is missing">
 </div>
-<div class="title">Figure 16. error message: file is missing</div>
+<div class="title">Figure 17. error message: file is missing</div>
 </div>
 <div class="paragraph">
 <p>Your upload is missing a mandatory file. Please refer to <a href="#file-format">File format</a> where the mandatory files for your design type is described in detail.</p>
@@ -6942,7 +7360,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <div class="content">
 <img src="./images/invalid_design_error_invalid_element_in_dropzone.png" alt="error message: invalid content element in 'data-bsi-dropzone-allowed-elements'">
 </div>
-<div class="title">Figure 17. error message: invalid content element in 'data-bsi-dropzone-allowed-elements'</div>
+<div class="title">Figure 18. error message: invalid content element in 'data-bsi-dropzone-allowed-elements'</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -6980,7 +7398,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Listing 82. example of a badly referenced element in a dropzone</div>
+<div class="title">Listing 91. example of a badly referenced element in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Design_de-CH.zip/design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span>
@@ -7005,7 +7423,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <div class="content">
 <img src="./images/invalid_design_error_unknown_content_element_part.png" alt="error message: unknown content element part">
 </div>
-<div class="title">Figure 18. error message: unknown content element part</div>
+<div class="title">Figure 19. error message: unknown content element part</div>
 </div>
 <div class="paragraph">
 <p>The specified <code>data-bsi-element-part</code> is not supported by CX. For a list of supported element parts, visit the <a href="#Parts">[Parts]</a> documentation chapter.</p>
@@ -7029,7 +7447,7 @@ In the example above, a <em>text</em> element part is specified. According to th
 <div class="content">
 <img src="./images/invalid_design_error_sample_content_not_matching_content_element_spec.png" alt="error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element">
 </div>
-<div class="title">Figure 19. error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</div>
+<div class="title">Figure 20. error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</div>
 </div>
 <div class="paragraph">
 <p>A discrepancy was discovered when using a content element as sample content. The example must have the same HTML structure as the specified content element.</p>
@@ -7047,7 +7465,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 83. example of a sample content that does not match the specified content element</div>
+<div class="title">Listing 92. example of a sample content that does not match the specified content element</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Content Element: Specification of the element (content-elements.html) --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hello-world</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-hello-world</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -7085,13 +7503,13 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="content">
 <img src="./images/invalid_design_error_sample_content_that_are_not_content_elements.png" alt="error message: Dropzone contains sample content that are not content elements">
 </div>
-<div class="title">Figure 20. error message: Dropzone contains sample content that are not content elements</div>
+<div class="title">Figure 21. error message: Dropzone contains sample content that are not content elements</div>
 </div>
 <div class="paragraph">
 <p>A dropzone can contain 0&#8230;&#8203;n content elements. Only content elements are allowed as direct child nodes of dropzones. Therefore, HTML that is not part of a content element must not be placed in a dropzone.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 84. example of a detached paragraph that must not be placed in a dropzone</div>
+<div class="title">Listing 93. example of a detached paragraph that must not be placed in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1 title-h2 title-h3 basic-text basic-image basic-cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;h1</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element title-h1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/h1&gt;</span>
@@ -7106,7 +7524,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="content">
 <img src="./images/invalid_design_error_wrong_HTML_tag.png" alt="error message: Part uses tag div but requires one of the following: a" width="img">
 </div>
-<div class="title">Figure 21. error message: Part uses tag div but requires one of the following: a,img</div>
+<div class="title">Figure 22. error message: Part uses tag div but requires one of the following: a,img</div>
 </div>
 <div class="paragraph">
 <p>Make sure to user proper HTML tags for your element parts. Consult the content element <a href="#Parts">[Parts]</a> documentation for the validation error causing element.</p>
@@ -7115,7 +7533,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p><em>In the example above, this would be the <a href="#image">Image</a> content element <a href="#Parts">[Parts]</a> documentation.</em></p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 85. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
+<div class="title">Listing 94. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid: uses &lt;div&gt; which is not an image --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
@@ -7230,7 +7648,7 @@ Content:
 Removing a <code>script</code> tag from the DOM if the content is being edited can be achieved by adding <code>data-bsi-remove-if='draft'</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 86. removing a sript in draft (edit) mode</div>
+<div class="title">Listing 95. removing a sript in draft (edit) mode</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">draft</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">your-javascript that manipulates-the-DOM.js</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span></code></pre>
 </div>
@@ -7247,7 +7665,7 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 87. invalid HTML will lead to issues</div>
+<div class="title">Listing 96. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML: the attribute 'style' is defined twice --&gt;</span>
 <span class="tag">&lt;img</span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">text-decoration</span>: <span class="value">none</span>;<span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img/example.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">width</span>:<span class="float">100%</span>; <span class="key">max-width</span>: <span class="float">100%</span>;<span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
@@ -7263,7 +7681,7 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 <p>Some browsers detect and try to <em>fix</em> invalid HTML. Therefore, the DOM structure of the HTML is modified by the browsers, whereas CX still expects the specified structure.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 88. invalid HTML will lead to issues</div>
+<div class="title">Listing 97. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML, as defined in content-elements.html --&gt;</span>
 <span class="tag">&lt;table</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -7319,7 +7737,7 @@ This section applies to installations prior to CX 1.2.46.
 <div class="content">
 <img src="./images/unique-dropzone-name-violated.png" alt="element is being dropped outside of the dropzone (or nowhere)">
 </div>
-<div class="title">Figure 22. element is being dropped outside of the dropzone (or nowhere)</div>
+<div class="title">Figure 23. element is being dropped outside of the dropzone (or nowhere)</div>
 </div>
 <div class="paragraph">
 <p>This may happen if a dropzone name is duplicated.
@@ -7327,7 +7745,7 @@ Dropzones must have unique identifiers in older versions of BSI CX.
 Make sure that a unique name is specified for each usage of <code>data-bsi-dropzone</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 89. data-bsi-dropzone uniqueness violated</div>
+<div class="title">Listing 98. data-bsi-dropzone uniqueness violated</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">main-dropzone</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -7400,7 +7818,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 <p>See the following example:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 90. CSS of an element using viewport unit</div>
+<div class="title">Listing 99. CSS of an element using viewport unit</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="css"><span class="class">.header-image</span> {
     <span class="key">height</span>: <span class="error">c</span><span class="error">a</span><span class="error">l</span><span class="error">c</span>(<span class="float">100</span><span class="value">vh</span> <span class="error">-</span> <span class="float">32px</span>);
@@ -7420,7 +7838,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2025-07-16 18:52:14 +0200
+Last update 2025-08-12 18:52:17 +0200
 </div>
 </div>
 </body>
