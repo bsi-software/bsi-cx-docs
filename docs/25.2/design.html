@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 25.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2025-08-12</span>
+<span id="revdate">Version Date 2025-11-06</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -2993,6 +2993,26 @@ Boolean attributes like <code>data-bsi-multiline</code> require an empty value <
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;p</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">paragraph</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-multiline</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;br&gt;</span>dolor sit amet<span class="tag">&lt;/p&gt;</span></code></pre>
 </div>
 </div>
+<div class="sect5">
+<h6 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>studioLinkEnabled</strong>: This boolean value controls whether the 'CX Link' button is visible.
+Default is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>multiline</strong>: This boolean value controls whether the field is single- or multiline.
+  Default is <code>false</code>. Note: in earlier CX versions, this setting was configured via the DOM
+attribute <code>data-bsi-multiline</code>.</p>
+</li>
+<li>
+<p><strong>fieldHeight</strong>: This integer value controls the field height in the form of the content editor.
+Default is <code>5</code>. The unit is <em>Eclipse Scout</em> grid height (Property 'h' in GridData).</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="sect4">
 <h5 id="formatted-text"><a class="anchor" href="#formatted-text"></a>3.3.3.2. Formatted Text</h5>
@@ -4327,9 +4347,14 @@ This results in the following content element editor:</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h6>
-<div class="paragraph">
-<p>This template part provides no configuration options.</p>
+<h6 id="configuration-2"><a class="anchor" href="#configuration-2"></a>Configuration</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>studioLinkEnabled</strong>: This boolean value controls whether the 'CX Link' button is visible.
+Default is <code>false</code>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -4358,9 +4383,18 @@ This results in the following content element editor:</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-2"><a class="anchor" href="#configuration-2"></a>Configuration</h6>
-<div class="paragraph">
-<p>This template part provides no configuration options.</p>
+<h6 id="configuration-3"><a class="anchor" href="#configuration-3"></a>Configuration</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>studioLinkEnabled</strong>: This boolean value controls whether the 'CX Link' button is visible.
+Default is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>fieldHeight</strong>: This integer value controls the field height in the form of the content editor.
+Default is <code>5</code>. The unit is <em>Eclipse Scout</em> grid height (Property 'h' in GridData).</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -4410,7 +4444,7 @@ The picture shows the current default editor.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-3"><a class="anchor" href="#configuration-3"></a>Configuration</h6>
+<h6 id="configuration-4"><a class="anchor" href="#configuration-4"></a>Configuration</h6>
 <div class="paragraph">
 <p>The template part allows the HTML editor to be configured.
 The structure is as follows:</p>
@@ -4446,6 +4480,9 @@ The structure is as follows:</p>
 <p><strong>url</strong>: The URL for the link.</p>
 </li>
 <li>
+<p><strong>text</strong>: The link text.</p>
+</li>
+<li>
 <p><strong>description</strong>: Accessibility information that describes the link for screen readers. This can be added to the <code>aria-label</code> attribute.</p>
 </li>
 <li>
@@ -4455,9 +4492,18 @@ The structure is as follows:</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-4"><a class="anchor" href="#configuration-4"></a>Configuration</h6>
-<div class="paragraph">
-<p>This template part provides no configuration options.</p>
+<h6 id="configuration-5"><a class="anchor" href="#configuration-5"></a>Configuration</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>textEnabled</strong>: This boolean value controls whether the text field is visible.
+Default is <code>true</code>.</p>
+</li>
+<li>
+<p><strong>descriptionEnabled</strong>: This boolean value controls whether the description field is visible.
+Default is <code>true</code>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -4516,7 +4562,7 @@ The structure is as follows:</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-5"><a class="anchor" href="#configuration-5"></a>Configuration</h6>
+<h6 id="configuration-6"><a class="anchor" href="#configuration-6"></a>Configuration</h6>
 <div class="paragraph">
 <p>The template part can be configured with the following values:</p>
 </div>
@@ -4577,7 +4623,7 @@ It supplies a simple checkbox element and a boolean value that can be used e.g. 
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-6"><a class="anchor" href="#configuration-6"></a>Configuration</h6>
+<h6 id="configuration-7"><a class="anchor" href="#configuration-7"></a>Configuration</h6>
 <div class="paragraph">
 <p>This template part provides no configuration options.</p>
 </div>
@@ -4622,7 +4668,7 @@ It allows to define a list of key/value options in the design and provides the k
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-7"><a class="anchor" href="#configuration-7"></a>Configuration</h6>
+<h6 id="configuration-8"><a class="anchor" href="#configuration-8"></a>Configuration</h6>
 <div class="paragraph">
 <p>The option template part needs one or more configured options that each consists of a value and a text that is displayed to the user in the editor user interface. In the Handlebars template, the value of the selected option is applied to the 'value' variable.</p>
 </div>
@@ -7838,7 +7884,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2025-08-12 18:52:17 +0200
+Last update 2025-11-06 18:52:22 +0100
 </div>
 </div>
 </body>
