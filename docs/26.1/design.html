@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 26.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2025-08-15</span>
+<span id="revdate">Version Date 2025-11-07</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -780,11 +780,12 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </ul>
 </li>
 <li><a href="#archiving-elements">2.4. Archiving content elements</a></li>
-<li><a href="#styles">2.5. Styles</a></li>
-<li><a href="#rich-text-editor">2.6. Configuration capabilities of the Rich Text Editor</a>
+<li><a href="#feature-toggle">2.5. Feature Toggle</a></li>
+<li><a href="#styles">2.6. Styles</a></li>
+<li><a href="#rich-text-editor">2.7. Configuration capabilities of the Rich Text Editor</a>
 <ul class="sectlevel3">
-<li><a href="#feature-list">2.6.1. Feature list</a></li>
-<li><a href="#value-lists">2.6.2. Value Lists</a></li>
+<li><a href="#feature-list">2.7.1. Feature list</a></li>
+<li><a href="#value-lists">2.7.2. Value Lists</a></li>
 </ul>
 </li>
 </ul>
@@ -1713,7 +1714,29 @@ If the stand-alone element should not be visible in the content editor, it can b
 </div>
 </div>
 <div class="sect2">
-<h3 id="styles"><a class="anchor" href="#styles"></a>2.5. Styles</h3>
+<h3 id="feature-toggle"><a class="anchor" href="#feature-toggle"></a>2.5. Feature Toggle</h3>
+<div class="paragraph">
+<p>CX 26/1 introduced the top-level property <code>features</code>, which allows setting feature toggles in a design.
+For instance, there are designs that support the 'dynamic forms' feature,
+in which case the CX content editor should show the tab 'Form field rules' when the user edits a form.
+However, this should not happen for designs which do not support that feature.</p>
+</div>
+<div class="paragraph">
+<p>The list of supported feature names is defined by the BSI CX software.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">features</span><span class="delimiter">&quot;</span></span>: {
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">formFieldRules</span><span class="delimiter">&quot;</span></span>: <span class="value">true</span>
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="styles"><a class="anchor" href="#styles"></a>2.6. Styles</h3>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -1885,7 +1908,7 @@ Useful for the development of e-mail templates that are optimized for MS Outlook
 </div>
 </div>
 <div class="sect2">
-<h3 id="rich-text-editor"><a class="anchor" href="#rich-text-editor"></a>2.6. Configuration capabilities of the Rich Text Editor</h3>
+<h3 id="rich-text-editor"><a class="anchor" href="#rich-text-editor"></a>2.7. Configuration capabilities of the Rich Text Editor</h3>
 <div class="paragraph">
 <p>By defining a content element part of type <code>formatted-text</code>, a fully featured rich text editor will be available to the users of the content editor. The built-in WYSIWYG rich text editor is powered by <a href="https://froala.com/">Froala</a>. BSI allows to customize a subset of Froala features directly out of a design. In order to do so, a configuration section in the <code>design.json</code> can be used to customize the features of the rich text editor. Each element part of type <code>formatted-text</code> can have its own custom list of features, although in most cases one feature definition is shared among different content elements.</p>
 </div>
@@ -1942,7 +1965,7 @@ Useful for the development of e-mail templates that are optimized for MS Outlook
 <p>The entire list of supported configuration options is documented in the subsequent chapters.</p>
 </div>
 <div class="sect3">
-<h4 id="feature-list"><a class="anchor" href="#feature-list"></a>2.6.1. Feature list</h4>
+<h4 id="feature-list"><a class="anchor" href="#feature-list"></a>2.7.1. Feature list</h4>
 <div class="paragraph">
 <p>The most important configuration option is the list of features that will be shown in the WYSIWYG editor.</p>
 </div>
@@ -2171,6 +2194,14 @@ help
 <p>displays Help.</p>
 </td>
 </tr>
+<tr>
+<td class="hdlist1">
+studioLink
+</td>
+<td class="hdlist2">
+<p>context-sensitive support to edit CX links in the rich text editor.</p>
+</td>
+</tr>
 </table>
 </div>
 <div class="paragraph">
@@ -2225,7 +2256,7 @@ selectAll
 </div>
 </div>
 <div class="sect3">
-<h4 id="value-lists"><a class="anchor" href="#value-lists"></a>2.6.2. Value Lists</h4>
+<h4 id="value-lists"><a class="anchor" href="#value-lists"></a>2.7.2. Value Lists</h4>
 <div class="paragraph">
 <p>A list of values that will be shown in the editor can be defined for certain features (e.g. the list of colors when the font color feature is active).</p>
 </div>
@@ -2278,7 +2309,7 @@ selectAll
 </div>
 </div>
 <div class="sect4">
-<h5 id="colors"><a class="anchor" href="#colors"></a>2.6.2.1. Colors</h5>
+<h5 id="colors"><a class="anchor" href="#colors"></a>2.7.2.1. Colors</h5>
 <div class="paragraph">
 <p>To customize the color picker for <code>textColor</code> and <code>backgroundColor</code>, provide a list of colors as follows:</p>
 </div>
@@ -2303,7 +2334,7 @@ selectAll
 </div>
 </div>
 <div class="sect4">
-<h5 id="paragraph-formats"><a class="anchor" href="#paragraph-formats"></a>2.6.2.2. Paragraph formats</h5>
+<h5 id="paragraph-formats"><a class="anchor" href="#paragraph-formats"></a>2.7.2.2. Paragraph formats</h5>
 <div class="paragraph">
 <p>Paragraph formatting and headings can be configured as well. This may be customized through the <code>formats</code> value list, which will only have an effect if the feature <code>paragraphFormat</code> is active.</p>
 </div>
@@ -2391,7 +2422,7 @@ pre
 </div>
 </div>
 <div class="sect4">
-<h5 id="line-heights"><a class="anchor" href="#line-heights"></a>2.6.2.3. Line heights</h5>
+<h5 id="line-heights"><a class="anchor" href="#line-heights"></a>2.7.2.3. Line heights</h5>
 <div class="paragraph">
 <p>To customize the <code>lineHeight</code> value list, provide a list of heights in percentages, comma separated. The line height values define the factor by which factor the current line height is multiplied based on the font size used.</p>
 </div>
@@ -2408,7 +2439,7 @@ pre
 </div>
 </div>
 <div class="sect4">
-<h5 id="font-size"><a class="anchor" href="#font-size"></a>2.6.2.4. Font size</h5>
+<h5 id="font-size"><a class="anchor" href="#font-size"></a>2.7.2.4. Font size</h5>
 <div class="paragraph">
 <p>To customize the list of font sizes, provide a list of sizes for <code>fontSizes</code>. A custom default value can be set by using <code>fontSizeDefault</code>.</p>
 </div>
@@ -2486,7 +2517,7 @@ mm
 </div>
 </div>
 <div class="sect4">
-<h5 id="entry-mode"><a class="anchor" href="#entry-mode"></a>2.6.2.5. Entry mode</h5>
+<h5 id="entry-mode"><a class="anchor" href="#entry-mode"></a>2.7.2.5. Entry mode</h5>
 <div class="paragraph">
 <p>By defining the entry mode (enter), you define what happens in the editor when the <kbd>Enter</kbd> key on your keyboard is pressed. The following options are available:</p>
 </div>
@@ -2991,6 +3022,26 @@ Boolean attributes like <code>data-bsi-multiline</code> require an empty value <
 <div class="title">Listing 35. Sample usage of the plain text part with the multiline feature.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;p</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">paragraph</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-multiline</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;br&gt;</span>dolor sit amet<span class="tag">&lt;/p&gt;</span></code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>studioLinkEnabled</strong>: This boolean value controls whether the 'CX Link' button is visible.
+Default is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>multiline</strong>: This boolean value controls whether the field is single- or multiline.
+  Default is <code>false</code>. Note: in earlier CX versions, this setting was configured via the DOM
+attribute <code>data-bsi-multiline</code>.</p>
+</li>
+<li>
+<p><strong>fieldHeight</strong>: This integer value controls the field height in the form of the content editor.
+Default is <code>5</code>. The unit is <em>Eclipse Scout</em> grid height (Property 'h' in GridData).</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -3521,6 +3572,47 @@ Any form with this marker will be left untouched by CX.</p>
         <span class="tag">&lt;/div&gt;</span>
     <span class="tag">&lt;/form&gt;</span>
 <span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="dynamic-forms-form-field-rules"><a class="anchor" href="#dynamic-forms-form-field-rules"></a>Dynamic Forms / Form-Field Rules</h6>
+<div class="paragraph">
+<p>As of release 26/1 CX supports dynamic forms.
+The feature provides a Domain‑Specific Language (DSL) in JSON, which is interpreted by the front-end and back-end.
+The DSL allows defining form-field rules, which can manipulate the DOM state dynamically.
+A simple example: a form-field rule defines that when a checkbox is clicked, a group of other fields (fieldset) becomes visible.</p>
+</div>
+<div class="paragraph">
+<p>In order to support that feature in a CX design, the design must set the feature flag <code>formFieldRules</code> in the <code>design.json</code> (see <a href="#feature-toggle">Feature Toggle</a>).</p>
+</div>
+<div class="paragraph">
+<p>The design must also include the NPM module <a href="https://www.npmjs.com/package/@bsi-cx/web-frontend">@bsi-cx/web-frontend</a> and initialise the library, e.g.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">let module = window.bsiCxWebFrontend;
+let fieldRules = <span class="keyword">new</span> module.FieldRules();
+fieldRules.init();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is recommended to add a content-element for 'fieldset', which uses the HTML element with the same name and provides a dropzone which accepts other form-fields.
+The fieldset must have a configurable ID, which can be referenced by the form-field rules.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the dynamic forms feature is active, the attribute <code>data-bsi-json-document</code> is set on the <code>form</code> element.
+It stores the DSL as (encoded) JSON.
+A CX user can manage the form-field rules via GUI.
+There&#8217;s a tab 'Form-field rules' in the form element part.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -4327,9 +4419,14 @@ This results in the following content element editor:</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h6>
-<div class="paragraph">
-<p>This template part provides no configuration options.</p>
+<h6 id="configuration-2"><a class="anchor" href="#configuration-2"></a>Configuration</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>studioLinkEnabled</strong>: This boolean value controls whether the 'CX Link' button is visible.
+Default is <code>false</code>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -4358,9 +4455,18 @@ This results in the following content element editor:</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-2"><a class="anchor" href="#configuration-2"></a>Configuration</h6>
-<div class="paragraph">
-<p>This template part provides no configuration options.</p>
+<h6 id="configuration-3"><a class="anchor" href="#configuration-3"></a>Configuration</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>studioLinkEnabled</strong>: This boolean value controls whether the 'CX Link' button is visible.
+Default is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>fieldHeight</strong>: This integer value controls the field height in the form of the content editor.
+Default is <code>5</code>. The unit is <em>Eclipse Scout</em> grid height (Property 'h' in GridData).</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -4410,7 +4516,7 @@ The picture shows the current default editor.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-3"><a class="anchor" href="#configuration-3"></a>Configuration</h6>
+<h6 id="configuration-4"><a class="anchor" href="#configuration-4"></a>Configuration</h6>
 <div class="paragraph">
 <p>The template part allows the HTML editor to be configured.
 The structure is as follows:</p>
@@ -4446,6 +4552,9 @@ The structure is as follows:</p>
 <p><strong>url</strong>: The URL for the link.</p>
 </li>
 <li>
+<p><strong>text</strong>: The link text.</p>
+</li>
+<li>
 <p><strong>description</strong>: Accessibility information that describes the link for screen readers. This can be added to the <code>aria-label</code> attribute.</p>
 </li>
 <li>
@@ -4455,9 +4564,18 @@ The structure is as follows:</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-4"><a class="anchor" href="#configuration-4"></a>Configuration</h6>
-<div class="paragraph">
-<p>This template part provides no configuration options.</p>
+<h6 id="configuration-5"><a class="anchor" href="#configuration-5"></a>Configuration</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>textEnabled</strong>: This boolean value controls whether the text field is visible.
+Default is <code>true</code>.</p>
+</li>
+<li>
+<p><strong>descriptionEnabled</strong>: This boolean value controls whether the description field is visible.
+Default is <code>true</code>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -4516,7 +4634,7 @@ The structure is as follows:</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-5"><a class="anchor" href="#configuration-5"></a>Configuration</h6>
+<h6 id="configuration-6"><a class="anchor" href="#configuration-6"></a>Configuration</h6>
 <div class="paragraph">
 <p>The template part can be configured with the following values:</p>
 </div>
@@ -4577,7 +4695,7 @@ It supplies a simple checkbox element and a boolean value that can be used e.g. 
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-6"><a class="anchor" href="#configuration-6"></a>Configuration</h6>
+<h6 id="configuration-7"><a class="anchor" href="#configuration-7"></a>Configuration</h6>
 <div class="paragraph">
 <p>This template part provides no configuration options.</p>
 </div>
@@ -4622,7 +4740,7 @@ It allows to define a list of key/value options in the design and provides the k
 </div>
 </div>
 <div class="sect5">
-<h6 id="configuration-7"><a class="anchor" href="#configuration-7"></a>Configuration</h6>
+<h6 id="configuration-8"><a class="anchor" href="#configuration-8"></a>Configuration</h6>
 <div class="paragraph">
 <p>The option template part needs one or more configured options that each consists of a value and a text that is displayed to the user in the editor user interface. In the Handlebars template, the value of the selected option is applied to the 'value' variable.</p>
 </div>
@@ -7838,7 +7956,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2025-08-15 14:58:28 +0200
+Last update 2025-11-07 12:33:45 +0100
 </div>
 </div>
 </body>
