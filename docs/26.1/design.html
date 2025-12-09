@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 26.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2025-11-25</span>
+<span id="revdate">Version Date 2025-12-09</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -782,11 +782,17 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#archiving-elements">2.4. Archiving Content Elements</a></li>
 <li><a href="#design-schema-version">2.5. Design Schema Version</a></li>
 <li><a href="#feature-toggle">2.6. Feature Toggle</a></li>
-<li><a href="#styles">2.7. Styles</a></li>
-<li><a href="#rich-text-editor">2.8. Configuration capabilities of the Rich Text Editor</a>
+<li><a href="#security">2.7. Security</a>
 <ul class="sectlevel3">
-<li><a href="#feature-list">2.8.1. Feature list</a></li>
-<li><a href="#value-lists">2.8.2. Value Lists</a></li>
+<li><a href="#allowinlinescripts">2.7.1. allowInlineScripts</a></li>
+<li><a href="#alloweventattributes">2.7.2. allowEventAttributes</a></li>
+</ul>
+</li>
+<li><a href="#styles">2.8. Styles</a></li>
+<li><a href="#rich-text-editor">2.9. Configuration capabilities of the Rich Text Editor</a>
+<ul class="sectlevel3">
+<li><a href="#feature-list">2.9.1. Feature list</a></li>
+<li><a href="#value-lists">2.9.2. Value Lists</a></li>
 </ul>
 </li>
 </ul>
@@ -1532,16 +1538,18 @@ If you are using the <a href="#designbuild">CX Design Build</a>, the <code>desig
 <div class="listingblock">
 <div class="title">Listing 8. Giving groups clearly identifiable descriptions</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">contentElementGroups</span><span class="delimiter">&quot;</span></span>: [
-  {
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">groupId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">buttons-and-links</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Buttons &amp; Links</span><span class="delimiter">&quot;</span></span>
-  },
-  {
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">groupId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">text-and-images</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Text &amp; Images</span><span class="delimiter">&quot;</span></span>
-  }
-]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">contentElementGroups</span><span class="delimiter">&quot;</span></span>: [
+    {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">groupId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">buttons-and-links</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Buttons &amp; Links</span><span class="delimiter">&quot;</span></span>
+    },
+    {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">groupId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">text-and-images</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Text &amp; Images</span><span class="delimiter">&quot;</span></span>
+    }
+  ]
+}</code></pre>
 </div>
 </div>
 </div>
@@ -1553,21 +1561,23 @@ If you are using the <a href="#designbuild">CX Design Build</a>, the <code>desig
 <div class="listingblock">
 <div class="title">Listing 9. Important metadata for content elements</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">contentElements</span><span class="delimiter">&quot;</span></span>: [
-  {
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">logo</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Cooperate Logo</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">description</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Visualize your corporate logo</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">icon</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">file</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">content-elements/logo.html</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">parts</span><span class="delimiter">&quot;</span></span>: [
-      {
-        <span class="key"><span class="delimiter">&quot;</span><span class="content">partId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span>,
-        <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Mobile image for Logo</span><span class="delimiter">&quot;</span></span>
-      }
-    ]
-  }
-]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">contentElements</span><span class="delimiter">&quot;</span></span>: [
+    {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">logo</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Cooperate Logo</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">description</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Visualize your corporate logo</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">icon</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">file</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">content-elements/logo.html</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">parts</span><span class="delimiter">&quot;</span></span>: [
+        {
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">partId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span>,
+          <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Mobile image for Logo</span><span class="delimiter">&quot;</span></span>
+        }
+      ]
+    }
+  ]
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1702,15 +1712,17 @@ If the stand-alone element should not be visible in the content editor, it can b
 <div class="listingblock">
 <div class="title">Listing 11. Marking a content element as <code>archived</code></div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">contentElements</span><span class="delimiter">&quot;</span></span>: [
-  {
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Button</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">icon</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">megaphone</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">file</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">content-elements/button.html</span><span class="delimiter">&quot;</span></span>,
-    <span class="key"><span class="delimiter">&quot;</span><span class="content">archived</span><span class="delimiter">&quot;</span></span>: <span class="value">true</span>
-  }
-]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">contentElements</span><span class="delimiter">&quot;</span></span>: [
+    {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Button</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">icon</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">megaphone</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">file</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">content-elements/button.html</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">archived</span><span class="delimiter">&quot;</span></span>: <span class="value">true</span>
+    }
+  ]
+}</code></pre>
 </div>
 </div>
 </div>
@@ -1766,7 +1778,7 @@ The following table is a list of supported schema versions, up to the latest rel
 <div class="sect2">
 <h3 id="feature-toggle"><a class="anchor" href="#feature-toggle"></a>2.6. Feature Toggle</h3>
 <div class="paragraph">
-<p>CX 26/1 introduced the top-level property <code>features</code>, which allows setting feature toggles in a design.
+<p>BSI CX 26/1 introduced the top-level property <code>features</code>, which allows setting feature toggles in a design.
 For instance, there are designs that support the 'dynamic forms' feature,
 in which case the CX content editor should show the tab 'Form field rules' when the user edits a form.
 However, this should not happen for designs which do not support that feature.</p>
@@ -1779,14 +1791,86 @@ However, this should not happen for designs which do not support that feature.</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="json"><span class="key"><span class="delimiter">&quot;</span><span class="content">features</span><span class="delimiter">&quot;</span></span>: {
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">formFieldRules</span><span class="delimiter">&quot;</span></span>: <span class="value">true</span>
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">features</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">formFieldRules</span><span class="delimiter">&quot;</span></span>: <span class="value">true</span>
+  }
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="styles"><a class="anchor" href="#styles"></a>2.7. Styles</h3>
+<h3 id="security"><a class="anchor" href="#security"></a>2.7. Security</h3>
+<div class="paragraph">
+<p>BSI CX 26/1 introduced the top-level property <code>security</code>, which allows to configure security for a design.</p>
+</div>
+<div class="paragraph">
+<p>As of release 26/1 security is turned on by default.
+Design developers are encouraged to build secure designs from scratch.
+But what does this mean? Features of a secure design are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The design does not use inline scripts.</p>
+</li>
+<li>
+<p>The design does not use event attributes.</p>
+</li>
+<li>
+<p>The design does not use <code>javascript:</code> URLs.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the design is built secure, it allows to set restrictive CSP rules for the BSI CX content editor
+and also for the public BSI CX landing pages (which are two different configurations).
+This minimizes the risk, that a potential attacker can inject malicious JavaScript code to perform a XSS attack.</p>
+</div>
+<div class="paragraph">
+<p>You can use the following properties in the design.json to configure security features.
+As mentioned above, the defaults depend on the design version (property <code>designSchemaVersion</code>).</p>
+</div>
+<div class="paragraph">
+<p>This means you can also enable security in older designs, if your BSI CX is running on release 26/1 or greater.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">security</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">htmlSanitization</span><span class="delimiter">&quot;</span></span>: {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">allowInlineScripts</span><span class="delimiter">&quot;</span></span>: <span class="value">false</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">allowEventAttributes</span><span class="delimiter">&quot;</span></span>: <span class="value">false</span>
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If HTML sanitization is turned on, the DOM will be cleaned before the HTML document is stored in the BSI CX content editor.</p>
+</div>
+<div class="sect3">
+<h4 id="allowinlinescripts"><a class="anchor" href="#allowinlinescripts"></a>2.7.1. allowInlineScripts</h4>
+<div class="paragraph">
+<p>Controls whether insecure inline scripts are removed from the DOM.
+An insecure inline script is a <code>script</code> tag without a <code>source</code> attribute or without a <code>nonce</code> attribute.</p>
+</div>
+<div class="paragraph">
+<p>It is not recommended to allow inline scripts.
+If you must use inline scripts you should disallow inline script per CSP
+and only allow the required inline scripts by setting an SHA-hash in the CSP.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="alloweventattributes"><a class="anchor" href="#alloweventattributes"></a>2.7.2. allowEventAttributes</h4>
+<div class="paragraph">
+<p>Controls whether event attributes, with a property name starting with 'on', are removed from the DOM
+and also if attributes, with a value starting with <code>javascript:</code>, are removed from the DOM.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="styles"><a class="anchor" href="#styles"></a>2.8. Styles</h3>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -1958,7 +2042,7 @@ Useful for the development of e-mail templates that are optimized for MS Outlook
 </div>
 </div>
 <div class="sect2">
-<h3 id="rich-text-editor"><a class="anchor" href="#rich-text-editor"></a>2.8. Configuration capabilities of the Rich Text Editor</h3>
+<h3 id="rich-text-editor"><a class="anchor" href="#rich-text-editor"></a>2.9. Configuration capabilities of the Rich Text Editor</h3>
 <div class="paragraph">
 <p>By defining a content element part of type <code>formatted-text</code>, a fully featured rich text editor will be available to the users of the content editor. The built-in WYSIWYG rich text editor is powered by <a href="https://froala.com/">Froala</a>. BSI allows to customize a subset of Froala features directly out of a design. In order to do so, a configuration section in the <code>design.json</code> can be used to customize the features of the rich text editor. Each element part of type <code>formatted-text</code> can have its own custom list of features, although in most cases one feature definition is shared among different content elements.</p>
 </div>
@@ -2015,7 +2099,7 @@ Useful for the development of e-mail templates that are optimized for MS Outlook
 <p>The entire list of supported configuration options is documented in the subsequent chapters.</p>
 </div>
 <div class="sect3">
-<h4 id="feature-list"><a class="anchor" href="#feature-list"></a>2.8.1. Feature list</h4>
+<h4 id="feature-list"><a class="anchor" href="#feature-list"></a>2.9.1. Feature list</h4>
 <div class="paragraph">
 <p>The most important configuration option is the list of features that will be shown in the WYSIWYG editor.</p>
 </div>
@@ -2306,7 +2390,7 @@ selectAll
 </div>
 </div>
 <div class="sect3">
-<h4 id="value-lists"><a class="anchor" href="#value-lists"></a>2.8.2. Value Lists</h4>
+<h4 id="value-lists"><a class="anchor" href="#value-lists"></a>2.9.2. Value Lists</h4>
 <div class="paragraph">
 <p>A list of values that will be shown in the editor can be defined for certain features (e.g. the list of colors when the font color feature is active).</p>
 </div>
@@ -2359,7 +2443,7 @@ selectAll
 </div>
 </div>
 <div class="sect4">
-<h5 id="colors"><a class="anchor" href="#colors"></a>2.8.2.1. Colors</h5>
+<h5 id="colors"><a class="anchor" href="#colors"></a>2.9.2.1. Colors</h5>
 <div class="paragraph">
 <p>To customize the color picker for <code>textColor</code> and <code>backgroundColor</code>, provide a list of colors as follows:</p>
 </div>
@@ -2384,7 +2468,7 @@ selectAll
 </div>
 </div>
 <div class="sect4">
-<h5 id="paragraph-formats"><a class="anchor" href="#paragraph-formats"></a>2.8.2.2. Paragraph formats</h5>
+<h5 id="paragraph-formats"><a class="anchor" href="#paragraph-formats"></a>2.9.2.2. Paragraph formats</h5>
 <div class="paragraph">
 <p>Paragraph formatting and headings can be configured as well. This may be customized through the <code>formats</code> value list, which will only have an effect if the feature <code>paragraphFormat</code> is active.</p>
 </div>
@@ -2472,7 +2556,7 @@ pre
 </div>
 </div>
 <div class="sect4">
-<h5 id="line-heights"><a class="anchor" href="#line-heights"></a>2.8.2.3. Line heights</h5>
+<h5 id="line-heights"><a class="anchor" href="#line-heights"></a>2.9.2.3. Line heights</h5>
 <div class="paragraph">
 <p>To customize the <code>lineHeight</code> value list, provide a list of heights in percentages, comma separated. The line height values define the factor by which factor the current line height is multiplied based on the font size used.</p>
 </div>
@@ -2489,7 +2573,7 @@ pre
 </div>
 </div>
 <div class="sect4">
-<h5 id="font-size"><a class="anchor" href="#font-size"></a>2.8.2.4. Font size</h5>
+<h5 id="font-size"><a class="anchor" href="#font-size"></a>2.9.2.4. Font size</h5>
 <div class="paragraph">
 <p>To customize the list of font sizes, provide a list of sizes for <code>fontSizes</code>. A custom default value can be set by using <code>fontSizeDefault</code>.</p>
 </div>
@@ -2567,7 +2651,7 @@ mm
 </div>
 </div>
 <div class="sect4">
-<h5 id="entry-mode"><a class="anchor" href="#entry-mode"></a>2.8.2.5. Entry mode</h5>
+<h5 id="entry-mode"><a class="anchor" href="#entry-mode"></a>2.9.2.5. Entry mode</h5>
 <div class="paragraph">
 <p>By defining the entry mode (enter), you define what happens in the editor when the <kbd>Enter</kbd> key on your keyboard is pressed. The following options are available:</p>
 </div>
@@ -8006,7 +8090,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2025-11-25 18:57:15 +0100
+Last update 2025-12-09 18:57:18 +0100
 </div>
 </div>
 </body>
