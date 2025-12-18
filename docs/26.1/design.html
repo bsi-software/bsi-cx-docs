@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 26.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2025-12-09</span>
+<span id="revdate">Version Date 2025-12-18</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -3862,6 +3862,50 @@ The attribute <code>data-bsi-hide-required</code> is available from CX 1.3.40 on
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>In the configuration of form field parts in the <code>design.json</code> three optional text fields can be enabled:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">partId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">form-field</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Form Field</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">config</span><span class="delimiter">&quot;</span></span>: {
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">infoTextEnabled</span><span class="delimiter">&quot;</span></span>: <span class="value">true</span>, <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">mandatoryTextEnabled</span><span class="delimiter">&quot;</span></span>: <span class="value">true</span>, <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">invalidTextEnabled</span><span class="delimiter">&quot;</span></span>: <span class="value">true</span> <i class="conum" data-value="3"></i><b>(3)</b>
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>An informative text on the usage of the form field, saved into the <code>data-bsi-form-info-text</code> attribute on the form field element.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>A text that can be shown to the user to indicate that a field is mandatory, saved into the <code>data-bsi-form-mandatory-text</code> attribute on the form field.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A text that can be shown to indicate the user input does not fulfill the necessary format, saved into the <code>data-bsi-form-invalid-text</code> attribute on the form field.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Those three configuration options enable three fields in the editor of the form field part:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/form-field-editor.png" alt="Form field editor with enabled text fields.">
+</div>
+<div class="title">Figure 8. Form field editor with enabled text fields.</div>
+</div>
+<div class="paragraph">
+<p>The values are written into custom HTML attributes that can be used in the design for <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation#validating_forms_using_javascript">client-side form validation</a>.</p>
+</div>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -3881,7 +3925,7 @@ It is up to the developer to use polyfills where this is required.
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-field</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-form-field-fixed-type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;label</span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Date<span class="tag">&lt;/label&gt;</span>
-    <span class="tag">&lt;input</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">input</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">2009-11-13</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">required</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">input</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">2009-11-13</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">required</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-form-mandatory-text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">This field is mandatory.</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
 <span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
@@ -3919,6 +3963,9 @@ The attribute <code>data-bsi-hide-required</code> is available from CX 1.3.40 on
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>If enabled the <code>data-bsi-form-info-text</code> and <code>data-bsi-form-mandatory-text</code> attributes can be used on this element part. For further information on usage and how to enable them see <a href="#form-field">form-field</a>.</p>
+</div>
 <div class="listingblock">
 <div class="title">Listing 48. Example usage of the form-checkbox part.</div>
 <div class="content">
@@ -3949,6 +3996,9 @@ The attribute <code>data-bsi-hide-required</code> is available from CX 1.3.40 on
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>If enabled the <code>data-bsi-form-info-text</code>, <code>data-bsi-form-mandatory-text</code> and <code>data-bsi-form-invalid-text</code> attributes can be used on this element part. For further information on usage and how to enable them see <a href="#form-field">form-field</a>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Listing 49. Example usage of the form-textarea part.</div>
@@ -3988,6 +4038,9 @@ The attribute <code>data-bsi-hide-required</code> is available from CX 1.3.40 on
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>If enabled the <code>data-bsi-form-info-text</code> and <code>data-bsi-form-mandatory-text</code> attributes can be used on this element part. For further information on usage and how to enable them see <a href="#form-field">form-field</a>.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -4046,6 +4099,9 @@ The attribute <code>data-bsi-hide-required</code> is available from CX 1.3.40 on
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>If enabled the <code>data-bsi-form-info-text</code> and <code>data-bsi-form-mandatory-text</code> attributes can be used on this element part. For further information on usage and how to enable them see <a href="#form-field">form-field</a>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Listing 51. Example usage of the form-radio part.</div>
@@ -4486,7 +4542,7 @@ This results in the following content element editor:</p>
 <div class="content">
 <img src="./images/medium-quote-content-element-editor.png" alt="The combined Template Parts build the complete content element editor.">
 </div>
-<div class="title">Figure 8. The combined Template Parts build the complete content element editor.</div>
+<div class="title">Figure 9. The combined Template Parts build the complete content element editor.</div>
 </div>
 <div class="paragraph">
 <p>The handlebars template and the default values are as follows:</p>
@@ -4539,7 +4595,7 @@ This results in the following content element editor:</p>
 <div class="content">
 <img src="./images/plain-text-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 9. Template part user interface.</div>
+<div class="title">Figure 10. Template part user interface.</div>
 </div>
 </div>
 <div class="sect5">
@@ -4575,7 +4631,7 @@ Default is <code>false</code>.</p>
 <div class="content">
 <img src="./images/multiline-plain-text-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 10. Template part user interface.</div>
+<div class="title">Figure 11. Template part user interface.</div>
 </div>
 </div>
 <div class="sect5">
@@ -4629,7 +4685,7 @@ Otherwise the HTML code would be escaped when the template is being rendered.
 <div class="content">
 <img src="./images/formatted-text-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 11. Template part user interface.</div>
+<div class="title">Figure 12. Template part user interface.</div>
 </div>
 <div class="paragraph">
 <p>As with the corresponding element part, the toolbar of the editor can be configured using a <code>htmlEditorConfig</code>.
@@ -4675,7 +4731,7 @@ The structure is as follows:</p>
 <div class="content">
 <img src="./images/link-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 12. Template part user interface.</div>
+<div class="title">Figure 13. Template part user interface.</div>
 </div>
 </div>
 <div class="sect5">
@@ -4724,7 +4780,7 @@ Default is <code>true</code>.</p>
 <div class="content">
 <img src="./images/image-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 13. Template part user interface.</div>
+<div class="title">Figure 14. Template part user interface.</div>
 </div>
 <div class="paragraph">
 <p>The screenshot shows two possible configurations of the image template part editor:</p>
@@ -4815,7 +4871,7 @@ It supplies a simple checkbox element and a boolean value that can be used e.g. 
 <div class="content">
 <img src="./images/checkbox-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 14. Template part user interface.</div>
+<div class="title">Figure 15. Template part user interface.</div>
 </div>
 </div>
 <div class="sect5">
@@ -4860,7 +4916,7 @@ It allows to define a list of key/value options in the design and provides the k
 <div class="content">
 <img src="./images/option-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 15. Template part user interface.</div>
+<div class="title">Figure 16. Template part user interface.</div>
 </div>
 </div>
 <div class="sect5">
@@ -4930,7 +4986,7 @@ It allows to define a list of key/value options in the design and provides the k
 <div class="content">
 <img src="./images/dynamic-value-list-template-part.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 16. Template part user interface.</div>
+<div class="title">Figure 17. Template part user interface.</div>
 </div>
 </div>
 <div class="sect5">
@@ -5444,6 +5500,9 @@ The CX backend guarantees that values defined in <code>data-bsi-entity-key-value
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>See <a href="#">form-field</a> for information on <code>data-bsi-form-*-text</code> attributes.</p>
 </div>
 </div>
 </div>
@@ -7600,7 +7659,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <div class="content">
 <img src="./images/invalid_design_error_missing_mandatory_files.png" alt="error message: file is missing">
 </div>
-<div class="title">Figure 17. error message: file is missing</div>
+<div class="title">Figure 18. error message: file is missing</div>
 </div>
 <div class="paragraph">
 <p>Your upload is missing a mandatory file. Please refer to <a href="#file-format">File format</a> where the mandatory files for your design type is described in detail.</p>
@@ -7612,7 +7671,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <div class="content">
 <img src="./images/invalid_design_error_invalid_element_in_dropzone.png" alt="error message: invalid content element in 'data-bsi-dropzone-allowed-elements'">
 </div>
-<div class="title">Figure 18. error message: invalid content element in 'data-bsi-dropzone-allowed-elements'</div>
+<div class="title">Figure 19. error message: invalid content element in 'data-bsi-dropzone-allowed-elements'</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -7675,7 +7734,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <div class="content">
 <img src="./images/invalid_design_error_unknown_content_element_part.png" alt="error message: unknown content element part">
 </div>
-<div class="title">Figure 19. error message: unknown content element part</div>
+<div class="title">Figure 20. error message: unknown content element part</div>
 </div>
 <div class="paragraph">
 <p>The specified <code>data-bsi-element-part</code> is not supported by CX. For a list of supported element parts, visit the <a href="#Parts">[Parts]</a> documentation chapter.</p>
@@ -7699,7 +7758,7 @@ In the example above, a <em>text</em> element part is specified. According to th
 <div class="content">
 <img src="./images/invalid_design_error_sample_content_not_matching_content_element_spec.png" alt="error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element">
 </div>
-<div class="title">Figure 20. error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</div>
+<div class="title">Figure 21. error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</div>
 </div>
 <div class="paragraph">
 <p>A discrepancy was discovered when using a content element as sample content. The example must have the same HTML structure as the specified content element.</p>
@@ -7755,7 +7814,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="content">
 <img src="./images/invalid_design_error_sample_content_that_are_not_content_elements.png" alt="error message: Dropzone contains sample content that are not content elements">
 </div>
-<div class="title">Figure 21. error message: Dropzone contains sample content that are not content elements</div>
+<div class="title">Figure 22. error message: Dropzone contains sample content that are not content elements</div>
 </div>
 <div class="paragraph">
 <p>A dropzone can contain 0&#8230;&#8203;n content elements. Only content elements are allowed as direct child nodes of dropzones. Therefore, HTML that is not part of a content element must not be placed in a dropzone.</p>
@@ -7776,7 +7835,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="content">
 <img src="./images/invalid_design_error_wrong_HTML_tag.png" alt="error message: Part uses tag div but requires one of the following: a" width="img">
 </div>
-<div class="title">Figure 22. error message: Part uses tag div but requires one of the following: a,img</div>
+<div class="title">Figure 23. error message: Part uses tag div but requires one of the following: a,img</div>
 </div>
 <div class="paragraph">
 <p>Make sure to user proper HTML tags for your element parts. Consult the content element <a href="#Parts">[Parts]</a> documentation for the validation error causing element.</p>
@@ -7989,7 +8048,7 @@ This section applies to installations prior to CX 1.2.46.
 <div class="content">
 <img src="./images/unique-dropzone-name-violated.png" alt="element is being dropped outside of the dropzone (or nowhere)">
 </div>
-<div class="title">Figure 23. element is being dropped outside of the dropzone (or nowhere)</div>
+<div class="title">Figure 24. element is being dropped outside of the dropzone (or nowhere)</div>
 </div>
 <div class="paragraph">
 <p>This may happen if a dropzone name is duplicated.
@@ -8090,7 +8149,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2025-12-09 18:57:18 +0100
+Last update 2025-12-18 18:57:18 +0100
 </div>
 </div>
 </body>
