@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 26.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2025-12-18</span>
+<span id="revdate">Version Date 2026-01-14</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -5364,6 +5364,45 @@ A possible method for invoking the REST endpoint is provided in the snippet belo
 </div>
 </div>
 </div>
+<div class="sect4">
+<h5 id="script"><a class="anchor" href="#script"></a>3.3.4.9. script</h5>
+<div class="paragraph">
+<p>This template part contains a picker for a script from the media library and an optional JSON field for a configuration-object to supply to the script.</p>
+</div>
+<div class="sect5">
+<h6 id="editor-9"><a class="anchor" href="#editor-9"></a>Editor</h6>
+<div class="imageblock">
+<div class="content">
+<img src="./images/script-template-part-editor.png" alt="Template part user interface.">
+</div>
+<div class="title">Figure 18. Template part user interface.</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="variables-9"><a class="anchor" href="#variables-9"></a>Variables</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>scriptUrl</strong>: The url to the script on the resource server.</p>
+</li>
+<li>
+<p><strong>scriptConfig</strong>: An escaped JSON string with the configuration object.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5">
+<h6 id="configuration-9"><a class="anchor" href="#configuration-9"></a>Configuration</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>configEditorEnabled</strong>: Enables the JSON editor for the configuration object.
+Default is <code>false</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -7659,7 +7698,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <div class="content">
 <img src="./images/invalid_design_error_missing_mandatory_files.png" alt="error message: file is missing">
 </div>
-<div class="title">Figure 18. error message: file is missing</div>
+<div class="title">Figure 19. error message: file is missing</div>
 </div>
 <div class="paragraph">
 <p>Your upload is missing a mandatory file. Please refer to <a href="#file-format">File format</a> where the mandatory files for your design type is described in detail.</p>
@@ -7671,7 +7710,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <div class="content">
 <img src="./images/invalid_design_error_invalid_element_in_dropzone.png" alt="error message: invalid content element in 'data-bsi-dropzone-allowed-elements'">
 </div>
-<div class="title">Figure 19. error message: invalid content element in 'data-bsi-dropzone-allowed-elements'</div>
+<div class="title">Figure 20. error message: invalid content element in 'data-bsi-dropzone-allowed-elements'</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -7734,7 +7773,7 @@ In Versions prior to CX 1.2.48, the error message may be cut off in the message 
 <div class="content">
 <img src="./images/invalid_design_error_unknown_content_element_part.png" alt="error message: unknown content element part">
 </div>
-<div class="title">Figure 20. error message: unknown content element part</div>
+<div class="title">Figure 21. error message: unknown content element part</div>
 </div>
 <div class="paragraph">
 <p>The specified <code>data-bsi-element-part</code> is not supported by CX. For a list of supported element parts, visit the <a href="#Parts">[Parts]</a> documentation chapter.</p>
@@ -7758,7 +7797,7 @@ In the example above, a <em>text</em> element part is specified. According to th
 <div class="content">
 <img src="./images/invalid_design_error_sample_content_not_matching_content_element_spec.png" alt="error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element">
 </div>
-<div class="title">Figure 21. error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</div>
+<div class="title">Figure 22. error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</div>
 </div>
 <div class="paragraph">
 <p>A discrepancy was discovered when using a content element as sample content. The example must have the same HTML structure as the specified content element.</p>
@@ -7814,7 +7853,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="content">
 <img src="./images/invalid_design_error_sample_content_that_are_not_content_elements.png" alt="error message: Dropzone contains sample content that are not content elements">
 </div>
-<div class="title">Figure 22. error message: Dropzone contains sample content that are not content elements</div>
+<div class="title">Figure 23. error message: Dropzone contains sample content that are not content elements</div>
 </div>
 <div class="paragraph">
 <p>A dropzone can contain 0&#8230;&#8203;n content elements. Only content elements are allowed as direct child nodes of dropzones. Therefore, HTML that is not part of a content element must not be placed in a dropzone.</p>
@@ -7835,7 +7874,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="content">
 <img src="./images/invalid_design_error_wrong_HTML_tag.png" alt="error message: Part uses tag div but requires one of the following: a" width="img">
 </div>
-<div class="title">Figure 23. error message: Part uses tag div but requires one of the following: a,img</div>
+<div class="title">Figure 24. error message: Part uses tag div but requires one of the following: a,img</div>
 </div>
 <div class="paragraph">
 <p>Make sure to user proper HTML tags for your element parts. Consult the content element <a href="#Parts">[Parts]</a> documentation for the validation error causing element.</p>
@@ -8048,7 +8087,7 @@ This section applies to installations prior to CX 1.2.46.
 <div class="content">
 <img src="./images/unique-dropzone-name-violated.png" alt="element is being dropped outside of the dropzone (or nowhere)">
 </div>
-<div class="title">Figure 24. element is being dropped outside of the dropzone (or nowhere)</div>
+<div class="title">Figure 25. element is being dropped outside of the dropzone (or nowhere)</div>
 </div>
 <div class="paragraph">
 <p>This may happen if a dropzone name is duplicated.
@@ -8149,7 +8188,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2025-12-18 18:57:18 +0100
+Last update 2026-01-14 18:57:24 +0100
 </div>
 </div>
 </body>
