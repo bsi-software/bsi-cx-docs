@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 24.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2024-06-27</span>
+<span id="revdate">Version Date 2026-02-10</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -763,6 +763,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#structure-reference">1.9. Structure Reference</a></li>
 <li><a href="#dropzones">1.10. Dropzones</a></li>
 <li><a href="#groups">1.11. Groups</a></li>
+<li><a href="#e-mail-preview">1.12. E-mail Preview</a></li>
 </ul>
 </li>
 <li><a href="#designjson">2. design.json</a>
@@ -1252,6 +1253,25 @@ A group may be defined only once.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="e-mail-preview"><a class="anchor" href="#e-mail-preview"></a>1.12. E-mail Preview</h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This section applies only to BSI CX 24.2.34 and greater.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>E-mails that are viewed in the browser through the "Show e-mail as website" redirection on the e-mail step have the CSS class <code>bsi-email-webview</code> added to the HTML tag.
+Using this tag the design can react to web-previews and e.g. hide the link used to open the web-version.</p>
+</div>
 </div>
 </div>
 </div>
@@ -6031,7 +6051,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2024-06-27 18:59:56 +0200
+Last update 2026-02-10 18:57:13 +0100
 </div>
 </div>
 </body>
