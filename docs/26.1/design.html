@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 26.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2026-01-22</span>
+<span id="revdate">Version Date 2026-02-10</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -766,6 +766,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#structure-reference">1.8. Structure Reference</a></li>
 <li><a href="#dropzones">1.9. Dropzones</a></li>
 <li><a href="#groups">1.10. Groups</a></li>
+<li><a href="#e-mail-preview">1.11. E-mail Preview</a></li>
 </ul>
 </li>
 <li><a href="#designjson">2. design.json</a>
@@ -1323,6 +1324,13 @@ A group may be defined only once.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="e-mail-preview"><a class="anchor" href="#e-mail-preview"></a>1.11. E-mail Preview</h3>
+<div class="paragraph">
+<p>E-mails that are viewed in the browser through the "Show e-mail as website" redirection on the e-mail step have the CSS class <code>bsi-email-webview</code> added to the HTML tag.
+Using this tag the design can react to web-previews and e.g. hide the link used to open the web-version.</p>
+</div>
 </div>
 </div>
 </div>
@@ -2639,7 +2647,11 @@ This chapter gives an overview over the attributes relevant for the development 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data-bsi-multiline</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Deprecated</strong> Used to indicate a text is multiline.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to indicate a text is multiline.
+<br>
+<br>
+ <strong>Deprecated</strong> since version 25.2.13.
+ Instead, use the configuration property <code>multiline</code> of the plain-text element- or template part.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#plain-text">Plain Text</a></p></td>
 </tr>
 <tr>
@@ -3194,8 +3206,7 @@ Default is <code>false</code>.</p>
 </li>
 <li>
 <p><strong>multiline</strong>: This boolean value controls whether the field is single- or multiline.
-  Default is <code>false</code>. Note: in earlier BSI CX versions, this setting was configured via the DOM
-attribute <code>data-bsi-multiline</code>.</p>
+Default is <code>false</code>.</p>
 </li>
 <li>
 <p><strong>fieldHeight</strong>: This integer value controls the field height in the form of the content editor.
@@ -4329,7 +4340,9 @@ preview.image.url
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-This element part is deprecated. Use Handlebars template parts instead.
+<strong>Deprecated</strong> since release 25/2.
+Instead, create a content element which defines the attribute <code>data-bsi-url-provider</code>
+and uses a Handlebars <code><a href="#plain-text">plain-text</a></code> template part to write the attribute value.
 </td>
 </tr>
 </table>
@@ -4355,7 +4368,7 @@ This attribute will contain an absolute URL to the BSI CX server, where the data
 <div class="sect4">
 <h5 id="using-the-chart-url-provider"><a class="anchor" href="#using-the-chart-url-provider"></a>4.2.19.1. Using the Chart URL Provider</h5>
 <div class="paragraph">
-<p>We created a small Java Script library to use the chart URL provider in a template.
+<p>We created a small JavaScript library to use the chart URL provider in a template.
 Take a look at the repository on <a href="https://github.com/bsi-software/bsi-cx-chart/tree/releases/22.0">GitHub</a> for more information.
 To integrate the library, install it with NPM:</p>
 </div>
@@ -7707,7 +7720,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2026-01-22 14:19:54 +0100
+Last update 2026-02-10 18:57:19 +0100
 </div>
 </div>
 </body>
