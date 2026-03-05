@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 26.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2026-03-03</span>
+<span id="revdate">Version Date 2026-03-05</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -827,10 +827,11 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#form-textarea">4.2.13. form-textarea</a></li>
 <li><a href="#form-select">4.2.14. form-select</a></li>
 <li><a href="#form-radio">4.2.15. form-radio</a></li>
-<li><a href="#sec-link-part">4.2.16. link</a></li>
-<li><a href="#social-follow">4.2.17. social-follow</a></li>
-<li><a href="#social-share">4.2.18. social-share</a></li>
-<li><a href="#url-provider">4.2.19. url-provider</a></li>
+<li><a href="#basic-dynamic-value-list">4.2.16. basic-dynamic-value-list</a></li>
+<li><a href="#sec-link-part">4.2.17. link</a></li>
+<li><a href="#social-follow">4.2.18. social-follow</a></li>
+<li><a href="#social-share">4.2.19. social-share</a></li>
+<li><a href="#url-provider">4.2.20. url-provider</a></li>
 </ul>
 </li>
 <li><a href="#template-parts">4.3. Template Parts</a>
@@ -4121,7 +4122,111 @@ Boolean attributes like <code>data-bsi-radio-item</code> require an empty value 
 </div>
 </div>
 <div class="sect3">
-<h4 id="sec-link-part"><a class="anchor" href="#sec-link-part"></a>4.2.16. link</h4>
+<h4 id="basic-dynamic-value-list"><a class="anchor" href="#basic-dynamic-value-list"></a>4.2.16. basic-dynamic-value-list</h4>
+<div class="paragraph">
+<p>This part offers functionality for the integration of BSI Suite value lists into any HTML form, providing REST endpoints for the purpose of retrieving values from such lists.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This element part is a backport of the <a href="#">dynamic value list template part</a>.
+Check this chapter for a detailed documentation.
+You should prefer the template part version, because it is more flexible regarding the DOM structure.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="editor"><a class="anchor" href="#editor"></a>4.2.16.1. Editor</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/dynamic-value-list-element-part.png" alt="Part user interface.">
+</div>
+<div class="title">Figure 8. Part user interface.</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="fields"><a class="anchor" href="#fields"></a>4.2.16.2. Fields</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Value list</strong>: A reference to a BSI Suite value list.
+Mandatory.</p>
+</li>
+<li>
+<p><strong>Initial value</strong>: Optional initial value for the HTML form field.
+Only values belonging to the referenced <strong>Value list</strong> are available.
+Only editable if <strong>Value list</strong> is set.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is also possible to define an initial value within the configuration of a story, which supersedes the initial value of the content.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 44. Example usage of the <code>basic-dynamic-value-list</code> part.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-dynamic-value-list</span><span class="delimiter">&quot;</span></span>  <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-dynamic-value-list</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-entity-id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;label&gt;</span>Field<span class="tag">&lt;/label&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">w-input dynamic-select</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-entity-key-value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-entity-key-display-text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="usage"><a class="anchor" href="#usage"></a>4.2.16.3. Usage</h5>
+<div class="listingblock">
+<div class="title">Listing 45. The element&#8217;s HTML source.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dynamic-value-list</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-entity-id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{context.dataModelValue.type}}</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span>
+      <span class="attribute-name">data-bsi-entity-key-value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{context.dataModelValue.value}}</span><span class="delimiter">&quot;</span></span>
+      <span class="attribute-name">data-bsi-entity-key-display-text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{context.displayText}}</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The DOM structure is identical to the <code>form-field</code> element part.
+The <code>data-bsi-*</code> attributes must be placed on the root DIV element and on the nested INPUT element, as shown in the example above.</p>
+</div>
+<div class="sect5">
+<h6 id="design-json"><a class="anchor" href="#design-json"></a>Design.json</h6>
+<div class="listingblock">
+<div class="title">Listing 46. The element&#8217;s entry in the <code>design.json</code> file.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">basic-dynamic-value-list</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">file</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">content-elements/forms/basic-dynamic-value-list.html</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">icon</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">dropdown</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Dynamic Value List (Basic)</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">description</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Use dynamic source e.g. CRM</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">parts</span><span class="delimiter">&quot;</span></span>: [
+    {
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">partId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">basic-dynamic-value-list</span><span class="delimiter">&quot;</span></span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">label</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Dynamic select</span><span class="delimiter">&quot;</span></span>
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sec-link-part"><a class="anchor" href="#sec-link-part"></a>4.2.17. link</h4>
 <div class="paragraph">
 <p>The part is defined on the <code>&lt;a&gt;</code> element.
 As an option, the link content can be set with the <code>data-bsi-link-fixed-inner-html</code> attribute.
@@ -4141,7 +4246,7 @@ Boolean attributes like <code>data-bsi-link-fixed-inner-html</code> could requir
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 44. Example usage of the link part.</div>
+<div class="title">Listing 47. Example usage of the link part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cta</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.bsi-software.com/</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>More<span class="tag">&lt;/a&gt;</span>
@@ -4149,7 +4254,7 @@ Boolean attributes like <code>data-bsi-link-fixed-inner-html</code> could requir
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 45. Example usage of the link part with <code>data-bsi-link-fixed-inner-html</code>.</div>
+<div class="title">Listing 48. Example usage of the link part with <code>data-bsi-link-fixed-inner-html</code>.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cta</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">[dynamic_link]</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-link-fixed-inner-html</span><span class="tag">&gt;</span>
@@ -4162,7 +4267,7 @@ Boolean attributes like <code>data-bsi-link-fixed-inner-html</code> could requir
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 46. Example usage of the link part with <code>data-bsi-link-text-part</code>.</div>
+<div class="title">Listing 49. Example usage of the link part with <code>data-bsi-link-text-part</code>.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;a</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -4174,7 +4279,7 @@ Boolean attributes like <code>data-bsi-link-fixed-inner-html</code> could requir
 </div>
 </div>
 <div class="sect3">
-<h4 id="social-follow"><a class="anchor" href="#social-follow"></a>4.2.17. social-follow</h4>
+<h4 id="social-follow"><a class="anchor" href="#social-follow"></a>4.2.18. social-follow</h4>
 <div class="paragraph">
 <p>A <code>&lt;div&gt;</code> element, contains <code>&lt;div&gt;</code> elements with a <code>data-bsi-social-follow</code> attribute.
 These attributes contain the value of the respective social media service, such as "Facebook", "Twitter", "Pinterest", etc.</p>
@@ -4191,7 +4296,7 @@ The link <code>href</code> can be preselected with a URL or with CX links in squ
 <p>The <code>&lt;a&gt;</code> element, in turn, can contain additional elements.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 47. Example usage of the social-follow part.</div>
+<div class="title">Listing 50. Example usage of the social-follow part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-follow</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-follow</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-social-follow</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Facebook</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">social-media-item</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -4209,7 +4314,7 @@ The link <code>href</code> can be preselected with a URL or with CX links in squ
 </div>
 </div>
 <div class="sect3">
-<h4 id="social-share"><a class="anchor" href="#social-share"></a>4.2.18. social-share</h4>
+<h4 id="social-share"><a class="anchor" href="#social-share"></a>4.2.19. social-share</h4>
 <div class="paragraph">
 <p>A <code>&lt;div&gt;</code> element, contains <code>&lt;div&gt;</code> elements with <code>data-bsi-social-share</code>.
 These attributes contain the value of the respective social media service, such as Facebook, Twitter, Pinterest, or even e-mail.</p>
@@ -4332,7 +4437,7 @@ preview.image.url
 </div>
 </div>
 <div class="sect3">
-<h4 id="url-provider"><a class="anchor" href="#url-provider"></a>4.2.19. url-provider</h4>
+<h4 id="url-provider"><a class="anchor" href="#url-provider"></a>4.2.20. url-provider</h4>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -4354,7 +4459,7 @@ When using the content inside your story, each URL provider part will produce a 
 This outlets can be connected to any URL provider (e.g. the <em>Charts</em> Step).</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 48. Example usage of the URL provider part.</div>
+<div class="title">Listing 51. Example usage of the URL provider part.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">pie-chart</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">url-provider</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">mb-4 chart-js</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
   <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">./pie-chart-placeholder.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">w-100</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
@@ -4366,7 +4471,7 @@ This outlets can be connected to any URL provider (e.g. the <em>Charts</em> Step
 This attribute will contain an absolute URL to the BSI CX server, where the data can be requested.</p>
 </div>
 <div class="sect4">
-<h5 id="using-the-chart-url-provider"><a class="anchor" href="#using-the-chart-url-provider"></a>4.2.19.1. Using the Chart URL Provider</h5>
+<h5 id="using-the-chart-url-provider"><a class="anchor" href="#using-the-chart-url-provider"></a>4.2.20.1. Using the Chart URL Provider</h5>
 <div class="paragraph">
 <p>We created a small JavaScript library to use the chart URL provider in a template.
 Take a look at the repository on <a href="https://github.com/bsi-software/bsi-cx-chart/tree/releases/22.0">GitHub</a> for more information.
@@ -4464,7 +4569,7 @@ Each <em>Template Part</em> has a defined set of variables that it provides to r
 A full example might look something like this:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 49. The content element as defined in <code>design.json</code>.</div>
+<div class="title">Listing 52. The content element as defined in <code>design.json</code>.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">elementId</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">medium-quote-hbs</span><span class="delimiter">&quot;</span></span>,
@@ -4497,13 +4602,13 @@ This results in the following content element editor:</p>
 <div class="content">
 <img src="./images/medium-quote-content-element-editor.png" alt="The combined Template Parts build the complete content element editor.">
 </div>
-<div class="title">Figure 8. The combined Template Parts build the complete content element editor.</div>
+<div class="title">Figure 9. The combined Template Parts build the complete content element editor.</div>
 </div>
 <div class="paragraph">
 <p>The handlebars template and the default values are as follows:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 50. Handlebars template of the content element.</div>
+<div class="title">Listing 53. Handlebars template of the content element.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content-element-wrap</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">medium-quote-hbs</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">paragraph-light</span><span class="delimiter">&quot;</span></span> <span class="error">{</span><span class="error">{</span><span class="error">#</span><span class="attribute-name">if</span> <span class="attribute-name">italic.value</span><span class="error">}</span><span class="error">}</span><span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">font-style</span>: <span class="value">italic</span><span class="delimiter">&quot;</span></span><span class="error">{</span><span class="error">{</span><span class="error">/</span><span class="attribute-name">if</span><span class="error">}</span><span class="error">}</span><span class="tag">&gt;</span>{{text.value}}<span class="tag">&lt;/div&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b>
@@ -4511,7 +4616,7 @@ This results in the following content element editor:</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 51. The corresponding default context variables, supplied in the context file.</div>
+<div class="title">Listing 54. The corresponding default context variables, supplied in the context file.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span>: { <i class="conum" data-value="1"></i><b>(1)</b>
@@ -4553,13 +4658,13 @@ Let&#8217;s take the example of a simple text paragraph content element.</p>
 <p>The content element consists of a Handlebars template, and a variable context as such:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 52. The template of the content element as defined in the design ZIP.</div>
+<div class="title">Listing 55. The template of the content element as defined in the design ZIP.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">paragraph-light</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">paragraph</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>{{paragraph.value}}<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 53. The accompanying context with the variables for the template.</div>
+<div class="title">Listing 56. The accompanying context with the variables for the template.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">paragraph</span><span class="delimiter">&quot;</span></span>: {
@@ -4575,13 +4680,13 @@ All variables used within the element need to be prefixed with this unique name.
 This unique name then also refers to the element in <code>design-context.json</code>:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 54. Part of <code>design.hbs</code>.</div>
+<div class="title">Listing 57. Part of <code>design.hbs</code>.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">paragraph-light</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">paragraph</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-context-scope</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">headingParagraph</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>{{headingParagraph.paragraph.value}}<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 55. A complete design context referencing the Handlebars content element above.</div>
+<div class="title">Listing 58. A complete design context referencing the Handlebars content element above.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">headingParagraph</span><span class="delimiter">&quot;</span></span>: {
@@ -4599,12 +4704,12 @@ This unique name then also refers to the element in <code>design-context.json</c
 <p>This template part supplies a text input field, into which the user can input a single line of plain text.</p>
 </div>
 <div class="sect4">
-<h5 id="editor"><a class="anchor" href="#editor"></a>4.3.2.1. Editor</h5>
+<h5 id="editor-2"><a class="anchor" href="#editor-2"></a>4.3.2.1. Editor</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/plain-text-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 9. Template part user interface.</div>
+<div class="title">Figure 10. Template part user interface.</div>
 </div>
 </div>
 <div class="sect4">
@@ -4635,12 +4740,12 @@ Default is <code>false</code>.</p>
 <p>This template part supplies a single multiline input field, into which the user can input plain text.</p>
 </div>
 <div class="sect4">
-<h5 id="editor-2"><a class="anchor" href="#editor-2"></a>4.3.3.1. Editor</h5>
+<h5 id="editor-3"><a class="anchor" href="#editor-3"></a>4.3.3.1. Editor</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/multiline-plain-text-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 10. Template part user interface.</div>
+<div class="title">Figure 11. Template part user interface.</div>
 </div>
 </div>
 <div class="sect4">
@@ -4689,12 +4794,12 @@ Otherwise the HTML code would be escaped when the template is being rendered.
 </table>
 </div>
 <div class="sect4">
-<h5 id="editor-3"><a class="anchor" href="#editor-3"></a>4.3.4.1. Editor</h5>
+<h5 id="editor-4"><a class="anchor" href="#editor-4"></a>4.3.4.1. Editor</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/formatted-text-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 11. Template part user interface.</div>
+<div class="title">Figure 12. Template part user interface.</div>
 </div>
 <div class="paragraph">
 <p>As with the corresponding element part, the toolbar of the editor can be configured using a <code>htmlEditorConfig</code>.
@@ -4735,12 +4840,12 @@ The structure is as follows:</p>
 <p>An template part that provides URL and accessibility information for a link.</p>
 </div>
 <div class="sect4">
-<h5 id="editor-4"><a class="anchor" href="#editor-4"></a>4.3.5.1. Editor</h5>
+<h5 id="editor-5"><a class="anchor" href="#editor-5"></a>4.3.5.1. Editor</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/link-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 12. Template part user interface.</div>
+<div class="title">Figure 13. Template part user interface.</div>
 </div>
 </div>
 <div class="sect4">
@@ -4784,12 +4889,12 @@ Default is <code>true</code>.</p>
 <p>The image template part supplies all values needed to render an image in the content, including accessibility information.</p>
 </div>
 <div class="sect4">
-<h5 id="editor-5"><a class="anchor" href="#editor-5"></a>4.3.6.1. Editor</h5>
+<h5 id="editor-6"><a class="anchor" href="#editor-6"></a>4.3.6.1. Editor</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/image-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 13. Template part user interface.</div>
+<div class="title">Figure 14. Template part user interface.</div>
 </div>
 <div class="paragraph">
 <p>The screenshot shows two possible configurations of the image template part editor:</p>
@@ -4875,12 +4980,12 @@ Default is <code>true</code>.</p>
 It supplies a simple checkbox element and a boolean value that can be used e.g. for <code>{{#if}}</code>-blocks within the content element.</p>
 </div>
 <div class="sect4">
-<h5 id="editor-6"><a class="anchor" href="#editor-6"></a>4.3.7.1. Editor</h5>
+<h5 id="editor-7"><a class="anchor" href="#editor-7"></a>4.3.7.1. Editor</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/checkbox-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 14. Template part user interface.</div>
+<div class="title">Figure 15. Template part user interface.</div>
 </div>
 </div>
 <div class="sect4">
@@ -4920,12 +5025,12 @@ It allows to define a list of key/value options in the design and provides the k
 <p>The negation works analogous, just using <code>{{#neq a b}}</code> instead of the <code>{{#eq a b}}</code> shown in the example above.</p>
 </div>
 <div class="sect4">
-<h5 id="editor-7"><a class="anchor" href="#editor-7"></a>4.3.8.1. Editor</h5>
+<h5 id="editor-8"><a class="anchor" href="#editor-8"></a>4.3.8.1. Editor</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/option-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 15. Template part user interface.</div>
+<div class="title">Figure 16. Template part user interface.</div>
 </div>
 </div>
 <div class="sect4">
@@ -4990,12 +5095,12 @@ It allows to define a list of key/value options in the design and provides the k
 <p>This Handlebars template part offers functionality for the integration of BSI Suite value lists into any HTML form, providing REST endpoints for the purpose of retrieving values from such lists.</p>
 </div>
 <div class="sect4">
-<h5 id="editor-8"><a class="anchor" href="#editor-8"></a>4.3.9.1. Editor</h5>
+<h5 id="editor-9"><a class="anchor" href="#editor-9"></a>4.3.9.1. Editor</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/dynamic-value-list-template-part.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 16. Template part user interface.</div>
+<div class="title">Figure 17. Template part user interface.</div>
 </div>
 </div>
 <div class="sect4">
@@ -5098,7 +5203,7 @@ May be empty.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Listing 56. The element&#8217;s context structure.</div>
+<div class="title">Listing 59. The element&#8217;s context structure.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">dataModelValue</span><span class="delimiter">&quot;</span></span>: {
@@ -5125,7 +5230,7 @@ This enables default values.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Listing 57. The element&#8217;s BSI HTML attributes at configuration time.</div>
+<div class="title">Listing 60. The element&#8217;s BSI HTML attributes at configuration time.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dynamic-value-list</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-entity-id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{context.dataModelValue.type}}</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>
     <span class="tag">&lt;input</span>
@@ -5163,7 +5268,7 @@ The id is always encrypted.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Listing 58. An example HTML element sent to a customer opening a BSI CX landing page.</div>
+<div class="title">Listing 61. An example HTML element sent to a customer opening a BSI CX landing page.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-rest-resource</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://your-client.bsi/inbound/default/r/bsi-code-rest-resource?entityId=WcaYlNlwe6VnI72</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>
     <span class="tag">&lt;input</span>
@@ -5173,7 +5278,7 @@ The id is always encrypted.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 59. An example response when calling the URL provided via <strong>data-bsi-rest-resource</strong>.</div>
+<div class="title">Listing 62. An example response when calling the URL provided via <strong>data-bsi-rest-resource</strong>.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">options</span><span class="delimiter">&quot;</span></span>: [
@@ -5226,7 +5331,7 @@ Example values: <em>de-DE</em>, <em>de-CH</em>, <em>de</em>, <em>en</em>, <em>en
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Listing 60. Example URL. The design has to handle q and lang parameters.</div>
+<div class="title">Listing 63. Example URL. The design has to handle q and lang parameters.</div>
 <div class="content">
 <pre>http://your-client.bsi/inbound/default/r/bsi-code-rest-resource?entityId=WcaYlNlwe6VnI72&amp;q=searchVal&amp;lang=de</pre>
 </div>
@@ -5283,7 +5388,7 @@ Mandatory.</p>
 <div class="sect5">
 <h6 id="minimal-example-implementation"><a class="anchor" href="#minimal-example-implementation"></a>Minimal example implementation</h6>
 <div class="listingblock">
-<div class="title">Listing 61. The example&#8217;s context .json. The content editor sets the datamodel values.</div>
+<div class="title">Listing 64. The example&#8217;s context .json. The content editor sets the datamodel values.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: {
@@ -5303,7 +5408,7 @@ Mandatory.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 62. The examples .hbs file. The content editor sets the datamodel values.</div>
+<div class="title">Listing 65. The examples .hbs file. The content editor sets the datamodel values.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dynamic-value-list</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-entity-id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{entityTypeAndInitialValue.dataModelValue.type}}</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>
     <span class="tag">&lt;label</span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">{{id.value}}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>{{name.value}}<span class="tag">&lt;/label&gt;</span>
@@ -5315,7 +5420,7 @@ Mandatory.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 63. The element&#8217;s entry in the www-design.json file. Don&#8217;t forget to include the element in the respective dropzones.</div>
+<div class="title">Listing 66. The element&#8217;s entry in the www-design.json file. Don&#8217;t forget to include the element in the respective dropzones.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="key"><span class="delimiter">&quot;</span><span class="content">contentElements</span><span class="delimiter">&quot;</span></span>: [
@@ -5352,7 +5457,7 @@ Mandatory.</p>
 A possible method for invoking the REST endpoint is provided in the snippet below.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 64. Script calling the value list endpoint.</div>
+<div class="title">Listing 67. Script calling the value list endpoint.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="js">    let <span class="predefined">$valueListElem</span> = findValueListElement(); <span class="comment">// Frontend code's responsibility</span>
     let dataSourceUrl = <span class="predefined">$valueListElem</span>.attr(<span class="string"><span class="delimiter">'</span><span class="content">data-bsi-rest-resource</span><span class="delimiter">'</span></span>);
@@ -5379,12 +5484,12 @@ A possible method for invoking the REST endpoint is provided in the snippet belo
 <p>This template part contains a picker for a script from the media library and an optional JSON field for a configuration-object to supply to the script.</p>
 </div>
 <div class="sect4">
-<h5 id="editor-9"><a class="anchor" href="#editor-9"></a>4.3.10.1. Editor</h5>
+<h5 id="editor-10"><a class="anchor" href="#editor-10"></a>4.3.10.1. Editor</h5>
 <div class="imageblock">
 <div class="content">
 <img src="./images/script-template-part-editor.png" alt="Template part user interface.">
 </div>
-<div class="title">Figure 17. Template part user interface.</div>
+<div class="title">Figure 18. Template part user interface.</div>
 </div>
 </div>
 <div class="sect4">
@@ -5437,7 +5542,7 @@ Default is <code>false</code>.</p>
 <p>The preview mode outside the content editor or any content that is delivered by a story will not have any of the above listed classes.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 65. editor specific CSS example: HTML</div>
+<div class="title">Listing 68. editor specific CSS example: HTML</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;html&gt;</span><span class="tag">&lt;head&gt;</span><span class="comment">&lt;!-- head omitted --&gt;</span><span class="tag">&lt;/head&gt;</span>
 <span class="tag">&lt;body&gt;</span>
@@ -5448,7 +5553,7 @@ Default is <code>false</code>.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 66. editor specific CSS example: CSS</div>
+<div class="title">Listing 69. editor specific CSS example: CSS</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="css"><span class="class">.hide</span> { <span class="key">display</span>: <span class="value">none</span>; }
 <span class="class">.bsi-ce-edit-mode</span> <span class="class">.show-if-edit</span> { <span class="key">display</span>: <span class="value">block</span>; <span class="key">color</span>:<span class="value">green</span>; }
@@ -5495,7 +5600,7 @@ Default is <code>false</code>.</p>
 Doing so will add a link editor to enter a URL and a link text to the content editor.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 67. Adding an editable link to a content element.</div>
+<div class="title">Listing 70. Adding an editable link to a content element.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;a</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.bsi-software.com/</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>BSI Website<span class="tag">&lt;/a&gt;</span></code></pre>
 </div>
@@ -5504,14 +5609,14 @@ Doing so will add a link editor to enter a URL and a link text to the content ed
 <div class="content">
 <img src="./images/data-bsi-element-part-link.png" alt="editing a link element part">
 </div>
-<div class="title">Figure 18. visualization of an editable link</div>
+<div class="title">Figure 19. visualization of an editable link</div>
 </div>
 <div class="paragraph">
 <p>Another way to define a link directly out of a design is by using the BSI CX <em>bracket link syntax</em> for links.
 This mechanism in built into the content editor itself to create a link anywhere in a text.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 68. Example on adding a link anywhere in the text.</div>
+<div class="title">Listing 71. Example on adding a link anywhere in the text.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;span</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span>If you do not wish to receive further promotions, you can [unsubscribe] now.<span class="tag">&lt;/span&gt;</span></code></pre>
 </div>
@@ -5576,7 +5681,7 @@ The full syntax is <code>[ID|text=link text|url=https://example.com|newWindow]</
 An example of doing so is to add it to an <code>href</code> of a link.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 69. Adding a bracket link to a link will allow us to track the "Facebook" link in BSI CX.</div>
+<div class="title">Listing 72. Adding a bracket link to a link will allow us to track the "Facebook" link in BSI CX.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">[Facebook]</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img/facebook.png</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;/a&gt;</span></code></pre>
 </div>
@@ -5595,7 +5700,7 @@ It is your responsibility as a developer to use escaping where brackets have a d
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 70. Escaping is important in cases like this one.</div>
+<div class="title">Listing 73. Escaping is important in cases like this one.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- BSI CX will convert this to a bracket link --&gt;</span>
 <span class="tag">&lt;input</span> <span class="attribute-name">pattern</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">[0-9]</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -5646,7 +5751,7 @@ A consequent step connected to these outlets can pick from the iterator property
 <p>When BSI CX converts a <code>[placeholder]</code> term internally into a link tag, it adds the CSS class <code>placeholder-link</code> to the <code>a</code> tag. This allows bracket links to be selected and styled separately from other link elements.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 71. How to style a BSI CX bracket link using the CSS class <code>placeholder-link</code></div>
+<div class="title">Listing 74. How to style a BSI CX bracket link using the CSS class <code>placeholder-link</code></div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="css"><span class="tag">a</span><span class="class">.placeholder-link</span> {<span class="key">color</span>: <span class="color">#fe9915</span>;}
 <span class="class">.footer-div</span> <span class="tag">a</span><span class="class">.placeholder-link</span> {<span class="key">color</span>: <span class="color">#ffffff</span>;}</code></pre>
@@ -5665,7 +5770,7 @@ However, it is not possible to use anchor links as <code>url</code> of a bracket
 This is due to the fact, that bracket links meant to be trackable by BSI CX and this requires a complete roundtrip to the server.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 72. How to use anchor links in a design.</div>
+<div class="title">Listing 75. How to use anchor links in a design.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;section</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">news</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="comment">&lt;!-- some news --&gt;</span>
@@ -6700,7 +6805,7 @@ BSI Website</code></pre>
 <p>The captcha-field can be added to a login form content element as follows:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 73. Content Element for the login form.</div>
+<div class="title">Listing 76. Content Element for the login form.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;form</span> <span class="attribute-name">...</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">login-form</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
 <span class="comment">&lt;!-- Content Element: Google reCAPTCHGA Enterprise --&gt;</span>
@@ -7259,7 +7364,7 @@ It is helpful to to view the details of the error message by clicking on <strong
 <div class="content">
 <img src="./images/invalid_design_error_missing_mandatory_files.png" alt="error message: file is missing">
 </div>
-<div class="title">Figure 19. error message: file is missing</div>
+<div class="title">Figure 20. error message: file is missing</div>
 </div>
 <div class="paragraph">
 <p>Your upload is missing a mandatory file. Please refer to <a href="#file-format">File format</a> where the mandatory files for your design type is described in detail.</p>
@@ -7271,7 +7376,7 @@ It is helpful to to view the details of the error message by clicking on <strong
 <div class="content">
 <img src="./images/invalid_design_error_invalid_element_in_dropzone.png" alt="error message: invalid content element in 'data-bsi-dropzone-allowed-elements'">
 </div>
-<div class="title">Figure 20. error message: invalid content element in 'data-bsi-dropzone-allowed-elements'</div>
+<div class="title">Figure 21. error message: invalid content element in 'data-bsi-dropzone-allowed-elements'</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -7309,7 +7414,7 @@ It is helpful to to view the details of the error message by clicking on <strong
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Listing 74. example of a badly referenced element in a dropzone</div>
+<div class="title">Listing 77. example of a badly referenced element in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Design_de-CH.zip/design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span>
@@ -7334,7 +7439,7 @@ It is helpful to to view the details of the error message by clicking on <strong
 <div class="content">
 <img src="./images/invalid_design_error_unknown_content_element_part.png" alt="error message: unknown content element part">
 </div>
-<div class="title">Figure 21. error message: unknown content element part</div>
+<div class="title">Figure 22. error message: unknown content element part</div>
 </div>
 <div class="paragraph">
 <p>The specified <code>data-bsi-element-part</code> is not supported by BSI CX. For a list of supported element parts, visit the <a href="#Parts">[Parts]</a> documentation chapter.</p>
@@ -7358,7 +7463,7 @@ In the example above, a <em>text</em> element part is specified. According to th
 <div class="content">
 <img src="./images/invalid_design_error_sample_content_not_matching_content_element_spec.png" alt="error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element">
 </div>
-<div class="title">Figure 22. error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</div>
+<div class="title">Figure 23. error message: Dropzone contains sample content element that doesn&#8217;t match the structure of the reference content element</div>
 </div>
 <div class="paragraph">
 <p>A discrepancy was discovered when using a content element as sample content. The example must have the same HTML structure as the specified content element.</p>
@@ -7376,7 +7481,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Listing 75. example of a sample content that does not match the specified content element</div>
+<div class="title">Listing 78. example of a sample content that does not match the specified content element</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Content Element: Specification of the element (content-elements.html) --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">hello-world</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">basic-hello-world</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -7414,13 +7519,13 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="content">
 <img src="./images/invalid_design_error_sample_content_that_are_not_content_elements.png" alt="error message: Dropzone contains sample content that are not content elements">
 </div>
-<div class="title">Figure 23. error message: Dropzone contains sample content that are not content elements</div>
+<div class="title">Figure 24. error message: Dropzone contains sample content that are not content elements</div>
 </div>
 <div class="paragraph">
 <p>A dropzone can contain 0&#8230;&#8203;n content elements. Only content elements are allowed as direct child nodes of dropzones. Therefore, HTML that is not part of a content element must not be placed in a dropzone.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 76. example of a detached paragraph that must not be placed in a dropzone</div>
+<div class="title">Listing 79. example of a detached paragraph that must not be placed in a dropzone</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone-allowed-elements</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1 title-h2 title-h3 basic-text basic-image basic-cta</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;h1</span> <span class="attribute-name">data-bsi-element</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title-h1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">plain-text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">element title-h1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Lorem ipsum<span class="tag">&lt;/h1&gt;</span>
@@ -7435,7 +7540,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <div class="content">
 <img src="./images/invalid_design_error_wrong_HTML_tag.png" alt="error message: Part uses tag div but requires one of the following: a" width="img">
 </div>
-<div class="title">Figure 24. error message: Part uses tag div but requires one of the following: a,img</div>
+<div class="title">Figure 25. error message: Part uses tag div but requires one of the following: a,img</div>
 </div>
 <div class="paragraph">
 <p>Make sure to user proper HTML tags for your element parts. Consult the content element <a href="#Parts">[Parts]</a> documentation for the validation error causing element.</p>
@@ -7444,7 +7549,7 @@ A comparison of the two elements can be displayed by clicking on <strong>Details
 <p><em>In the example above, this would be the <a href="#image-part">Image</a> content element <a href="#Parts">[Parts]</a> documentation.</em></p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 77. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
+<div class="title">Listing 80. example of a incorrect HTML tag for a certain element part and how to fix it.</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid: uses &lt;div&gt; which is not an image --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">data-bsi-element-part</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
@@ -7559,7 +7664,7 @@ Content:
 Removing a <code>script</code> tag from the DOM if the content is being edited can be achieved by adding <code>data-bsi-remove-if='draft'</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 78. removing a sript in draft (edit) mode</div>
+<div class="title">Listing 81. removing a sript in draft (edit) mode</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">draft</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">your-javascript that manipulates-the-DOM.js</span><span class="delimiter">&quot;</span></span> <span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span></code></pre>
 </div>
@@ -7576,7 +7681,7 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Listing 79. invalid HTML will lead to issues</div>
+<div class="title">Listing 82. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML: the attribute 'style' is defined twice --&gt;</span>
 <span class="tag">&lt;img</span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">text-decoration</span>: <span class="value">none</span>;<span class="delimiter">&quot;</span></span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">img/example.png</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="key">width</span>:<span class="float">100%</span>; <span class="key">max-width</span>: <span class="float">100%</span>;<span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
@@ -7592,7 +7697,7 @@ Removing a <code>script</code> tag from the DOM if the content is being edited c
 <p>Some browsers detect and try to <em>fix</em> invalid HTML. Therefore, the DOM structure of the HTML is modified by the browsers, whereas BSI CX still expects the specified structure.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 80. invalid HTML will lead to issues</div>
+<div class="title">Listing 83. invalid HTML will lead to issues</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- Invalid HTML, as defined in content-elements.html --&gt;</span>
 <span class="tag">&lt;table</span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">table</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
@@ -7648,7 +7753,7 @@ This section applies to installations prior to BSI CX 1.2.46.
 <div class="content">
 <img src="./images/unique-dropzone-name-violated.png" alt="element is being dropped outside of the dropzone (or nowhere)">
 </div>
-<div class="title">Figure 25. element is being dropped outside of the dropzone (or nowhere)</div>
+<div class="title">Figure 26. element is being dropped outside of the dropzone (or nowhere)</div>
 </div>
 <div class="paragraph">
 <p>This may happen if a dropzone name is duplicated.
@@ -7656,7 +7761,7 @@ Dropzones must have unique identifiers in older versions of BSI CX.
 Make sure that a unique name is specified for each usage of <code>data-bsi-dropzone</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 81. data-bsi-dropzone uniqueness violated</div>
+<div class="title">Listing 84. data-bsi-dropzone uniqueness violated</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="html"><span class="comment">&lt;!-- design.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">main-dropzone</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-bsi-dropzone</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -7700,7 +7805,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 <p>See the following example:</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 82. CSS of an element using viewport unit</div>
+<div class="title">Listing 85. CSS of an element using viewport unit</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="css"><span class="class">.header-image</span> {
     <span class="key">height</span>: <span class="error">c</span><span class="error">a</span><span class="error">l</span><span class="error">c</span>(<span class="float">100</span><span class="value">vh</span> <span class="error">-</span> <span class="float">32px</span>);
@@ -7720,7 +7825,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2026-03-03 18:57:15 +0100
+Last update 2026-03-05 18:57:20 +0100
 </div>
 </div>
 </body>
