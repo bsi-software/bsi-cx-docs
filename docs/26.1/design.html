@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 26.1</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2026-03-07</span>
+<span id="revdate">Version Date 2026-03-10</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -785,6 +785,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <ul class="sectlevel3">
 <li><a href="#allowinlinescripts">2.7.1. allowInlineScripts</a></li>
 <li><a href="#alloweventattributes">2.7.2. allowEventAttributes</a></li>
+<li><a href="#allowsrcdocattribute">2.7.3. allowSrcdocAttribute</a></li>
 </ul>
 </li>
 <li><a href="#styles">2.8. Styles</a></li>
@@ -1742,6 +1743,9 @@ But what does this mean? Features of a secure design are:</p>
 <p>The design does not use inline scripts.</p>
 </li>
 <li>
+<p>The design does not use the <code>srcdoc</code> attribute on IFrames.</p>
+</li>
+<li>
 <p>The design does not use event attributes.</p>
 </li>
 <li>
@@ -1767,7 +1771,8 @@ As mentioned above, the defaults depend on the design version (property <code>de
   <span class="key"><span class="delimiter">&quot;</span><span class="content">security</span><span class="delimiter">&quot;</span></span>: {
     <span class="key"><span class="delimiter">&quot;</span><span class="content">htmlSanitization</span><span class="delimiter">&quot;</span></span>: {
       <span class="key"><span class="delimiter">&quot;</span><span class="content">allowInlineScripts</span><span class="delimiter">&quot;</span></span>: <span class="value">false</span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">allowEventAttributes</span><span class="delimiter">&quot;</span></span>: <span class="value">false</span>
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">allowEventAttributes</span><span class="delimiter">&quot;</span></span>: <span class="value">false</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">allowSrcdocAttribute</span><span class="delimiter">&quot;</span></span>: <span class="value">false</span>
     }
   }
 }</code></pre>
@@ -1791,8 +1796,13 @@ and only allow the required inline scripts by setting an SHA-hash in the CSP.</p
 <div class="sect3">
 <h4 id="alloweventattributes"><a class="anchor" href="#alloweventattributes"></a>2.7.2. allowEventAttributes</h4>
 <div class="paragraph">
-<p>Controls whether event attributes, with a property name starting with 'on', are removed from the DOM
-and also if attributes, with a value starting with <code>javascript:</code>, are removed from the DOM.</p>
+<p>Controls whether event attributes starting with 'on' and the attributes <code>href</code>, <code>src</code> and <code>formaction</code> with an attribute value starting with 'javascript:' are removed from the DOM.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowsrcdocattribute"><a class="anchor" href="#allowsrcdocattribute"></a>2.7.3. allowSrcdocAttribute</h4>
+<div class="paragraph">
+<p>Controls whether the <code>srcdoc</code> attribute for IFrames is removed from the DOM.</p>
 </div>
 </div>
 </div>
@@ -7856,7 +7866,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2026-03-07 18:57:20 +0100
+Last update 2026-03-10 18:57:16 +0100
 </div>
 </div>
 </body>
