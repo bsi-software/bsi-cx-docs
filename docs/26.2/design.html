@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 26.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2026-03-05</span>
+<span id="revdate">Version Date 2026-03-10</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -785,6 +785,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <ul class="sectlevel3">
 <li><a href="#allowinlinescripts">2.7.1. allowInlineScripts</a></li>
 <li><a href="#alloweventattributes">2.7.2. allowEventAttributes</a></li>
+<li><a href="#allowsrcdocattribute">2.7.3. allowSrcdocAttribute</a></li>
 </ul>
 </li>
 <li><a href="#styles">2.8. Styles</a></li>
@@ -1742,6 +1743,9 @@ But what does this mean? Features of a secure design are:</p>
 <p>The design does not use inline scripts.</p>
 </li>
 <li>
+<p>The design does not use the <code>srcdoc</code> attribute on IFrames.</p>
+</li>
+<li>
 <p>The design does not use event attributes.</p>
 </li>
 <li>
@@ -1767,7 +1771,8 @@ As mentioned above, the defaults depend on the design version (property <code>de
   <span class="key"><span class="delimiter">&quot;</span><span class="content">security</span><span class="delimiter">&quot;</span></span>: {
     <span class="key"><span class="delimiter">&quot;</span><span class="content">htmlSanitization</span><span class="delimiter">&quot;</span></span>: {
       <span class="key"><span class="delimiter">&quot;</span><span class="content">allowInlineScripts</span><span class="delimiter">&quot;</span></span>: <span class="value">false</span>,
-      <span class="key"><span class="delimiter">&quot;</span><span class="content">allowEventAttributes</span><span class="delimiter">&quot;</span></span>: <span class="value">false</span>
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">allowEventAttributes</span><span class="delimiter">&quot;</span></span>: <span class="value">false</span>,
+      <span class="key"><span class="delimiter">&quot;</span><span class="content">allowSrcdocAttribute</span><span class="delimiter">&quot;</span></span>: <span class="value">false</span>
     }
   }
 }</code></pre>
@@ -1791,8 +1796,13 @@ and only allow the required inline scripts by setting an SHA-hash in the CSP.</p
 <div class="sect3">
 <h4 id="alloweventattributes"><a class="anchor" href="#alloweventattributes"></a>2.7.2. allowEventAttributes</h4>
 <div class="paragraph">
-<p>Controls whether event attributes, with a property name starting with 'on', are removed from the DOM
-and also if attributes, with a value starting with <code>javascript:</code>, are removed from the DOM.</p>
+<p>Controls whether event attributes starting with 'on' and the attributes <code>href</code>, <code>src</code> and <code>formaction</code> with an attribute value starting with 'javascript:' are removed from the DOM.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowsrcdocattribute"><a class="anchor" href="#allowsrcdocattribute"></a>2.7.3. allowSrcdocAttribute</h4>
+<div class="paragraph">
+<p>Controls whether the <code>srcdoc</code> attribute for IFrames is removed from the DOM.</p>
 </div>
 </div>
 </div>
@@ -2949,19 +2959,32 @@ This chapter gives an overview over the attributes relevant for the development 
 <div class="ulist">
 <ul>
 <li>
-<p><code>draft</code>: The element is only inserted if the content is being edited in the editor.</p>
+<p><code>editor</code>: <code>True</code> if the content is rendered within the content editor.
+It does not matter if the content editor is in draft (editing) or in (inline) preview mode.
+<code>False</code> in any other case, including the external preview.</p>
 </li>
 <li>
-<p><code>live</code>: The element is only inserted if the content is driven by a story.</p>
+<p><code>draft</code>: <code>True</code> if the content is rendered within the content editor and the content editor is in draft (editing) mode.
+<code>False</code> in any other case.</p>
 </li>
 <li>
-<p><code>authenticated</code>: The element is only inserted if an authenticated visitor exists on the BSI CX HTTP session (only available in BSI CX websites).</p>
+<p><code>live</code>: <code>True</code> if the content is rendered within a story, by the external preview or by the internal preview in the content editor.
+<code>False</code> in any other case.</p>
 </li>
 <li>
-<p><code>production</code>: The element is only inserted if the BSI CX server is configured as production system. This is defined by the config property 'bsi.studio.html.output.environment'.</p>
+<p><code>authenticated</code>: <code>True</code> if the content is rendered within a story and an authenticated user is logged in.
+This feature is only available in BSI CX websites.
+<code>False</code> in any other case.</p>
 </li>
 <li>
-<p><code>test</code>: The element is only inserted if the BSI CX server is configured as test system. This is defined by the config property 'bsi.studio.html.output.environment'.</p>
+<p><code>production</code>: <code>True</code> if the content is rendered on a BSI CX server which is configured as a production system.
+(as defined by the config property 'bsi.studio.html.output.environment').
+  <code>False</code> in any other case.</p>
+</li>
+<li>
+<p><code>test</code>: <code>True</code> if the content is rendered on a BSI CX server which is configured as a test system.
+(as defined by the config property 'bsi.studio.html.output.environment').
+  <code>False</code> in any other case.</p>
 </li>
 </ul>
 </div>
@@ -2969,7 +2992,21 @@ This chapter gives an overview over the attributes relevant for the development 
 <p>The attribute value may have a negate operator (!). Using this operator you can negate the condition, for instance <code>!authenticated</code> will only be removed in case the visitor is <em>not</em> logged in.</p>
 </div>
 <div class="paragraph">
-<p>The attribute value can be a complex expression, see example below.</p>
+<p>The attribute value can be a complex expression, see examples below.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Do not use the <code>data-bsi-remove-if</code> attribute in content elements if you must prevent script execution in the content editor.
+The expressions are not evaluated when a content element is dropped into the editor.
+Instead, use the attribute in the template for the landingpage or in the master for a website or in a website page template.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -2978,7 +3015,7 @@ This chapter gives an overview over the attributes relevant for the development 
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-<code>data-bsi-remove-if</code> must not be used for tag elements containing content elements! Otherwise, those cannot be edited in draft mode.
+<code>data-bsi-remove-if</code> must not be used for DOM elements containing content elements. Otherwise, those cannot be edited in the draft mode.
 </td>
 </tr>
 </table>
@@ -2986,13 +3023,17 @@ This chapter gives an overview over the attributes relevant for the development 
 <div class="sect4">
 <h5 id="examples"><a class="anchor" href="#examples"></a>3.1.1.1. Examples</h5>
 <div class="paragraph">
-<p>A common and recommended use of <code>data-bsi-remove-if="draft"</code> is to suppress executing JavaScript in the content editor, which may lead to unintended side effects.</p>
+<p>A common and recommended use of <code>data-bsi-remove-if="editor"</code> is to suppress JavaScript execution in the content editor, which may lead to unintended side effects.
+A script must never manipulate the DOM in the content editor.
+Do not rely on CSP preventing script execution.
+Instead, use the attribute as shown in the following examples.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listing 22. Hiding information in draft mode</div>
+<div class="title">Listing 22. Prevent script execution in draft mode</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">draft</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-<span class="inline"><span class="comment">// this script will not mess around with your content while being edited in the content editor</span></span>
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;script</span> <span class="attribute-name">data-bsi-remove-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">editor</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<span class="inline">  <span class="comment">// This script does not execute while being displayed in the editor.</span>
+  alert(<span class="integer">1</span>);</span>
 <span class="tag">&lt;/script&gt;</span></code></pre>
 </div>
 </div>
@@ -7825,7 +7866,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2026-03-05 18:14:22 +0100
+Last update 2026-03-10 18:14:16 +0100
 </div>
 </div>
 </body>
