@@ -740,7 +740,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <h1>Design Documentation: BSI CX 26.2</h1>
 <div class="details">
 <span id="author" class="author">BSI Product Development</span><br>
-<span id="revdate">Version Date 2026-04-28</span>
+<span id="revdate">Version Date 2026-07-29</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Covered Topics</div>
@@ -3337,6 +3337,10 @@ Default is <code>false</code>.</p>
 <p><strong>fieldHeight</strong>: This integer value controls the field height in the form of the content editor.
 Default is <code>5</code>. The unit is <em>Eclipse Scout</em> grid height (Property 'h' in GridData).</p>
 </li>
+<li>
+<p><strong>companionEnabled</strong>: Controls whether the companion is available in the editor for this part.
+Default is <code>true</code>.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -3357,6 +3361,20 @@ For more information about the available configuration options see chapter <a hr
     <span class="tag">&lt;p&gt;</span>Proin porta <span class="tag">&lt;strong&gt;</span>pharetra est non<span class="tag">&lt;/strong&gt;</span> molestie.<span class="tag">&lt;/p&gt;</span>
     <span class="tag">&lt;p&gt;</span><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">https://www.example.org/</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>More<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/p&gt;</span>
 <span class="tag">&lt;/section&gt;</span></code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="configuration-2"><a class="anchor" href="#configuration-2"></a>4.2.2.1. Configuration</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>htmlEditorConfigId</strong>: The ID of the editor configuration from the <code>design.json</code> that should be applied to this element part.</p>
+</li>
+<li>
+<p><strong>companionEnabled</strong>: Controls whether the companion is available in the editor for this part.
+Default is <code>true</code>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -4847,12 +4865,16 @@ This unique name then also refers to the element in <code>design-context.json</c
 </div>
 </div>
 <div class="sect4">
-<h5 id="configuration-2"><a class="anchor" href="#configuration-2"></a>4.3.2.3. Configuration</h5>
+<h5 id="configuration-3"><a class="anchor" href="#configuration-3"></a>4.3.2.3. Configuration</h5>
 <div class="ulist">
 <ul>
 <li>
 <p><strong>studioLinkEnabled</strong>: This boolean value controls whether the 'CX Link' button is visible.
 Default is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>companionEnabled</strong>: Controls whether the companion is available in the editor for this part.
+Default is <code>true</code>.</p>
 </li>
 </ul>
 </div>
@@ -4883,7 +4905,7 @@ Default is <code>false</code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="configuration-3"><a class="anchor" href="#configuration-3"></a>4.3.3.3. Configuration</h5>
+<h5 id="configuration-4"><a class="anchor" href="#configuration-4"></a>4.3.3.3. Configuration</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -4893,6 +4915,10 @@ Default is <code>false</code>.</p>
 <li>
 <p><strong>fieldHeight</strong>: This integer value controls the field height in the form of the content editor.
 Default is <code>5</code>. The unit is <em>Eclipse Scout</em> grid height (Property 'h' in GridData).</p>
+</li>
+<li>
+<p><strong>companionEnabled</strong>: Controls whether the companion is available in the editor for this part.
+Default is <code>true</code>.</p>
 </li>
 </ul>
 </div>
@@ -4944,7 +4970,7 @@ The picture shows the current default editor.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="configuration-4"><a class="anchor" href="#configuration-4"></a>4.3.4.3. Configuration</h5>
+<h5 id="configuration-5"><a class="anchor" href="#configuration-5"></a>4.3.4.3. Configuration</h5>
 <div class="paragraph">
 <p>The template part allows the HTML editor to be configured.
 The structure is as follows:</p>
@@ -4953,6 +4979,10 @@ The structure is as follows:</p>
 <ul>
 <li>
 <p><strong>htmlEditorConfigId</strong>: The ID of the editor configuration from the <code>design.json</code> that should be applied to this template part.</p>
+</li>
+<li>
+<p><strong>companionEnabled</strong>: Controls whether the companion is available in the editor for this part.
+Default is <code>true</code>.</p>
 </li>
 </ul>
 </div>
@@ -4992,7 +5022,7 @@ The structure is as follows:</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="configuration-5"><a class="anchor" href="#configuration-5"></a>4.3.5.3. Configuration</h5>
+<h5 id="configuration-6"><a class="anchor" href="#configuration-6"></a>4.3.5.3. Configuration</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -5062,7 +5092,7 @@ Default is <code>true</code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="configuration-6"><a class="anchor" href="#configuration-6"></a>4.3.6.3. Configuration</h5>
+<h5 id="configuration-7"><a class="anchor" href="#configuration-7"></a>4.3.6.3. Configuration</h5>
 <div class="paragraph">
 <p>The template part can be configured with the following values:</p>
 </div>
@@ -5123,7 +5153,7 @@ It supplies a simple checkbox element and a boolean value that can be used e.g. 
 </div>
 </div>
 <div class="sect4">
-<h5 id="configuration-7"><a class="anchor" href="#configuration-7"></a>4.3.7.3. Configuration</h5>
+<h5 id="configuration-8"><a class="anchor" href="#configuration-8"></a>4.3.7.3. Configuration</h5>
 <div class="paragraph">
 <p>This template part provides no configuration options.</p>
 </div>
@@ -5168,7 +5198,7 @@ It allows to define a list of key/value options in the design and provides the k
 </div>
 </div>
 <div class="sect4">
-<h5 id="configuration-8"><a class="anchor" href="#configuration-8"></a>4.3.8.3. Configuration</h5>
+<h5 id="configuration-9"><a class="anchor" href="#configuration-9"></a>4.3.8.3. Configuration</h5>
 <div class="paragraph">
 <p>The option template part needs one or more configured options that each consists of a value and a text that is displayed to the user in the editor user interface. In the Handlebars template, the value of the selected option is applied to the 'value' variable.</p>
 </div>
@@ -5630,7 +5660,7 @@ A possible method for invoking the REST endpoint is provided in the snippet belo
 </div>
 </div>
 <div class="sect4">
-<h5 id="configuration-9"><a class="anchor" href="#configuration-9"></a>4.3.10.3. Configuration</h5>
+<h5 id="configuration-10"><a class="anchor" href="#configuration-10"></a>4.3.10.3. Configuration</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -7949,7 +7979,7 @@ Make sure that a unique name is specified for each usage of <code>data-bsi-dropz
 </div>
 <div id="footer">
 <div id="footer-text">
-Last update 2026-04-28 18:14:13 +0200
+Last update 2026-07-29 18:14:24 +0200
 </div>
 </div>
 </body>
