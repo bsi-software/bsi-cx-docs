@@ -223,6 +223,10 @@ a:hover {
     font-weight: bold;
 }
 
+.version-marker.archived {
+    font-style: italic;
+}
+
 .stable-version-row {
     background-color: #ecf6ff;
 }
